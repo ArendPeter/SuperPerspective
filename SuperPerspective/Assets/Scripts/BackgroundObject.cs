@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BackgroundObject : MonoBehaviour {
 
+	#pragma warning disable 219
+
 	// Use this for initialization
 	void Start () {
 	

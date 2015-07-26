@@ -109,4 +109,8 @@ public class RealmManager : MonoBehaviour {
 	public static void Reset() {
 		dimension = RED;
 	}
+	
+	public static int getDimension(){
+		return dimension;
+	}
 }

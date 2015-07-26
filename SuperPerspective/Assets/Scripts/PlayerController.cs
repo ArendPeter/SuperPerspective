@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(LineRenderer))]
 public class PlayerController : PhysicalObject
 {
+	bool testShowZlock=false;
+	
 	//suppress warnings
 	#pragma warning disable 1691,168,219,414
 
@@ -96,8 +98,8 @@ public class PlayerController : PhysicalObject
 		colliderWidth = GetComponent<Collider>().bounds.max.x - GetComponent<Collider>().bounds.min.x;
 		colliderDepth = GetComponent<Collider>().bounds.max.z - GetComponent<Collider>().bounds.min.z;
 
-		//Register Flip method to the shift event
-		GameStateManager.instance.PerspectiveShiftSuccessEvent += Flip;
+		//Register Flip method to the shift event (now called specifically from GameStateManager, due to event ordering issue)
+		//GameStateManager.instance.PerspectiveShiftSuccessEvent += Flip;
 		
 		anim = GetComponentInChildren<Animator>();
 		model = anim.gameObject;
@@ -344,12 +346,14 @@ public class PlayerController : PhysicalObject
 		Vector3 trajectory;
 
 		RaycastHit[] hits = colCheck.CheckYCollision (velocity, Margin);
-
+		if(testShowZlock) Debug.Log("------");
 		float close = -1;
+		if(testShowZlock) Debug.Log(hits.Length);
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
 			if (hitInfo.collider != null)
 			{
+				if(testShowZlock) Debug.Log("Collider Not Null");
 				if (hitInfo.collider.gameObject.tag == "Intangible") {
 					trajectory = velocity.y * Vector3.up;
 					CollideWithObject(hitInfo, trajectory);
@@ -365,6 +369,7 @@ public class PlayerController : PhysicalObject
 						zlock = hitInfo.transform.position.z;
 					else
 						zlock = int.MinValue;
+					if(testShowZlock) Debug.Log(zlock);
 					trajectory = velocity.y * Vector3.up;
 					CollideWithObject(hitInfo, trajectory);
 				}
@@ -461,6 +466,9 @@ public class PlayerController : PhysicalObject
     }
 
     private void DoZLock() {
+		testShowZlock = true;
+		CheckCollisions();
+		testShowZlock = false;
 		if (crate != null)
 			zlock = crate.transform.position.z;
 		if (zlock > int.MinValue) {
