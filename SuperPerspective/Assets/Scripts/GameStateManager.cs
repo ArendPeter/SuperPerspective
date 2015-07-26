@@ -168,7 +168,7 @@ public class GameStateManager : PersistentSingleton<GameStateManager>
 				StartCoroutine(FailTimer());
 			}else{
 				RaisePerspectiveShiftSuccessEvent();
-				
+				PlayerController.instance.Flip();
 			}
 		}else{
 			PlayerController.instance.Flip();
@@ -187,8 +187,6 @@ public class GameStateManager : PersistentSingleton<GameStateManager>
     
 	private void HandleShiftComplete(){
 		currentState = targetState;
-		
-		PlayerController.instance.Flip();
 	
 		RaisePerspectiveShiftEvent();
 		

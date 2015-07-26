@@ -106,6 +106,19 @@ public class RealmManager : MonoBehaviour {
 		}
 	}
 	
+	public void updateBlockGeometry(PerspectiveType p){
+		foreach(GameObject r in reds){
+			bool initEnabled = r.GetComponent<Collider>().enabled;
+			r.GetComponent<LevelGeometry>().AdjustPosition(p);
+			r.GetComponent<Collider>().enabled=initEnabled;
+		}
+		foreach(GameObject b in blues){
+			bool initEnabled = b.GetComponent<Collider>().enabled;
+			b.GetComponent<LevelGeometry>().AdjustPosition(p);
+			b.GetComponent<Collider>().enabled=initEnabled;
+		}
+	}
+	
 	public static void Reset() {
 		dimension = RED;
 	}

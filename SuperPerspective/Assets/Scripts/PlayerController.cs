@@ -346,9 +346,7 @@ public class PlayerController : PhysicalObject
 		Vector3 trajectory;
 
 		RaycastHit[] hits = colCheck.CheckYCollision (velocity, Margin);
-		if(testShowZlock) Debug.Log("------");
 		float close = -1;
-		if(testShowZlock) Debug.Log(hits.Length);
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
 			if (hitInfo.collider != null)
@@ -369,7 +367,6 @@ public class PlayerController : PhysicalObject
 						zlock = hitInfo.transform.position.z;
 					else
 						zlock = int.MinValue;
-					if(testShowZlock) Debug.Log(zlock);
 					trajectory = velocity.y * Vector3.up;
 					CollideWithObject(hitInfo, trajectory);
 				}
@@ -466,9 +463,6 @@ public class PlayerController : PhysicalObject
     }
 
     private void DoZLock() {
-		testShowZlock = true;
-		CheckCollisions();
-		testShowZlock = false;
 		if (crate != null)
 			zlock = crate.transform.position.z;
 		if (zlock > int.MinValue) {

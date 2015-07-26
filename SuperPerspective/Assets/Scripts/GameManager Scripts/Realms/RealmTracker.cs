@@ -16,7 +16,9 @@ public class RealmTracker : Activatable {
 	}
 	
 	public void perspectiveShift(){
-		if(shiftTriggerable)
+		if(shiftTriggerable){
+			RealmManager.instance.updateBlockGeometry(GameStateManager.instance.currentPerspective);
 			setActivated(RealmManager.getDimension() == 1? false : true);
+		}
 	}
 }

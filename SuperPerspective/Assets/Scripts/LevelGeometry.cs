@@ -46,7 +46,7 @@ public class LevelGeometry : MonoBehaviour
 
     
     // Adjusts the collider to the appropriate shape when the perspective shift event occurs.
-    private void AdjustPosition(PerspectiveType p)
+    public void AdjustPosition(PerspectiveType p)
     {
 		//Mathf.Pow(Mathf.Sin(rot * Mathf.Deg2Rad), 2)
 		float rot = Mathf.Floor(transform.rotation.eulerAngles.y);
