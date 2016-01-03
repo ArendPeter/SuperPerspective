@@ -9,12 +9,14 @@ public class PlayerSpawnController : MonoBehaviour {
 
 	void Start () {
 		destDoor = this.findDoor(startDoorName);
-		this.moveToDoor(destDoor);
+		if(startAtDoor){
+			this.moveToDoor(destDoor);
+		}
 	}
 
 	//spawn player at door
 	public void moveToDoor(Door doorObject){
-		if(doorObject != null && startAtDoor)
+		if(doorObject != null)
 			this.gameObject.GetComponent<PlayerController>().Teleport(
 				doorObject.transform.position + new Vector3(0,2,-2));
 	}
