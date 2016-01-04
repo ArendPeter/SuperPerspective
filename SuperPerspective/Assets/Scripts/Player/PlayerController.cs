@@ -265,20 +265,21 @@ public class PlayerController : PhysicalObject{
 
 			RaycastHit hitInfo = hits[i];
 
-            //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
-
-            if (axis == Y)
-            {
-                Debug.Log("colEnter");
-                if(step != null && hitInfo.collider != null)
-                    step.updateStepType(hitInfo.collider);
-            }
-
-            //end Nick code
-
             if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
 			{
-				float verticalOverlap = getVerticalOverlap(hitInfo);
+
+                //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
+
+                if (axis == Y)
+                {
+                    Debug.Log("colEnter");
+                    if (step != null)
+                        step.updateStepType(hitInfo.collider);
+                }
+
+                //end Nick code
+
+                float verticalOverlap = getVerticalOverlap(hitInfo);
 				bool significantVerticalOverlap =
 					verticalOverlap > verticalOverlapThreshhold;
 				if(axis != Y && !significantVerticalOverlap){

@@ -104,8 +104,8 @@ public class StepManager : MonoBehaviour {
     void ClothesRustle()
     {
         clothesSound.clip = clothes[Random.Range(0, 4)];
-        clothesSound.pitch = Random.Range(0.95f, 1.05f);
-        clothesSound.volume = 0.1f;
+        clothesSound.pitch = Random.Range(1.95f, 2.05f);
+        clothesSound.volume = 0.15f;
         clothesSound.Play();
     }
 }
