@@ -75,6 +75,9 @@ public class PlayerController : PhysicalObject{
 	private const int Z = 2;
 	private const float epsilon = .1f;
 
+    //Nick addition, used for footstep sound selection
+    public StepManager step;
+
    #endregion
 
 	#region Init
@@ -259,8 +262,21 @@ public class PlayerController : PhysicalObject{
 
 		float distToCollision = -1;
 		for (int i = 0; i < hits.Length; i++) {
+
 			RaycastHit hitInfo = hits[i];
-			if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
+
+            //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
+
+            if (axis == Y)
+            {
+                Debug.Log("colEnter");
+                if(step != null && hitInfo.collider != null)
+                    step.updateStepType(hitInfo.collider);
+            }
+
+            //end Nick code
+
+            if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
 			{
 				float verticalOverlap = getVerticalOverlap(hitInfo);
 				bool significantVerticalOverlap =
@@ -325,7 +341,17 @@ public class PlayerController : PhysicalObject{
 		}
 	}
 
-	Vector3 getAxisVector(int axis){
+    //Nick addition: Used for footstep audio selection
+
+    void OnCollisionEnter(Collision collider)
+    {
+        Debug.Log("colEnter");
+        //step.updateStepType(collider);
+    }
+
+    //End Nick addition
+
+    Vector3 getAxisVector(int axis){
 		switch(axis){
 			case X: return Vector3.right;
 			case Y: return Vector3.up;

@@ -26,12 +26,12 @@ public class Footsteps : StateMachineBehaviour {
 
 		if (playbackTime < 0.3f && !play1){
 			play1 = true;
-			step.GrassStep();
+			step.Step();
 		}
 
 		else if (playbackTime > 0.5f && playbackTime < 0.8f && !play2){
 			play2 = true;
-			step.GrassStep();
+			step.Step();
 		}
 
 		else if (playbackTime > 0.81f){

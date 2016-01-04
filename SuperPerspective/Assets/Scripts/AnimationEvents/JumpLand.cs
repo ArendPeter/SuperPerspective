@@ -24,7 +24,7 @@ public class JumpLand : StateMachineBehaviour {
 		step = Object.FindObjectOfType<StepManager> ();
 		if(step == null)
 			return;
-		step.GrassStep ();
+		step.Step ();
 		currentState = animator.GetCurrentAnimatorStateInfo(0);
 	}
 
