@@ -14,10 +14,13 @@ public class Door : ActiveInteractable {
 
     public GameObject warpSound;
 
+    ListenerHandler l;
+
 	public void Awake(){
 		//update particle color
 		ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
-		p.startColor = particleColor;
+        l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
+        p.startColor = particleColor;
 		p.Simulate(2f);
 		p.Play();
         range = 4;
@@ -44,7 +47,9 @@ public class Door : ActiveInteractable {
 				destDoor.GetComponent<Collider>().bounds.center + new Vector3(0,0,-2));
 		else
 			Debug.Log("Door not linked");
-	}
+
+        l.ResetZ();
+    }
 
 	public string getName(){
 		return myName;

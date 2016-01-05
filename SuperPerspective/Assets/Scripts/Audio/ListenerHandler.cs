@@ -36,4 +36,10 @@ public class ListenerHandler : MonoBehaviour {
             transform.localPosition = Vector3.zero;
         }
     }
+
+    public void ResetZ()
+    {
+        transform.localPosition = Vector3.zero;
+        globZpos = transform.position.z;
+    }
 }
