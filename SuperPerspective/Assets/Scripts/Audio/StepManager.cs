@@ -10,7 +10,6 @@ public class StepManager : MonoBehaviour {
 
 	AudioClip[] grassSteps, snowSteps, rockSteps, clothes, curClips;
 	AudioSource source;
-    public GameObject player;
     public AudioSource clothesSound;
 
     float stepTimer;
@@ -44,6 +43,7 @@ public class StepManager : MonoBehaviour {
         curClips = grassSteps;
 
         source = gameObject.GetComponent<AudioSource> ();
+        clothesSound = GameObject.Find("ClothesSounds").GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame

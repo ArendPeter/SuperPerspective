@@ -96,6 +96,8 @@ public class PlayerController : PhysicalObject{
 		initCollisionVariables();
 
 		registerEventHandlers();
+
+        step = GameObject.Find("Steps").GetComponent<StepManager>();
 	}
 
 	public void Reset() {
