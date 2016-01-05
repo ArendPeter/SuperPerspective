@@ -71,7 +71,7 @@ public class StepManager : MonoBehaviour {
             curClips = rockSteps;
             //Debug.Log("rock");
         }
-        Debug.Log(curClips[0].name);
+        //Debug.Log(curClips[0].name);
     }
 
     public void Step()
