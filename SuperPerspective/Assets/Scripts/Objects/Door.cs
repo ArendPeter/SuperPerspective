@@ -11,7 +11,9 @@ public class Door : ActiveInteractable {
 
 	public bool isSceneLoad;
 	public int crystalRequirement;
-	
+
+    public GameObject warpSound;
+
 	public void Awake(){
 		//update particle color
 		ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
@@ -30,6 +32,10 @@ public class Door : ActiveInteractable {
 	}
 
 	public override void Triggered(){
+
+        //Creates game object that plays warp sound then self destructs -Nick
+        Instantiate(warpSound);
+
 		if(isSceneLoad && destName != null)
 			Application.LoadLevel(destName);
 
