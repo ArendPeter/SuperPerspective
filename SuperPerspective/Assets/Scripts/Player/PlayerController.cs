@@ -272,7 +272,7 @@ public class PlayerController : PhysicalObject{
 
                 if (axis == Y)
                 {
-                    Debug.Log("colEnter");
+                    //Debug.Log("colEnter");
                     if (step != null)
                         step.updateStepType(hitInfo.collider);
                 }

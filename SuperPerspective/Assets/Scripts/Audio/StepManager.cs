@@ -41,59 +41,43 @@ public class StepManager : MonoBehaviour {
         clothes[2] = Resources.Load("Sound/SFX/Player/Steps/Clothes3") as AudioClip;
         clothes[3] = Resources.Load("Sound/SFX/Player/Steps/Clothes4") as AudioClip;
 
-        curClips = rockSteps;
+        curClips = grassSteps;
 
         source = gameObject.GetComponent<AudioSource> ();
-		stepTimer = 0.312f;
-
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		/*if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey (KeyCode.DownArrow)
-			|| Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.RightArrow)
-		    || Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.A)
-		    || Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.D)) {
 
-			stepTimer -= Time.deltaTime;
-		} 
-
-		else {
-			stepTimer = 0.312f;
-		}
-
-		if (stepTimer <= 0) {
-			GrassStep ();
-			stepTimer = 0.312f;
-		}*/
 	}
 
     public void updateStepType(Collider type)
     {
-        Debug.Log("Col");
+        //Debug.Log("Col");
         if (type.gameObject.layer == LayerMask.NameToLayer("Grass"))
         {
             curClips = grassSteps;
-            Debug.Log("grass");
+            //Debug.Log("grass");
         }
 
         else if (type.gameObject.layer == LayerMask.NameToLayer("Snow"))
         {
             curClips = snowSteps;
-            Debug.Log("snow");
+            //Debug.Log("snow");
         }
 
         else
         {
             curClips = rockSteps;
-            Debug.Log("rock");
+            //Debug.Log("rock");
         }
+        Debug.Log(curClips[0].name);
     }
 
     public void Step()
     {
-
         source.clip = curClips[Random.Range(0, 4)];
+        //Debug.Log(source.gameObject.name);
         source.pitch = Random.Range(0.95f, 1.05f);
         source.volume = 0.1f;
         source.Play();
@@ -103,9 +87,13 @@ public class StepManager : MonoBehaviour {
 
     void ClothesRustle()
     {
-        clothesSound.clip = clothes[Random.Range(0, 4)];
-        clothesSound.pitch = Random.Range(1.95f, 2.05f);
-        clothesSound.volume = 0.15f;
-        clothesSound.Play();
+        if (clothesSound != null)
+        {
+            clothesSound.clip = clothes[Random.Range(0, 4)];
+            //Debug.Log(clothesSound.clip.name);
+            clothesSound.pitch = Random.Range(1.95f, 2.05f);
+            clothesSound.volume = 0.15f;
+            clothesSound.Play();
+        }
     }
 }

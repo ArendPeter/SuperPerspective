@@ -1374,8 +1374,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 446796}
-  - 114: {fileID: 11480128}
   - 82: {fileID: 8284142}
+  - 114: {fileID: 11485416}
   m_Layer: 2
   m_Name: Steps
   m_TagString: Untagged
@@ -4759,6 +4759,7 @@ MonoBehaviour:
   jumpVelocity: 19
   jumpMargin: 0.2
   verticalRays: 8
+  step: {fileID: 11485416}
 --- !u!114 &11455610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4792,7 +4793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1dd050525eda3e418709152c08faeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11480128
+--- !u!114 &11485416
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

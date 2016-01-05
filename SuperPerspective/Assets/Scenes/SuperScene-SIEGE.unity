@@ -5811,8 +5811,9 @@ Prefab:
     - target: {fileID: 11452674, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: step
       value: 
-      objectReference: {fileID: 1905866610}
-    m_RemovedComponents: []
+      objectReference: {fileID: 1538284371}
+    m_RemovedComponents:
+    - {fileID: 11480128, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &233331634 stripped
@@ -27510,6 +27511,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 497010, guid: 9d956899fbf8c3b4cb19346f00d3e303, type: 2}
   m_PrefabInternal: {fileID: 1136716712}
+--- !u!1 &1137805437 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 180044, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+  m_PrefabInternal: {fileID: 233053119}
 --- !u!1001 &1137949121
 Prefab:
   m_ObjectHideFlags: 0
@@ -32729,6 +32734,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 433692, guid: 394da313d60456149a3d364c9bb7f7be, type: 2}
   m_PrefabInternal: {fileID: 1319886433}
+--- !u!82 &1323970151 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 8227072, guid: de83d96658944fd4684e4560f5cf49d2,
+    type: 2}
+  m_PrefabInternal: {fileID: 233053119}
 --- !u!4 &1324125016 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 74c8ff9310ecd7f4d9492373fc6975d0, type: 2}
@@ -38079,6 +38089,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67f3fc11d69eb0544ba9433dece0bb5e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1538284368 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 165186, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+  m_PrefabInternal: {fileID: 233053119}
+--- !u!114 &1538284371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538284368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e3b24e77d3a5045a728c3000f3e699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1137805437}
+  clothesSound: {fileID: 1323970151}
 --- !u!1 &1548909321
 GameObject:
   m_ObjectHideFlags: 0
@@ -49119,12 +49146,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 433692, guid: 394da313d60456149a3d364c9bb7f7be, type: 2}
   m_PrefabInternal: {fileID: 1905465221}
---- !u!114 &1905866610 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11480128, guid: de83d96658944fd4684e4560f5cf49d2,
-    type: 2}
-  m_PrefabInternal: {fileID: 233053119}
-  m_Script: {fileID: 11500000, guid: 96e3b24e77d3a5045a728c3000f3e699, type: 3}
 --- !u!1001 &1906375044
 Prefab:
   m_ObjectHideFlags: 0
