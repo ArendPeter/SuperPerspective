@@ -23,8 +23,6 @@ public class GameStateManager : MonoBehaviour
 	public PerspectiveType currentPerspective { get; private set; }
 
 	// Flip failure timer variables
-	private float failureTime = 2f;    // How long the transition lasts before the flip fails and switches back
-	private float failureTimer = 0f;    // The current timer used in the FailTimer coroutine
 	private bool failedShift = false;
 
 	// view mounts & settings
@@ -125,6 +123,17 @@ public class GameStateManager : MonoBehaviour
 	#endregion Monobehavior Implementation
 
 	#region Event Handlers
+	public void FixedUpdate(){
+			checkForBlinkEnd();
+	}
+
+	private void checkForBlinkEnd(){
+		if(failedShift && !isTransitioning() &&
+				!FlipFailIndicator.instance.isBlinking()){
+			failedShift = false;
+			EnterState(ViewType.STANDARD_3D);
+		}
+	}
 
 	private void HandlePausePressed(){
 		switch(currentState){
@@ -150,7 +159,7 @@ public class GameStateManager : MonoBehaviour
 
 			if(PlayerController.instance.Check2DIntersect()){
 				RaisePerspectiveShiftFailEvent();
-				StartCoroutine(FailTimer());
+				failedShift = true;
 			}else{
 				RaisePerspectiveShiftSuccessEvent();
 			}
@@ -360,27 +369,16 @@ public class GameStateManager : MonoBehaviour
 		return instance.targetState == ViewType.DYNAMIC;
 	}
 
+	public static bool isTransitioning(){
+		return instance.targetState != instance.currentState;
+	}
+
 	#endregion Public Interface
 
 	#region Helper Functions
-
-	private IEnumerator FailTimer(){
-		failedShift = true;
-		failureTimer = 0f;
-
-		while (failureTimer < failureTime){
-			failureTimer += Time.deltaTime;
-			yield return null;
-		}
-
-		failedShift = false;
-		EnterState(ViewType.STANDARD_3D);
-	}
-
 	private bool IsPauseState(ViewType targetState){
 		return view_pause[(int)targetState] || currentPerspective != view_perspectives[(int)targetState];
 	}
-
    #endregion
 
 }
