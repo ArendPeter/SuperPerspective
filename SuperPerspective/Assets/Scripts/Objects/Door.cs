@@ -19,8 +19,8 @@ public class Door : ActiveInteractable {
 	public void Awake(){
 		//update particle color
 		ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
-        l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
-        p.startColor = particleColor;
+    l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
+    p.startColor = particleColor;
 		p.Simulate(2f);
 		p.Play();
         range = 4;
@@ -54,10 +54,9 @@ public class Door : ActiveInteractable {
 	public string getName(){
 		return myName;
 	}
-	
+
 	public void setDoor(Door destDoor){
 		this.destDoor = destDoor;
 	}
-	
-}
 
+}

@@ -130,8 +130,8 @@ public class GameStateManager : MonoBehaviour
 	private void checkForBlinkEnd(){
 		if(failedShift && !isTransitioning() &&
 				!FlipFailIndicator.instance.isBlinking()){
-			failedShift = false;
 			EnterState(ViewType.STANDARD_3D);
+			failedShift = false;
 		}
 	}
 
@@ -155,7 +155,6 @@ public class GameStateManager : MonoBehaviour
 			ViewType newState = (view_perspectives[(int)currentState] == PerspectiveType.p3D) ?
 				ViewType.STANDARD_2D : ViewType.STANDARD_3D;
 
-			EnterState(newState);
 
 			if(PlayerController.instance.Check2DIntersect()){
 				RaisePerspectiveShiftFailEvent();
@@ -163,6 +162,8 @@ public class GameStateManager : MonoBehaviour
 			}else{
 				RaisePerspectiveShiftSuccessEvent();
 			}
+
+			EnterState(newState);
 		}
 	}
 
