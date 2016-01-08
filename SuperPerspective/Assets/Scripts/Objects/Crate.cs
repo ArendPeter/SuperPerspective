@@ -12,7 +12,7 @@ public class Crate : ActiveInteractable {
 	private Vector3 trajectory, newVelocity;
 	private bool grounded, svFlag;
 	private float colliderHeight, colliderWidth, colliderDepth;
-	private float Margin = 0.05f;
+	private float Margin = .05f;
 
 	private Vector3 startPos;
 
@@ -64,15 +64,15 @@ public class Crate : ActiveInteractable {
 			base.FixedUpdateLogic ();
 			if (!grounded)
 				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
-	
+
 			/*if (grabbed) {
 				float vy = velocity.y;
 				velocity = player.GetComponent<PlayerController>().GetVelocity();
 				velocity.y = vy;
 			}*/
-	
+
 			//CheckCollisions();
-	
+
 			if (!svFlag && !fpFlag && !grabbed) {
 				float newVelocityX = velocity.x, newVelocityZ = velocity.z;
 				if (velocity.x != 0)
@@ -81,14 +81,14 @@ public class Crate : ActiveInteractable {
 					newVelocityX += Mathf.Min(decelleration, Mathf.Abs(velocity.x)) * modifier;
 				}
 				velocity.x = newVelocityX;
-			
+
 				if (velocity.z != 0)
 				{
 					int modifier = velocity.z > 0 ? -1 : 1;
 					newVelocityZ += Mathf.Min(decelleration, Mathf.Abs(velocity.z)) * modifier;
 				}
 				velocity.z = newVelocityZ;
-		
+
 				if (GetComponent<Collider> ().enabled) {
 					colliderHeight = GetComponent<Collider>().bounds.size.y;
 					colliderWidth = GetComponent<Collider>().bounds.size.x;
@@ -100,20 +100,20 @@ public class Crate : ActiveInteractable {
 				svFlag = false;
 				fpFlag = false;
 			}
-	
+
 			CheckCollisions();
-	
+
 			//Adding in pushing sound, initialize after break sound -Nick
-	
+
 			//Init
 			if (gameObject.GetComponent<AudioSource> ().clip.name != "CratePush" && !respawnFlag && grounded) {
 				gameObject.GetComponent<AudioSource> ().clip =  Resources.Load ("Sound/SFX/Objects/Box/CratePush")  as AudioClip;
 				gameObject.GetComponent<AudioSource> ().loop = true;
 				gameObject.GetComponent<AudioSource>().volume = 0;
 				gameObject.GetComponent<AudioSource>().Play ();
-	
+
 			}
-	
+
 			//Check
 			if (velocity.magnitude > 0.1f && grounded){
 				if(gameObject.GetComponent<AudioSource>().volume < 1){
@@ -123,7 +123,7 @@ public class Crate : ActiveInteractable {
 			else{
 				gameObject.GetComponent<AudioSource>().volume = 0;
 			}
-	
+
 			//End Nick stuff
 		}
 	}
@@ -142,7 +142,9 @@ public class Crate : ActiveInteractable {
 //				grabbed = false;
 //			}
 			transform.Translate(velocity * Time.deltaTime);
-			if (respawnFlag && Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth) {
+			bool playerAwayFromSpawn =
+			 	Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth;
+			if (respawnFlag && playerAwayFromSpawn) {
 				Vector3 pos = transform.position;
 				pos = startPos + Vector3.up;
 				transform.position = pos;
@@ -191,11 +193,11 @@ public class Crate : ActiveInteractable {
 			transform.Translate(Vector3.up * Mathf.Sign(velocity.y) * (close - colliderHeight / 2));
 			velocity = new Vector3(velocity.x, 0f, velocity.z);
 		}
-		
+
 		// Third check the player's velocity along the X axis and check for collisions in that direction is non-zero
-		
+
 		// If any rays connected move the player and set grounded to true since we're now on the ground
-		
+
 		hits = colCheck.CheckXCollision (velocity, Margin);
 
 		close = -1;
@@ -220,13 +222,13 @@ public class Crate : ActiveInteractable {
 			//transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (close - colliderWidth / 2));
 			velocity = new Vector3(0f, velocity.y, velocity.z);
 		}
-		
-		
-		// Fourth do the same along the Z axis  
-		
+
+
+		// Fourth do the same along the Z axis
+
 		// If any rays connected move the player and set grounded to true since we're now on the ground
 		hits = colCheck.CheckZCollision (velocity, Margin);
-		
+
 		close = -1;
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
@@ -254,7 +256,7 @@ public class Crate : ActiveInteractable {
 	public bool Check2DIntersect() {
 		// True if any ray hits a collider
 		bool connected = false;
-		
+
 		//reference variables
 		float minX 		= GetComponent<Collider>().bounds.min.x + Margin;
 		float centerX 	= GetComponent<Collider>().bounds.center.x;
@@ -262,8 +264,7 @@ public class Crate : ActiveInteractable {
 		float minY 		= GetComponent<Collider>().bounds.min.y + Margin;
 		float centerY 	= GetComponent<Collider>().bounds.center.y;
 		float maxY 		= GetComponent<Collider>().bounds.max.y - Margin;
-		//float centerZ   = GetComponent<Collider>().bounds.center.z;
-		float centerZ = -2000;
+		float centerZ   = GetComponent<Collider>().bounds.center.z;
 		//array of startpoints
 		Vector3[] startPoints = {
 			new Vector3(minX, maxY, centerZ),
@@ -272,35 +273,36 @@ public class Crate : ActiveInteractable {
 			new Vector3(maxX, minY, centerZ),
 			new Vector3(centerX, centerY, centerZ)
 		};
-		
+
+		Vector3 side = new Vector3(0,0,colliderDepth/2 + Margin);
+
 		//check all startpoints
 		for (int i = 0; i < startPoints.Length; i++) {
-			connected = connected || 
-			Physics.Raycast (startPoints [i], Vector3.forward) || 
-			Physics.Raycast (startPoints [i], -Vector3.forward);
+			RaycastHit hit;
+			connected = connected ||
+			Physics.Raycast (startPoints [i] + side, Vector3.forward) ||
+			Physics.Raycast (startPoints [i] - side, -Vector3.forward);
 		}
-
 		return connected;
 	}
 
 	void checkBreak() {
-		if (GameStateManager.instance.currentPerspective == PerspectiveType.p2D && Check2DIntersect ()) {
+		if(GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect()) {
 			if (grabbed){
 				player.GetComponent<PlayerController> ().Grab (null);
 				grabbed = false;
 			}
 			respawnFlag = true;
-
-			//Adding in break sound -Nick
-			gameObject.GetComponent<AudioSource>().loop = false;
-			gameObject.GetComponent<AudioSource>().Stop ();
-			gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Box/CrateBreak")  as AudioClip;
-			gameObject.GetComponent<AudioSource>().volume = 1;
-			gameObject.GetComponent<AudioSource>().Play();
-			
-			//End Nick stuff
-
+			playBreakSound();
 		}
+	}
+
+	private void playBreakSound(){
+		gameObject.GetComponent<AudioSource>().loop = false;
+		gameObject.GetComponent<AudioSource>().Stop ();
+		gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Box/CrateBreak")  as AudioClip;
+		gameObject.GetComponent<AudioSource>().volume = 1;
+		gameObject.GetComponent<AudioSource>().Play();
 	}
 
 	// Used to check collisions with special objects

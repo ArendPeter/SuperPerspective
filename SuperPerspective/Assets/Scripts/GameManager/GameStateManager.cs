@@ -373,6 +373,10 @@ public class GameStateManager : MonoBehaviour
 		return instance.targetState != instance.currentState;
 	}
 
+	public static bool isFailedShift(){
+		return instance.failedShift;
+	}
+
 	#endregion Public Interface
 
 	#region Helper Functions
