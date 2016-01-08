@@ -3,7 +3,7 @@
  * Player must update bounds when switching view
  * Player must update bounds when it lands on a surface
  * Camera must be updated when switching views
- * 
+ *
  * Involved scripts/objects
  * Guard Prefab must exist
  * BoundObject script must be applied to necessary objects
@@ -18,9 +18,10 @@ public class IslandControl : MonoBehaviour {
 	#pragma warning disable 414, 649, 472, 168
 
 	public static IslandControl instance;
-	
+
 	GameObject[] grounds;
 	Transform[] pauseMounts;
+	public GameObject pauseCamPrefab;
 	public Rect[] islandBounds;
 
 	// Use this for initialization
@@ -38,12 +39,20 @@ public class IslandControl : MonoBehaviour {
 	void findPauseMounts(){
 		pauseMounts = new Transform[grounds.Length];
 		for(int i = 0; i < pauseMounts.Length; i++){
-			try{
-				pauseMounts[i] = grounds[i].transform.parent.Find("PauseMount");
-				if(pauseMounts[i] == null)
-					throw new Exception();
-			}catch(Exception e){
-				print("IslandControl: Could not find PauseMount for island "+i);
+			Transform par = grounds[i].transform.parent;
+			if(par == null){
+				GameObject camObj = GameObject.Find("PauseMount");
+				if(camObj != null){
+					pauseMounts[i] = camObj.transform;
+				}
+			}else{
+				pauseMounts[i] = par.Find("PauseMount");
+			}
+			if(pauseMounts[i] == null){
+				GameObject camObj = Instantiate(pauseCamPrefab,
+					grounds[i].transform.position + pauseCamPrefab.transform.position,
+					pauseCamPrefab.transform.rotation) as GameObject;
+				pauseMounts[i] = camObj.transform;
 			}
 		}
 	}
@@ -95,7 +104,7 @@ public class IslandControl : MonoBehaviour {
 		}
 		return curValid;
 	}
-	
+
 	public GameObject findGround(GameObject obj){
 		Vector3 pos = obj.transform.position;
 		int boundIndex = getBound (pos.x, pos.y, pos.z, !GameStateManager.is3D());
@@ -106,7 +115,7 @@ public class IslandControl : MonoBehaviour {
 		}
 		return grounds[boundIndex];
 	}
-	
+
 	public Transform findCurrentPauseMount(){
 		Vector3 playerPos = PlayerController.instance.transform.position;
 		int boundIndex = getBound(playerPos.x, playerPos.y, playerPos.z, false);
