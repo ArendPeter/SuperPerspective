@@ -3,15 +3,16 @@ using System.Collections;
 
 public class Rotator : MonoBehaviour {
 
-	float speed;
+	public float xSpeed, ySpeed, zSpeed;
+
 
 	// Use this for initialization
 	void Start () {
-		speed = 5 * Random.Range (0.8f, 1.2f);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate (new Vector3(speed*Time.deltaTime, speed*Time.deltaTime, speed*Time.deltaTime));
+		transform.Rotate (new Vector3(xSpeed*Time.deltaTime, ySpeed*Time.deltaTime, zSpeed*Time.deltaTime));
 	}
 }

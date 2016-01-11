@@ -43,7 +43,7 @@ public class VoiceManager : MonoBehaviour {
 	}
 
 	public void Climb(){
-		source.clip = climbs [Random.Range (0, 3)];
+		source.clip = climbs [Random.Range (0, 2)];
 		source.pitch = Random.Range (0.95f, 1.05f);
 		source.Play ();
 	}

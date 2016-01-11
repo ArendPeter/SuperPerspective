@@ -12,8 +12,11 @@ public class Footsteps : StateMachineBehaviour {
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		step = Object.FindObjectOfType<StepManager> ();
-		if(step == null)
-			return;
+        if (step == null)
+        {
+            Debug.Log("StepManager not found");
+            return;
+        }
 		currentState = animator.GetCurrentAnimatorStateInfo(0);
 		play1 = false;
 		play2 = false;
@@ -26,12 +29,12 @@ public class Footsteps : StateMachineBehaviour {
 
 		if (playbackTime < 0.3f && !play1){
 			play1 = true;
-			step.GrassStep();
+			step.Step();
 		}
 
 		else if (playbackTime > 0.5f && playbackTime < 0.8f && !play2){
 			play2 = true;
-			step.GrassStep();
+			step.Step();
 		}
 
 		else if (playbackTime > 0.81f){

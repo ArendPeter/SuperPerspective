@@ -3,20 +3,22 @@ using System.Collections;
 
 public class PlayerSpawnController : MonoBehaviour {
 
-	public bool startAtDoor = true;
+	public bool startAtDoor = false;
 	public string startDoorName;
 	Door destDoor;
 
 	void Start () {
 		destDoor = this.findDoor(startDoorName);
-		this.moveToDoor(destDoor);
+		if(startAtDoor){
+			this.moveToDoor(destDoor);
+		}
 	}
 
 	//spawn player at door
 	public void moveToDoor(Door doorObject){
-		//if(doorObject != null && startAtDoor)
-			//this.gameObject.GetComponent<PlayerController>().Teleport(
-				//doorObject.transform.position + new Vector3(0,2,-2));
+		if(doorObject != null)
+			this.gameObject.GetComponent<PlayerController>().Teleport(
+				doorObject.transform.position + new Vector3(0,2,-2));
 	}
 
 	//find door with name

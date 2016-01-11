@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.5, z: -60}
+  m_LocalPosition: {x: -141.27747, y: 71.58501, z: -235.22688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,14 +43,14 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -62,10 +62,11 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
+  m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
 --- !u!92 &9262606
 Behaviour:
@@ -88,10 +89,10 @@ MonoBehaviour:
   mode: 0
   intensity: 0
   chromaticAberration: 0
-  axialAberration: .5
+  axialAberration: 0.5
   blur: 1
   blurSpread: 1
-  luminanceDependency: .25
+  luminanceDependency: 0.25
   blurDistance: 2.5
   vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLeanAngle: 30
   leanDegreesPerSecond: 60
+  failedShiftTransitionFactor: 2
 --- !u!114 &11416196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,10 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   showGeneratedNormals: 0
-  offsetScale: .200000003
+  offsetScale: 0.2
   blurRadius: 18
-  edgeThresholdMin: .0500000007
-  edgeThreshold: .200000003
+  edgeThresholdMin: 0.05
+  edgeThreshold: 0.2
   edgeSharpness: 4
   dlaaSharp: 0
   ssaaShader: {fileID: 4800000, guid: b3728d1488b02490cbd196c7941bf1f8, type: 3}

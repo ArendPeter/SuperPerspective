@@ -8,20 +8,20 @@ public class Ice : ActiveInteractable {
 	private const float gravity = 1.5f;
 	private const float terminalVelocity = 60;
 	private const float decelleration = 15;
-	
+
 	private Vector3 trajectory, newVelocity;
 	private bool grounded, svFlag;
 	private float colliderHeight, colliderWidth, colliderDepth;
 	private float Margin = 0.1f;
 	private float slideSpeed = 20;
-	
+
 	private Vector3 startPos;
 	private Vector3 nextVelocity;//previously called setVelocity
-	
+
 	private CollisionChecker colCheck;
-	
+
 	private bool respawnFlag, startPush, breakFlag;
-	
+
 	private bool[] axisBlocked = new bool[4];
 
     private const int DELAY = 10;
@@ -50,7 +50,7 @@ public class Ice : ActiveInteractable {
         CameraController.instance.TransitionCompleteEvent += doBreak;
 		colCheck = new CollisionChecker (GetComponent<Collider> ());
 		startPos = transform.position;
-		
+
 		for (int i = 0; i < 4; i++)
 			axisBlocked[i] = false;
 	}
@@ -77,15 +77,15 @@ public class Ice : ActiveInteractable {
 				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
             if (kickDelay > 0)
                 kickDelay--;
-			
+
 			/*if (grabbed) {
 				float vy = velocity.y;
 				velocity = player.GetComponent<PlayerController>().GetVelocity();
 				velocity.y = vy;
 			}*/
-			
+
 			//CheckCollisions();
-			
+
 			/*float newVelocityX = velocity.x, newVelocityZ = velocity.z;
 			if (velocity.x != 0)
 			{
@@ -93,30 +93,30 @@ public class Ice : ActiveInteractable {
 				newVelocityX += Mathf.Min(decelleration, Mathf.Abs(velocity.x)) * modifier;
 			}
 			velocity.x = newVelocityX;
-			
+
 			if (velocity.z != 0)
 			{
 				int modifier = velocity.z > 0 ? -1 : 1;
 				newVelocityZ += Mathf.Min(decelleration, Mathf.Abs(velocity.z)) * modifier;
 			}
 			velocity.z = newVelocityZ;*/
-			
+
 			if (GetComponent<Collider> ().enabled) {
 				colliderHeight = GetComponent<Collider>().bounds.size.y;
 				colliderWidth = GetComponent<Collider>().bounds.size.x;
 				colliderDepth = GetComponent<Collider>().bounds.size.z;
 			}
-			
+
 			if (svFlag) {
 				velocity.x = newVelocity.x;
 				velocity.z = newVelocity.z;
 				svFlag = false;
 			}
-			
+
 			//CheckCollisions();
 
 			//Adding in pushing sound, initialize after break sound -Nick
-			
+
 			//Init
 			/*if (gameObject.GetComponent<AudioSource> () != null && gameObject.GetComponent<AudioSource> ().clip != null &&
 			    gameObject.GetComponent<AudioSource> ().clip.name != "IceMove" && !respawnFlag && grounded) {
@@ -124,9 +124,9 @@ public class Ice : ActiveInteractable {
 				gameObject.GetComponent<AudioSource> ().loop = true;
 				gameObject.GetComponent<AudioSource>().volume = 0;
 				gameObject.GetComponent<AudioSource>().Play ();
-				
+
 			}
-			
+
 			//Check
 			if (velocity.magnitude > 0.1f && grounded){
 				if(gameObject.GetComponent<AudioSource>().volume < 1){
@@ -136,11 +136,11 @@ public class Ice : ActiveInteractable {
 			else{
 				gameObject.GetComponent<AudioSource>().volume = 0;
 			}*/
-			
+
 			//End Nick stuff
 		}
 	}
-	
+
 	void LateUpdate () {
 		if(!PlayerController.instance.isPaused()){
 			base.LateUpdateLogic ();
@@ -157,13 +157,13 @@ public class Ice : ActiveInteractable {
 				velocity = Vector3.zero;
 				respawnFlag = false;
 			}
-			
+
 			BoundObject binder = gameObject.GetComponent<BoundObject>();
 			if(binder != null)
 				binder.bind();
-			
+
 			//call custom bind
-	
+
 			if (startPush) {
 				if (velocity.Equals(Vector3.zero)){
 					respawnFlag = true;
@@ -173,30 +173,30 @@ public class Ice : ActiveInteractable {
 					gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Ice/IceBreak")  as AudioClip;
 					gameObject.GetComponent<AudioSource>().volume = 1;
 					gameObject.GetComponent<AudioSource>().Play();
-					
+
 					//End Nick stuff
 					GetComponent<Collider>().enabled = false;
 					GetComponentInChildren<Renderer>().enabled = false;
-					
+
 					if(brokenIce != null){
 						GameObject.Instantiate(brokenIce, brokenIceSpawnPoint.transform.position, Quaternion.identity);
 					}
 				}
 				startPush = false;
 			}
-	
+
 			//CheckCollisions();
 		}
 	}
-	
+
 	public void CheckCollisions() {
 		Vector3 trajectory;
-		
+
 		RaycastHit[] hits = colCheck.CheckYCollision (velocity, Margin);
-		
+
 		for (int i = 0; i < 4; i++)
 			axisBlocked[i] = false;
-		
+
 		float close = -1;
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
@@ -221,13 +221,13 @@ public class Ice : ActiveInteractable {
 			transform.Translate(Vector3.up * Mathf.Sign(velocity.y) * (close - colliderHeight / 2));
 			velocity = new Vector3(velocity.x, 0f, velocity.z);
 		}
-		
+
 		// Third check the player's velocity along the X axis and check for collisions in that direction is non-zero
-		
+
 		// If any rays connected move the player and set grounded to true since we're now on the ground
-		
+
 		hits = colCheck.CheckXCollision (velocity, Margin);
-		
+
 		close = -1;
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
@@ -248,13 +248,13 @@ public class Ice : ActiveInteractable {
 			//transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (close - colliderWidth / 2));
 			velocity = new Vector3(0f, velocity.y, velocity.z);
 		}
-		
-		
-		// Fourth do the same along the Z axis  
-		
+
+
+		// Fourth do the same along the Z axis
+
 		// If any rays connected move the player and set grounded to true since we're now on the ground
 		hits = colCheck.CheckZCollision (velocity, Margin);
-		
+
 		close = -1;
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
@@ -276,11 +276,11 @@ public class Ice : ActiveInteractable {
 			velocity = new Vector3(velocity.x, velocity.y, 0f);
 		}
 	}
-	
+
 	public bool Check2DIntersect() {
 		// True if any ray hits a collider
 		bool connected = false;
-		
+
 		//reference variables
 		float minX 		= GetComponent<Collider>().bounds.min.x + Margin;
 		float centerX 	= GetComponent<Collider>().bounds.center.x;
@@ -289,7 +289,7 @@ public class Ice : ActiveInteractable {
 		float centerY 	= GetComponent<Collider>().bounds.center.y;
 		float maxY 		= GetComponent<Collider>().bounds.max.y - Margin;
 		float centerZ   = GetComponent<Collider>().bounds.center.z;
-		
+
 		//array of startpoints
 		Vector3[] startPoints = {
 			new Vector3(minX, maxY, centerZ),
@@ -298,7 +298,7 @@ public class Ice : ActiveInteractable {
 			new Vector3(maxX, minY, centerZ),
 			new Vector3(centerX, centerY, centerZ)
 		};
-		
+
 		//check all startpoints
 		for (int i = 0; i < startPoints.Length; i++) {
 			connected = connected || Physics.Raycast (startPoints [i], Vector3.forward) || Physics.Raycast (startPoints [i], -Vector3.forward);
@@ -310,13 +310,16 @@ public class Ice : ActiveInteractable {
     void checkBreak()
     {
         breakFlag = false;
-        if (GameStateManager.instance.currentPerspective == PerspectiveType.p2D && Check2DIntersect())
+        if (GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect())
         {
             breakFlag = true;
         }
     }
 
 	void doBreak() {
+		if(GameStateManager.isFailedShift()){
+			breakFlag = false;
+		}
 		if (breakFlag) {
 			respawnFlag = true;
 
@@ -331,7 +334,7 @@ public class Ice : ActiveInteractable {
 			gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Ice/IceBreak")  as AudioClip;
 			gameObject.GetComponent<AudioSource>().volume = 1;
 			gameObject.GetComponent<AudioSource>().Play();
-			
+
 			//End Nick stuff
 
 			GetComponent<Collider>().enabled = false;
@@ -339,7 +342,7 @@ public class Ice : ActiveInteractable {
 		}
         breakFlag = false;
 	}
-	
+
 	// Used to check collisions with special objects
 	// Make this more object oriented? Collidable interface?
 	private void CollideWithObject(RaycastHit hitInfo, Vector3 trajectory) {

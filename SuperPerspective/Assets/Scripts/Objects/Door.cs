@@ -11,11 +11,16 @@ public class Door : ActiveInteractable {
 
 	public string sceneName;
 	public int crystalRequirement;
-	
+
+    public GameObject warpSound;
+
+    ListenerHandler l;
+
 	public void Awake(){
 		//update particle color
 		ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
-		p.startColor = particleColor;
+    l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
+    p.startColor = particleColor;
 		p.Simulate(2f);
 		p.Play();
         range = 4;
@@ -30,26 +35,29 @@ public class Door : ActiveInteractable {
 	}
 
 	public override void Triggered(){
+		//Creates game object that plays warp sound then self destructs -Nick
+        Instantiate(warpSound);
+		
 		if(sceneName != "") {
 			Application.LoadLevel(sceneName);
 			if (destName != "")
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
 		}
-
 		else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement)
 			player.GetComponent<PlayerController>().Teleport(
 				destDoor.GetComponent<Collider>().bounds.center + new Vector3(0,0,-2));
 		else
 			Debug.Log("Door not linked");
-	}
+
+        l.ResetZ();
+    }
 
 	public string getName(){
 		return myName;
 	}
-	
+
 	public void setDoor(Door destDoor){
 		this.destDoor = destDoor;
 	}
-	
-}
 
+}

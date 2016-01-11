@@ -8,7 +8,7 @@ public class FlipFailIndicator : MonoBehaviour {
 
 	Collider overlappingBlock;
 
-	float[] blinkDurations = new float[3]{.1f,.2f,.3f};
+	public float[] blinkDurations = new float[3]{.1f,.2f,.3f};
   int blinkFrame = 0;
 	float blinkThresh = 0;
 	float blinkTime = -1f;
@@ -26,6 +26,7 @@ public class FlipFailIndicator : MonoBehaviour {
 				toggleVisible();
 				if(blinkFrame == blinkDurations.Length){
 				  blinkTime = -1f;
+					this.GetComponent<Renderer>().enabled = false;
 				}else{
 					blinkThresh+=blinkDurations[blinkFrame];
 					blinkFrame++;
@@ -56,9 +57,6 @@ public class FlipFailIndicator : MonoBehaviour {
 		Bounds myBounds = PlayerController.instance.GetComponent<Collider>().bounds;
 		Bounds ovBounds = overlappingBlock.bounds;
 
-		print(myBounds.min + " " + myBounds.max);
-		print(ovBounds.min + " " + ovBounds.max);
-
 		float minX = Mathf.Max(myBounds.min.x,ovBounds.min.x);
 		float maxX = Mathf.Min(myBounds.max.x,ovBounds.max.x);
 		float minY = Mathf.Max(myBounds.min.y,ovBounds.min.y);
@@ -84,5 +82,9 @@ public class FlipFailIndicator : MonoBehaviour {
 
 	public void setOverlappingBlock(Collider obj){
 			overlappingBlock = obj;
+	}
+
+	public bool isBlinking(){
+	  return blinkTime != -1f;
 	}
 }
