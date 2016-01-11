@@ -9,7 +9,7 @@ public class Door : ActiveInteractable {
 	Door destDoor;
 	public Color particleColor;
 
-	public bool isSceneLoad;
+	public string sceneName;
 	public int crystalRequirement;
 	
 	public void Awake(){
@@ -30,8 +30,11 @@ public class Door : ActiveInteractable {
 	}
 
 	public override void Triggered(){
-		if(isSceneLoad && destName != null)
-			Application.LoadLevel(destName);
+		if(sceneName != "") {
+			Application.LoadLevel(sceneName);
+			if (destName != "")
+				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
+		}
 
 		else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement)
 			player.GetComponent<PlayerController>().Teleport(

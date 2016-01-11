@@ -6,6 +6,8 @@ public class ResetController : MonoBehaviour {
 	static bool camReset = false;
 
 	void Update () {
+		if (Input.GetKey(KeyCode.R))
+			Reset ();
 	}
 
 	void FixedUpdate() {

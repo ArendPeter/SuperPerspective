@@ -397,11 +397,11 @@ public class PlayerController : PhysicalObject{
 
 	// LateUpdate is used to actually move the position of the player
 	void LateUpdate () {
-		if (canMove()) applyGravity();
+		if (canMove() || launched) applyGravity();
 
 		CheckCollisions();
 
-		if(canMove()) applyMovement();
+		if(canMove() || launched) applyMovement();
     }
 
 	private void applyGravity(){
@@ -557,6 +557,7 @@ public class PlayerController : PhysicalObject{
 	public void setCutsceneMode(bool c){ cutsceneMode = c; }
 
 	public bool canMove(){
+		Debug.Log(launched);
 		return !isDisabled() && !isKicking() && !isClimbing() && !launched && !isRiding();
 	}
 

@@ -6,12 +6,30 @@ public class DoorManager : MonoBehaviour {
 
 	#pragma warning disable 168
 
+	public static DoorManager instance;
+
 	Dictionary<string,Door> doors = 
 		new Dictionary<string,Door>();
 
-	// Use this for initialization
+	void Awake(){
+		if(instance == null)
+			instance = this;
+		else if(instance != this)
+			Destroy(instance);
+	}
+	
 	void Start () {
-		//search all doors
+		//fill up doors
+		Door[] doorList = RefreshDoorList();
+		//for each door assign destination
+		foreach(Door door in doorList){
+			Door destDoor;
+			doors.TryGetValue(door.destName, out destDoor);
+			door.setDoor(destDoor);
+		}
+	}
+
+	public Door[] RefreshDoorList() {
 		Door[] doorList = Object.FindObjectsOfType(
 			typeof(Door)) as Door[];
 		//fill up doors
@@ -23,12 +41,7 @@ public class DoorManager : MonoBehaviour {
 				print("DoorManager : There are two doors named "+door.myName+". Please rename one of them");
 			}
 		}
-		//for each door assign destination
-		foreach(Door door in doorList){
-			Door destDoor;
-			doors.TryGetValue(door.destName, out destDoor);
-			door.setDoor(destDoor);
-		}
+		return doorList;
 	}
 
 	public Door getDoor(string doorName){

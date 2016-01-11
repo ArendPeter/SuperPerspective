@@ -89,7 +89,6 @@ public class MobilePlatform : ActiveInteractable {
 					if (close == -1 || close > hitInfo.distance) {
 						close = hitInfo.distance;
 						//transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (hitInfo.distance - colliderWidth / 2));
-						Debug.Log ("X");
 						trajectory = velocity.x * Vector3.right;
 					}
 				}
@@ -110,7 +109,6 @@ public class MobilePlatform : ActiveInteractable {
 					if (close == -1 || close > hitInfo.distance) {
 						close = hitInfo.distance;
 						//transform.Translate(Vector3.forward * Mathf.Sign(velocity.z) * (hitInfo.distance - colliderDepth / 2));
-						Debug.Log ("Z");
 						trajectory = velocity.z * Vector3.forward;
 					}
 				}

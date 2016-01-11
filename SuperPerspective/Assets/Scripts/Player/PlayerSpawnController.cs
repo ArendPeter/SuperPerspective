@@ -14,9 +14,9 @@ public class PlayerSpawnController : MonoBehaviour {
 
 	//spawn player at door
 	public void moveToDoor(Door doorObject){
-		if(doorObject != null && startAtDoor)
-			this.gameObject.GetComponent<PlayerController>().Teleport(
-				doorObject.transform.position + new Vector3(0,2,-2));
+		//if(doorObject != null && startAtDoor)
+			//this.gameObject.GetComponent<PlayerController>().Teleport(
+				//doorObject.transform.position + new Vector3(0,2,-2));
 	}
 
 	//find door with name
@@ -29,7 +29,7 @@ public class PlayerSpawnController : MonoBehaviour {
 				return door;
 			}
 		}
-		print("PlayerSpawnController: Door ("+doorName+") does not exist");
+		//print("PlayerSpawnController: Door ("+doorName+") does not exist");
 		return null;
 	}
 
