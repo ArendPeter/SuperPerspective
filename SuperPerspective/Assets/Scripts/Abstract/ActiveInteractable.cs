@@ -3,53 +3,53 @@ using System.Collections;
 
 //can be activated by player
 public class ActiveInteractable : PhysicalObject {
-	
+
 	//suppress warnings
 	#pragma warning disable 414
 
-	public bool ignoreYDistance;
+	bool ignoreYDistance;
 
 	//player
 	protected GameObject player;
-	
+
 	//main ActiveInteractable
 	static ActiveInteractable main;
-	
+
 	//keeps track of notification marker
 	static NotificationController notiMarker;
-	
+
 	//whether notification is shown
 	static bool notiShown = false;
 	static float notiDist = -1;
 	static ActiveInteractable selected = null;
 	static int frameCount = 0;
-	
+
 	//used to create a fixedlateupdate effect
 	bool fixedCalled = false;
-	
+
 	//distance for inRange
 	protected float range = 1f;
-	
+
 	//how much error there can be in the angle for it to be valid
 	float angleBuffer = 80;
-	
+
 	void Start(){
 		StartSetup ();
 	}
-		
+
 	void FixedUpdate(){
 		FixedUpdateLogic ();
 	}
-	
+
 	void LateUpdate(){
 		LateUpdateLogic ();
 	}
-	
+
 	void InteractPressed(){
 		if(!GameStateManager.IsGamePaused() && !PlayerController.instance.isDisabled() && selected == this)
 			Triggered();
 	}
-	
+
 	public virtual void Triggered(){}
 
 	protected void StartSetup() {
@@ -71,22 +71,22 @@ public class ActiveInteractable : PhysicalObject {
 
 	protected void FixedUpdateLogic() {
 		float dist = GetDistance();
-		
+
 		bool inRange = dist < range;
 
 		bool playerFacing = isPlayerFacingObject();
-			
+
 		bool inYRange = yRangeOverlapsWithPlayer();
-	
+
 		bool someImportantVariable = (GetComponentInChildren<Renderer>().enabled || GetComponent<Door>());
-		
+
 		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
 
-		bool canTrigger = 
+		bool canTrigger =
 			someImportantVariable && inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && unlockable;
-		
+
 		bool notificationCanBeShown = !notiShown || dist < notiDist;
-		
+
 		//update notiShown
 		if(canTrigger && notificationCanBeShown){
 			selected = this;
@@ -97,7 +97,7 @@ public class ActiveInteractable : PhysicalObject {
 
 		fixedCalled = true;
 	}
-	
+
 	public virtual float GetDistance() {
 		float colMinX = GetComponent<Collider>().bounds.min.x;
 		float colMaxX = GetComponent<Collider>().bounds.max.x;
@@ -116,7 +116,7 @@ public class ActiveInteractable : PhysicalObject {
                 return float.MaxValue;
 		}
 	}
-	
+
 	protected Quadrant GetQuadrant() {
 		float colliderWidth = GetComponent<Collider>().bounds.size.x;
 		float colliderDepth = GetComponent<Collider>().bounds.size.z;
@@ -139,21 +139,21 @@ public class ActiveInteractable : PhysicalObject {
 		}
 		return Quadrant.none;
 	}
-	
+
 	protected virtual bool isPlayerFacingObject(){
 		float playerOrientation = PlayerAnimController.instance.getOrientation();
 		playerOrientation = (playerOrientation + 360) % 360;
-		
+
 		//calculate angle between interactable and player
 		float playerAngle = Vector2.Angle(new Vector2(transform.position.x - player.transform.position.x,
 		                                              transform.position.z - player.transform.position.z),Vector2.up);
-																	 
+
 		bool inFrontOfPlayer = transform.position.x < player.transform.position.x;
 		if(inFrontOfPlayer){
 			playerAngle = 360 - playerAngle;
 		}
 
-		//calculate difference and modify so that it's in the correct range 
+		//calculate difference and modify so that it's in the correct range
 		float angleDiff = Mathf.Abs(playerOrientation - playerAngle);
 		angleDiff += 360;
 		angleDiff %= 360;
@@ -164,16 +164,22 @@ public class ActiveInteractable : PhysicalObject {
 	}
 
 	private bool yRangeOverlapsWithPlayer(){
-		float colliderBot = GetComponent<Collider>().bounds.min.y + 0.05f;
-		float colliderTop = GetComponent<Collider>().bounds.max.y - 0.05f;
+		float colliderTop, colliderBot;
+		if(GetComponent<Collider>() == null){
+			colliderTop = transform.position.y;
+			colliderBot = transform.position.y;
+		}else{
+			colliderBot = GetComponent<Collider>().bounds.min.y + 0.05f;
+			colliderTop = GetComponent<Collider>().bounds.max.y - 0.05f;
+		}
 		float playerBot = player.GetComponent<Collider>().bounds.min.y;
 		float playerTop = player.GetComponent<Collider>().bounds.max.y;
-		
+
 		bool rangesOverlap = (colliderTop > playerBot && colliderBot < playerTop);
-		
+
 		return rangesOverlap || !ignoreYDistance;
 	}
-	
+
 	protected void LateUpdateLogic() {
 		//perform static actions
 		if(main == this && fixedCalled){
@@ -185,7 +191,7 @@ public class ActiveInteractable : PhysicalObject {
 			}
 			//prepare for next frame
 			notiShown = false;
-			
+
 			fixedCalled = false;
 		}
 	}

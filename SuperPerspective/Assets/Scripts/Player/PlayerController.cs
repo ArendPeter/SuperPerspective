@@ -24,7 +24,8 @@ public class PlayerController : PhysicalObject{
 	public float terminalVelocity;
 	public float jumpVelocity;
 	public float jumpMargin;
-
+	public float cactusOutwardVelocity;
+	public float cactusVerticalVelocity;
 
 	// Verticle movement flags
 	private bool jumpPressedOnPreviousFrame;
@@ -54,6 +55,7 @@ public class PlayerController : PhysicalObject{
 	private Vector3 grabAxis = Vector3.zero;
 	private bool launched;
 	private GameObject ridingPlatform = null;
+	private Orb orb = null;
 
 	//Vars for edge grabbing
 	private Vector3[] cuboid;
@@ -66,6 +68,9 @@ public class PlayerController : PhysicalObject{
 	private int kickTimer = 0;
 	private const int KICK_TIME = 10;
 
+	private int cactusKnockBackTimer = 0;
+	private const int CACTUS_TIME = 20;
+
 	bool cutsceneMode = false;
 
 	private bool _paused;
@@ -75,10 +80,10 @@ public class PlayerController : PhysicalObject{
 	private const int Z = 2;
 	private const float epsilon = .1f;
 
-    //Nick addition, used for footstep sound selection
-    public StepManager step;
+  //Nick addition, used for footstep sound selection
+  public StepManager step;
 
-   #endregion
+  #endregion
 
 	#region Init
 
@@ -135,7 +140,7 @@ public class PlayerController : PhysicalObject{
 	#endregion Init
 
 	void Update(){
-		if (canMove())	checkForJump();
+		if (canControl())	checkForJump();
 	}
 
 	#region Jump
@@ -176,7 +181,7 @@ public class PlayerController : PhysicalObject{
 		updateTimers();
 		updateCuboid();
 
-		if(canMove()) move();
+		if(canControl()) move();
 
 		if(!isDisabled()) updateStateVariables();
 	}
@@ -184,6 +189,7 @@ public class PlayerController : PhysicalObject{
 	private void updateTimers(){
 		if(kickTimer > 0) kickTimer--;
 		if(climbTimer > 0) climbTimer--;
+		if(cactusKnockBackTimer > 0) cactusKnockBackTimer--;
 	}
 
 	private void updateCuboid(){
@@ -264,26 +270,24 @@ public class PlayerController : PhysicalObject{
 
 		float distToCollision = -1;
 		for (int i = 0; i < hits.Length; i++) {
-
 			RaycastHit hitInfo = hits[i];
 
-            if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
-			{
+    if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
+		{
 
-                //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
+      //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
 
-                if (axis == Y)
-                {
-                    //Debug.Log("colEnter");
-                    if (step != null)
-                        step.updateStepType(hitInfo.collider);
-                }
+        if (axis == Y)
+        {
+            if (step != null)
+                step.updateStepType(hitInfo.collider);
+        }
 
-                //end Nick code
+        //end Nick code
 
-                float verticalOverlap = getVerticalOverlap(hitInfo);
+        float verticalOverlap = getVerticalOverlap(hitInfo);
 				bool significantVerticalOverlap =
-					verticalOverlap > verticalOverlapThreshhold;
+				verticalOverlap > verticalOverlapThreshhold;
 				if(axis != Y && !significantVerticalOverlap){
 					transform.Translate(new Vector3(0f,verticalOverlap,0f));
 					continue;
@@ -304,11 +308,11 @@ public class PlayerController : PhysicalObject{
 								transform.position = pos;
 							}
 						}
-                        // Z-lock
-                        if (hitInfo.collider.gameObject.GetComponent<LevelGeometry>())
-                            zlock = hitInfo.transform.position.z;
-                        else
-                            zlock = int.MinValue;
+		        // Z-lock
+		        if (hitInfo.collider.gameObject.GetComponent<LevelGeometry>())
+		            zlock = hitInfo.transform.position.z;
+		          else
+		            zlock = int.MinValue;
 					}else{
 						transform.Translate(
 							axisVector *
@@ -337,7 +341,7 @@ public class PlayerController : PhysicalObject{
 					bounced = false;
 				}
 			}else{
-				if(!passivePush) velocity[axis] = 0f;
+				if(!passivePush && !isInCactusKnockBack()) velocity[axis] = 0f;
 			}
 		}else if(axis == Y){
 			grounded = false;
@@ -348,7 +352,7 @@ public class PlayerController : PhysicalObject{
 
     void OnCollisionEnter(Collision collider)
     {
-        Debug.Log("colEnter");
+        //Debug.Log("colEnter");
         //step.updateStepType(collider);
     }
 
@@ -416,7 +420,25 @@ public class PlayerController : PhysicalObject{
 		if (other.GetComponent<PushSwitchOld>() && colliderDim == colliderWidth) {
 			transform.Translate(0, 0.1f, 0);
 		}
-  		//Collision w/ PlayerInteractable
+		// Cactus
+		if (!isInCactusKnockBack() && other.tag == "Cactus") {
+			cactusKnockBackTimer = CACTUS_TIME;
+			Vector2 cacPos = new Vector2(other.transform.position.x,other.transform.position.z);
+			Vector2 playerPos = new Vector2(transform.position.x,transform.position.z);
+			float outDir = Vector2.Angle(Vector2.right,playerPos-cacPos);
+			int zDir = (cacPos.y < playerPos.y)? 1 : -1;
+			Vector2 outVec = new Vector2(
+				Mathf.Cos(Mathf.Deg2Rad * outDir),zDir * Mathf.Sin(Mathf.Deg2Rad * outDir));
+			velocity = new Vector3(
+				cactusOutwardVelocity * outVec.x,
+			 	cactusVerticalVelocity,
+				cactusOutwardVelocity * outVec.y);
+			if(orb != null){
+				orb.Drop();
+				orb = null;
+			}
+		}
+		//Collision w/ PlayerInteractable
 		foreach (Interactable c in other.GetComponents<Interactable>()) {
 			c.EnterCollisionWithPlayer ();
 		}
@@ -426,11 +448,11 @@ public class PlayerController : PhysicalObject{
 
 	// LateUpdate is used to actually move the position of the player
 	void LateUpdate () {
-		if (canMove() || launched) applyGravity();
+		if (canMove()) applyGravity();
 
 		CheckCollisions();
 
-		if(canMove() || launched) applyMovement();
+		if(canMove()) applyMovement();
     }
 
 	private void applyGravity(){
@@ -537,7 +559,7 @@ public class PlayerController : PhysicalObject{
 			case 2:
 				this.edgeState	 = EdgeState.HANGING;
 				//stop moving
-				velocity = Vector3.zero;
+				// velocity = Vector3.zero;
 				//lock y
 				Vector3 pos = transform.position;
 				pos.y = e.gameObject.transform.position.y + (e.gameObject.transform.lossyScale.y * .5f) - (colliderHeight * .5f);
@@ -586,8 +608,12 @@ public class PlayerController : PhysicalObject{
 	public void setCutsceneMode(bool c){ cutsceneMode = c; }
 
 	public bool canMove(){
-		Debug.Log(launched);
-		return !isDisabled() && !isKicking() && !isClimbing() && !launched && !isRiding();
+		return !isDisabled() && !isKicking() && !isClimbing() &&
+			!isRiding();
+	}
+
+	public bool canControl(){
+		return canMove() && !launched && !isInCactusKnockBack();
 	}
 
 	public bool isDisabled(){
@@ -620,6 +646,8 @@ public class PlayerController : PhysicalObject{
 	public bool isClimbing(){ return climbTimer > 0; }
 
 	public bool isKicking(){ return kickTimer > 0; }
+
+	public bool isInCactusKnockBack(){ return cactusKnockBackTimer > 0; }
 
 	public bool isRunning(){
 		bool movingFast = velocity.magnitude > maxSpeed/2;
@@ -657,6 +685,11 @@ public class PlayerController : PhysicalObject{
 	}
 
 	public bool isLaunched(){ return launched; }
+
+	public bool isHoldingOrb(){ return orb != null; }
+
+	public void grabOrb(Orb newOrb){ orb = newOrb; }
+
 
 	#endregion Accessor Methods
 
