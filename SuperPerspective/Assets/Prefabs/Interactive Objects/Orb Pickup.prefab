@@ -26,6 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 410642}
   - 114: {fileID: 11402502}
+  - 114: {fileID: 11467270}
   m_Layer: 0
   m_Name: Orb Pickup
   m_TagString: Untagged
@@ -153,6 +154,19 @@ MonoBehaviour:
   xSpeed: 20
   ySpeed: 20
   zSpeed: 20
+--- !u!114 &11467270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2beb4eefc7b6dd74ab240f67e1ffbb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posOnPlayer: {x: 0, y: 2, z: 0}
+  resetTime: 2
 --- !u!198 &19854844
 ParticleSystem:
   m_ObjectHideFlags: 1

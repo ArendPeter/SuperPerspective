@@ -6,6 +6,7 @@ public class Orb : ActiveInteractable {
 	//suppress warnings
 	#pragma warning disable 414
 
+	public float followSpeed = 2.1f;
 	public Vector3 posOnPlayer = new Vector3(0,2,0);
 
 	public float resetTime = 2.0f;
@@ -32,8 +33,25 @@ public class Orb : ActiveInteractable {
 	public void FixedUpdate(){
 		base.FixedUpdateLogic();
 
+		
+
 		if(!isHeld && !AtStart()){
 			updateRecallPosition();
+		}
+	}
+
+	public void Update(){
+		if(isHeld) {
+			FollowPlayer();
+		}
+	}
+
+	private void FollowPlayer(){
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
+		float dist = Vector3.Distance(transform.position, targetPos);
+
+		if(dist >= distThresh) {
+			transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed*Time.deltaTime);
 		}
 	}
 
@@ -68,7 +86,7 @@ public class Orb : ActiveInteractable {
 		pos += posOnPlayer;
 		transform.position = pos;
 
-		transform.parent = PlayerController.instance.transform;
+		//transform.parent = PlayerController.instance.transform;
 	}
 
 	public void Drop(){
