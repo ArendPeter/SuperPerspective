@@ -4862,8 +4862,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instantiateSystems: 1
-  PrefabParticles2D: {fileID: 19806682, guid: 5f5a6f2c52d086d479cc7e3f3679352e, type: 2}
-  PrefabParticles3D: {fileID: 19852140, guid: e43a1dcd66e49724ea24cbe9db58b192, type: 2}
+  PrefabParticles2D: {fileID: 19857704, guid: b7ff913efeb8d4d4592f242b2f9cddb8, type: 2}
+  PrefabParticles3D: {fileID: 19879628, guid: 1ae269fe4bbadba4f8b3932ce4707ea5, type: 2}
 --- !u!137 &13707154
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -8201,6 +8201,16 @@ Prefab:
       propertyPath: particlesList.Array.data[0]
       value: 
       objectReference: {fileID: 19865090}
+    - target: {fileID: 0}
+      propertyPath: PrefabParticles2D
+      value: 
+      objectReference: {fileID: 19857704, guid: b7ff913efeb8d4d4592f242b2f9cddb8,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: PrefabParticles3D
+      value: 
+      objectReference: {fileID: 19879628, guid: 1ae269fe4bbadba4f8b3932ce4707ea5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180044}

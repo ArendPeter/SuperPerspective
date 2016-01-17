@@ -19,6 +19,8 @@ public class Orb : ActiveInteractable {
 
 	private Vector3 startPos;
 
+	public ParticleSystem trailParticle;
+
 	void Start() {
 		base.StartSetup ();
 		range = 1.5f;
@@ -35,6 +37,8 @@ public class Orb : ActiveInteractable {
 
 		if(!isHeld && !AtStart()){
 			updateRecallPosition();
+		}else if(trailParticle != null){
+			trailParticle.enableEmission = false;
 		}
 	}
 
@@ -58,6 +62,9 @@ public class Orb : ActiveInteractable {
 		float percent = travelTime / resetTime;
 		transform.position = Vector3.Lerp(
 				dropPosition, startPos, percent);
+		if(trailParticle != null){
+			trailParticle.enableEmission = true;
+		}
 	}
 
 	public override float GetDistance() {
