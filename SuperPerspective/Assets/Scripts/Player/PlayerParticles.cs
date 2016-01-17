@@ -1,20 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerParticles : MonoBehaviour {
 
 	private PlayerController player;
 
-	public ParticleSystem dustEmitter;
+	public ParticleSystem[] particlesList;
+	private Dictionary<string, ParticleSystem> ParticleDictionary;
+
+	public static PlayerParticles instance;
 
 	void Start () {
+		organizeParticles();
 		initPlayerReference();
 		initEmitters();
+	}
+
+	private void organizeParticles() {
+		ParticleDictionary = new Dictionary<string, ParticleSystem>();
+		foreach(ParticleSystem particle in particlesList) {
+			ParticleDictionary.Add(particle.name, particle);
+		}
 	}
 	
 	private void initPlayerReference(){ player = PlayerController.instance; }
 	
-	private void initEmitters(){ dustEmitter.enableEmission = false; }
+	private void initEmitters(){ 
+		foreach(ParticleSystem particle in particlesList) {
+			particle.enableEmission = false;
+		}
+	}
 	
 	
 	void FixedUpdate () {
@@ -23,7 +39,10 @@ public class PlayerParticles : MonoBehaviour {
 	}
 	
 	private void updateParticleEmission(){
-		dustEmitter.enableEmission =
-			(player.isRunning() || player.isWalking()) && player.isGrounded();
+		ParticleDictionary["DustEmitter"].enableEmission = (player.isRunning() || player.isWalking()) && player.isGrounded();
+	}
+
+	public void startSparkle(){
+		ParticleDictionary["Sparkle Particle"].enableEmission = true;
 	}
 }
