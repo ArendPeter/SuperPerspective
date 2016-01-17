@@ -4790,8 +4790,8 @@ MonoBehaviour:
   terminalVelocity: 30
   jumpVelocity: 19
   jumpMargin: 0.2
-  cactusOutwardVelocity: 0
-  cactusVerticalVelocity: 0
+  cactusOutwardVelocity: 5
+  cactusVerticalVelocity: 5
   verticalRays: 8
   step: {fileID: 0}
 --- !u!114 &11455610
@@ -8211,6 +8211,14 @@ Prefab:
       value: 
       objectReference: {fileID: 19879628, guid: 1ae269fe4bbadba4f8b3932ce4707ea5,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: cactusOutwardVelocity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cactusVerticalVelocity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180044}
