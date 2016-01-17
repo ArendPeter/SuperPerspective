@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	public GameObject followTarget;
+	public GameObject followTarget;//give camera for now
+	public Vector3 offset;
 	public bool followZ;
 
 	Rect myBounds;
@@ -20,11 +21,11 @@ public class CameraFollow : MonoBehaviour {
 		//Rect groundBound = playerBoundObject.GetBounds();
 		//follow camera
 		if(followTarget != null){
-			Vector3 targetPos = followTarget.transform.position;
+			Vector3 targetPos = followTarget.transform.position + offset;
 			if(followZ){
 				transform.position = targetPos;
 			}else{
-				transform.position = new Vector3(targetPos.x, targetPos.y, targetPos.z + 45.0f);
+				transform.position = new Vector3(targetPos.x, targetPos.y, targetPos.z);
 			}
 		}
 	}
