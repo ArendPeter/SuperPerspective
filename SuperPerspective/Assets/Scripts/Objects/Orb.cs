@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
@@ -32,8 +32,6 @@ public class Orb : ActiveInteractable {
 
 	public void FixedUpdate(){
 		base.FixedUpdateLogic();
-
-		
 
 		if(!isHeld && !AtStart()){
 			updateRecallPosition();

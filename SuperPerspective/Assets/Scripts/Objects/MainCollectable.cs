@@ -13,6 +13,8 @@ public class MainCollectable : Interactable {
 			GetComponentInChildren<Renderer>().transform.Rotate(Vector3.up, Mathf.PI / 4, Space.World);
 	}
 
+	public ParticleSystem effectOnCollect;
+
 	public static bool UseKey(int amtRequired) {
 		amtRequired = 1;
 		if (collectableHeld >= amtRequired) {
@@ -44,6 +46,9 @@ public class MainCollectable : Interactable {
 		base.EnterCollisionWithPlayer();
 		Collect();
 		//Destroy(GetComponentInChildren<Renderer>());
+		if(effectOnCollect != null){
+			Instantiate(effectOnCollect, this.transform.position, Quaternion.identity);// PlayerController.instance.transform.position
+		}
 		gameObject.SetActive(false);
 		active = false;
 	}
