@@ -432,7 +432,7 @@ public class PlayerController : PhysicalObject{
 			velocity = new Vector3(
 				cactusOutwardVelocity * outVec.x,
 			 	cactusVerticalVelocity,
-				cactusOutwardVelocity * outVec.y);
+				cactusOutwardVelocity * outVec.y * (GameStateManager.is3D()?1:0));
 			if(orb != null){
 				orb.Drop();
 				orb = null;
