@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.07, y: 2.01, z: -0.596282}
+  m_LocalPosition: {x: -540.093, y: -65.202, z: 110.505875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 412040}
@@ -168,6 +168,7 @@ MonoBehaviour:
   followSpeed: 3.5
   posOnPlayer: {x: 0, y: 1, z: 0}
   resetTime: 2
+  trailParticle: {fileID: 0}
 --- !u!198 &19854844
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -216,7 +217,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   scalingMode: 2
   InitialModule:
     serializedVersion: 2

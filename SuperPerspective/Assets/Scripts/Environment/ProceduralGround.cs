@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ProceduralGround : MonoBehaviour {
 
+	public GameObject decalHolder; //pass in a gameobject to hold decals, will help occlusion
 	public GameObject[] generatableObjects;
 	public int numToGenerate;
 	public bool calculateAmountForMe;
@@ -75,7 +76,9 @@ public class ProceduralGround : MonoBehaviour {
 			GameObject newObj = Object.Instantiate(obj, newPos, newRotation) as GameObject;
 			newObj.transform.localScale = newSize;
 			renderedObjects[i] = newObj;
-			newObj.transform.parent = this.gameObject.transform;
+			if(decalHolder != null){
+				newObj.transform.SetParent(this.decalHolder.transform);
+			}
 		}
 
 
