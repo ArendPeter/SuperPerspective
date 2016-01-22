@@ -638,6 +638,10 @@ public class PlayerController : PhysicalObject{
 
 	public EdgeState getEdgeState(){ return edgeState; }
 
+	public float getSpeed(){
+		return velocity.magnitude;
+	}
+
 	//TODO store axis info in grabbed edge
 	public int getEdgeOrientation(){ return grabbedEdge.getOrientation(); }
 

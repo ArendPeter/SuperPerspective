@@ -2,14 +2,15 @@ using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
+	public bool testIsHeld;
 
 	//suppress warnings
 	#pragma warning disable 414
 
-	public float followSpeed = 2.1f;
-	public Vector3 posOnPlayer = new Vector3(0,2,0);
+	public float minFollowSpeed;
+	public Vector3 posOnPlayer;
 
-	public float resetTime = 2.0f;
+	public float resetTime;
 	private float dropTime;
 	private Vector3 dropPosition;
 
@@ -43,7 +44,8 @@ public class Orb : ActiveInteractable {
 	}
 
 	public void Update(){
-		if(isHeld) {
+		testIsHeld = isHeld;
+		if(isHeld){
 			FollowPlayer();
 		}
 	}
@@ -51,10 +53,9 @@ public class Orb : ActiveInteractable {
 	private void FollowPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
 		float dist = Vector3.Distance(transform.position, targetPos);
-
-		if(dist >= distThresh) {
-			transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed*Time.deltaTime);
-		}
+		float playerSpeed = PlayerController.instance.getSpeed();
+		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * playerSpeed);
+		transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
 	}
 
 	private void updateRecallPosition(){
@@ -86,12 +87,6 @@ public class Orb : ActiveInteractable {
 	private void PickUp(){
 		PlayerController.instance.grabOrb(this);
 		isHeld = true;
-
-		Vector3 pos = PlayerController.instance.transform.position;
-		pos += posOnPlayer;
-		transform.position = pos;
-
-		//transform.parent = PlayerController.instance.transform;
 	}
 
 	public void Drop(){
