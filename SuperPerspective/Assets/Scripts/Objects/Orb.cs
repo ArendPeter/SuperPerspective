@@ -2,25 +2,28 @@ using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
-	public bool testIsHeld;
-
 	//suppress warnings
 	#pragma warning disable 414
+
+	public ParticleSystem trailParticle;
+	public GameObject model;
 
 	public float minFollowSpeed;
 	public Vector3 posOnPlayer;
 
-	public float resetTime;
-	private float dropTime;
-	private Vector3 dropPosition;
+	public float dropOutwardSpeed;
+	public float dropGravity;
+	private float dropDistBelowPlayer = -1f;
+	private float dropVerticalSpeed = 0f;
+	private Vector2 dropVector;
+
+	public float resetSpeed;
 
 	private bool isHeld = false;
 
 	private float distThresh = 1.5f; //distance threshhold where it will become unpressed
 
 	private Vector3 startPos;
-
-	public ParticleSystem trailParticle;
 
 	void Start() {
 		base.StartSetup ();
@@ -31,22 +34,33 @@ public class Orb : ActiveInteractable {
 			transform.position.z
 		);
 		transform.parent = null;
-	}
-
-	public void FixedUpdate(){
-		base.FixedUpdateLogic();
-
-		if(!isHeld && !AtStart()){
-			updateRecallPosition();
-		}else if(trailParticle != null){
+		if(trailParticle != null){
 			trailParticle.enableEmission = false;
 		}
 	}
 
+	private void PickUp(){
+		PlayerController.instance.grabOrb(this);
+		isHeld = true;
+	}
+
+	//Update
+	public void FixedUpdate(){
+		base.FixedUpdateLogic();
+		if(!AtStart() && !OrbBroken()){
+			dropVerticalSpeed += dropGravity;
+		}
+	}
+
 	public void Update(){
-		testIsHeld = isHeld;
 		if(isHeld){
 			FollowPlayer();
+		}else if(!AtStart()){
+			if(!OrbBroken()){
+				UpdateFallPosition();
+			}else{
+				UpdateRecallPosition();
+			}
 		}
 	}
 
@@ -55,17 +69,66 @@ public class Orb : ActiveInteractable {
 		float dist = Vector3.Distance(transform.position, targetPos);
 		float playerSpeed = PlayerController.instance.getSpeed();
 		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * playerSpeed);
-		transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
+		float percent = speed * Time.deltaTime / dist;
+		transform.position = Vector3.Lerp(transform.position, targetPos, percent);
 	}
 
-	private void updateRecallPosition(){
-		float travelTime = Time.time - dropTime;
-		float percent = travelTime / resetTime;
+	private void UpdateFallPosition(){
+		Vector3 pos = transform.position;
+		pos += new Vector3(
+			dropOutwardSpeed * dropVector.x,
+			dropVerticalSpeed,
+			dropOutwardSpeed * dropVector.y
+		) * Time.deltaTime;
+		transform.position = pos;
+
+		float breakingPoint =
+			PlayerController.instance.transform.position.y +
+			dropDistBelowPlayer;
+		if(pos.y < breakingPoint ){
+			pos.y = breakingPoint;
+			SetVisible(false);
+		}
+	}
+
+	private void UpdateRecallPosition(){
+		float dist = Vector3.Distance(transform.position, startPos);
+		float percent = resetSpeed * Time.deltaTime / dist;
 		transform.position = Vector3.Lerp(
-				dropPosition, startPos, percent);
+				transform.position, startPos, percent);
 		if(trailParticle != null){
 			trailParticle.enableEmission = true;
 		}
+
+		if(AtStart()){
+			SetVisible(true);
+			if(trailParticle!=null){
+				trailParticle.enableEmission = false;
+			}
+		}
+	}
+
+	//convenience
+	private bool OrbBroken(){
+		if(model != null){
+			return !model.GetComponent<Renderer>().enabled;
+		}
+		return false;
+	}
+
+	private void SetVisible(bool vis){
+		if(model != null){
+			model.GetComponent<Renderer>().enabled = vis;
+		}
+	}
+
+	private bool AtStart(){
+		return startPos == transform.position;
+	}
+
+	//inherited
+	public override void Triggered(){
+		PickUp();
 	}
 
 	public override float GetDistance() {
@@ -80,27 +143,14 @@ public class Orb : ActiveInteractable {
 		}
 	}
 
-	public override void Triggered(){
-		PickUp();
-	}
-
-	private void PickUp(){
-		PlayerController.instance.grabOrb(this);
-		isHeld = true;
-	}
-
+	//public interface
 	public void Drop(){
 		isHeld = false;
 		transform.parent = null;
-		dropPosition = new Vector3(
-			transform.position.x,
-			transform.position.y,
-			transform.position.z
-		);
-		dropTime = Time.time;
+		dropVerticalSpeed = 0f;
 	}
 
-	private bool AtStart(){
-		return startPos == transform.position;
+	public void SetOutwardDropVector(Vector2 dropVector){
+		this.dropVector = dropVector;
 	}
 }

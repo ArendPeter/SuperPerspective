@@ -408,7 +408,6 @@ public class PlayerController : PhysicalObject{
 			foreach (LandOnObject c in other.GetComponents<LandOnObject>()) {
 				c.LandedOn ();
 			}
-
 		}
 		// Crate
 		if (trajectory.normalized != Vector3.down && trajectory.normalized != Vector3.zero &&
@@ -429,6 +428,7 @@ public class PlayerController : PhysicalObject{
 			int zDir = (cacPos.y < playerPos.y)? 1 : -1;
 			Vector2 outVec = new Vector2(
 				Mathf.Cos(Mathf.Deg2Rad * outDir),zDir * Mathf.Sin(Mathf.Deg2Rad * outDir));
+			orb.SetOutwardDropVector(outVec);
 			velocity = new Vector3(
 				cactusOutwardVelocity * outVec.x,
 			 	cactusVerticalVelocity,
