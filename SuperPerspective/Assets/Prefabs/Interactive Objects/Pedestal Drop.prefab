@@ -29,6 +29,7 @@ GameObject:
   - 65: {fileID: 6550714}
   - 114: {fileID: 11439118}
   - 114: {fileID: 11420706}
+  - 114: {fileID: 11435686}
   m_Layer: 0
   m_Name: Pedestal Drop
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.87, y: 2.01, z: -0.596282}
+  m_LocalPosition: {x: 2.2479987, y: 1.546425, z: 0.17555618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486064}
@@ -134,6 +135,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1811b6faa4c6ca148905cc7bc413abe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11435686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4e7856f05bfe44489dd7c6aba33616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggers: []
 --- !u!114 &11439118
 MonoBehaviour:
   m_ObjectHideFlags: 1

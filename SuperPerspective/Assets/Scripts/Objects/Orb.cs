@@ -18,6 +18,7 @@ public class Orb : ActiveInteractable {
 	private Vector2 dropVector;
 
 	public float resetSpeed;
+	public float placeSpeed;
 
 	private bool isHeld = false;
 
@@ -25,9 +26,11 @@ public class Orb : ActiveInteractable {
 
 	private Vector3 startPos;
 
+	private OrbDropPedestal destObj = null;
+
 	void Start() {
 		base.StartSetup ();
-		range = 1.5f;
+		range = 2f;
 		startPos = new Vector3(
 			transform.position.x,
 			transform.position.y,
@@ -55,8 +58,8 @@ public class Orb : ActiveInteractable {
 	public void Update(){
 		if(isHeld){
 			FollowPlayer();
-		}else if(!AtStart()){
-			if(!OrbBroken()){
+		}else if(!AtTargetLocation()){
+			if(!OrbBroken() && !HasFinalPlatform()){
 				UpdateFallPosition();
 			}else{
 				UpdateRecallPosition();
@@ -92,15 +95,17 @@ public class Orb : ActiveInteractable {
 	}
 
 	private void UpdateRecallPosition(){
-		float dist = Vector3.Distance(transform.position, startPos);
-		float percent = resetSpeed * Time.deltaTime / dist;
+		Vector3 targetPos = (HasFinalPlatform())?
+			destObj.GetOrbPosition() : startPos;
+		float dist = Vector3.Distance(transform.position, targetPos);
+		float percent = GetSpeed() * Time.deltaTime / dist;
 		transform.position = Vector3.Lerp(
-				transform.position, startPos, percent);
-		if(trailParticle != null){
+				transform.position, targetPos, percent);
+		if(!HasFinalPlatform() && trailParticle != null){
 			trailParticle.enableEmission = true;
 		}
 
-		if(AtStart()){
+		if(AtTargetLocation()){
 			SetVisible(true);
 			if(trailParticle!=null){
 				trailParticle.enableEmission = false;
@@ -122,8 +127,28 @@ public class Orb : ActiveInteractable {
 		}
 	}
 
+	private bool AtTargetLocation(){
+		return HasFinalPlatform()? OnFinalPlatform() : AtStart(); 
+	}
+
 	private bool AtStart(){
 		return startPos == transform.position;
+	}
+
+	public bool OnFinalPlatform(){
+		if(destObj == null){
+			return false;
+		}else{
+			return destObj.GetOrbPosition() == transform.position;
+		}
+	}
+
+	private bool HasFinalPlatform(){
+		return destObj != null;
+	}
+
+	private float GetSpeed(){
+		return HasFinalPlatform()?placeSpeed:resetSpeed;
 	}
 
 	//inherited
@@ -131,16 +156,16 @@ public class Orb : ActiveInteractable {
 		PickUp();
 	}
 
+	protected override bool IsEnabled(){
+		return !PlayerController.instance.isHoldingOrb() && AtStart();
+	}
+
 	public override float GetDistance() {
-		if(PlayerController.instance.isHoldingOrb() || !AtStart()){
-			return float.MaxValue;
-		}else{
-			if (GameStateManager.is3D())
-				return Vector3.Distance(transform.position, player.transform.position);
-			else
-				return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
-				                        new Vector2(transform.position.x, transform.position.y));
-		}
+		if (GameStateManager.is3D())
+			return Vector3.Distance(transform.position, player.transform.position);
+		else
+			return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
+			                        new Vector2(transform.position.x, transform.position.y));
 	}
 
 	//public interface
@@ -152,5 +177,9 @@ public class Orb : ActiveInteractable {
 
 	public void SetOutwardDropVector(Vector2 dropVector){
 		this.dropVector = dropVector;
+	}
+
+	public void SetPlatform(OrbDropPedestal obj){
+		destObj = obj;
 	}
 }

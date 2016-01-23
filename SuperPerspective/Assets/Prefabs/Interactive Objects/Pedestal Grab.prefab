@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0, y: -0.157, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 485168}
@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.958691, y: 1.3773781, z: -2.0946121}
+  m_LocalPosition: {x: -11.645889, y: 1.387, z: -0.20423126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 432516}
@@ -345,11 +345,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2beb4eefc7b6dd74ab240f67e1ffbb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testIsHeld: 0
+  trailParticle: {fileID: 19856862}
+  model: {fileID: 192620}
   minFollowSpeed: 3.5
   posOnPlayer: {x: 0, y: 2, z: 0}
-  resetTime: 2
-  trailParticle: {fileID: 19856862}
+  dropOutwardSpeed: 1
+  dropGravity: -0.1
+  resetSpeed: 6
+  placeSpeed: 2
 --- !u!114 &11476750
 MonoBehaviour:
   m_ObjectHideFlags: 1

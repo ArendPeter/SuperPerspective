@@ -433,15 +433,19 @@ public class PlayerController : PhysicalObject{
 				cactusOutwardVelocity * outVec.x,
 			 	cactusVerticalVelocity,
 				cactusOutwardVelocity * outVec.y * (GameStateManager.is3D()?1:0));
-			if(orb != null){
-				orb.Drop();
-				orb = null;
-			}
+			DropOrb();
 		}
 		//Collision w/ PlayerInteractable
 		foreach (Interactable c in other.GetComponents<Interactable>()) {
 			c.EnterCollisionWithPlayer ();
 		}
+	}
+
+	public void DropOrb(){
+			if(orb != null){
+				orb.Drop();
+				orb = null;
+			}
 	}
 
 	#endregion Collisions
@@ -693,6 +697,10 @@ public class PlayerController : PhysicalObject{
 	public bool isHoldingOrb(){ return orb != null; }
 
 	public void grabOrb(Orb newOrb){ orb = newOrb; }
+
+	public Orb getOrb(){
+		return orb;
+	}
 
 
 	#endregion Accessor Methods
