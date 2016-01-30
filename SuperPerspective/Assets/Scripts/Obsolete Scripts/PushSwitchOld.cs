@@ -23,7 +23,7 @@ public class PushSwitchOld : MonoBehaviour {
 	        Physics.Raycast(new Vector3(xx, yy - 0.5f, zz + 2f), -Vector3.forward + Vector3.up * 0.25f, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore")) ||
 	        Physics.Raycast(new Vector3(xx - 1f, yy - 0.5f, zz + 2f), -Vector3.forward + Vector3.up * 0.25f, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore"))) {
 				GameObject obj = hit.collider.gameObject;
-				bool isPusher = (obj.GetComponent<Ice>() != null) || (obj.GetComponent<Crate>() != null);
+				bool isPusher = (obj.GetComponent<Ice>() != null) || (obj.GetComponent<Crate>() != null) || (obj.GetComponent<PlayerController>() != null);
 		    if (!pushed && isPusher)
 			    EnterCollisionWithGeneral(obj);
 		} else if (pushed) {
