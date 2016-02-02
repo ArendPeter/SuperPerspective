@@ -65,6 +65,7 @@ public class Orb : ActiveInteractable {
 				UpdateRecallPosition();
 			}
 		}
+		UpdateDestinationPedestal();
 	}
 
 	private void FollowPlayer(){
@@ -113,6 +114,15 @@ public class Orb : ActiveInteractable {
 		}
 	}
 
+	private void UpdateDestinationPedestal(){
+		if(PlayerController.instance.isHoldingOrb()){
+			if(destObj != null){
+				destObj.ReleaseOrb();
+			}
+			destObj = null;
+		}
+	}
+
 	//convenience
 	private bool OrbBroken(){
 		if(model != null){
@@ -128,7 +138,7 @@ public class Orb : ActiveInteractable {
 	}
 
 	private bool AtTargetLocation(){
-		return HasFinalPlatform()? OnFinalPlatform() : AtStart(); 
+		return HasFinalPlatform()? OnFinalPlatform() : AtStart();
 	}
 
 	private bool AtStart(){
@@ -157,7 +167,7 @@ public class Orb : ActiveInteractable {
 	}
 
 	protected override bool IsEnabled(){
-		return !PlayerController.instance.isHoldingOrb() && AtStart();
+		return !PlayerController.instance.isHoldingOrb() && AtTargetLocation();
 	}
 
 	public override float GetDistance() {
@@ -181,5 +191,9 @@ public class Orb : ActiveInteractable {
 
 	public void SetPlatform(OrbDropPedestal obj){
 		destObj = obj;
+	}
+
+	public bool IsOnPlatform(OrbDropPedestal ped){
+		return destObj == ped;
 	}
 }

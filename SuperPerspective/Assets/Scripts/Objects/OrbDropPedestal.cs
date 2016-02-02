@@ -18,14 +18,26 @@ public class OrbDropPedestal : ActiveInteractable {
 
 	public void FixedUpdate(){
 		base.FixedUpdateLogic();
-		CheckForActionTrigger();
+		if(HasOrb()){
+			CheckForActionTrigger();
+		}else{
+			CheckForActionRelease();
+		}
 	}
 
 	private void CheckForActionTrigger(){
-		if(HasOrb() && placedOrb.OnFinalPlatform() && !actionsTriggered){
+		if(placedOrb.IsOnPlatform(this) && !actionsTriggered){
 			actionsTriggered = true;
 			foreach(Activatable o in triggers)
 				o.setActivated(true);
+		}
+	}
+
+	private void CheckForActionRelease(){
+		if(actionsTriggered){
+			actionsTriggered = false;
+			foreach(Activatable o in triggers)
+				o.setActivated(false);
 		}
 	}
 
@@ -59,5 +71,9 @@ public class OrbDropPedestal : ActiveInteractable {
 	//public interface
 	public Vector3 GetOrbPosition(){
 		return transform.position + orbPos;
+	}
+
+	public void ReleaseOrb(){
+		placedOrb = null;
 	}
 }
