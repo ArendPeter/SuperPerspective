@@ -420,7 +420,7 @@ public class PlayerController : PhysicalObject{
 			transform.Translate(0, 0.1f, 0);
 		}
 		// Cactus
-		if (!isInCactusKnockBack() && other.tag == "Cactus") {
+		if (!isInCactusKnockBack() && other.tag == "Cactus"){
 			cactusKnockBackTimer = CACTUS_TIME;
 			Vector2 cacPos = new Vector2(other.transform.position.x,other.transform.position.z);
 			Vector2 playerPos = new Vector2(transform.position.x,transform.position.z);

@@ -21,12 +21,22 @@ public class Orb : ActiveInteractable {
 	public float placeSpeed;
 
 	private bool isHeld = false;
+	private bool initialApproach = false;
 
-	private float distThresh = 1.5f; //distance threshhold where it will become unpressed
+	private float distThresh = 1f; //distance threshhold where it will become unpressed
 
 	private Vector3 startPos;
 
 	private OrbDropPedestal destObj = null;
+
+	public float spiralRadiusThresh;
+	public float spiralSpeed;
+	public float spiralHeight;
+	public int spiralRotSpeed;
+	private float spiralAngle = -1f;
+	private float spiralRadius = -1f;
+	private float spiralRadialSpeed = -1f;
+	private float spiralVerticalSpeed = -1f;
 
 	void Start() {
 		base.StartSetup ();
@@ -45,6 +55,7 @@ public class Orb : ActiveInteractable {
 	private void PickUp(){
 		PlayerController.instance.grabOrb(this);
 		isHeld = true;
+		//initialApproach = true;
 	}
 
 	//Update
@@ -57,7 +68,11 @@ public class Orb : ActiveInteractable {
 
 	public void Update(){
 		if(isHeld){
-			FollowPlayer();
+			if(initialApproach){
+				SpiralToPlayer();
+			}else{
+				FollowPlayer();
+			}
 		}else if(!AtTargetLocation()){
 			if(!OrbBroken() && !HasFinalPlatform()){
 				UpdateFallPosition();
@@ -68,13 +83,49 @@ public class Orb : ActiveInteractable {
 		UpdateDestinationPedestal();
 	}
 
+	private void SpiralToPlayer(){
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer
+			- Vector3.down * spiralHeight;
+		float dist2D = Vector2.Distance(
+			new Vector2(transform.position.x, transform.position.z),
+			new Vector2(targetPos.x,targetPos.z)
+		);
+		float dist3D = Vector3.Distance(transform.position, targetPos);
+		if(dist2D > spiralRadiusThresh){
+			LerpToPosition(targetPos,spiralSpeed);
+		}else{
+			//initialize
+			Vector3 playerPos = PlayerController.instance.transform.position;
+			if(!SpiralAngleIsSet()){
+				spiralAngle = Vector2.Angle(Vector2.right,playerPos-transform.position);
+				spiralRadius = spiralRadiusThresh;
+				Vector3 temp_dir = playerPos - transform.position;
+				temp_dir *= spiralSpeed / temp_dir.magnitude;
+				spiralVerticalSpeed = temp_dir.y;
+				spiralRadialSpeed = spiralRadius * spiralVerticalSpeed / (playerPos.y - transform.position.y);
+			}
+			//update angle
+			spiralAngle += spiralRotSpeed * Mathf.Deg2Rad * Time.deltaTime;
+			//update radius
+			if(Mathf.Abs(spiralRadius) < spiralRadialSpeed){
+				spiralRadius = 0;
+			}else{
+				spiralRadius -= spiralRadialSpeed * Time.deltaTime;
+			}
+			//update position
+			transform.position = new Vector3(
+				playerPos.x + spiralRadius * Mathf.Cos(spiralAngle),
+				playerPos.y + spiralRadius * Mathf.Sin(spiralAngle),
+				transform.position.y + spiralSpeed * Time.deltaTime
+			);
+		}
+	}
+
 	private void FollowPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
 		float dist = Vector3.Distance(transform.position, targetPos);
-		float playerSpeed = PlayerController.instance.getSpeed();
-		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * playerSpeed);
-		float percent = speed * Time.deltaTime / dist;
-		transform.position = Vector3.Lerp(transform.position, targetPos, percent);
+		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * minFollowSpeed);
+		LerpToPosition(targetPos, speed);
 	}
 
 	private void UpdateFallPosition(){
@@ -98,10 +149,8 @@ public class Orb : ActiveInteractable {
 	private void UpdateRecallPosition(){
 		Vector3 targetPos = (HasFinalPlatform())?
 			destObj.GetOrbPosition() : startPos;
-		float dist = Vector3.Distance(transform.position, targetPos);
-		float percent = GetSpeed() * Time.deltaTime / dist;
-		transform.position = Vector3.Lerp(
-				transform.position, targetPos, percent);
+		LerpToPosition(targetPos,resetSpeed);
+
 		if(!HasFinalPlatform() && trailParticle != null){
 			trailParticle.enableEmission = true;
 		}
@@ -145,6 +194,10 @@ public class Orb : ActiveInteractable {
 		return startPos == transform.position;
 	}
 
+	private bool SpiralAngleIsSet(){
+		return spiralAngle != -1;
+	}
+
 	public bool OnFinalPlatform(){
 		if(destObj == null){
 			return false;
@@ -157,8 +210,10 @@ public class Orb : ActiveInteractable {
 		return destObj != null;
 	}
 
-	private float GetSpeed(){
-		return HasFinalPlatform()?placeSpeed:resetSpeed;
+	private void LerpToPosition(Vector3 newPos, float speed){
+		float dist = Vector3.Distance(transform.position, newPos);
+		float percent = speed * Time.deltaTime / dist;
+		transform.position = Vector3.Lerp(transform.position, newPos, percent);
 	}
 
 	//inherited
