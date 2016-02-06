@@ -4,10 +4,12 @@ using System.Collections;
 public class Ice : ActiveInteractable {
 
 	#pragma warning disable 219
+	public float testVelocity;
 
 	private const float gravity = 1.5f;
 	private const float terminalVelocity = 60;
 	private const float decelleration = 15;
+	private const float epsilon = .1f;
 
 	private Vector3 trajectory, newVelocity;
 	private bool grounded, svFlag;
@@ -71,35 +73,13 @@ public class Ice : ActiveInteractable {
 	}
 
 	void FixedUpdate() {
+		testVelocity = velocity.magnitude;
 		if(!PlayerController.instance.isPaused()){
 			base.FixedUpdateLogic ();
 			if (!grounded)
 				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
             if (kickDelay > 0)
                 kickDelay--;
-
-			/*if (grabbed) {
-				float vy = velocity.y;
-				velocity = player.GetComponent<PlayerController>().GetVelocity();
-				velocity.y = vy;
-			}*/
-
-			//CheckCollisions();
-
-			/*float newVelocityX = velocity.x, newVelocityZ = velocity.z;
-			if (velocity.x != 0)
-			{
-				int modifier = velocity.x > 0 ? -1 : 1;
-				newVelocityX += Mathf.Min(decelleration, Mathf.Abs(velocity.x)) * modifier;
-			}
-			velocity.x = newVelocityX;
-
-			if (velocity.z != 0)
-			{
-				int modifier = velocity.z > 0 ? -1 : 1;
-				newVelocityZ += Mathf.Min(decelleration, Mathf.Abs(velocity.z)) * modifier;
-			}
-			velocity.z = newVelocityZ;*/
 
 			if (GetComponent<Collider> ().enabled) {
 				colliderHeight = GetComponent<Collider>().bounds.size.y;
@@ -113,12 +93,12 @@ public class Ice : ActiveInteractable {
 				svFlag = false;
 			}
 
-			//CheckCollisions();
+			PlayMoveSound();
+		}
+	}
 
-			//Adding in pushing sound, initialize after break sound -Nick
-
-			//Init
-			/*if (gameObject.GetComponent<AudioSource> () != null && gameObject.GetComponent<AudioSource> ().clip != null &&
+	private void PlayMoveSound(){
+		/*if (gameObject.GetComponent<AudioSource> () != null && gameObject.GetComponent<AudioSource> ().clip != null &&
 			    gameObject.GetComponent<AudioSource> ().clip.name != "IceMove" && !respawnFlag && grounded) {
 				gameObject.GetComponent<AudioSource> ().clip =  Resources.Load ("Sound/SFX/Objects/Ice/IceMove")  as AudioClip;
 				gameObject.GetComponent<AudioSource> ().loop = true;
@@ -136,9 +116,6 @@ public class Ice : ActiveInteractable {
 			else{
 				gameObject.GetComponent<AudioSource>().volume = 0;
 			}*/
-
-			//End Nick stuff
-		}
 	}
 
 	void LateUpdate () {
@@ -185,7 +162,6 @@ public class Ice : ActiveInteractable {
 				startPush = false;
 			}
 
-			//CheckCollisions();
 		}
 	}
 
@@ -365,7 +341,8 @@ public class Ice : ActiveInteractable {
 	}
 	//Mathf.Abs(player.transform.position.x - transform.position.x) > colliderWidth / 2
 	public override void Triggered() {
-		if (velocity.Equals (Vector3.zero)) {
+		Vector2 horizontalVelocity = new Vector2(velocity.x, velocity.z);
+		if (horizontalVelocity.magnitude < epsilon) {
 			switch (GetQuadrant()) {
 				case Quadrant.xPlus:
 						nextVelocity = Vector3.left * slideSpeed;
@@ -374,7 +351,7 @@ public class Ice : ActiveInteractable {
 						nextVelocity = Vector3.right * slideSpeed;
 						break;
 				case Quadrant.zPlus:
-						nextVelocity = Vector3.back * slideSpeed;
+						nextVelocity = Vector3.	back * slideSpeed;
 						break;
 				case Quadrant.zMinus:
 						nextVelocity = Vector3.forward * slideSpeed;
@@ -382,6 +359,8 @@ public class Ice : ActiveInteractable {
 			}
 			kickDelay = DELAY;
 			PlayerController.instance.StartKick();
+		}else{
+			print("velocity: "+velocity);
 		}
-    }
+  }
 }
