@@ -7,7 +7,7 @@ public class ActiveInteractable : PhysicalObject {
 	//suppress warnings
 	#pragma warning disable 414
 
-	bool ignoreYDistance;
+	bool ignoreYDistance = true;
 
 	//player
 	protected GameObject player;
@@ -96,11 +96,11 @@ public class ActiveInteractable : PhysicalObject {
 	}
 
 	protected virtual bool IsEnabled(){
-		bool someImportantVariable = (GetComponentInChildren<Renderer>().enabled || GetComponent<Door>());
+		bool isVisible = GetComponentInChildren<Renderer>().enabled;
 
 		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
 
-		return someImportantVariable && unlockable;
+		return isVisible && unlockable;
 
 	}
 

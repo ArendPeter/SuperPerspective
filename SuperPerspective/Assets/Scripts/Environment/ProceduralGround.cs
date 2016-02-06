@@ -5,6 +5,7 @@ public class ProceduralGround : MonoBehaviour {
 
 	public GameObject decalHolder; //pass in a gameobject to hold decals, will help occlusion
 	public GameObject[] generatableObjects;
+	public float autoSizing = 8.0f;
 	public int numToGenerate;
 	public bool calculateAmountForMe;
 
@@ -26,7 +27,7 @@ public class ProceduralGround : MonoBehaviour {
 
 
 		if(calculateAmountForMe){
-			float avgSize = 5.0f;
+			float avgSize = autoSizing;
 			numToGenerate = (int)Mathf.Ceil((meSize.x * meSize.z)/avgSize);
 		}
 		renderedObjects = new GameObject[numToGenerate];
