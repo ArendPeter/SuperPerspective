@@ -7,6 +7,8 @@ public class MobilePlatform : ActiveInteractable {
 	public float decelleration = 15f;
 	public float maxSpeed = 8f;
 	bool controlled = false;
+	bool respawnFlag = false;
+	Vector3 startPos;
 
 	private float colliderHeight, colliderWidth, colliderDepth;
 
@@ -27,6 +29,8 @@ public class MobilePlatform : ActiveInteractable {
 		colliderWidth = GetComponent<Collider>().bounds.size.x;
 		colliderDepth = GetComponent<Collider>().bounds.size.z;
 		rect = GetComponent<BoundObject>().GetBounds();
+		CameraController.instance.TransitionCompleteEvent += checkBreak;
+		startPos = transform.position;
 	}
 
 	void FixedUpdate () {
@@ -47,6 +51,15 @@ public class MobilePlatform : ActiveInteractable {
 	void LateUpdate() {
 		LateUpdateLogic();
 		transform.Translate(velocity * Time.deltaTime);
+		if (respawnFlag) {
+			Vector3 pos = transform.position;
+			pos = startPos;
+			transform.position = pos;
+			GetComponent<Collider>().enabled = true;
+			GetComponentInChildren<Renderer>().enabled = true;
+			GetComponent<LevelGeometry>().AdjustPosition(GameStateManager.instance.currentPerspective);
+			respawnFlag = false;
+		}
 	}
 
 	private void moveOnAxis(int axis){
@@ -120,10 +133,41 @@ public class MobilePlatform : ActiveInteractable {
 		}
 	}
 
+	public bool Check2DIntersect() {
+		// True if any ray hits a collider
+		bool connected = false;
+		
+		//reference variables
+		float minX 		= GetComponent<Collider>().bounds.min.x + Margin;
+		float centerX 	= GetComponent<Collider>().bounds.center.x;
+		float maxX 		= GetComponent<Collider>().bounds.max.x - Margin;
+		float minY 		= GetComponent<Collider>().bounds.min.y + Margin;
+		float centerY 	= GetComponent<Collider>().bounds.center.y;
+		float maxY 		= GetComponent<Collider>().bounds.max.y - Margin;
+		float centerZ   = GetComponent<Collider>().bounds.center.z;
+
+		float rad = (GetComponent<Collider>().bounds.max.z - GetComponent<Collider>().bounds.max.z) * 0.5f;
+		connected = Physics.CapsuleCast(new Vector3(minX + rad, centerY, centerZ), new Vector3(maxX - rad, centerY, centerZ), rad, Vector3.forward) ||
+					Physics.CapsuleCast(new Vector3(minX + rad, centerY, centerZ), new Vector3(maxX - rad, centerY, centerZ), rad, Vector3.back);
+		return connected;
+	}
+
+	void checkBreak() {
+		if(GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect()) {
+			if (controlled){
+				PlayerController.instance.setRiding(null);
+				controlled = false;
+				player.transform.parent = null;
+			}
+			respawnFlag = true;
+		}
+	}
+
 	public override void Triggered() {
 		if (!controlled && player.transform.position.y > transform.position.y) {
 			PlayerController.instance.setRiding(this.gameObject);
 			controlled = true;
+			player.transform.Translate(transform.position.x - player.transform.position.x, 0, transform.position.z - player.transform.position.z);
 			player.transform.parent = transform;
 		} else {
 			PlayerController.instance.setRiding(null);
@@ -143,5 +187,9 @@ public class MobilePlatform : ActiveInteractable {
 
 	protected override bool isPlayerFacingObject() {
 		return true;
+	}
+
+	public float GetStartY() {
+		return startPos.y;
 	}
 }
