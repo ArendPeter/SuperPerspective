@@ -408,7 +408,6 @@ public class PlayerController : PhysicalObject{
 			foreach (LandOnObject c in other.GetComponents<LandOnObject>()) {
 				c.LandedOn ();
 			}
-
 		}
 		// Crate
 		if (trajectory.normalized != Vector3.down && trajectory.normalized != Vector3.zero &&
@@ -421,7 +420,7 @@ public class PlayerController : PhysicalObject{
 			transform.Translate(0, 0.1f, 0);
 		}
 		// Cactus
-		if (!isInCactusKnockBack() && other.tag == "Cactus") {
+		if (!isInCactusKnockBack() && other.tag == "Cactus"){
 			cactusKnockBackTimer = CACTUS_TIME;
 			Vector2 cacPos = new Vector2(other.transform.position.x,other.transform.position.z);
 			Vector2 playerPos = new Vector2(transform.position.x,transform.position.z);
@@ -429,19 +428,24 @@ public class PlayerController : PhysicalObject{
 			int zDir = (cacPos.y < playerPos.y)? 1 : -1;
 			Vector2 outVec = new Vector2(
 				Mathf.Cos(Mathf.Deg2Rad * outDir),zDir * Mathf.Sin(Mathf.Deg2Rad * outDir));
+			orb.SetOutwardDropVector(outVec);
 			velocity = new Vector3(
 				cactusOutwardVelocity * outVec.x,
 			 	cactusVerticalVelocity,
 				cactusOutwardVelocity * outVec.y * (GameStateManager.is3D()?1:0));
-			if(orb != null){
-				orb.Drop();
-				orb = null;
-			}
+			DropOrb();
 		}
 		//Collision w/ PlayerInteractable
 		foreach (Interactable c in other.GetComponents<Interactable>()) {
 			c.EnterCollisionWithPlayer ();
 		}
+	}
+
+	public void DropOrb(){
+			if(orb != null){
+				orb.Drop();
+				orb = null;
+			}
 	}
 
 	#endregion Collisions
@@ -638,6 +642,10 @@ public class PlayerController : PhysicalObject{
 
 	public EdgeState getEdgeState(){ return edgeState; }
 
+	public float getSpeed(){
+		return velocity.magnitude;
+	}
+
 	//TODO store axis info in grabbed edge
 	public int getEdgeOrientation(){ return grabbedEdge.getOrientation(); }
 
@@ -689,6 +697,10 @@ public class PlayerController : PhysicalObject{
 	public bool isHoldingOrb(){ return orb != null; }
 
 	public void grabOrb(Orb newOrb){ orb = newOrb; }
+
+	public Orb getOrb(){
+		return orb;
+	}
 
 
 	#endregion Accessor Methods

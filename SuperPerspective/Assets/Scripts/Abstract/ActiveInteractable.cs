@@ -7,7 +7,7 @@ public class ActiveInteractable : PhysicalObject {
 	//suppress warnings
 	#pragma warning disable 414
 
-	bool ignoreYDistance;
+	bool ignoreYDistance = true;
 
 	//player
 	protected GameObject player;
@@ -78,13 +78,10 @@ public class ActiveInteractable : PhysicalObject {
 
 		bool inYRange = yRangeOverlapsWithPlayer();
 
-		bool someImportantVariable = (GetComponentInChildren<Renderer>().enabled || GetComponent<Door>());
-
-		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
-
 		bool canTrigger =
-			someImportantVariable && inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && unlockable;
+			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
 
+		//checks for competing notifications (I think)
 		bool notificationCanBeShown = !notiShown || dist < notiDist;
 
 		//update notiShown
@@ -96,6 +93,15 @@ public class ActiveInteractable : PhysicalObject {
 		}
 
 		fixedCalled = true;
+	}
+
+	protected virtual bool IsEnabled(){
+		bool isVisible = GetComponentInChildren<Renderer>().enabled;
+
+		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
+
+		return isVisible && unlockable;
+
 	}
 
 	public virtual float GetDistance() {

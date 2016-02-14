@@ -2,110 +2,269 @@ using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
-
+	public float testAngle;
 	//suppress warnings
 	#pragma warning disable 414
 
-	public float followSpeed = 2.1f;
-	public Vector3 posOnPlayer = new Vector3(0,2,0);
+	public ParticleSystem trailParticle;
+	public GameObject model;
 
-	public float resetTime = 2.0f;
-	private float dropTime;
-	private Vector3 dropPosition;
+	public float minFollowSpeed;
+	public Vector3 posOnPlayer;
+
+	public float dropOutwardSpeed;
+	public float dropGravity;
+	private float dropDistBelowPlayer = -1f;
+	private float dropVerticalSpeed = 0f;
+	private Vector2 dropVector;
+
+	public float resetSpeed;
+	public float placeSpeed;
 
 	private bool isHeld = false;
+	private bool initialApproach = false;
 
-	private float distThresh = 1.5f; //distance threshhold where it will become unpressed
+	private float distThresh = 1f; //distance threshhold where it will become unpressed
 
 	private Vector3 startPos;
 
-	public ParticleSystem trailParticle;
+	private OrbDropPedestal destObj = null;
+
+	public float spiralRadiusThresh;
+	public float spiralMinApproachSpeed;
+	public float spiralVerticalSpeed;
+	public float spiralHeight;
+	public float spiralMaxRotSpeed;
+	private float spiralAngle = -1f;
+	private float spiralRadius = -1f;
+	private float spiralRadialSpeed = -1f;
+	private float spiralY = -1f;
+	private float spiralRotSpeed;
 
 	void Start() {
 		base.StartSetup ();
-		range = 1.5f;
+		range = 2f;
 		startPos = new Vector3(
 			transform.position.x,
 			transform.position.y,
 			transform.position.z
 		);
 		transform.parent = null;
-	}
-
-	public void FixedUpdate(){
-		base.FixedUpdateLogic();
-
-		if(!isHeld && !AtStart()){
-			updateRecallPosition();
-		}else if(trailParticle != null){
+	  if(trailParticle != null){
 			trailParticle.enableEmission = false;
 		}
 	}
 
+	private void PickUp(){
+		PlayerController.instance.grabOrb(this);
+		isHeld = true;
+		initialApproach = true;
+	}
+
+	//Update
+	public void FixedUpdate(){
+		base.FixedUpdateLogic();
+		if(!AtStart() && !OrbBroken()){
+			dropVerticalSpeed += dropGravity;
+		}
+	}
+
 	public void Update(){
-		if(isHeld) {
-			FollowPlayer();
+		if(isHeld){
+			if(initialApproach){
+				SpiralToPlayer();
+			}else{
+				FollowPlayer();
+			}
+		}else if(!AtTargetLocation()){
+			if(!OrbBroken() && !HasFinalPlatform()){
+				UpdateFallPosition();
+			}else{
+				UpdateRecallPosition();
+			}
+		}
+		UpdateDestinationPedestal();
+	}
+
+	private void SpiralToPlayer(){
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer
+			+ Vector3.down * spiralHeight;
+		float dist2D = Vector2.Distance(
+			new Vector2(transform.position.x, transform.position.z),
+			new Vector2(targetPos.x,targetPos.z)
+		);
+		if(!SpiralAngleIsSet() && dist2D > spiralRadiusThresh){
+			float dist = Vector3.Distance(transform.position, targetPos);
+			float speed = Mathf.Max(spiralMinApproachSpeed,(dist/spiralRadiusThresh) * spiralMinApproachSpeed);
+			LerpToPosition(targetPos,speed);
+		}else{
+			targetPos = PlayerController.instance.transform.position + posOnPlayer;
+			//initialize
+			if(!SpiralAngleIsSet()){
+				Vector3 del3D = transform.position - targetPos;
+				Vector3 del2D = new Vector2(del3D.x,del3D.z);
+				spiralAngle = Mathf.Deg2Rad * Vector2.Angle(Vector2.right,del2D);
+				if(transform.position.z < targetPos.z){
+					spiralAngle = 2 * Mathf.PI - spiralAngle;
+				}
+				spiralRadius = del2D.magnitude;
+				Vector3 temp_dir = targetPos - transform.position;
+				spiralY = temp_dir.y;
+				spiralRadialSpeed = spiralRadius * spiralVerticalSpeed / spiralY;
+				spiralRotSpeed = 0f;
+			}else{
+				//update angle
+				spiralRotSpeed = Mathf.Min(spiralMaxRotSpeed,spiralRotSpeed+1500*Time.deltaTime);
+				spiralAngle += spiralRotSpeed * Mathf.Deg2Rad * Time.deltaTime;
+				testAngle = spiralAngle;
+				//update radius
+				if(Mathf.Abs(spiralRadius) < spiralRadialSpeed * Time.deltaTime){
+					spiralRadius = 0;
+					initialApproach = false;
+					spiralAngle = -1;
+				}else{
+					spiralRadius -= spiralRadialSpeed * Time.deltaTime;
+				}
+				//update y
+				spiralY -= spiralVerticalSpeed * Time.deltaTime;
+			}
+			//update position
+			transform.position = new Vector3(
+				targetPos.x + spiralRadius * Mathf.Cos(spiralAngle),
+				targetPos.y - spiralY,
+				targetPos.z + spiralRadius * Mathf.Sin(spiralAngle)
+			);
 		}
 	}
 
 	private void FollowPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
 		float dist = Vector3.Distance(transform.position, targetPos);
-
-		if(dist >= distThresh) {
-			transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed*Time.deltaTime);
-		}
+		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * minFollowSpeed);
+		LerpToPosition(targetPos, speed);
 	}
 
-	private void updateRecallPosition(){
-		float travelTime = Time.time - dropTime;
-		float percent = travelTime / resetTime;
-		transform.position = Vector3.Lerp(
-				dropPosition, startPos, percent);
-		if(trailParticle != null){
-			trailParticle.enableEmission = true;
-		}
-	}
-
-	public override float GetDistance() {
-		if(PlayerController.instance.isHoldingOrb() || !AtStart()){
-			return float.MaxValue;
-		}else{
-			if (GameStateManager.is3D())
-				return Vector3.Distance(transform.position, player.transform.position);
-			else
-				return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
-				                        new Vector2(transform.position.x, transform.position.y));
-		}
-	}
-
-	public override void Triggered(){
-		PickUp();
-	}
-
-	private void PickUp(){
-		PlayerController.instance.grabOrb(this);
-		isHeld = true;
-
-		Vector3 pos = PlayerController.instance.transform.position;
-		pos += posOnPlayer;
+	private void UpdateFallPosition(){
+		Vector3 pos = transform.position;
+		pos += new Vector3(
+			dropOutwardSpeed * dropVector.x,
+			dropVerticalSpeed,
+			dropOutwardSpeed * dropVector.y
+		) * Time.deltaTime;
 		transform.position = pos;
 
-		//transform.parent = PlayerController.instance.transform;
+		float breakingPoint =
+			PlayerController.instance.transform.position.y +
+			dropDistBelowPlayer;
+		if(pos.y < breakingPoint ){
+			pos.y = breakingPoint;
+			SetVisible(false);
+		}
 	}
 
-	public void Drop(){
-		isHeld = false;
-		transform.parent = null;
-		dropPosition = new Vector3(
-			transform.position.x,
-			transform.position.y,
-			transform.position.z
-		);
-		dropTime = Time.time;
+	private void UpdateRecallPosition(){
+		Vector3 targetPos = (HasFinalPlatform())?
+			destObj.GetOrbPosition() : startPos;
+		LerpToPosition(targetPos,resetSpeed);
+
+		if(!HasFinalPlatform() && trailParticle != null){
+			trailParticle.enableEmission = true;
+		}
+
+		if(AtTargetLocation()){
+			SetVisible(true);
+			if(trailParticle!=null){
+				trailParticle.enableEmission = false;
+			}
+		}
+	}
+
+	private void UpdateDestinationPedestal(){
+		if(PlayerController.instance.isHoldingOrb()){
+			if(destObj != null){
+				destObj.ReleaseOrb();
+			}
+			destObj = null;
+		}
+	}
+
+	//convenience
+	private bool OrbBroken(){
+		if(model != null){
+			return !model.GetComponent<Renderer>().enabled;
+		}
+		return false;
+	}
+
+	private void SetVisible(bool vis){
+		if(model != null){
+			model.GetComponent<Renderer>().enabled = vis;
+		}
+	}
+
+	private bool AtTargetLocation(){
+		return HasFinalPlatform()? OnFinalPlatform() : AtStart();
 	}
 
 	private bool AtStart(){
 		return startPos == transform.position;
+	}
+
+	private bool SpiralAngleIsSet(){
+		return spiralAngle != -1;
+	}
+
+	public bool OnFinalPlatform(){
+		if(destObj == null){
+			return false;
+		}else{
+			return destObj.GetOrbPosition() == transform.position;
+		}
+	}
+
+	private bool HasFinalPlatform(){
+		return destObj != null;
+	}
+
+	private void LerpToPosition(Vector3 newPos, float speed){
+		float dist = Vector3.Distance(transform.position, newPos);
+		float percent = speed * Time.deltaTime / dist;
+		transform.position = Vector3.Lerp(transform.position, newPos, percent);
+	}
+
+	//inherited
+	public override void Triggered(){
+		PickUp();
+	}
+
+	protected override bool IsEnabled(){
+		return !PlayerController.instance.isHoldingOrb() && AtTargetLocation();
+	}
+
+	public override float GetDistance() {
+		if (GameStateManager.is3D())
+			return Vector3.Distance(transform.position, player.transform.position);
+		else
+			return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
+			                        new Vector2(transform.position.x, transform.position.y));
+	}
+
+	//public interface
+	public void Drop(){
+		isHeld = false;
+		transform.parent = null;
+		dropVerticalSpeed = 0f;
+	}
+
+	public void SetOutwardDropVector(Vector2 dropVector){
+		this.dropVector = dropVector;
+	}
+
+	public void SetPlatform(OrbDropPedestal obj){
+		destObj = obj;
+	}
+
+	public bool IsOnPlatform(OrbDropPedestal ped){
+		return destObj == ped;
 	}
 }

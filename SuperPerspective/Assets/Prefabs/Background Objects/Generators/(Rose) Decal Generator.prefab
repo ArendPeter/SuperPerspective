@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3307908}
   - 23: {fileID: 2349574}
   - 114: {fileID: 11449038}
+  - 114: {fileID: 11450278}
   m_Layer: 0
   m_Name: (Rose) Decal Generator
   m_TagString: Untagged
@@ -25,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.2831507, y: -3.05525589, z: -2.02436066}
-  m_LocalScale: {x: 7.11175108, y: 2.86135578, z: 2.34986353}
+  m_LocalPosition: {x: 12.283151, y: -3.055256, z: -2.0243607}
+  m_LocalScale: {x: 7.111751, y: 2.8613558, z: 2.3498635}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,8 +49,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -73,23 +76,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatableObjects:
-  - {fileID: 138060, guid: db4addbeeaf0c4a40b0998ad2c9c3209, type: 2}
+  - {fileID: 138060, guid: f942b3a12ff026b4383d415bcb3b2d1d, type: 2}
+  - {fileID: 146696, guid: 07bbfb722144ed54da4e2ab847895a3d, type: 2}
+  - {fileID: 146696, guid: 07bbfb722144ed54da4e2ab847895a3d, type: 2}
   - {fileID: 146696, guid: 07bbfb722144ed54da4e2ab847895a3d, type: 2}
   numToGenerate: 0
-  heightVariation: -.400000006
-  sizeVaration: .200000003
   calculateAmountForMe: 1
+  cleanUpIn2D: 1
   rotateX: 0
   rotateY: 1
   rotateZ: 0
-  cleanUpIn2D: 1
+  heightVariation: -0.4
+  sizeVaration: 0.2
+  keepSizeConsistent: 0
+--- !u!114 &11450278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0f70b97d9dcd442a0cd3e95e6bfc16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: generatableObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: generatableObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 138060, guid: f942b3a12ff026b4383d415bcb3b2d1d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118558}
