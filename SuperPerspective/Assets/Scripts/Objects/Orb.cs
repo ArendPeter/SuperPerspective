@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
-	public float testAngle;
+
 	//suppress warnings
 	#pragma warning disable 414
 
@@ -29,18 +29,6 @@ public class Orb : ActiveInteractable {
 	private Vector3 startPos;
 
 	private OrbDropPedestal destObj = null;
-
-	public float spiralRadiusThresh;
-	public float spiralMinApproachSpeed;
-	public float spiralVerticalSpeed;
-	public float spiralHeight;
-	public float spiralMaxRotSpeed;
-	private float spiralAngle = -1f;
-	private float spiralRadius = -1f;
-	private float spiralRadialSpeed = -1f;
-	private float spiralY = -1f;
-	private float spiralRotSpeed;
-
 	void Start() {
 		base.StartSetup ();
 		range = 2f;
@@ -87,53 +75,11 @@ public class Orb : ActiveInteractable {
 	}
 
 	private void SpiralToPlayer(){
-		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer
-			+ Vector3.down * spiralHeight;
-		float dist2D = Vector2.Distance(
-			new Vector2(transform.position.x, transform.position.z),
-			new Vector2(targetPos.x,targetPos.z)
-		);
-		if(!SpiralAngleIsSet() && dist2D > spiralRadiusThresh){
-			float dist = Vector3.Distance(transform.position, targetPos);
-			float speed = Mathf.Max(spiralMinApproachSpeed,(dist/spiralRadiusThresh) * spiralMinApproachSpeed);
-			LerpToPosition(targetPos,speed);
-		}else{
-			targetPos = PlayerController.instance.transform.position + posOnPlayer;
-			//initialize
-			if(!SpiralAngleIsSet()){
-				Vector3 del3D = transform.position - targetPos;
-				Vector3 del2D = new Vector2(del3D.x,del3D.z);
-				spiralAngle = Mathf.Deg2Rad * Vector2.Angle(Vector2.right,del2D);
-				if(transform.position.z < targetPos.z){
-					spiralAngle = 2 * Mathf.PI - spiralAngle;
-				}
-				spiralRadius = del2D.magnitude;
-				Vector3 temp_dir = targetPos - transform.position;
-				spiralY = temp_dir.y;
-				spiralRadialSpeed = spiralRadius * spiralVerticalSpeed / spiralY;
-				spiralRotSpeed = 0f;
-			}else{
-				//update angle
-				spiralRotSpeed = Mathf.Min(spiralMaxRotSpeed,spiralRotSpeed+1500*Time.deltaTime);
-				spiralAngle += spiralRotSpeed * Mathf.Deg2Rad * Time.deltaTime;
-				testAngle = spiralAngle;
-				//update radius
-				if(Mathf.Abs(spiralRadius) < spiralRadialSpeed * Time.deltaTime){
-					spiralRadius = 0;
-					initialApproach = false;
-					spiralAngle = -1;
-				}else{
-					spiralRadius -= spiralRadialSpeed * Time.deltaTime;
-				}
-				//update y
-				spiralY -= spiralVerticalSpeed * Time.deltaTime;
-			}
-			//update position
-			transform.position = new Vector3(
-				targetPos.x + spiralRadius * Mathf.Cos(spiralAngle),
-				targetPos.y - spiralY,
-				targetPos.z + spiralRadius * Mathf.Sin(spiralAngle)
-			);
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
+		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos);
+
+		if(targetPos == transform.position){
+			initialApproach = false;
 		}
 	}
 
@@ -180,7 +126,7 @@ public class Orb : ActiveInteractable {
 	}
 
 	private void UpdateDestinationPedestal(){
-		if(PlayerController.instance.isHoldingOrb()){
+		if(PlayerController.instance.isHoldingOrb(this)){
 			if(destObj != null){
 				destObj.ReleaseOrb();
 			}
@@ -208,10 +154,6 @@ public class Orb : ActiveInteractable {
 
 	private bool AtStart(){
 		return startPos == transform.position;
-	}
-
-	private bool SpiralAngleIsSet(){
-		return spiralAngle != -1;
 	}
 
 	public bool OnFinalPlatform(){
