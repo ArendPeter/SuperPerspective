@@ -428,12 +428,14 @@ public class PlayerController : PhysicalObject{
 			int zDir = (cacPos.y < playerPos.y)? 1 : -1;
 			Vector2 outVec = new Vector2(
 				Mathf.Cos(Mathf.Deg2Rad * outDir),zDir * Mathf.Sin(Mathf.Deg2Rad * outDir));
-			orb.SetOutwardDropVector(outVec);
 			velocity = new Vector3(
 				cactusOutwardVelocity * outVec.x,
 			 	cactusVerticalVelocity,
 				cactusOutwardVelocity * outVec.y * (GameStateManager.is3D()?1:0));
-			DropOrb();
+			if(orb != null){
+				orb.SetOutwardDropVector(outVec);
+				DropOrb();
+			}
 		}
 		//Collision w/ PlayerInteractable
 		foreach (Interactable c in other.GetComponents<Interactable>()) {
@@ -695,6 +697,8 @@ public class PlayerController : PhysicalObject{
 	public bool isLaunched(){ return launched; }
 
 	public bool isHoldingOrb(){ return orb != null; }
+
+	public bool isHoldingOrb( Orb o){ return orb == o; }
 
 	public void grabOrb(Orb newOrb){ orb = newOrb; }
 

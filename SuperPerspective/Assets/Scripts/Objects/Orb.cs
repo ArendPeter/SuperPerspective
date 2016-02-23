@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Orb : ActiveInteractable {
+
 	//suppress warnings
 	#pragma warning disable 414
 
@@ -125,7 +126,7 @@ public class Orb : ActiveInteractable {
 	}
 
 	private void UpdateDestinationPedestal(){
-		if(PlayerController.instance.isHoldingOrb()){
+		if(PlayerController.instance.isHoldingOrb(this)){
 			if(destObj != null){
 				destObj.ReleaseOrb();
 			}

@@ -65,9 +65,7 @@ public class SpiralPath : MonoBehaviour {
 	private static Vector3 LerpPositionTo(Vector3 curPos, Vector3 newPos, float speed){
 		float dist = Vector3.Distance(curPos, newPos);
 		float percent = speed * Time.deltaTime / dist;
-		Vector3 test =  Vector3.Lerp(curPos, newPos, percent);
-		print(test);
-		return test;
+		return Vector3.Lerp(curPos, newPos, percent);
 	}
 
 	private static bool SpiralAngleIsSet(){
