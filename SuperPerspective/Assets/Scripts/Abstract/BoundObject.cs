@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BoundObject : MonoBehaviour {
 
-	Rect testBound;
-
 	#pragma warning disable 414
 
 	Rect myBounds;

@@ -4,8 +4,6 @@ using System.Collections;
 //can be activated by player
 public class ActiveInteractable : PhysicalObject {
 
-	public bool testInRange, testPlayerFacing, testInYRange, testIsEnabled;
-
 	//suppress warnings
 	#pragma warning disable 414
 
@@ -78,12 +76,7 @@ public class ActiveInteractable : PhysicalObject {
 
 		bool playerFacing = isPlayerFacingObject();
 
-		bool inYRange = yRangeOverlapsWithPlayer();
-
-		testInRange = inRange;
-		testPlayerFacing = playerFacing;
-		testInYRange = inYRange;
-		testIsEnabled = IsEnabled();
+		bool inYRange = IsInYRange();
 
 		bool canTrigger =
 			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
@@ -108,7 +101,6 @@ public class ActiveInteractable : PhysicalObject {
 		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
 
 		return isVisible && unlockable;
-
 	}
 
 	public virtual float GetDistance() {
@@ -174,6 +166,10 @@ public class ActiveInteractable : PhysicalObject {
 			angleDiff = 360 - angleDiff;
 		//determine whether player is facing interactable
 		return angleDiff < angleBuffer;
+	}
+
+	protected virtual bool IsInYRange(){
+			return yRangeOverlapsWithPlayer();
 	}
 
 	private bool yRangeOverlapsWithPlayer(){

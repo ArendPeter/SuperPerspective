@@ -64,7 +64,7 @@ public class MobilePlatform : ActiveInteractable {
 
 	private void moveOnAxis(int axis){
 		float newVelocity = velocity[axis];
-		
+
 		float axisInput = (axis == X)?
 			InputManager.instance.GetForwardMovement():
 				-InputManager.instance.GetSideMovement();
@@ -85,7 +85,7 @@ public class MobilePlatform : ActiveInteractable {
 
 	public void CheckCollisions() {
 		Vector3 trajectory;
-		
+
 		RaycastHit[] hits = colCheck.CheckYCollision (velocity, Margin);
 
 		// If any rays connected move the player and set grounded to true since we're now on the ground
@@ -136,7 +136,7 @@ public class MobilePlatform : ActiveInteractable {
 	public bool Check2DIntersect() {
 		// True if any ray hits a collider
 		bool connected = false;
-		
+
 		//reference variables
 		float minX 		= GetComponent<Collider>().bounds.min.x + Margin;
 		float centerX 	= GetComponent<Collider>().bounds.center.x;
@@ -187,6 +187,13 @@ public class MobilePlatform : ActiveInteractable {
 
 	protected override bool isPlayerFacingObject() {
 		return true;
+	}
+
+	protected override bool IsInYRange(){
+		float playerY = PlayerController.instance.transform.position.y;
+		float myY = transform.position.y;
+		float deltaY = playerY - myY;
+		return 1.3f < deltaY && deltaY < 3f;
 	}
 
 	public float GetStartY() {

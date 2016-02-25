@@ -4,8 +4,6 @@ using System.Collections;
 public class Ice : ActiveInteractable {
 
 	#pragma warning disable 219
-	public float testVelocity;
-
 	private const float gravity = 1.5f;
 	private const float terminalVelocity = 60;
 	private const float decelleration = 15;
@@ -73,7 +71,6 @@ public class Ice : ActiveInteractable {
 	}
 
 	void FixedUpdate() {
-		testVelocity = velocity.magnitude;
 		if(!PlayerController.instance.isPaused()){
 			base.FixedUpdateLogic ();
 			if (!grounded)
