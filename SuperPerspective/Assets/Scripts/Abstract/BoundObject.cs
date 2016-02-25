@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BoundObject : MonoBehaviour {
 
+	Rect testBound;
+
 	#pragma warning disable 414
 
 	Rect myBounds;
@@ -20,6 +22,7 @@ public class BoundObject : MonoBehaviour {
 	public void updateBounds(){
 		Vector3 pos = transform.position;
 		int boundIndex = IslandControl.instance.getBound (pos.x, pos.y, pos.z, !GameStateManager.is3D());
+		testBound = bounds[boundIndex];
 		if(boundIndex == -1){
 			Destroy(this);
 			return;
@@ -68,7 +71,7 @@ public class BoundObject : MonoBehaviour {
 			po.setVelocity(vel);
 		transform.position = pos;
 	}
-	
+
 	void bindAlternate(){
 		Vector3 pos = transform.position;
 		pos.x = Mathf.Max (myBounds.xMin, pos.x);
