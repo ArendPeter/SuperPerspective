@@ -11,7 +11,8 @@ public class BoundObject : MonoBehaviour {
 	Rect[] bounds;
 	//float altLeftBound = -1;//-1 means no alternate left bound
 	//float altRightBound = -1;
-	float groundY = 0;
+	private float groundY = 0;
+	private bool hasBound = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,11 +23,9 @@ public class BoundObject : MonoBehaviour {
 	public void updateBounds(){
 		Vector3 pos = transform.position;
 		int boundIndex = IslandControl.instance.getBound (pos.x, pos.y, pos.z, !GameStateManager.is3D());
-		testBound = bounds[boundIndex];
-		if(boundIndex == -1){
-			Destroy(this);
-			return;
-		}
+		if(boundIndex == -1)
+				return;
+		hasBound = true;
 		//update myBounds
 		float halfWidth = transform.lossyScale.x / 2f;
 		float halfDepth = transform.lossyScale.z / 2f;
@@ -43,7 +42,12 @@ public class BoundObject : MonoBehaviour {
 
 	// Update is called once per frame
 	void LateUpdate () {
-		bind ();
+		if(!hasBound){
+			updateBounds();
+		}
+		if(hasBound){
+			bind ();
+		}
 	}
 
 	public void bind(){

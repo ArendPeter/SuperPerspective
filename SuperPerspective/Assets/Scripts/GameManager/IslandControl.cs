@@ -75,13 +75,13 @@ public class IslandControl : MonoBehaviour {
 		//note: valid initailized to all false
 		bool[] valid = new bool[islandBounds.Length];
 		for (int i = 0; i < islandBounds.Length; i++) {
-			if (xx < islandBounds [i].xMin)
+			if (xx < islandBounds[i].xMin)
 					continue;
-			if (!onlyX && zz < islandBounds [i].yMin)
+			if (!onlyX && zz < islandBounds[i].yMin)
 					continue;
-			if (xx  > islandBounds [i].xMax)
+			if (xx  > islandBounds[i].xMax)
 					continue;
-			if (!onlyX && zz > islandBounds [i].yMax)
+			if (!onlyX && zz > islandBounds[i].yMax)
 					continue;
 			valid [i] = true;
 			curValid = i;

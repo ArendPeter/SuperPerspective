@@ -4,6 +4,8 @@ using System.Collections;
 //can be activated by player
 public class ActiveInteractable : PhysicalObject {
 
+	public bool testInRange, testPlayerFacing, testInYRange, testIsEnabled;
+
 	//suppress warnings
 	#pragma warning disable 414
 
@@ -77,6 +79,11 @@ public class ActiveInteractable : PhysicalObject {
 		bool playerFacing = isPlayerFacingObject();
 
 		bool inYRange = yRangeOverlapsWithPlayer();
+
+		testInRange = inRange;
+		testPlayerFacing = playerFacing;
+		testInYRange = inYRange;
+		testIsEnabled = IsEnabled();
 
 		bool canTrigger =
 			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
