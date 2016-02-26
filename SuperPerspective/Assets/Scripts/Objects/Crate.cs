@@ -27,6 +27,8 @@ public class Crate : ActiveInteractable {
 	public GameObject brokenCrateSpawnPoint;
 	public GameObject brokenCrate;
 	public GameObject spawnCircle;
+	
+	float verticalOverlapThreshhold = .3f;
 
 	void Start() {
 		base.StartSetup ();
@@ -205,6 +207,13 @@ public class Crate : ActiveInteractable {
 			RaycastHit hitInfo = hits[i];
 			if (hitInfo.collider != null)
 			{
+				float verticalOverlap = getVerticalOverlap(hitInfo);
+				bool significantVerticalOverlap =
+					verticalOverlap > verticalOverlapThreshhold;
+				if(!significantVerticalOverlap){
+					transform.Translate(new Vector3(0f,verticalOverlap,0f));
+					continue;
+				}
 				if (hitInfo.collider.gameObject.tag == "Intangible") {
 					trajectory = velocity.x * Vector3.right;
 					CollideWithObject(hitInfo, trajectory);
@@ -234,6 +243,13 @@ public class Crate : ActiveInteractable {
 			RaycastHit hitInfo = hits[i];
 			if (hitInfo.collider != null)
 			{
+				float verticalOverlap = getVerticalOverlap(hitInfo);
+				bool significantVerticalOverlap =
+					verticalOverlap > verticalOverlapThreshhold;
+				if(!significantVerticalOverlap){
+					transform.Translate(new Vector3(0f,verticalOverlap,0f));
+					continue;
+				}
 				if (hitInfo.collider.gameObject.tag == "Intangible") {
 					trajectory = velocity.z * Vector3.forward;
 					CollideWithObject(hitInfo, trajectory);
@@ -324,6 +340,15 @@ public class Crate : ActiveInteractable {
 		foreach(Interactable c in other.GetComponents<Interactable>()){
 			c.EnterCollisionWithGeneral(gameObject);
 		}
+	}
+
+	private float getVerticalOverlap(RaycastHit hitInfo){
+		Collider hitCollider = hitInfo.collider;
+		float hitColliderHeight = hitCollider.bounds.max.y - hitCollider.bounds.min.y;
+		float myBottomY = GetComponent<Collider>().bounds.min.y;
+		float hitTopY = hitCollider.bounds.max.y;
+		float overlap = hitTopY - myBottomY;
+		return overlap;
 	}
 
 	public override void Triggered() {

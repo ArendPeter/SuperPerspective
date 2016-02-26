@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MobilePlatform : ActiveInteractable {
+
+	public float testDeltaY;
 
 	public float acceleration = 1.5f;
 	public float decelleration = 15f;
@@ -31,6 +33,7 @@ public class MobilePlatform : ActiveInteractable {
 		rect = GetComponent<BoundObject>().GetBounds();
 		CameraController.instance.TransitionCompleteEvent += checkBreak;
 		startPos = transform.position;
+		transform.parent = null;
 	}
 
 	void FixedUpdate () {
@@ -193,6 +196,7 @@ public class MobilePlatform : ActiveInteractable {
 		float playerY = PlayerController.instance.transform.position.y;
 		float myY = transform.position.y;
 		float deltaY = playerY - myY;
+		testDeltaY = deltaY;
 		return 1.3f < deltaY && deltaY < 3f;
 	}
 

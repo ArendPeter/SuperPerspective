@@ -9,7 +9,7 @@ public class ObjectFade : MonoBehaviour {
 	float setAlpha = 1, fadeSpeed = 0.15f;
 	Renderer[] rends;
 	GameObject player;
-	
+
 	void Start () {
 		player = PlayerController.instance.gameObject;
 		if (GetComponent<Renderer>())
@@ -25,7 +25,7 @@ public class ObjectFade : MonoBehaviour {
 	void Update() {
 		setAlpha = 1;
 		float dist;
-		if (getBounds().IntersectRay(new Ray(Camera.main.transform.position, player.transform.position - Camera.main.transform.position), out dist)) { 
+		if (getBounds().IntersectRay(new Ray(Camera.main.transform.position, player.transform.position - Camera.main.transform.position), out dist)) {
 			if (dist < Vector3.Distance(player.transform.position, Camera.main.transform.position))
 				setAlpha = 0.5f - Mathf.Lerp(0, 0.5f, (transform.position.x - player.transform.position.x) / (Camera.main.transform.position.x - player.transform.position.x));
 		}
@@ -35,6 +35,8 @@ public class ObjectFade : MonoBehaviour {
 		Collider myCollider = GetComponent<Collider>();
 		if(myCollider != null){
 			return myCollider.bounds;
+		}else if(rends[0] != null){
+			return rends[0].bounds;
 		}else{
 			Vector3 scale = transform.lossyScale;
 			scale.x /= 2;
