@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AmbientParticleHandler : MonoBehaviour {
 
+	public bool disableParticles = false;
 	public bool instantiateSystems;//check to use prefabs, uncheck if you want to pass in obj
 	public ParticleSystem PrefabParticles2D;//particles to clone
 	public ParticleSystem PrefabParticles3D;
@@ -30,9 +31,9 @@ public class AmbientParticleHandler : MonoBehaviour {
 
 			if(GameStateManager.is3D()){
 				P2D.enableEmission = false;
-				P3D.enableEmission = true;
+				P3D.enableEmission = !disableParticles;
 			}else{
-				P2D.enableEmission = true;
+				P2D.enableEmission = !disableParticles;
 				P3D.enableEmission = false;
 			}
 		}

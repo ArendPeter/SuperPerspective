@@ -13,21 +13,29 @@ public class PushSwitchOld : MonoBehaviour {
 	Collider pusher = null;
 
 	void Update(){
-        RaycastHit hit;
 		parentPlatform = PlayerController.instance.GetComponent<BoundObject>().GetBounds();
-        float xx = transform.position.x, yy = transform.position.y, zz = transform.position.z;
-        Bounds check = new Bounds(new Vector3(transform.position.x, transform.position.y, parentPlatform.center.y), new Vector3(2f, 1f, parentPlatform.height));
-		if (GameStateManager.is2D() && check.Intersects(PlayerController.instance.gameObject.GetComponent<Collider>().bounds)) {
-            EnterCollisionWithPlayer();
-    } else if (Physics.Raycast(new Vector3(xx + 1f, yy - 0.5f, zz + 2f), -Vector3.forward + Vector3.up * 0.25f, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore")) ||
-	        Physics.Raycast(new Vector3(xx, yy - 0.5f, zz + 2f), -Vector3.forward + Vector3.up * 0.25f, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore")) ||
-	        Physics.Raycast(new Vector3(xx - 1f, yy - 0.5f, zz + 2f), -Vector3.forward + Vector3.up * 0.25f, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore"))) {
+        float xx = transform.position.x, yy = transform.position.y, zz = transform.position.z, cdist, r = 0.25f, w = 1f;
+		Collider c = GetComponent<Collider>();
+		Vector3 p1, p2;
+		if (GameStateManager.is2D()) {
+			p1 = new Vector3(xx + w - r, yy + r, parentPlatform.min.y + r);
+			p2 = new Vector3(xx - w + r, yy + r, parentPlatform.min.y + r);
+			cdist = parentPlatform.height - r * 2;
+		} else {
+			p1 = new Vector3(xx + w - r, yy + r, zz - w + r);
+			p2 = new Vector3(xx - w + r, yy + r, zz - w + r);
+			cdist = w - r * 2;
+		}
+		RaycastHit[] collisions = Physics.CapsuleCastAll(p1, p2, r, Vector3.forward, cdist, LayerMask.NameToLayer("Raycast Ignore"));
+		if (collisions.Length == 0)
+			ExitCollisionWithGeneral(null);
+		else {
+			foreach (RaycastHit hit in collisions) {
 				GameObject obj = hit.collider.gameObject;
 				bool isPusher = (obj.GetComponent<Ice>() != null) || (obj.GetComponent<Crate>() != null) || (obj.GetComponent<PlayerController>() != null);
-		    if (!pushed && isPusher)
-			    EnterCollisionWithGeneral(obj);
-		} else if (pushed) {
-			ExitCollisionWithGeneral(null);
+				if (!pushed && isPusher)
+					EnterCollisionWithGeneral(obj);
+			}
 		}
         if (pushed) {
             if (baseColor == Color.white)
@@ -37,11 +45,6 @@ public class PushSwitchOld : MonoBehaviour {
             if (baseColor != Color.white)
                 gameObject.GetComponent<Renderer>().material.color = baseColor;
         }
-    }
-
-    public void EnterCollisionWithPlayer()
-    {
-        EnterCollisionWithGeneral(null);
     }
 
     public void EnterCollisionWithGeneral(GameObject other){
