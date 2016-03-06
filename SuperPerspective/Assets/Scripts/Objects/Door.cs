@@ -7,7 +7,7 @@ public class Door : ActiveInteractable {
 	public string myName;
 	public string destName;
 	Door destDoor;
-	public Color particleColor;
+	//public Color particleColor;
 
 	public string sceneName;
 	public int crystalRequirement;
@@ -18,11 +18,15 @@ public class Door : ActiveInteractable {
 
 	public void Awake(){
 		//update particle color
-		ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
-    l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
-    p.startColor = particleColor;
-		p.Simulate(2f);
-		p.Play();
+		l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
+
+		/*ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
+		if(p != null){
+			p.startColor = particleColor;
+			p.Simulate(2f);
+			p.Play();
+		}*/
+
         range = 3;
 	}
 
