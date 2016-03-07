@@ -60,7 +60,7 @@ public class PlayerController : PhysicalObject{
 	//Vars for edge grabbing
 	private Vector3[] cuboid;
 	private Edge grabbedEdge = null;
-	private EdgeState edgeState = EdgeState.FAR_FROM_EDGE;
+	private PlayerEdgeState edgeState = PlayerEdgeState.FAR_FROM_EDGE;
 
 	private int climbTimer = 0;
 	private const int CLIMB_TIME = 10;
@@ -102,7 +102,7 @@ public class PlayerController : PhysicalObject{
 
 		registerEventHandlers();
 
-        step = GameObject.Find("Steps").GetComponent<StepManager>();
+    step = GameObject.Find("Steps").GetComponent<StepManager>();
 	}
 
 	public void Reset() {
@@ -148,7 +148,7 @@ public class PlayerController : PhysicalObject{
 		updateJumpPressedTime();
 
 		bool jumpInputed = (Time.time - jumpPressedTime) < jumpMargin;
-		bool canJump = (isGrounded() || edgeState == EdgeState.HANGING) && !GrabbedCrate();
+		bool canJump = (isGrounded() || edgeState == PlayerEdgeState.HANGING) && !GrabbedCrate();
 		if(canJump && jumpInputed)
 			jump();
 	}
@@ -199,7 +199,7 @@ public class PlayerController : PhysicalObject{
 	}
 
 	private void move(){
-		if(edgeState == EdgeState.HANGING){
+		if(edgeState == PlayerEdgeState.HANGING){
 			bool edgeOnXAxis = grabbedEdge.getOrientation() % 2 == 1;
 			if(edgeOnXAxis)
 				shimmyOnAxis(X);
@@ -462,7 +462,7 @@ public class PlayerController : PhysicalObject{
     }
 
 	private void applyGravity(){
-		if (edgeState != EdgeState.HANGING){
+		if (edgeState != PlayerEdgeState.HANGING){
 			if (velocity.y <= 0)
 				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - upGravity * Time.deltaTime, -terminalVelocity), velocity.z);
 			else
@@ -533,7 +533,7 @@ public class PlayerController : PhysicalObject{
 		if(grabbedEdge!=null)
 			grabbedEdge.resetStatus();
 		grabbedEdge = null;
-		edgeState = EdgeState.FAR_FROM_EDGE;
+		edgeState = PlayerEdgeState.FAR_FROM_EDGE;
 	}
 
    //note: this is only called from the Edge.cs
@@ -546,7 +546,7 @@ public class PlayerController : PhysicalObject{
 			case 0:
 				if(grabbedEdge != null && e!= null){
 					if(grabbedEdge == e){
-						this.edgeState = EdgeState.FAR_FROM_EDGE;
+						this.edgeState = PlayerEdgeState.FAR_FROM_EDGE;
 						grabbedEdge =null;
 					}
 				}
@@ -559,11 +559,11 @@ public class PlayerController : PhysicalObject{
 					climbTimer = CLIMB_TIME;
 				break;
 			case 1:
-				this.edgeState = EdgeState.CLOSE_TO_EDGE;
+				this.edgeState = PlayerEdgeState.CLOSE_TO_EDGE;
 				grabbedEdge = e;
 				break;
 			case 2:
-				this.edgeState	 = EdgeState.HANGING;
+				this.edgeState	 = PlayerEdgeState.HANGING;
 				//stop moving
 				// velocity = Vector3.zero;
 				//lock y
@@ -642,7 +642,7 @@ public class PlayerController : PhysicalObject{
 
 	public float getColliderDepth(){ return colliderDepth; }
 
-	public EdgeState getEdgeState(){ return edgeState; }
+	public PlayerEdgeState getEdgeState(){ return edgeState; }
 
 	public float getSpeed(){
 		return velocity.magnitude;
@@ -670,7 +670,7 @@ public class PlayerController : PhysicalObject{
 	}
 
 	public bool isFalling(){
-		bool onEdge = edgeState == EdgeState.HANGING;
+		bool onEdge = edgeState == PlayerEdgeState.HANGING;
 		return velocity.y < -epsilon && !onEdge;
 	}
 
@@ -690,7 +690,7 @@ public class PlayerController : PhysicalObject{
 
 	public bool isShimmying(){
 		bool moving = velocity.magnitude > epsilon;
-		bool onEdge = edgeState == EdgeState.HANGING;
+		bool onEdge = edgeState == PlayerEdgeState.HANGING;
 		return moving && onEdge;
 	}
 
@@ -725,6 +725,6 @@ public class PlayerController : PhysicalObject{
 	}
 }
 
-public enum EdgeState{
+public enum PlayerEdgeState{
 	FAR_FROM_EDGE, CLOSE_TO_EDGE, HANGING
 }

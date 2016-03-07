@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Edge : MonoBehaviour {
 	//suppress warnings
 	#pragma warning disable 162, 649, 219, 414
-	
+
 	int or = 0; //orientation of game object (0-3: right,back,left,front)
-	
+
 	int overlapIndex; //how many of the overlaps that we've checked
 
 	Vector3[] cuboid;
@@ -14,29 +14,29 @@ public class Edge : MonoBehaviour {
 	byte status = 0; //0: no overlap, 1: lined up, 2: latched, 3: rested latch
 
 	bool playerAboveEdge = false;
-	
+
 	PlayerController player;
-	
+
 	bool init = false;//indicates whether Edge has been initiated
-	
+
 	bool rotatedTerrain = false;
-	
+
 	public int edgeIndex = 0;
-	
+
 	float edgeFactor = .5f;
 	float validGrabFactor = .1f;
-	
+
 	public bool validIn2D = true;
 
 	float hangThresh = 35;//time to wait till player can climb
 	float hangCounter = 0.0f;
-	
+
 	public void FixedUpdate(){
 		if(!init)
 			return;
-		
+
 		updateCuboid();
-		
+
 		bool is3D = GameStateManager.is3D();
 		bool playerCanGrab = player.isFalling() && (is3D || validIn2D);
 		//if locked on
@@ -78,10 +78,10 @@ public class Edge : MonoBehaviour {
 					playerAboveEdge = player.getCuboid()[1].y > cuboid[1].y;
 					status = 1;
 					player.UpdateEdgeState(this, status);
-				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > cuboid[1].y)){					
+				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > cuboid[1].y)){
 					status = 2;
 					hangCounter = 0;
-					
+
 					player.UpdateEdgeState(this,status);
 				}
 			}
@@ -90,7 +90,7 @@ public class Edge : MonoBehaviour {
 			status = 0;
 			player.UpdateEdgeState(this, status);
 		}
-		
+
 		//check for making the player let go
 		if(status != 0 && !is3D && !validIn2D){
 			status = 0;
@@ -134,25 +134,25 @@ public class Edge : MonoBehaviour {
 	//args2: depth of terrain
 	//args3: bool[] showing overlapping terrains
 	//args4: how many of the terrains have been checked
-	public void Init(int or, float width, float depth, int overlapIndex, int edgeIndex, Transform parent, 
+	public void Init(int or, float width, float depth, int overlapIndex, int edgeIndex, Transform parent,
 		bool rotatedTerrain){
 		this.edgeIndex = edgeIndex;
 		player = PlayerController.instance;
 		this.or = or; //orientation
 		this.overlapIndex = overlapIndex;
 		this.rotatedTerrain = rotatedTerrain;
-	
+
 		checkOverlaps();
-		
+
 		transform.parent = parent;
-		
+
 		shortenSides();
-		
+
 		updateDimensions(or,width,depth);
-		
+
 		cuboid = new Vector3[2];
 		updateCuboid();
-		
+
 		//initialization has been completed
 		init = true;
 	}
@@ -160,7 +160,7 @@ public class Edge : MonoBehaviour {
 	public void Init(int or, float width, float depth, int edgeIndex, Transform transform, bool rotatedTerrain){
 		Init(or, width, depth, 0, edgeIndex, transform, rotatedTerrain);
 	}
-	
+
 	bool SpaceFreeForClimbing(){
 		PlayerController player = PlayerController.instance;
 		return SpaceFreeAbovePlayerForPositionAndHeight(
@@ -168,7 +168,7 @@ public class Edge : MonoBehaviour {
 			player.getColliderHeight()
 		);
 	}
-	
+
 	bool SpaceFreeForGrabbing(){
 		PlayerController player = PlayerController.instance;
 		Vector3 pos = player.gameObject.transform.position;
@@ -177,7 +177,7 @@ public class Edge : MonoBehaviour {
 			pos, player.getColliderHeight() * validGrabFactor
 		);
 	}
-	
+
 	bool SpaceFreeAbovePlayerForPositionAndHeight(Vector3 playerPos, float boxHeight){
 		//reference to terrain in edgemanager
 		GameObject[] t = EdgeManager.instance.getTerrain();
@@ -206,7 +206,7 @@ public class Edge : MonoBehaviour {
 			checkBox[1] += new Vector3(halfDepth,0,width);
 			break;
 		}
-		
+
 		//find overlaps
 		for(int i = overlapIndex; i < t.Length; i++){
 			if(GameStateManager.is3D()){
@@ -218,11 +218,11 @@ public class Edge : MonoBehaviour {
 					return false;
 			}
 		}
-		
+
 		//if no overlaps are found
 		return true;
 	}
-	
+
 	void updateCuboid(){
 		Vector3 parScale = gameObject.transform.parent.transform.lossyScale;
 		Vector3 halfScale = gameObject.transform.localScale * .5f;
@@ -232,18 +232,18 @@ public class Edge : MonoBehaviour {
 		cuboid[0] = gameObject.transform.position - halfScale;
 		cuboid[1] = gameObject.transform.position + halfScale;
 	}
-	
+
 	private void updateDimensions(int or, float width, float depth){
 		Vector3 scale = gameObject.transform.localScale;
 		Vector3 parScale = findAdjustedParentScale();
-		
+
 		if(or%2 == 0)//if left or right
 			scale.z = depth / parScale.z;
 		else//if front or back
 			scale.x = width / parScale.x;
 		gameObject.transform.localScale = scale;
 	}
-	
+
 	public void checkOverlaps(){
 		//reference to terrain in edgemanager
 		GameObject[] t = EdgeManager.instance.getTerrain();
@@ -285,7 +285,7 @@ public class Edge : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	private void shortenSides(){
 		Vector3 lossyScale = gameObject.transform.lossyScale;
 		Vector3 localScale = gameObject.transform.localScale;
@@ -303,7 +303,7 @@ public class Edge : MonoBehaviour {
 		}
 		gameObject.transform.localScale = localScale;
 	}
-	
+
 	private Vector3 findAdjustedParentScale(){
 		Vector3 parScale = gameObject.transform.parent.lossyScale;
 		if(rotatedTerrain){
@@ -313,7 +313,7 @@ public class Edge : MonoBehaviour {
 		}
 		return parScale;
 	}
-	
+
 	public void resetStatus(){
 		status = 0;
 	}
@@ -330,7 +330,7 @@ public class Edge : MonoBehaviour {
 		float minBound = center - scale * .5f + .5f;
 		float maxBound = center + scale * .5f - .5f;
 		bool inBounds = minBound <= pos[axis] && pos[axis] <= maxBound;
-		
+
 		return SpaceFreeAbovePlayerForPositionAndHeight(
 			pos,
 			player.getColliderHeight() * validGrabFactor
