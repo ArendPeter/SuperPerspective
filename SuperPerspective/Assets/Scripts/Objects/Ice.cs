@@ -10,7 +10,7 @@ public class Ice : ActiveInteractable {
 	private const float epsilon = .1f;
 
 	private Vector3 trajectory, newVelocity;
-	private bool grounded, svFlag;
+	private bool grounded, svFlag, startFalling;
 	private float colliderHeight, colliderWidth, colliderDepth;
 	private float Margin = 0.1f;
 	private float slideSpeed = 20;
@@ -41,6 +41,7 @@ public class Ice : ActiveInteractable {
 	void Start() {
 		base.StartSetup ();
 		grounded = false;
+		startFalling = false;
 		velocity = Vector3.zero;
 		nextVelocity = Vector3.zero;
 
@@ -118,6 +119,11 @@ public class Ice : ActiveInteractable {
 	void LateUpdate () {
 		if(!PlayerController.instance.isPaused()){
 			base.LateUpdateLogic ();
+			if (!startFalling) {
+				if (Physics.Raycast(transform.position, Vector3.down))
+					startFalling = true;
+				return;
+			}
 			transform.Translate(velocity * Time.deltaTime);
 			if (respawnFlag && Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth) {
 				Vector3 pos = transform.position;

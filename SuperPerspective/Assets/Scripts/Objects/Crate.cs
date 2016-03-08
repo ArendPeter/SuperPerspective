@@ -10,7 +10,7 @@ public class Crate : ActiveInteractable {
 	private const float decelleration = 1;
 
 	private Vector3 trajectory, newVelocity;
-	private bool grounded, svFlag;
+	private bool grounded, svFlag, startFalling;
 	private float colliderHeight, colliderWidth, colliderDepth;
 	private float Margin = .05f;
 
@@ -33,6 +33,7 @@ public class Crate : ActiveInteractable {
 	void Start() {
 		base.StartSetup ();
 		grounded = false;
+		startFalling = false;
 		colliderHeight = GetComponent<Collider>().bounds.size.y;
 		colliderWidth = GetComponent<Collider>().bounds.size.x;
 		colliderDepth = GetComponent<Collider>().bounds.size.z;
@@ -133,16 +134,11 @@ public class Crate : ActiveInteractable {
 	void LateUpdate () {
 		if(!PlayerController.instance.isPaused()){
 			base.LateUpdateLogic ();
-//			float dist = 0;
-//			if (GameStateManager.instance.currentPerspective == PerspectiveType.p2D)
-//				Vector3.Distance(transform.position, player.transform.position);
-//			else
-//				dist = Vector2.Distance(new Vector2(transform.position.x,transform.position.y),
-//										new Vector2(player.transform.position.x, player.transform.position.y));
-//			if (grabbed && dist > range * 1.1f) {
-//				player.GetComponent<PlayerController>().Grab(null);
-//				grabbed = false;
-//			}
+			if (!startFalling) {
+				if (Physics.Raycast(transform.position, Vector3.down))
+					startFalling = true;
+				return;
+			}
 			transform.Translate(velocity * Time.deltaTime);
 			bool playerAwayFromSpawn =
 			 	Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth;
