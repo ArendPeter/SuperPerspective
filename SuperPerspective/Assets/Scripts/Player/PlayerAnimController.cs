@@ -87,15 +87,13 @@ public class PlayerAnimController : MonoBehaviour {
 			player.getVelocity().x,player.getVelocity().z).magnitude;
 		bool playerIsMoving = playerHorizontalVelocity > epsilon;
 
-		bool playerCanRotateFreely = !player.isClimbing() && !player.GrabbedCrate()
+		bool playerCanRotateFreely = !player.isClimbing() && !player.GrabbedCrate() && playerIsMoving
 			&& !playerIsOnEdge;
 
-		if(playerIsMoving){
-			if (playerCanRotateFreely){
-				orientation = Mathf.Rad2Deg * Mathf.Atan2(-player.getVelocity().z, player.getVelocity().x) + 90;
-			}else if(playerIsOnEdge){
-				orientation = (-1 - player.getEdgeOrientation()) * 90;
-			}
+		if (playerCanRotateFreely){
+			orientation = Mathf.Rad2Deg * Mathf.Atan2(-player.getVelocity().z, player.getVelocity().x) + 90;
+		}else if(playerIsOnEdge){
+			orientation = (-1 - player.getEdgeOrientation()) * 90;
 		}
 		model.transform.rotation = Quaternion.AngleAxis(orientation, Vector3.up);
 	}

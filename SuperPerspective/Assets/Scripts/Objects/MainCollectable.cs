@@ -1,16 +1,25 @@
 using UnityEngine;
 using System.Collections;
 
-public class MainCollectable : Interactable {
+public class MainCollectable : MonoBehaviour {
 
 	#pragma warning disable 472, 1692
 
 	static int collectableHeld = 0;
 	bool active = true;
+	bool consumed = false;
+	float range = 2f;
+	Vector3 posOnPlayer = new Vector3(0,2f,0);
 
 	void FixedUpdate() {
 		if (active)
 			GetComponentInChildren<Renderer>().transform.Rotate(Vector3.up, Mathf.PI / 4, Space.World);
+
+		if(active){
+			checkForPlayerInGrabRange();
+		}else if(!consumed){
+			spiralToPlayer();
+		}
 	}
 
 	public ParticleSystem effectOnCollect;
@@ -40,16 +49,23 @@ public class MainCollectable : Interactable {
 		return collectableHeld;
 	}
 
-	public override void EnterCollisionWithPlayer () {
-		if (!active)
-			return;
-		base.EnterCollisionWithPlayer();
-		Collect();
-		//Destroy(GetComponentInChildren<Renderer>());
-		if(effectOnCollect != null){
-			Instantiate(effectOnCollect, this.transform.position, Quaternion.identity);// PlayerController.instance.transform.position
+	private void checkForPlayerInGrabRange(){
+		float dist = (transform.position - PlayerController.instance.transform.position).magnitude;
+		if(active && dist < range){
+			active = false;
 		}
-		gameObject.SetActive(false);
-		active = false;
+	}
+
+	private void spiralToPlayer(){
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
+		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos);
+		float dist = (transform.position - targetPos).magnitude;
+		if(dist < .01){
+			if(effectOnCollect != null){
+				Instantiate(effectOnCollect, this.transform.position, Quaternion.identity);// PlayerController.instance.transform.position
+			}
+			gameObject.SetActive(false);
+			consumed = true;
+		}
 	}
 }

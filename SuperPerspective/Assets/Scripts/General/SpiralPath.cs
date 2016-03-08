@@ -63,6 +63,9 @@ public class SpiralPath : MonoBehaviour {
 	}
 
 	private static Vector3 LerpPositionTo(Vector3 curPos, Vector3 newPos, float speed){
+		if(!GameStateManager.is3D()){
+			curPos.z = newPos.z;
+		}
 		float dist = Vector3.Distance(curPos, newPos);
 		float percent = speed * Time.deltaTime / dist;
 		return Vector3.Lerp(curPos, newPos, percent);
