@@ -169,6 +169,11 @@ public class Orb : ActiveInteractable {
 	}
 
 	private void LerpToPosition(Vector3 newPos, float speed){
+		if(!GameStateManager.is3D()){
+			Vector3 pos = transform.position;
+			pos.z = newPos.z;
+			transform.position = pos;
+		}
 		float dist = Vector3.Distance(transform.position, newPos);
 		float percent = speed * Time.deltaTime / dist;
 		transform.position = Vector3.Lerp(transform.position, newPos, percent);
