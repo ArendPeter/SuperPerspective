@@ -80,8 +80,9 @@ public class PlayerController : PhysicalObject{
 	private const int Z = 2;
 	private const float epsilon = .1f;
 
-  //Nick addition, used for footstep sound selection
+  //Nick addition, used for footstep and voice sound selection
   public StepManager step;
+  public VoiceManager voice;
 
   #endregion
 
@@ -102,8 +103,10 @@ public class PlayerController : PhysicalObject{
 
 		registerEventHandlers();
 
-    step = GameObject.Find("Steps").GetComponent<StepManager>();
-	}
+        //Nick addition, used for footstep and voice sound selection
+        step = GameObject.Find("Steps").GetComponent<StepManager>();
+        voice = GameObject.Find("Voice").GetComponent<VoiceManager>();
+    }
 
 	public void Reset() {
 		initMovementVariables();
@@ -421,6 +424,7 @@ public class PlayerController : PhysicalObject{
 		}
 		// Cactus
 		if (!isInCactusKnockBack() && other.tag == "Cactus"){
+            voice.Ow();
 			cactusKnockBackTimer = CACTUS_TIME;
 			Vector2 cacPos = new Vector2(other.transform.position.x,other.transform.position.z);
 			Vector2 playerPos = new Vector2(transform.position.x,transform.position.z);

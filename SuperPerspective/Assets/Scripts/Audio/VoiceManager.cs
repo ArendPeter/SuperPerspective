@@ -3,7 +3,7 @@ using System.Collections;
 
 public class VoiceManager : MonoBehaviour {
 
-	AudioClip[] jumps, climbs, pushes;
+	AudioClip[] jumps, climbs, pushes, ow;
 	AudioSource source;
 
 	// Use this for initialization
@@ -24,7 +24,12 @@ public class VoiceManager : MonoBehaviour {
 		pushes [1] = Resources.Load ("Sound/SFX/Player/Voice/PushPull2")  as AudioClip;
 		pushes [2] = Resources.Load ("Sound/SFX/Player/Voice/PushPull3")  as AudioClip;
 
-		source = gameObject.GetComponent<AudioSource> ();
+        ow = new AudioClip[3];
+        ow[0] = Resources.Load("Sound/SFX/Player/Voice/Ow1") as AudioClip;
+        ow[1] = Resources.Load("Sound/SFX/Player/Voice/Ow2") as AudioClip;
+        ow[2] = Resources.Load("Sound/SFX/Player/Voice/Ow3") as AudioClip;
+
+        source = gameObject.GetComponent<AudioSource> ();
 		source.volume = 0.3f;
 
 	}
@@ -53,4 +58,11 @@ public class VoiceManager : MonoBehaviour {
 		source.pitch = Random.Range (0.95f, 1.05f);
 		source.Play ();
 	}
+
+    public void Ow()
+    {
+        source.clip = ow[Random.Range(0, 3)];
+        source.pitch = Random.Range(0.95f, 1.05f);
+        source.Play();
+    }
 }
