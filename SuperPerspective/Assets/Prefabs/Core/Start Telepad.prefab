@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 481416}
   - 65: {fileID: 6545732}
   - 114: {fileID: 11434086}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Start Telepad
   m_TagString: BackgroundObject
   m_Icon: {fileID: 0}
@@ -614,10 +614,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: 
   destName: 
-  particleColor: {r: 0, g: 0, b: 0, a: 0}
   sceneName: 
   crystalRequirement: 0
-  warpSound: {fileID: 0}
+  warpSound: {fileID: 199984, guid: 3138cae622bba4d42a8e7965e7c5bd87, type: 2}
 --- !u!114 &11467370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6798,7 +6797,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: warpSound
+      value: 
+      objectReference: {fileID: 199984, guid: 3138cae622bba4d42a8e7965e7c5bd87, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101364}

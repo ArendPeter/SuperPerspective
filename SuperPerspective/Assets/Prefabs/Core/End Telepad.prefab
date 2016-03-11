@@ -150,7 +150,7 @@ GameObject:
   - 65: {fileID: 6526872}
   - 114: {fileID: 11431752}
   - 82: {fileID: 8258452}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: End Telepad
   m_TagString: BackgroundObject
   m_Icon: {fileID: 0}
@@ -6883,7 +6883,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 183178}

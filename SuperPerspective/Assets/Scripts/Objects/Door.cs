@@ -12,6 +12,7 @@ public class Door : ActiveInteractable {
 	public string sceneName;
 	public int crystalRequirement;
 
+	public Vector3 teleportOffset = new Vector3(0,3,0);
     public GameObject warpSound;
 
     ListenerHandler l;
@@ -49,7 +50,7 @@ public class Door : ActiveInteractable {
 		}
 		else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement)
 			player.GetComponent<PlayerController>().Teleport(
-				destDoor.GetComponent<Collider>().bounds.center + new Vector3(0,0,-2));
+				destDoor.GetComponent<Collider>().bounds.center + teleportOffset);
 		else
 			Debug.Log("Door not linked");
 
@@ -62,6 +63,13 @@ public class Door : ActiveInteractable {
 
 	public void setDoor(Door destDoor){
 		this.destDoor = destDoor;
+	}
+
+	protected override bool IsInYRange(){
+		float playerY = PlayerController.instance.transform.position.y;
+		float myY = transform.position.y;
+		float deltaY = playerY - myY;
+		return 1.0f < deltaY && deltaY < 4f;
 	}
 
 }
