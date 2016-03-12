@@ -80,6 +80,9 @@ public class PlayerController : PhysicalObject{
 	private const int Z = 2;
 	private const float epsilon = .1f;
 
+	float frameRate;
+	public float testFrameRate;
+
   //Nick addition, used for footstep and voice sound selection
   public StepManager step;
   public VoiceManager voice;
@@ -143,6 +146,8 @@ public class PlayerController : PhysicalObject{
 	#endregion Init
 
 	void Update(){
+		frameRate = 1 / Time.deltaTime;
+		testFrameRate = frameRate;
 		if(canControl()) checkForJump();
 	}
 
@@ -186,13 +191,15 @@ public class PlayerController : PhysicalObject{
 
 		if(canControl()) move();
 
-		if(canMove()) applyGravity();
-
 		if(!isDisabled()) updateStateVariables();
-		
-		CheckCollisions();
 
-		if(canMove()) applyMovement();
+		if (frameRate <= 50) {
+			if(canMove()) applyGravity();
+
+			CheckCollisions();
+
+			if(canMove()) applyMovement();
+		}
 	}
 
 	private void updateTimers(){
@@ -464,14 +471,22 @@ public class PlayerController : PhysicalObject{
 
 	// LateUpdate is used to actually move the position of the player
 	void LateUpdate () {
-  }
+		if (frameRate > 50f) {
+			if(canMove()) applyGravity();
+			
+			CheckCollisions();
+			
+			if(canMove()) applyMovement();
+		}
+  	}
 
 	private void applyGravity(){
+		float dt = (frameRate < 50)?(1 / 50f):Time.deltaTime;
 		if (edgeState != PlayerEdgeState.HANGING){
 			if (velocity.y <= 0)
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - upGravity, -terminalVelocity), velocity.z);
+				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - upGravity * dt, -terminalVelocity), velocity.z);
 			else
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - downGravity, -terminalVelocity), velocity.z);
+				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - downGravity * dt, -terminalVelocity), velocity.z);
 		}else{
 			velocity.y = 0;
 		}
