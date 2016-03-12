@@ -6,10 +6,13 @@ public class MobilePlatformSpawn : ActiveInteractable {
 	public GameObject platform = null;
 
 	float animSpeed = 0f;
-	
-	void Start() {
-		base.StartSetup ();
-		range = 1f;
+
+	void Update() {
+		if (player.transform.position.y - 0.5f < transform.position.y) {
+			range = 1f;
+		} else {
+			range = GetComponent<Collider>().bounds.size.y + 1f;
+		}
 	}
 
 	void FixedUpdate() {
@@ -25,24 +28,45 @@ public class MobilePlatformSpawn : ActiveInteractable {
 	}
 
 	public override float GetDistance() {
-		if (player.transform.position.y > GetComponent<Collider>().bounds.max.y + 2)
+		Vector3 pPos = player.transform.position;
+		Bounds bounds = GetComponent<Collider>().bounds;
+		if (pPos.x >= bounds.min.x && pPos.x <= bounds.max.x && pPos.z >= bounds.min.z && pPos.z <= bounds.max.z) {
+			return pPos.y - transform.position.y;
+		}
+		if (pPos.y > GetComponent<Collider>().bounds.max.y + 2)
 			return float.MaxValue;
-		float colMinX = GetComponent<Collider>().bounds.min.x;
-		float colMaxX = GetComponent<Collider>().bounds.max.x;
-		float colMinZ = GetComponent<Collider>().bounds.min.z;
-		float colMaxZ = GetComponent<Collider>().bounds.max.z;
+		float colMinX = bounds.min.x;
+		float colMaxX = bounds.max.x;
+		float colMinZ = bounds.min.z;
+		float colMaxZ = bounds.max.z;
 		switch (GetQuadrant ()) {
 		case Quadrant.xPlus:
-			return player.transform.position.x - colMaxX;
+			return pPos.x - colMaxX;
 		case Quadrant.xMinus:
 			return colMinX - player.transform.position.x;
 		case Quadrant.zPlus:
-			return player.transform.position.z - colMaxZ;
+			return pPos.z - colMaxZ;
 		case Quadrant.zMinus:
 			return colMinZ - player.transform.position.z;
 		default:
 			return float.MaxValue;
 		}
+	}
+
+	protected override bool isPlayerFacingObject() {
+		Vector3 pPos = player.transform.position;
+		Bounds bounds = GetComponent<Collider>().bounds;
+		if (pPos.x >= bounds.min.x && pPos.x <= bounds.max.x && pPos.z >= bounds.min.z && pPos.z <= bounds.max.z) {
+			return true;
+		}
+		return base.isPlayerFacingObject();
+	}
+
+	protected override bool IsInYRange(){
+		float playerY = PlayerController.instance.transform.position.y;
+		float myY = transform.position.y;
+		float deltaY = playerY - myY;
+		return 0.5f < deltaY && deltaY < 3f;
 	}
 
 	public override void Triggered() {

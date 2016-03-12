@@ -460,7 +460,7 @@ public class PlayerController : PhysicalObject{
 	void LateUpdate () {
 		if (canMove()) applyGravity();
 
-		CheckCollisions();
+		if (!isRiding()) CheckCollisions(); else velocity = Vector3.zero;
 
 		if(canMove()) applyMovement();
     }
