@@ -69,7 +69,7 @@ public class Door : ActiveInteractable {
 		float playerY = PlayerController.instance.transform.position.y;
 		float myY = transform.position.y;
 		float deltaY = playerY - myY;
-		return 1.0f < deltaY && deltaY < 4f;
+		return -1.5f < deltaY && deltaY < 4f;
 	}
 
 }
