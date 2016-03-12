@@ -143,7 +143,7 @@ public class PlayerController : PhysicalObject{
 	#endregion Init
 
 	void Update(){
-		if (canControl())	checkForJump();
+		if(canControl()) checkForJump();
 	}
 
 	#region Jump
@@ -186,7 +186,13 @@ public class PlayerController : PhysicalObject{
 
 		if(canControl()) move();
 
+		if(canMove()) applyGravity();
+
 		if(!isDisabled()) updateStateVariables();
+		
+		CheckCollisions();
+
+		if(canMove()) applyMovement();
 	}
 
 	private void updateTimers(){
@@ -458,19 +464,14 @@ public class PlayerController : PhysicalObject{
 
 	// LateUpdate is used to actually move the position of the player
 	void LateUpdate () {
-		if (canMove()) applyGravity();
-
-		if (!isRiding()) CheckCollisions(); else velocity = Vector3.zero;
-
-		if(canMove()) applyMovement();
-    }
+  }
 
 	private void applyGravity(){
 		if (edgeState != PlayerEdgeState.HANGING){
 			if (velocity.y <= 0)
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - upGravity * Time.deltaTime, -terminalVelocity), velocity.z);
+				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - upGravity, -terminalVelocity), velocity.z);
 			else
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - downGravity * Time.deltaTime, -terminalVelocity), velocity.z);
+				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - downGravity, -terminalVelocity), velocity.z);
 		}else{
 			velocity.y = 0;
 		}
@@ -569,7 +570,7 @@ public class PlayerController : PhysicalObject{
 			case 2:
 				this.edgeState	 = PlayerEdgeState.HANGING;
 				//stop moving
-				// velocity = Vector3.zero;
+				velocity = Vector3.zero;
 				//lock y
 				Vector3 pos = transform.position;
 				pos.y = e.gameObject.transform.position.y + (e.gameObject.transform.lossyScale.y * .5f) - (colliderHeight * .5f);
