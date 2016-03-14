@@ -35,7 +35,7 @@ public class MainCollectable : MonoBehaviour {
 
 	public static void Collect() {
 		collectableHeld++;
-	}
+    }
 
 	public static void GiveMainCollectable(int amt) {
 		collectableHeld = collectableHeld + amt;
@@ -53,7 +53,8 @@ public class MainCollectable : MonoBehaviour {
 		float dist = (transform.position - PlayerController.instance.transform.position).magnitude;
 		if(active && dist < range){
 			active = false;
-		}
+            playSFX();
+        }
 	}
 
 	private void spiralToPlayer(){
@@ -68,4 +69,10 @@ public class MainCollectable : MonoBehaviour {
 			consumed = true;
 		}
 	}
+
+    //Plays SFX upon pickup -Nick
+    private void playSFX()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }
