@@ -9,25 +9,37 @@ public class PushSwitchOld : MonoBehaviour {
 
 	Color baseColor = Color.white;
 
+	ArrayList collisions;
+
     public Rect parentPlatform;
 	Collider pusher = null;
 
+	void Start() {
+		collisions = new ArrayList();
+	}
+
 	void Update(){
 		parentPlatform = PlayerController.instance.GetComponent<BoundObject>().GetBounds();
-        float xx = transform.position.x, yy = transform.position.y, zz = transform.position.z, cdist, r = 0.25f, w = 1f;
+        float xx = transform.position.x, yy = transform.position.y, zz = transform.position.z, cdist, r, wx, wz;
+		wx = GetComponent<Renderer>().bounds.size.x / 4;
+		wz = GetComponent<Renderer>().bounds.size.z / 4;
+		r = 0.25f;
 		Collider c = GetComponent<Collider>();
 		Vector3 p1, p2;
 		if (GameStateManager.is2D()) {
-			p1 = new Vector3(xx + w - r, yy + r, parentPlatform.min.y + r);
-			p2 = new Vector3(xx - w + r, yy + r, parentPlatform.min.y + r);
+			p1 = new Vector3(xx + wx - r, yy + r, parentPlatform.min.y + r);
+			p2 = new Vector3(xx - wx + r, yy + r, parentPlatform.min.y + r);
 			cdist = parentPlatform.height - r * 2;
 		} else {
-			p1 = new Vector3(xx + w - r, yy + r, zz - w + r);
-			p2 = new Vector3(xx - w + r, yy + r, zz - w + r);
-			cdist = w - r * 2;
+			p1 = new Vector3(xx + wx - r, yy + r, zz - wz + r);
+			p2 = new Vector3(xx - wx + r, yy + r, zz - wz + r);
+			cdist = wz * 2 - r * 2;
 		}
-		RaycastHit[] collisions = Physics.CapsuleCastAll(p1, p2, r, Vector3.forward, cdist, LayerMask.NameToLayer("Raycast Ignore"));
-		if (collisions.Length == 0)
+		foreach (RaycastHit hit in Physics.CapsuleCastAll(p1, p2, r, Vector3.forward, cdist, 7)) {
+			if (hit.collider.gameObject.GetComponent<Rigidbody>() == null)
+				collisions.Add(hit);
+		}
+		if (collisions.Count == 0)
 			ExitCollisionWithGeneral(null);
 		else {
 			foreach (RaycastHit hit in collisions) {
@@ -45,6 +57,7 @@ public class PushSwitchOld : MonoBehaviour {
             if (baseColor != Color.white)
                 gameObject.GetComponent<Renderer>().material.color = baseColor;
         }
+		collisions.Clear();
     }
 
     public void EnterCollisionWithGeneral(GameObject other){
