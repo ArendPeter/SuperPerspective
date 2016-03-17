@@ -5,7 +5,7 @@ public class SpiralPath : MonoBehaviour {
 
 	private static float spiralRadiusThresh = 5;
 	private static float spiralMinApproachSpeed = 3;
-	private static float spiralVerticalSpeed = 1;
+	private static float spiralVerticalSpeed = .8f;
 	private static float spiralHeight = 1;
 	public static float spiralMaxRotSpeed = 720;
 	private static float spiralAngle = -1f;
