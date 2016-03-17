@@ -45,8 +45,10 @@ public class Door : ActiveInteractable {
 		
 		if(sceneName != "") {
 			Application.LoadLevel(sceneName);
-			if (destName != "")
+			if (destName != "") {
+				print(TransitionManager.instance.isActive());
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
+			}
 		}
 		else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement)
 			player.GetComponent<PlayerController>().Teleport(

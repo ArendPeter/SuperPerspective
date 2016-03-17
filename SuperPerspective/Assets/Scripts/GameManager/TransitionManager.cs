@@ -9,6 +9,8 @@ public class TransitionManager : MonoBehaviour {
 	static string toDoor;
 
 	void Awake(){
+		Object.DontDestroyOnLoad(this);
+
 		if(instance == null)
 			instance = this;
 		else if(instance != this)
@@ -29,5 +31,9 @@ public class TransitionManager : MonoBehaviour {
 	public void MovePlayerToDoor(PlayerController player, string door) {
 		toDoor = door;
 		move = true;
+	}
+
+	public bool isActive() {
+		return instance != null;
 	}
 }
