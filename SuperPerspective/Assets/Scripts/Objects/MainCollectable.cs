@@ -50,8 +50,10 @@ public class MainCollectable : MonoBehaviour {
 	}
 
 	private void checkForPlayerInGrabRange(){
-		float dist = (transform.position - PlayerController.instance.transform.position).magnitude;
-		if(active && dist < range){
+		Bounds mybound = GetComponent<BoxCollider>().bounds;
+		Bounds pbound = PlayerController.instance.GetComponent<BoxCollider>().bounds;
+		bool intersect = mybound.Intersects(pbound);
+		if(active && intersect){
 			active = false;
             playSFX();
         }

@@ -50,7 +50,7 @@ public class ObjectFade : MonoBehaviour {
 	}
 	void FixedUpdate () {
 		foreach (Renderer rend in rends) {
-			if (!rend.material.HasProperty("_Color"))
+			if (!rend.material.HasProperty("_Color") || !rend.material.HasProperty("_Mode"))
 				continue;
 			Color col = rend.material.GetColor("_Color");
 			if (col.a < 1) {

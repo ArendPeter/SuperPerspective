@@ -5,80 +5,37 @@ public class PushSwitch : MonoBehaviour {
 
 	#pragma warning disable 114, 414
 
-	public bool pushed = false; //whether switch is currently pushed
-	public Rect parentPlatform;
-	public bool rotate;
-
-	public Activatable[] triggers;//Activatable objects which this switch triggers
-	private ArrayList pushers = new ArrayList();
-
+	float alpha, fade;
 	Renderer rune;
+	Color color;
+	ParticleSystem particles;
 
 	Vector3 baseScale;
 
 	void Start() {
 		rune = GetComponentInChildren<Renderer>();
-		baseScale = rune.transform.localScale;
+		color = Color.white;
+		particles = GetComponentInChildren<ParticleSystem>();
 	}
 
 	void Update(){
-		if (pushed) {
-			rune.transform.localScale = baseScale * 0.8f;
+		if (Physics.Raycast(transform.position, Vector3.up, 0.5f)) {
+			fade = -1/50f;
 		} else {
-			rune.transform.localScale = baseScale;
+			fade = 1/50f;
 		}
-		RaycastHit hit;
-		parentPlatform = PlayerController.instance.GetComponent<BoundObject>().GetBounds();
-		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D) {
-			if (Physics.Raycast(transform.position + Vector3.forward * 2f, -Vector3.forward, out hit, 4f, LayerMask.NameToLayer("RaycastIgnore"))) {
-				if (!pushed)
-					EnterCollisionWithGeneral(hit.collider.gameObject);
-			} else if (pushed) {
-				ExitCollisionWithGeneral(null);
-			}
-		} else {
-			if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, parentPlatform.max.y + 1f), -Vector3.forward, out hit,
-			                    parentPlatform.height + 2f, LayerMask.NameToLayer("RaycastIgnore"))) {
-				if (!pushed)
-					EnterCollisionWithGeneral(hit.collider.gameObject);
-			} else if (pushed) {
-				ExitCollisionWithGeneral(null);
-			}
+		color.a = alpha;
+		rune.material.SetColor("_Color", color);
+		if (alpha > 0.5 && !particles.isPlaying) {
+			particles.Play();
+		} else if (alpha <= 0.5 && particles.isPlaying) {
+			particles.Stop();
 		}
-
-		/*if (pushers.Count > 0) {
-			foreach (Collider pusher in pushers) {
-				check = pusher.bounds;
-				if (!check.Intersects (GetComponent<Collider> ().bounds)) {
-					ExitCollisionWithGeneral(pusher.gameObject);
-				}
-			}
-		}*/
 	}
 
 	void FixedUpdate() {
-		if(rotate){
-			if (!pushed)
-				rune.transform.RotateAround (transform.position, Vector3.up, 1);
-			else
-				rune.transform.RotateAround (transform.position, Vector3.up, 2);	
-		}
+		rune.transform.RotateAround (transform.position, Vector3.up, 1);
+		alpha = Mathf.Clamp(alpha + fade, 0, 1);
 	}
 
-	public void EnterCollisionWithPlayer() {
-		EnterCollisionWithGeneral(null);
-	}
-
-	public void EnterCollisionWithGeneral(GameObject other){
-		pushed = true;//becomes pushed when it collides with player
-		//pushed is also updated for all activatable objects
-		foreach(Activatable o in triggers)
-			o.setActivated(pushed);
-	}
-	
-	public void ExitCollisionWithGeneral(GameObject other){
-		pushed = false;//becomes pushed when it collides with player
-		foreach(Activatable o in triggers)
-			o.setActivated(pushed);
-	}
 }

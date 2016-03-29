@@ -333,10 +333,6 @@ public class Ice : ActiveInteractable {
 			colliderDim = colliderWidth;
 		if (trajectory.normalized == Vector3.forward || trajectory.normalized == Vector3.back)
 			colliderDim = colliderDepth;
-        // Rune Switch
-        if (other.GetComponent<PushSwitch>()) {
-			other.GetComponent<PushSwitch>().EnterCollisionWithGeneral(gameObject);
-		}
 		//Collision w/ PlayerInteractable
 		foreach(Interactable c in other.GetComponents<Interactable>()){
 			c.EnterCollisionWithGeneral(gameObject);
