@@ -22,7 +22,7 @@ public class EarControl : MonoBehaviour {
 		if (player.Check2DIntersect()) {
 			setRot = 0;
 			if(earGlow != null){
-				earGlow.SetActive(false);
+				earGlow.SetActive(false); 
 			}
 		} else {
 			setRot = 90;
