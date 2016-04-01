@@ -29,6 +29,7 @@ public class Orb : ActiveInteractable {
 	private Vector3 startPos;
 
 	private OrbDropPedestal destObj = null;
+
 	void Start() {
 		base.StartSetup ();
 		range = 2f;
@@ -46,6 +47,7 @@ public class Orb : ActiveInteractable {
 	private void PickUp(){
 		PlayerController.instance.grabOrb(this);
 		isHeld = true;
+		destObj = null;
 		initialApproach = true;
 	}
 
@@ -152,9 +154,6 @@ public class Orb : ActiveInteractable {
 		return HasFinalPlatform()? OnFinalPlatform() : AtStart();
 	}
 
-	private bool AtStart(){
-		return startPos == transform.position;
-	}
 
 	public bool OnFinalPlatform(){
 		if(destObj == null){
@@ -201,6 +200,10 @@ public class Orb : ActiveInteractable {
 		isHeld = false;
 		transform.parent = null;
 		dropVerticalSpeed = 0f;
+		if(destObj != null){
+			destObj.ReleaseOrb();
+			destObj = null;
+		}
 	}
 
 	public void SetOutwardDropVector(Vector2 dropVector){
@@ -213,5 +216,13 @@ public class Orb : ActiveInteractable {
 
 	public bool IsOnPlatform(OrbDropPedestal ped){
 		return destObj == ped;
+	}
+
+	public bool AtStart(){
+		return startPos == transform.position;
+	}
+
+	public bool IsApproachingPlayer(){
+			return initialApproach;
 	}
 }

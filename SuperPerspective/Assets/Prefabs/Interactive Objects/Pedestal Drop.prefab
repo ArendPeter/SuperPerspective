@@ -29,6 +29,7 @@ GameObject:
   - 65: {fileID: 6550714}
   - 114: {fileID: 11420706}
   - 114: {fileID: 11435686}
+  - 114: {fileID: 11413506}
   m_Layer: 0
   m_Name: Pedestal Drop
   m_TagString: Untagged
@@ -43,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 3, z: 6.23}
+  m_LocalPosition: {x: 2.2479987, y: 1.546425, z: 0.17555618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486064}
@@ -123,6 +124,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11413506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0eae766198e2c4a9b62a96556eacb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11420706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,15 +157,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4e7856f05bfe44489dd7c6aba33616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-  - {fileID: 0}
+  triggers: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: triggers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 191656}

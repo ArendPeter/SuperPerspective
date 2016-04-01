@@ -43,8 +43,8 @@ public class OrbDropPedestal : ActiveInteractable {
 
 	private void PlaceOrb(){
 		placedOrb = PlayerController.instance.getOrb();
-		placedOrb.SetPlatform(this);
 		PlayerController.instance.DropOrb();
+		placedOrb.SetPlatform(this);
 	}
 
 	private bool HasOrb(){
