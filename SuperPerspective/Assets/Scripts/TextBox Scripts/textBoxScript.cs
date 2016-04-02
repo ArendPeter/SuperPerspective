@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class textBoxScript : MonoBehaviour {
 
 
+	public static textBoxScript instance;
 
 //Visualization variables
 	public GameObject textStartPoint; //Tells where our text will begin generating.
@@ -36,7 +37,7 @@ public class textBoxScript : MonoBehaviour {
 
 	//Branching option variables
 	public string[] choiceArray; // The strings that make up the answers we can make
-	
+
 
 	public int questionLine = 0; //Used to track which line we are currently making.
 	public int choiceIndex = 0;//Used for indicating what choice we're thinking of making.
@@ -54,19 +55,21 @@ public class textBoxScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		init();
+		//singleton
+		if(instance == null){
+			instance = this;
+		}else{
+			Destroy(this);
+		}
+		//link action
+		InputManager.instance.InteractPressedEvent += progressConv;
+		//start out disabled
+		disableBox();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		showTextboxCheck();
 		printLoop();
-
-		if (Input.GetKeyUp(KeyCode.Space))
-		{
-			progressConv();
-		}
-
 	}
 
     //The initialization function for when our program has started running.
@@ -91,6 +94,8 @@ public class textBoxScript : MonoBehaviour {
             disableBox();
             //askQuestion(currentNode);
         }
+
+
 	}
 
 	//Initialize after the program has started
@@ -110,44 +115,25 @@ public class textBoxScript : MonoBehaviour {
 	//Makes the box show after resetting it.
 	public void startConvo()
 	{
-
-        if (askBoxPartner.showBox == false)
-        {
-            if (currentNode.myType != convoNode.nodeType.question)
-            {
-                showBox = true;
-                textbox.enabled = true;
-                text.enabled = true;
-                init();
-            }
-            else
-            {
-                askQuestion(currentNode);
-            }
-        }
+			startConvo(currentNode);
 	}
 
 
 	//Overloaded enable that allows for new conversations to be loaded in.
 	public void startConvo(convoNode newNode)
 	{
-
-        if (askBoxPartner.showBox == false)
+				PlayerController.instance.setCutsceneMode(true);
+				currentNode = newNode;
+        if (currentNode.myType == convoNode.nodeType.question)
         {
-            if (currentNode.myType == convoNode.nodeType.question)
-            {
-                askQuestion(currentNode);
+            askQuestion(currentNode);
 
-            }
-            else
-            {
-
-                currentNode = newNode;
-                showBox = true;
-                convArray = currentNode.convoTextArray;
-                init();
-                enableBox();
-            }
+        }
+        else
+        {
+            convArray = currentNode.convoTextArray;
+            init();
+            enableBox();
         }
 	}
 
@@ -169,6 +155,7 @@ public class textBoxScript : MonoBehaviour {
 		textbox.enabled = false;
 		text.enabled = false;
         showBox = false;
+		PlayerController.instance.setCutsceneMode(false);
 	}
 
 	//Resets the Text so that the next line can display properly.
@@ -294,7 +281,7 @@ public class textBoxScript : MonoBehaviour {
 	public void printLoop()
 	{
 		if (showBox) {//If we're even active...
-            
+
 			tinyTimer -= Time.deltaTime * textSpeed;
 
 			//Every time we time down to zero, do the thing.
@@ -343,6 +330,10 @@ public class textBoxScript : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public bool IsEnabled(){
+			return showBox;
 	}
 
 }

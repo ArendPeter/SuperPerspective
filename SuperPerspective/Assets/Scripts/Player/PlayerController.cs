@@ -473,9 +473,9 @@ public class PlayerController : PhysicalObject{
 	void LateUpdate () {
 		if (frameRate > 50f) {
 			if(canMove()) applyGravity();
-			
+
 			CheckCollisions();
-			
+
 			if(canMove()) applyMovement();
 		}
   	}
@@ -631,7 +631,8 @@ public class PlayerController : PhysicalObject{
 
 	public bool isPaused(){ return _paused; }
 
-	public void setCutsceneMode(bool c){ cutsceneMode = c; }
+	public void setCutsceneMode(bool c){
+		cutsceneMode = c; }
 
 	public bool canMove(){
 		return !isDisabled() && !isKicking() && !isClimbing() &&

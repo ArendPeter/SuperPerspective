@@ -43,7 +43,7 @@ public class askBoxScript : MonoBehaviour {
 	public bool showBox = false;
 	//The textbox we want to edit.
 	public UnityEngine.UI.Image textbox;
-	
+
 	public Text text;//Text that we use to display our cursor
     public Text qText;//Text which we use to display our actual QUESTION
 
@@ -53,7 +53,7 @@ public class askBoxScript : MonoBehaviour {
 		resetTextSpeed = textSpeed;
 		init();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		showTextboxCheck();
@@ -65,7 +65,7 @@ public class askBoxScript : MonoBehaviour {
 	{
         //player = (playerChar)GameObject.FindObjectOfType(typeof(playerChar));//DYNAMICALLY GET OUR CHARACTER ON INIT!
         if (currentNode.myType != convoNode.nodeType.textOnly)
-        { 
+        {
             progressIndex = 0;
             choiceID = 0;
 		    text.text = "";
@@ -111,7 +111,7 @@ public class askBoxScript : MonoBehaviour {
 
 	public void enableBox()//This enables the textbox so you can see it. It also resets the textbox.
 	{
-        
+
 		textbox.enabled = true;
 		text.enabled = true;
         qText.enabled = true;
@@ -221,7 +221,6 @@ public class askBoxScript : MonoBehaviour {
             }
         }
         else {
-            print("disableBox");
             disableBox();
             showBox = false;
         }

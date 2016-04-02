@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 462134}
   - 114: {fileID: 11417412}
   m_Layer: 0
-  m_Name: TestConvoNode
+  m_Name: CNode_Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,8 @@ MonoBehaviour:
   hasNext: 0
   choiceIndex: 0
   convoTextArray:
-  - First off this is a demonstration of our example text.
-  - We can actually handle multiple lines of text with little to no problems.
-  - We can also exit conversations once they end!
+  - This is the tutorial level
+  - So if you think it's hard then that's pretty pathetic
   question: QUESTION!?
   endQuestionArray:
   - ANSWER!
@@ -58,7 +57,23 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[0]
+      value: This is the tutorial level
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[1]
+      value: So if you think it's hard then that's pretty pathetic
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[2]
+      value: Pixie
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 112290}
