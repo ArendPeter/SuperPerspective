@@ -33,9 +33,7 @@ public class ObjectFade : MonoBehaviour {
 
 	Bounds getBounds(){
 		Collider myCollider = GetComponent<Collider>();
-		if(myCollider != null){
-			return myCollider.bounds;
-		}else if(rends[0] != null){
+		if(rends[0] != null){
 			return rends[0].bounds;
 		}else{
 			Vector3 scale = transform.lossyScale;
