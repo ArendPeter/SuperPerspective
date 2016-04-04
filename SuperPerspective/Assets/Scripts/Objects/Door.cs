@@ -42,11 +42,10 @@ public class Door : ActiveInteractable {
 	public override void Triggered(){
 		//Creates game object that plays warp sound then self destructs -Nick
         Instantiate(warpSound);
-		
+
 		if(sceneName != "") {
 			Application.LoadLevel(sceneName);
 			if (destName != "") {
-				print(TransitionManager.instance.isActive());
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
 			}
 		}
@@ -71,7 +70,7 @@ public class Door : ActiveInteractable {
 		float playerY = PlayerController.instance.transform.position.y;
 		float myY = transform.position.y;
 		float deltaY = playerY - myY;
-		return -1.5f < deltaY && deltaY < 4f;
+		return -.5f < deltaY && deltaY < 4f;
 	}
 
 }
