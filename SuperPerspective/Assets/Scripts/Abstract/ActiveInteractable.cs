@@ -33,6 +33,8 @@ public class ActiveInteractable : PhysicalObject {
 	//how much error there can be in the angle for it to be valid
 	float angleBuffer = 80;
 
+	public bool invisible = false;
+
 	void Start(){
 		StartSetup ();
 	}
@@ -96,7 +98,12 @@ public class ActiveInteractable : PhysicalObject {
 	}
 
 	protected virtual bool IsEnabled(){
-		bool isVisible = GetComponentInChildren<Renderer>().enabled;
+		bool isVisible = false;
+		if(!invisible){
+			isVisible = GetComponentInChildren<Renderer>().enabled;
+		}else{
+			isVisible = false;
+		}
 
 		bool unlockable = ((this.gameObject.GetComponent<LockedDoor>() == null || Key.GetKeysHeld() > 0));
 
