@@ -39,6 +39,15 @@ public class Door : ActiveInteractable {
 			                        new Vector2(transform.position.x, transform.position.y));
 	}
 
+	protected override bool isPlayerFacingObject() {
+		Vector3 pPos = player.transform.position;
+		Bounds bounds = GetComponent<Collider>().bounds;
+		if (pPos.x >= bounds.min.x && pPos.x <= bounds.max.x && pPos.z >= bounds.min.z && pPos.z <= bounds.max.z) {
+			return true;
+		}
+		return base.isPlayerFacingObject();
+	}
+
 	public override void Triggered(){
 		//Creates game object that plays warp sound then self destructs -Nick
         Instantiate(warpSound);

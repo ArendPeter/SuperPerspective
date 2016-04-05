@@ -54,7 +54,7 @@ public class PlayerAnimController : MonoBehaviour {
 			playerWasJumping = true;
 		}
 
-		if(player.isGrounded()) playerWasJumping = false;
+		if(player.isGrounded() || anim.GetInteger("EdgeState") == 3) playerWasJumping = false;
 	}
 
 	private void updateAnimationStates(){
@@ -131,8 +131,7 @@ public class PlayerAnimController : MonoBehaviour {
 		else if(animEdgeState == 3){
 			if(player.getVelocity().magnitude < epsilon)
 				updateEdgeState(playerState);
-		}else if(!anim.GetCurrentAnimatorStateInfo(0).IsName("HangBegin") &&
-				!anim.GetCurrentAnimatorStateInfo(0).IsName("HangShimmying")){
+		}else if(!anim.GetCurrentAnimatorStateInfo(0).IsName("HangBegin")){
 			updateEdgeState(playerState);
 		}
 	}
