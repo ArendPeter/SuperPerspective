@@ -13,6 +13,7 @@ public class LevelGeometry : MonoBehaviour
 	private GameObject parentPlatform;   // The platform this geometry belongs to
 
 	private float platWidth;
+	public Vector3 offset = Vector3.zero;
 
 	private BoxCollider boxCollider;    // Reference to this object's BoxCollider
 	private Vector3 colliderSize;       // Stores the collider's beginning size, usually (1, 1, 1)
@@ -61,7 +62,7 @@ public class LevelGeometry : MonoBehaviour
 			if (Mathf.Round(rot) == 90 || Mathf.Round(rot) == 270)
 				boxCollider.center = new Vector3(-(parentPlatform.transform.position.z - transform.position.z) * (1 / Mathf.Abs(transform.localScale.x)) * Mathf.Sin(rot * Mathf.Deg2Rad), startCenter.y, startCenter.z);
 			else
-				boxCollider.center = new Vector3(startCenter.x, startCenter.y, (parentPlatform.transform.position.z - transform.position.z) * (1 / Mathf.Abs(transform.localScale.z)) * Mathf.Cos(rot * Mathf.Deg2Rad));
+				boxCollider.center = new Vector3(startCenter.x + offset.x, startCenter.y + offset.y, (parentPlatform.transform.position.z - transform.position.z) * (1 / Mathf.Abs(transform.localScale.z)) * Mathf.Cos(rot * Mathf.Deg2Rad) + offset.z);
 		}
         else if (p == PerspectiveType.p3D)
         {
