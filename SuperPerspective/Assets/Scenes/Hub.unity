@@ -1713,6 +1713,82 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 428794142}
+--- !u!1 &441803604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441803605}
+  - 23: {fileID: 441803607}
+  - 102: {fileID: 441803606}
+  m_Layer: 0
+  m_Name: tut header (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441803605
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441803604}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.08, y: 5.82, z: -0.30999994}
+  m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 1
+--- !u!102 &441803606
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441803604}
+  m_Text: Desert
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 50
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: ac5c6c817028158418431c9a3f3f026e, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4289309097
+--- !u!23 &441803607
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441803604}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ac5c6c817028158418431c9a3f3f026e, type: 3}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &449431957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,8 +2614,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 521318737}
   - 65: {fileID: 569576514}
-  - 114: {fileID: 569576513}
   - 82: {fileID: 569576512}
+  - 114: {fileID: 569576513}
   m_Layer: 2
   m_Name: Tutorial Telepad
   m_TagString: BackgroundObject
@@ -2636,8 +2712,7 @@ AudioSource:
 --- !u!114 &569576513
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11434086, guid: 008cd25eb44f3c04aa841ca9784fa993,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 569576511}
   m_Enabled: 1
@@ -2645,11 +2720,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f95b62bab28154f867bad64d340f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   myName: hub-tutorial-start
   destName: t1-start
   sceneName: TutorialScene_DEMO
   crystalRequirement: 0
-  teleportOffset: {x: 0, y: 3, z: 0}
+  teleportOffset: {x: 0, y: 6, z: 0}
   warpSound: {fileID: 199984, guid: 3138cae622bba4d42a8e7965e7c5bd87, type: 2}
 --- !u!65 &569576514
 BoxCollider:
@@ -4706,6 +4782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f95b62bab28154f867bad64d340f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   myName: hub-grass-start
   destName: g2-start
   sceneName: GrassScene
@@ -5766,6 +5843,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1636845051}
+  - {fileID: 441803605}
+  - {fileID: 2103830475}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!4 &1442372026 stripped
@@ -7262,6 +7341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f95b62bab28154f867bad64d340f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   myName: hub-desert-start
   destName: d1-start
   sceneName: DesertScene
@@ -8975,6 +9055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f95b62bab28154f867bad64d340f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   myName: hub-ice-start
   destName: i1-start
   sceneName: IceScene
@@ -9339,6 +9420,84 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 2087909348}
+--- !u!1 &2103830474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2103830475}
+  - 23: {fileID: 2103830477}
+  - 102: {fileID: 2103830476}
+  m_Layer: 0
+  m_Name: tut header (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2103830475
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103830474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.08, y: 11.82, z: -0.30999994}
+  m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 2
+--- !u!102 &2103830476
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103830474}
+  m_Text: 'Tundra
+
+'
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 50
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: ac5c6c817028158418431c9a3f3f026e, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4289309097
+--- !u!23 &2103830477
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103830474}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ac5c6c817028158418431c9a3f3f026e, type: 3}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1001 &2108835579
 Prefab:
   m_ObjectHideFlags: 0

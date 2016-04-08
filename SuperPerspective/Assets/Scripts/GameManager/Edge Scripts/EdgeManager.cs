@@ -26,6 +26,10 @@ public class EdgeManager : MonoBehaviour {
 		terrain = GameObject.FindGameObjectsWithTag("Terrain");
 	}
 
+	void Awake() {
+        //DontDestroyOnLoad(this.gameObject);
+    }
+
 	void FixedUpdate(){
 		//generate edges
 		if(terrain != null && generated == false)

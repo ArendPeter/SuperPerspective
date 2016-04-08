@@ -15,6 +15,10 @@ public class PlayerSpawnController : MonoBehaviour {
 		}
 	}
 
+	void Awake() {
+        //DontDestroyOnLoad(this.gameObject);
+    }
+
 	//spawn player at door
 	public void moveToDoor(Door doorObject){
 		if(doorObject != null)
