@@ -18,6 +18,7 @@ public class OrbDropPedestal : ActiveInteractable {
 
 	public void FixedUpdate(){
 		base.FixedUpdateLogic();
+		CheckForOrbGrabbed();
 		if(HasOrb()){
 			CheckForActionTrigger();
 		}else{
@@ -25,8 +26,14 @@ public class OrbDropPedestal : ActiveInteractable {
 		}
 	}
 
+	private void CheckForOrbGrabbed(){
+			if(placedOrb != null && !placedOrb.IsOnPlatform(this)){
+					placedOrb = null;
+			}
+	}
+
 	private void CheckForActionTrigger(){
-		if(placedOrb.IsOnPlatform(this) && !actionsTriggered){
+		if(!actionsTriggered){
 			actionsTriggered = true;
 			foreach(Activatable o in triggers)
 				o.setActivated(true);
