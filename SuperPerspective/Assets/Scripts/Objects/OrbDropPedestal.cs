@@ -7,7 +7,7 @@ public class OrbDropPedestal : ActiveInteractable {
 
 	public Activatable[] triggers;//Activatable objects which this switch triggers
 
-	Vector3 orbPos = new Vector3(0,.2f,0);
+	Vector3 orbPos = new Vector3(0,.4f,0);
 	Orb placedOrb = null;
 	bool actionsTriggered = false;
 
