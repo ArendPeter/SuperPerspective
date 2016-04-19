@@ -175,7 +175,8 @@ public class PlayerController : PhysicalObject{
 
 	private void jump(){
 		grounded = false;
-		velocity = new Vector3(velocity.x, jumpVelocity, velocity.z);
+		velocity = new Vector3(velocity.x, 
+			Mathf.Max(velocity.y,jumpVelocity), velocity.z);
 		jumpPressedTime = 0;
 		jumping = true;
 
