@@ -18,10 +18,31 @@ public class ResetController : MonoBehaviour {
 		}
 	}
 
+	public static void LoadScene(string scene) {
+		Key.ClearKeys();
+		camReset = true;
+		IslandControl.Destroy(IslandControl.instance);
+		InputManager.Destroy(InputManager.instance);
+		CameraController.Destroy(CameraController.instance);
+		CheckpointManager.Destroy(CheckpointManager.instance);
+		DoorManager.Destroy(DoorManager.instance);
+		EdgeManager.Destroy(EdgeManager.instance);
+		PauseMenu.Destroy(PauseMenu.instance);
+		TransitionManager.Destroy(TransitionManager.instance);
+		Application.LoadLevel(scene);
+	}
+
 	public static void Reset() {
 		Key.ClearKeys();
 		camReset = true;
-		Application.LoadLevel(Application.loadedLevel);
+		IslandControl.Destroy(IslandControl.instance);
 		InputManager.Destroy(InputManager.instance);
+		CameraController.Destroy(CameraController.instance);
+		CheckpointManager.Destroy(CheckpointManager.instance);
+		DoorManager.Destroy(DoorManager.instance);
+		EdgeManager.Destroy(EdgeManager.instance);
+		PauseMenu.Destroy(PauseMenu.instance);
+		TransitionManager.Destroy(TransitionManager.instance);
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

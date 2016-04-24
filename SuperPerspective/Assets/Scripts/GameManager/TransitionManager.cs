@@ -22,7 +22,7 @@ public class TransitionManager : MonoBehaviour {
 		if (move) {
 			PlayerController player = PlayerController.instance;
 			Debug.Log(DoorManager.instance.getDoor(toDoor));
-			Vector3 movePos = DoorManager.instance.getDoor(toDoor).gameObject.transform.position - Vector3.forward * 2;
+			Vector3 movePos = DoorManager.instance.getDoor(toDoor).gameObject.transform.position + Vector3.up * 2;
 			player.transform.position = movePos;
 			move = false;
 		}

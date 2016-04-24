@@ -53,7 +53,7 @@ public class Door : ActiveInteractable {
         Instantiate(warpSound);
 
 		if(sceneName != "") {
-			Application.LoadLevel(sceneName);
+			ResetController.LoadScene(sceneName);
 			if (destName != "") {
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
 			}
