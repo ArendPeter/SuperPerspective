@@ -8,7 +8,6 @@ public class ConsoleActionsManager : MonoBehaviour {
 	PlayerSpawnController psc;
 	InputField dcl;
 
-
 	public UnityEngine.UI.Button buttonInstance;
 
 	// Use this for initialization
@@ -70,6 +69,10 @@ public class ConsoleActionsManager : MonoBehaviour {
 						movePlayer(val);
 						Debug.Log("... moving player to door " + val);
 						break;
+					case "hub":
+						moveToScene(val);
+						Debug.Log("... moving player to scene " + val);
+						break;
 					case "credits":
 						dcl.text = "Nick Shooter, Peter Aquila, Larry Smith, Arend Peter Castelein, Daniel Xiao";
 						break;
@@ -88,6 +91,14 @@ public class ConsoleActionsManager : MonoBehaviour {
 		psc.moveToDoor(
 			psc.findDoor(doorName)
 		);
+	}
+
+	public void moveToScene(string sceneName) {
+		if(sceneName == null) {
+			sceneName = "Hub";
+		};
+
+		psc.moveToScene(sceneName);
 	}
 
 	//sets player to their default door position

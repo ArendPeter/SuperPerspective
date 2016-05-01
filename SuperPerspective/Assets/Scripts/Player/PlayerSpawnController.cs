@@ -26,6 +26,12 @@ public class PlayerSpawnController : MonoBehaviour {
 				doorObject.transform.position + teleportOffset);
 	}
 
+	public void moveToScene(string sceneName) {
+		if(sceneName != "") {
+			ResetController.LoadScene(sceneName);
+		}
+	}
+
 	//find door with name
 	public Door findDoor(string doorName){
 		Door[] doorList = Object.FindObjectsOfType(
