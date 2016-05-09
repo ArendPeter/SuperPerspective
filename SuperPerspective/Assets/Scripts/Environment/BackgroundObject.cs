@@ -4,7 +4,7 @@ using System.Collections;
 public class BackgroundObject : MonoBehaviour {
 
 	#pragma warning disable 219
-	
+
 	// Update is called once per frame
 	void Update () {
 		GameObject me = this.gameObject;
@@ -18,7 +18,6 @@ public class BackgroundObject : MonoBehaviour {
 
 				m.SetColor ("_TintColor", tint);
 
-				//print(m.color);
 			}
 		}
 	}

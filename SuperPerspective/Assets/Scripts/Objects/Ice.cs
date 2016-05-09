@@ -358,8 +358,6 @@ public class Ice : ActiveInteractable {
 			}
 			kickDelay = DELAY;
 			PlayerController.instance.StartKick();
-		}else{
-			print("velocity: "+velocity);
 		}
   }
 }

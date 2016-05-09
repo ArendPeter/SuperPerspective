@@ -5,12 +5,12 @@ public class ActiveDynamicCamera : Activatable {
 
 	public bool panOnActivate = true;
 	public bool panOnDeactivate = false;
+	public bool deactivateOnReset = false;
 
 	public float panDuration = 3;
 
 	private float panTime = -1f;
 	private bool panned = false;
-
 
 	public void FixedUpdate(){
 		checkForLockEnd();
@@ -22,6 +22,9 @@ public class ActiveDynamicCamera : Activatable {
 		bool dynamicStateExited = !GameStateManager.targetingDynamicState();
 		if(stillWaiting && (timesUp || dynamicStateExited)){
 			resetPan();
+			if(deactivateOnReset){
+				base.setActivated(false);
+			}
 		}
 	}
 
@@ -37,6 +40,8 @@ public class ActiveDynamicCamera : Activatable {
 				PlayerController.instance.setCutsceneMode(true);
 				panTime = Time.time;
 				panned = true;
+			}else if(deactivateOnReset){
+				base.setActivated(false);
 			}
 		}
 	}

@@ -30,6 +30,8 @@ public class Orb : ActiveInteractable {
 
 	private OrbDropPedestal destObj = null;
 
+	public Activatable[] triggers;//Activatable objects which this switch triggers
+
 	void Start() {
 		base.StartSetup ();
 		range = 2f;
@@ -60,20 +62,22 @@ public class Orb : ActiveInteractable {
 	}
 
 	public void Update(){
-		if(isHeld){
-			if(initialApproach){
-				SpiralToPlayer();
-			}else{
-				FollowPlayer();
+		if(!PlayerController.instance.isDisabled()){
+			if(isHeld){
+				if(initialApproach){
+					SpiralToPlayer();
+				}else{
+					FollowPlayer();
+				}
+			}else if(!AtTargetLocation()){
+				if(!OrbBroken() && !HasFinalPlatform()){
+					UpdateFallPosition();
+				}else{
+					UpdateRecallPosition();
+				}
 			}
-		}else if(!AtTargetLocation()){
-			if(!OrbBroken() && !HasFinalPlatform()){
-				UpdateFallPosition();
-			}else{
-				UpdateRecallPosition();
-			}
+			UpdateDestinationPedestal();
 		}
-		UpdateDestinationPedestal();
 	}
 
 	private void SpiralToPlayer(){
@@ -178,8 +182,16 @@ public class Orb : ActiveInteractable {
 		transform.position = Vector3.Lerp(transform.position, newPos, percent);
 	}
 
+	private void triggerActions(){
+		foreach(Activatable o in triggers)
+			o.setActivated(true);
+	}
+
 	//inherited
 	public override void Triggered(){
+		if(AtStart()){
+			triggerActions();
+		}
 		PickUp();
 	}
 
