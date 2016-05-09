@@ -175,7 +175,7 @@ public class PlayerController : PhysicalObject{
 
 	private void jump(){
 		grounded = false;
-		velocity = new Vector3(velocity.x, 
+		velocity = new Vector3(velocity.x,
 			Mathf.Max(velocity.y,jumpVelocity), velocity.z);
 		jumpPressedTime = 0;
 		jumping = true;
@@ -626,6 +626,7 @@ public class PlayerController : PhysicalObject{
 	public void Teleport(Vector3 newPos){
 		transform.position = newPos;
 		gameObject.GetComponent<BoundObject>().updateBounds();
+		DropOrb();
 	}
 
 	public Vector3 GetVelocity(){ return velocity; }

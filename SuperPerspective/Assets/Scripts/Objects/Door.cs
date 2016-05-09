@@ -57,15 +57,14 @@ public class Door : ActiveInteractable {
 			if (destName != "") {
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
 			}
-		}
-		else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement)
+		}else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement){
 			player.GetComponent<PlayerController>().Teleport(
 				destDoor.GetComponent<Collider>().bounds.center + teleportOffset);
-		else
+		}else{
 			Debug.Log("Door not linked");
-
-        l.ResetZ();
-    }
+		}
+    l.ResetZ();
+  }
 
 	public string getName(){
 		return myName;
