@@ -5,10 +5,12 @@ public class MobilePlatformSpawn : ActiveInteractable {
 
 	public GameObject platform = null;
 
+	Vector3 spawnVector = new Vector3(0,-1.5f,0);
+
 	float animSpeed = 0f;
 
 	void Update() {
-		if (player.transform.position.y - 0.5f < transform.position.y) {
+		if (player.transform.position.y - 0.5f < spawnVector.y) {
 			range = 1f;
 		} else {
 			range = GetComponent<Collider>().bounds.size.y + 1f;
@@ -18,12 +20,12 @@ public class MobilePlatformSpawn : ActiveInteractable {
 	void FixedUpdate() {
 		base.FixedUpdateLogic();
 		platform.transform.Translate(Vector3.up * animSpeed);
-		float ydiff = platform.GetComponent<MobilePlatform>().GetStartY() - platform.transform.position.y;
+		float ydiff = Vector3.zero.y - platform.transform.localPosition.y;
 		if (ydiff < 0.05) {
 			animSpeed = 0;
-			platform.transform.Translate(Vector3.up * ydiff);
+			//platform.transform.Translate(Vector3.up * ydiff);
 		} else if (ydiff < 1) {
-			animSpeed = 1/20f * ydiff * 2;
+			animSpeed = 1/20f * ydiff * 1.2f;
 		}
 	}
 
@@ -66,12 +68,12 @@ public class MobilePlatformSpawn : ActiveInteractable {
 		float playerY = PlayerController.instance.transform.position.y;
 		float myY = transform.position.y;
 		float deltaY = playerY - myY;
-		return 0.5f < deltaY && deltaY < 3f;
+		return -0.2f < deltaY && deltaY < 1f;
 	}
 
 	public override void Triggered() {
 		if (animSpeed == 0) {
-			platform.transform.position = transform.position;
+			platform.transform.localPosition = spawnVector;
 			animSpeed = 1/10f;
 		}
 	}

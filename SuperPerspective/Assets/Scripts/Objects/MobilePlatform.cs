@@ -31,7 +31,7 @@ public class MobilePlatform : ActiveInteractable {
 		rect = GetComponent<BoundObject>().GetBounds();
 		CameraController.instance.TransitionCompleteEvent += checkBreak;
 		startPos = transform.position;
-		transform.parent = null;
+		//transform.parent = null;
 	}
 
 	void FixedUpdate () {
@@ -198,6 +198,7 @@ public class MobilePlatform : ActiveInteractable {
 	}
 
 	public float GetStartY() {
+		//this.transform.parent.gameObject.transform.position.y;
 		return startPos.y;
 	}
 }
