@@ -7,9 +7,11 @@ public class ActiveDynamicCamera : Activatable {
 	public bool panOnDeactivate = false;
 	public bool deactivateOnReset = false;
 
+	public Texture letterBoxTexture;
+
 	public float panDuration = 3;
 
-	private float panTime = -1f;
+	private float panTime = -1f, letterboxParam;
 	private bool panned = false;
 
 	public void FixedUpdate(){
@@ -25,6 +27,23 @@ public class ActiveDynamicCamera : Activatable {
 			if(deactivateOnReset){
 				base.setActivated(false);
 			}
+		}
+	}
+
+	void OnGUI() {
+		if (panned && letterboxParam < Mathf.PI / 4) {
+			letterboxParam += Mathf.PI / 8 * Time.deltaTime;
+		} else if (!panned && letterboxParam > 0) {
+			letterboxParam -= Mathf.PI / 8 * Time.deltaTime;
+		}
+		if (letterboxParam < 0)
+			letterboxParam = 0;
+		if (letterboxParam > Mathf.PI / 4)
+			letterboxParam = Mathf.PI / 4;
+		if (letterboxParam > 0) {
+			GUI.enabled = true;
+			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height / 5.0f * Mathf.Sin(letterboxParam)), letterBoxTexture);
+			GUI.DrawTexture(new Rect(0, Screen.height - (Screen.height / 5.0f * Mathf.Sin(letterboxParam)), Screen.width, Screen.height / 5.0f), letterBoxTexture);
 		}
 	}
 
