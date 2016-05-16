@@ -6,9 +6,11 @@ public class MobilePlatform : ActiveInteractable {
 	public float acceleration = 1.5f;
 	public float decelleration = 15f;
 	public float maxSpeed = 8f;
-	bool controlled = false;
-	bool respawnFlag = false;
+	public bool controlled = false;
+    public float vol;
+    bool respawnFlag = false;
 	Vector3 startPos;
+    public ParticleSystem particle1, particle2;
 
 	private float colliderHeight, colliderWidth, colliderDepth;
 
@@ -21,7 +23,12 @@ public class MobilePlatform : ActiveInteractable {
 
 	private Rect rect;
 
-	void Start() {
+    private AudioSource audio;
+
+    ParticleSystem.EmissionModule em1, em2;
+
+    void Start() {
+        vol = 1f;
 		StartSetup();
 		colCheck = new CollisionChecker (GetComponent<Collider> ());
 		colCheck.precision = 3;
@@ -31,8 +38,11 @@ public class MobilePlatform : ActiveInteractable {
 		rect = GetComponent<BoundObject>().GetBounds();
 		CameraController.instance.TransitionCompleteEvent += checkBreak;
 		startPos = transform.position;
-		//transform.parent = null;
-	}
+        audio = GetComponent<AudioSource>();
+        em1 = particle1.emission;
+        em2 = particle2.emission;
+        //transform.parent = null;
+    }
 
 	void FixedUpdate () {
 		base.FixedUpdateLogic();
@@ -47,7 +57,9 @@ public class MobilePlatform : ActiveInteractable {
 		} else {
 			range = GetComponent<Collider>().bounds.size.y + 1f;
 		}
-	}
+        adjustSound();
+        toggleParticles();
+    }
 
 	void LateUpdate() {
 		LateUpdateLogic();
@@ -201,4 +213,40 @@ public class MobilePlatform : ActiveInteractable {
 		//this.transform.parent.gameObject.transform.position.y;
 		return startPos.y;
 	}
+
+    private void adjustSound()
+    {
+        if (controlled)
+        {
+            if (audio.volume < vol)
+            {
+                audio.volume += Time.deltaTime*2f;
+                if (audio.volume > vol)
+                    audio.volume = vol;
+            }
+        }
+        else
+        {
+            if (audio.volume > 0)
+            {
+                audio.volume -= Time.deltaTime *2f;
+                if (audio.volume < 0)
+                    audio.volume = 0;
+            }
+        }
+    }
+
+    private void toggleParticles()
+    {
+        if (controlled)
+        {
+            em1.enabled = true;
+            em2.enabled = true;
+        }
+        else
+        {
+            em1.enabled = false;
+            em2.enabled = false;
+        }
+    }
 }

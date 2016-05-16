@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0eae766198e2c4a9b62a96556eacb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &11485514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20da31d6a39a1ff44918be501385dc6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   brokenIceSpawnPoint: {fileID: 175256}
   brokenIce: {fileID: 135632, guid: 867ea09c9ab7d344e89e49ee31c928cf, type: 2}
   spawnCircle: {fileID: 192810, guid: 56bd08185db206041a18788a73dc5111, type: 2}
@@ -281,6 +283,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -523,7 +523,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 692c706a41908bb44af1838e0042db82, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.466
+  m_Volume: 0.213
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -540,25 +540,25 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0.18059203
-      value: 0.9945
+    - time: 0.16193531
+      value: 0.99999994
       inSlope: -6.0386314
       outSlope: -6.0386314
       tangentMode: 0
-    - time: 0.3318117
-      value: 0.49178162
+    - time: 0.32061768
+      value: 0.4697816
       inSlope: -1.5096579
       outSlope: -1.5096579
       tangentMode: 0
     - time: 0.59253645
-      value: 0.19974136
+      value: 0.15574136
       inSlope: -0.37741446
       outSlope: -0.37741446
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: -0.16573295
-      outSlope: -0.16573295
+      inSlope: 0.098266676
+      outSlope: 0.098266676
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -675,10 +675,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f95b62bab28154f867bad64d340f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invisible: 0
   myName: is-b
   destName: i6
   sceneName: 
   crystalRequirement: 0
+  teleportOffset: {x: 0, y: 3, z: 0}
   warpSound: {fileID: 199984, guid: 3138cae622bba4d42a8e7965e7c5bd87, type: 2}
 --- !u!114 &11487358
 MonoBehaviour:
@@ -6887,6 +6889,46 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.213
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0.16193531
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0.4697816
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.32061768
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].value
+      value: 0.15574136
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[2].time
+      value: 0.59253645
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].inSlope
+      value: 0.098266676
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[3].outSlope
+      value: 0.098266676
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 0.99999994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
