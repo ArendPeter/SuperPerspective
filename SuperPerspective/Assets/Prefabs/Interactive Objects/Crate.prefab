@@ -183,7 +183,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0eae766198e2c4a9b62a96556eacb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &11459430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd00909b74cfb3a44a145ff65e6230e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreYDistance: 1
+  invisible: 0
   brokenCrateSpawnPoint: {fileID: 171504}
   brokenCrate: {fileID: 108994, guid: bf8271f8c1d36f146b7531b99c96d1ad, type: 2}
   spawnCircle: {fileID: 192810, guid: 56bd08185db206041a18788a73dc5111, type: 2}
@@ -299,7 +300,7 @@ Prefab:
         type: 2}
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: BypassReverbZones

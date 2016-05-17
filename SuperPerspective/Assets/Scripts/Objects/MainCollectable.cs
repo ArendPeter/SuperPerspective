@@ -10,6 +10,7 @@ public class MainCollectable : MonoBehaviour {
 	bool consumed = false;
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
+    public GameObject sound;
 
 	void FixedUpdate() {
 		if (active)
@@ -75,6 +76,6 @@ public class MainCollectable : MonoBehaviour {
     //Plays SFX upon pickup -Nick
     private void playSFX()
     {
-        GetComponent<AudioSource>().Play();
+        Instantiate(sound);
     }
 }
