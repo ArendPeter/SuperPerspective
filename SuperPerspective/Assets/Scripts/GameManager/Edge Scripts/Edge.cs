@@ -31,6 +31,8 @@ public class Edge : MonoBehaviour {
 	float hangThresh = 35;//time to wait till player can climb
 	float hangCounter = 0.0f;
 
+	public float edgeDropEpsilon = .1f;
+
 	public void FixedUpdate(){
 		if(!init)
 			return;
@@ -110,10 +112,10 @@ public class Edge : MonoBehaviour {
 
 	public bool ReleaseButtonDown(){
 		switch(or){
-		case 0: return (InputManager.instance.GetForwardMovement() > 0); break;
-		case 1: return (InputManager.instance.GetSideMovement() < 0); break;
-		case 2: return (InputManager.instance.GetForwardMovement() < 0); break;
-		case 3: return (InputManager.instance.GetSideMovement() > 0); break;
+		case 0: return (InputManager.instance.GetForwardMovement() > edgeDropEpsilon); break;
+		case 1: return (InputManager.instance.GetSideMovement() < -edgeDropEpsilon); break;
+		case 2: return (InputManager.instance.GetForwardMovement() < -edgeDropEpsilon); break;
+		case 3: return (InputManager.instance.GetSideMovement() > edgeDropEpsilon); break;
 		default: return false;
 		}
 	}

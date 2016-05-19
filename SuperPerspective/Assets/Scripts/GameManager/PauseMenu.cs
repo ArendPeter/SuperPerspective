@@ -9,20 +9,20 @@ public class PauseMenu : MonoBehaviour {
 	float menuAlpha = 0f;
 	Canvas menu;
 	float fadeTime = .3f;
-	
+
 	void Awake(){
 		if(instance == null)
 			instance = this;
 		else if(instance != this)
 			Destroy(instance);
 	}
-	
+
 	//init settings
 	void Start () {
 		//Find menu
 		menu = transform.GetChild(0).GetComponent<Canvas>();
 	}
-	
+
 	//called every frame
 	void Update () {
 		//enable/disable canvas component
@@ -32,8 +32,18 @@ public class PauseMenu : MonoBehaviour {
 		menuAlpha = Mathf.Clamp(menuAlpha,0f,1f);
 		menu.GetComponent<CanvasGroup>().alpha = menuAlpha;
 	}
-	
+
 	public void UpdateMenuVisible(bool visible){
 		menuVisible = visible;
+	}
+
+	public void returnToHUB()	{
+			ResetController.LoadScene("Hub");
+			TransitionManager.instance.MovePlayerToDoor(PlayerController.instance.GetComponent<PlayerController>(),
+				"hub-tutorial-start");
+	}
+
+	public void quitGame(){
+		Application.Quit();
 	}
 }

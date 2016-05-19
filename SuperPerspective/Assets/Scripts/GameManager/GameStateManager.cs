@@ -135,7 +135,8 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
-	private void HandlePausePressed(){
+	//must be public so it can be called from continue button
+	public void HandlePausePressed(){
 		switch(currentState){
 			case ViewType.MENU:
 				if(previousState != null)

@@ -8,7 +8,7 @@ public class DoorManager : MonoBehaviour {
 
 	public static DoorManager instance;
 
-	Dictionary<string,Door> doors = 
+	Dictionary<string,Door> doors =
 		new Dictionary<string,Door>();
 
 	void Awake(){
@@ -17,7 +17,7 @@ public class DoorManager : MonoBehaviour {
 		else if(instance != this)
 			Destroy(instance);
 	}
-	
+
 	void Start () {
 		//fill up doors
 		Door[] doorList = RefreshDoorList();
