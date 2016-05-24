@@ -626,7 +626,8 @@ public class PlayerController : PhysicalObject{
 	public void Teleport(Vector3 newPos){
 		transform.position = newPos;
 		gameObject.GetComponent<BoundObject>().updateBounds();
-		DropOrb();
+        gameObject.GetComponent<BoundsVisualizer>().updateBounds();
+        DropOrb();
 	}
 
 	public Vector3 GetVelocity(){ return velocity; }
