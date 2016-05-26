@@ -60,6 +60,19 @@ public class Door : ActiveInteractable {
 		}else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement){
 			player.GetComponent<PlayerController>().Teleport(
 				destDoor.GetComponent<Collider>().bounds.center + teleportOffset);
+
+			// Saving level progress
+			string level = Application.loadedLevelName;
+			string doorsFound = PlayerPrefs.GetString(level);
+			if (doorsFound.Equals("")) {
+				doorsFound += destDoor.getName();
+				PlayerPrefs.SetString(level, doorsFound);
+				PlayerPrefs.Save();
+			} else if (!doorsFound.Contains(destDoor.getName())) {
+				doorsFound += "," + destDoor.getName();
+				PlayerPrefs.SetString(level, doorsFound);
+				PlayerPrefs.Save();
+			}
 		}else{
 			Debug.Log("Door not linked");
 		}
