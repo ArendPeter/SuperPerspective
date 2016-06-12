@@ -29,6 +29,7 @@ public class ResetController : MonoBehaviour {
 		EdgeManager.Destroy(EdgeManager.instance);
 		PauseMenu.Destroy(PauseMenu.instance);
 		TransitionManager.Destroy(TransitionManager.instance);
+		GameStateManager.Destroy(GameStateManager.instance);
 		Application.LoadLevel(scene);
 	}
 
@@ -43,6 +44,7 @@ public class ResetController : MonoBehaviour {
 		EdgeManager.Destroy(EdgeManager.instance);
 		PauseMenu.Destroy(PauseMenu.instance);
 		TransitionManager.Destroy(TransitionManager.instance);
+		GameStateManager.Destroy(GameStateManager.instance);
 		Application.LoadLevel(Application.loadedLevel);
 	}
 }

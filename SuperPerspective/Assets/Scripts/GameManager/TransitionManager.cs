@@ -9,8 +9,6 @@ public class TransitionManager : MonoBehaviour {
 	static string toDoor;
 
 	void Awake(){
-		Object.DontDestroyOnLoad(this);
-
 		if(instance == null)
 			instance = this;
 		else if(instance != this)
@@ -21,7 +19,6 @@ public class TransitionManager : MonoBehaviour {
 	void FixedUpdate() {
 		if (move) {
 			PlayerController player = PlayerController.instance;
-			Debug.Log(DoorManager.instance.getDoor(toDoor));
 			Vector3 movePos = DoorManager.instance.getDoor(toDoor).gameObject.transform.position + Vector3.up * 2;
 			player.transform.position = movePos;
 			move = false;
