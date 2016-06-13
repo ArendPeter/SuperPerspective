@@ -14,6 +14,8 @@ public class PushSwitchOld : MonoBehaviour {
     public Rect parentPlatform;
 	Collider pusher = null;
 
+    public GameObject p1, p2;
+
 	void Start() {
 		collisions = new ArrayList();
 	}
@@ -62,16 +64,20 @@ public class PushSwitchOld : MonoBehaviour {
 
     public void EnterCollisionWithGeneral(GameObject other){
 		pushed = true;//becomes pushed when it collides with player
-		//pusher = other.GetComponent<Collider> ();
-		//pushed is also updated for all activatable objects
-		foreach(Activatable o in triggers)
+        p1.SetActive(false);
+        p2.SetActive(false);
+        //pusher = other.GetComponent<Collider> ();
+        //pushed is also updated for all activatable objects
+        foreach (Activatable o in triggers)
 			o.setActivated(pushed);
 	}
 
 	public void ExitCollisionWithGeneral(GameObject other){
 		pushed = false;//becomes pushed when it collides with player
-		//pushed is also updated for all activatable objects
-		foreach(Activatable o in triggers)
+        p1.SetActive(true);
+        p2.SetActive(true);
+        //pushed is also updated for all activatable objects
+        foreach (Activatable o in triggers)
 			o.setActivated(pushed);
 	}
 }
