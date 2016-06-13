@@ -6,7 +6,8 @@ public class EarControl : MonoBehaviour {
 	float setRot = 0;
 	float rt = 0;
 	float rotSpeed = 6;
-	GameObject lEar, rEar, earGlow;
+    GameObject lEar, rEar;
+    public GameObject earGlow;
 	PlayerController player;
 
 	// Use this for initialization
