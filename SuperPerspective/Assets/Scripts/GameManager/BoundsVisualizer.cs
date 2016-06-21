@@ -4,8 +4,8 @@ using System.Collections;
 public class BoundsVisualizer : MonoBehaviour
 {
 
-    public GameObject zLeft, zRight, xFront, xBack;
-    public GameObject[] demBoiz;
+    public GameObject zLeft, zRight, xFront, xBack, xFront2D, xBack2D;
+    public GameObject[] demBoiz, moBoiz;
     float xx, yy, zz, distanceModifier, padding = 1;
     public BoundObject bObj;
     Rect bRect;
@@ -22,6 +22,7 @@ public class BoundsVisualizer : MonoBehaviour
     {
         updateBounds();//This ensures that GetBounds returns values after they've been set
         demBoiz = new GameObject[]{ zLeft, zRight, xFront, xBack };
+        moBoiz = new GameObject[] { xFront2D, xBack2D };
         started = true;
     }
 	// Update is called once per frame
@@ -48,6 +49,21 @@ public class BoundsVisualizer : MonoBehaviour
             else
             {
                 temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 0);
+            }
+
+            if (i < moBoiz.Length)
+            {
+                temp = moBoiz[i].GetComponent<SpriteRenderer>();
+
+                if (GameStateManager.is2D())
+                {
+                    distanceModifier = (2f - Mathf.Min(2f, Vector3.Distance(moBoiz[i].transform.position, gameObject.transform.position))) / 2f;
+                    temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, distanceModifier);
+                }
+                else
+                {
+                    temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 0);
+                }
             }
         }
     }
@@ -82,6 +98,7 @@ public class BoundsVisualizer : MonoBehaviour
         yy = gameObject.transform.position.y;
         zz = gameObject.transform.position.z;
         xFront.transform.position = new Vector3(xx, yy, zz);
+        xFront2D.transform.position = new Vector3(xx, yy, zz);
     }
 
     void UpdateXBack()
@@ -90,5 +107,6 @@ public class BoundsVisualizer : MonoBehaviour
         yy = gameObject.transform.position.y;
         zz = gameObject.transform.position.z;
         xBack.transform.position = new Vector3(xx, yy, zz);
+        xBack2D.transform.position = new Vector3(xx, yy, zz);
     }
 }
