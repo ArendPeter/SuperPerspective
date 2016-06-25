@@ -31,6 +31,13 @@ public class Door : ActiveInteractable {
         range = 3;
 	}
 
+	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
+		Door dest = DoorManager.instance.getDoor(doorName);
+		p.Teleport(
+			dest.GetComponent<Collider>().bounds.center + dest.teleportOffset);
+		Instantiate(dest.warpSound);
+	}
+
 	public override float GetDistance() {
 		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
 			return Vector3.Distance(transform.position, player.transform.position);
@@ -64,14 +71,16 @@ public class Door : ActiveInteractable {
 			// Saving level progress
 			string level = Application.loadedLevelName;
 			string doorsFound = PlayerPrefs.GetString(level);
-			if (doorsFound.Equals("")) {
-				doorsFound += destDoor.getName();
-				PlayerPrefs.SetString(level, doorsFound);
-				PlayerPrefs.Save();
-			} else if (!doorsFound.Contains(destDoor.getName())) {
-				doorsFound += "," + destDoor.getName();
-				PlayerPrefs.SetString(level, doorsFound);
-				PlayerPrefs.Save();
+			if (destName.Contains("start")) {
+				if (doorsFound.Equals("")) {
+					doorsFound += destDoor.getName();
+					PlayerPrefs.SetString(level, doorsFound);
+					PlayerPrefs.Save();
+				} else if (!doorsFound.Contains(destDoor.getName())) {
+					doorsFound += "," + destDoor.getName();
+					PlayerPrefs.SetString(level, doorsFound);
+					PlayerPrefs.Save();
+				}
 			}
 		}else{
 			Debug.Log("Door not linked");
