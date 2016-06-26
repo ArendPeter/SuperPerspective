@@ -90,6 +90,11 @@ public class InputManager : MonoBehaviour{
 		if(previousForwardMovement != 1 && GetForwardMovement() == 1)
 			RaiseEvent(ForwardMovementEvent);
 
+		// TEMPORARY
+		if (Input.GetKeyDown(KeyCode.Backspace)) {
+			PlayerPrefs.DeleteAll();
+		}
+
 		previousForwardMovement = GetForwardMovement();
 	}
 

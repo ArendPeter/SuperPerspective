@@ -12,6 +12,17 @@ public class MainCollectable : MonoBehaviour {
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
     public GameObject sound;
 
+	private string uid;
+
+	void Start() {
+		uid = transform.position.x + "" + transform.position.y + "" + transform.position.z;
+		if (PlayerPrefs.HasKey(uid)) {
+			active = false;
+			consumed = true;
+			gameObject.SetActive(false);
+		}
+	}
+
 	void FixedUpdate() {
 		if (active)
 			GetComponentInChildren<Renderer>().transform.Rotate(Vector3.up, Mathf.PI / 4, Space.World);
@@ -57,6 +68,14 @@ public class MainCollectable : MonoBehaviour {
 		if(active && intersect){
 			active = false;
             playSFX();
+			// Flag the collectable as collected
+			PlayerPrefs.SetInt(uid, 1);
+			// Update saved value for collectableHeld
+			if (PlayerPrefs.HasKey("CollectableHeld")) {
+				PlayerPrefs.SetInt("CollectableHeld", 1);
+			} else {
+				PlayerPrefs.SetInt("CollectableHeld", PlayerPrefs.GetInt("CollectableHeld") + 1);
+			}
         }
 	}
 

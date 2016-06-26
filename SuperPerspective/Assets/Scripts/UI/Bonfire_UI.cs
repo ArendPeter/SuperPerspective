@@ -22,11 +22,13 @@ public class Bonfire_UI : MonoBehaviour {
 
     //TODO
     //Hey Peter, use this to tell which island to send the player to
-    private int choice;
+    public int choice;
 
     //TODO
     //Hey Peter, use this to tell when to send the player to an island
     public bool teleportFlag;
+
+	private bool readyForInput = false, active = false;
 
     //Used to make my life easier, hooray
     private float x, y, z;
@@ -57,6 +59,7 @@ public class Bonfire_UI : MonoBehaviour {
     public void ToggleOn()
     {
         all.SetActive(true);
+		active = true;
     }
 
     //TODO
@@ -64,11 +67,13 @@ public class Bonfire_UI : MonoBehaviour {
     public void ToggleOff()
     {
         all.SetActive(false);
+		active = false;
+		readyForInput = false;
     }
 
     private void checkInput()
     {
-        if (!teleportFlag) {
+		if (!teleportFlag && readyForInput) {
             if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
             {
                 teleportFlag = true;
@@ -86,6 +91,9 @@ public class Bonfire_UI : MonoBehaviour {
                 moveSelect();
             }
         }
+		if (active && !readyForInput) {
+			readyForInput = true;
+		}
     }
 
     private void moveUp ()
