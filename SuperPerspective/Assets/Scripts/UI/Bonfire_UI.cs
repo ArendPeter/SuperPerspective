@@ -12,6 +12,8 @@ public class Bonfire_UI : MonoBehaviour {
     public Sprite[] pictures;
     public Sprite noPic;
 
+    public int maxIsle;
+
     public Color standardCol, selectedCol;
 
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
@@ -25,8 +27,9 @@ public class Bonfire_UI : MonoBehaviour {
     public int choice;
 
     //TODO
-    //Hey Peter, use this to tell when to send the player to an island
-    public bool teleportFlag;
+    //Hey Peter, use teleportFlag to tell when to send the player to an island
+    //Hey Peter, use closeFlag to tell when to back out of the UI. Set it back to false when you're done.
+    public bool teleportFlag, closeFlag;
 
 	private bool readyForInput = false, active = false;
 
@@ -47,6 +50,8 @@ public class Bonfire_UI : MonoBehaviour {
         Debug.Log(maxChoice);
         disableExtraChoices();
         ToggleOff();
+        maxIsle = 0;
+        closeFlag = false;
     }
 	
 	// Update is called once per frame
@@ -173,7 +178,14 @@ public class Bonfire_UI : MonoBehaviour {
 
     public void exit()
     {
+        closeFlag = true;
         reset();
         ToggleOff();
+    }
+
+    //TODO Peter update this whenever new island is reached
+    public void updateMaxIsle(int newMax)
+    {
+        maxIsle = newMax;
     }
 }
