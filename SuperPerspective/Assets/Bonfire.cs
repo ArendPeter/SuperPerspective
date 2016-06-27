@@ -21,14 +21,6 @@ public class Bonfire : ActiveInteractable {
 		range = 1.5f;
 	}
 
-	public override float GetDistance() {
-		if (GameStateManager.is3D())
-			return Vector3.Distance(transform.position, player.transform.position);
-		else
-			return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
-				new Vector2(transform.position.x, transform.position.y));
-	}
-
 	void Update() {
 		if (active) {
 			if (bonfireUI.teleportFlag) {
@@ -36,7 +28,7 @@ public class Bonfire : ActiveInteractable {
 					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice]);
 				bonfireUI.ToggleOff();
 				bonfireUI.teleportFlag = false;
-				active = false;
+				active = true;
 			}
 		}
 	}
