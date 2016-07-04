@@ -38,6 +38,8 @@ public class GameStateManager : MonoBehaviour
 	public event System.Action PerspectiveShiftSuccessEvent;
 	public event System.Action PerspectiveShiftFailEvent;
 
+    public Pause_UI pause_UI;
+
 	#endregion Properties & Variables
 
 	#region Initialization
@@ -141,13 +143,16 @@ public class GameStateManager : MonoBehaviour
 			case ViewType.MENU:
 				if(previousState != null)
 					EnterState(previousState);
-				break;
+                pause_UI.isPaused = false;
+                break;
 			case ViewType.PAUSE_MENU:
 				EnterState(previousState);
-				break;
+                pause_UI.isPaused = false;
+                break;
 			default:
 				EnterState(ViewType.PAUSE_MENU);
-				break;
+                pause_UI.isPaused = true;
+                break;
 		}
 	}
 
