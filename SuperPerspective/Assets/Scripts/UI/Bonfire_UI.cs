@@ -217,7 +217,7 @@ public class Bonfire_UI : MonoBehaviour {
 
     public void exit()
     {
-        closeFlag = true;
+        closeFlag = false;
         reset();
         ToggleOff();
     }
