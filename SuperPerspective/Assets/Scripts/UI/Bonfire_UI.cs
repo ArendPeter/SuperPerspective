@@ -4,15 +4,17 @@ using System.Collections;
 
 public class Bonfire_UI : MonoBehaviour {
 
-    public GameObject all, selection;
+    public GameObject all, selection, locked, back;
     public Image previewPic;
 
     public GameObject[] choices;
     public Text[] text;
+    public Text backText;
     public Sprite[] pictures;
     public Sprite noPic;
 
-    public int maxIsle;
+    //Variable to be updated by Peter
+    public int maxIsle = 0;
 
     public Color standardCol, selectedCol;
 
@@ -47,10 +49,10 @@ public class Bonfire_UI : MonoBehaviour {
         select2 = KeyCode.Space;
         reset();
         teleportFlag = false;
-        Debug.Log(maxChoice);
+        //Debug.Log(maxChoice);
         disableExtraChoices();
+        //ToggleOn();
         ToggleOff();
-        maxIsle = 0;
         closeFlag = false;
     }
 	
@@ -81,8 +83,22 @@ public class Bonfire_UI : MonoBehaviour {
 		if (!teleportFlag && readyForInput) {
             if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
             {
-                teleportFlag = true;
-            }
+                if (choice == 10)
+                {
+                    closeFlag = true;
+                    active = false;
+                    readyForInput = false;
+                }
+                else if (choice > maxIsle)
+                {
+                    GetComponent<AudioSource>().Play();
+                }
+                else { 
+                    teleportFlag = true;
+                    active = false;
+                    readyForInput = false;
+                }
+        }
 
             else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2))
             {
@@ -103,10 +119,13 @@ public class Bonfire_UI : MonoBehaviour {
 
     private void moveUp ()
     {
-        if (choice > 0)
+        if (choice == 10)
+            choice = maxChoice - 1;
+        else if (choice > 0)
             choice--;
         else
-            choice = maxChoice - 1;
+            choice = 10;
+            //choice = maxChoice - 1;
         //Debug.Log("Going up! Choice: " + choice);
     }
 
@@ -114,18 +133,30 @@ public class Bonfire_UI : MonoBehaviour {
     {
         if (choice < maxChoice -1)
             choice++;
-        else
+        else if (choice == 10)
             choice = 0;
+        else
+            choice = 10;
         //Debug.Log("Going down! Choice: " + choice);
     }
 
     private void moveSelect()
     {
         //Moves the transparent selection UI
-        x = selection.transform.position.x;
-        y = choices[choice].transform.position.y;
-        z = selection.transform.position.z;
-        vec = new Vector3(x, y, z);
+
+        if (choice == 10)
+        {
+            selection.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 32f);
+            backText.color = selectedCol;
+            vec = back.transform.position;
+        }
+        else
+        {
+            selection.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 50f);
+            backText.color = standardCol;
+            vec = choices[choice].transform.position;
+        }
+
         selection.transform.position = vec;
 
         //Sets the text colors
@@ -138,7 +169,7 @@ public class Bonfire_UI : MonoBehaviour {
                 {
                     previewPic.sprite = pictures[i];
                 }
-                else
+                else if (choice != 10)
                 {
                     previewPic.sprite = noPic;
                 }
@@ -147,6 +178,14 @@ public class Bonfire_UI : MonoBehaviour {
             {
                 text[i].color = standardCol;
             }
+        }
+
+        if (choice != 10)
+        {
+            if (choice > maxIsle)
+                locked.GetComponent<Image>().enabled = true;
+            else
+                locked.GetComponent<Image>().enabled = false;
         }
     }
 
