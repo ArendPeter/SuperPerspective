@@ -15,11 +15,14 @@ public class Door : ActiveInteractable {
 	public Vector3 teleportOffset = new Vector3(0,3,0);
     public GameObject warpSound;
 
+    private AdviceGiver AG;
+
     ListenerHandler l;
 
 	public void Awake(){
 		//update particle color
 		l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
+
 
 		/*ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
 		if(p != null){

@@ -8,7 +8,10 @@ public class DoorManager : MonoBehaviour {
 
 	public static DoorManager instance;
 
-	Dictionary<string,Door> doors =
+    public Door[] doorListView;
+
+
+    Dictionary<string,Door> doors =
 		new Dictionary<string,Door>();
 
 	void Awake(){
@@ -41,6 +44,7 @@ public class DoorManager : MonoBehaviour {
 				print("DoorManager : There are two doors named "+door.myName+". Please rename one of them");
 			}
 		}
+        doorListView = doorList;
 		return doorList;
 	}
 
