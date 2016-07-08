@@ -8,24 +8,32 @@ public class AdviceGiver : MonoBehaviour {
     public string[] nameArray = new string[50];
     public convoNode[] convoArray = new convoNode[50];
 
-    private textBoxScript textbox;
+    [SerializeField] private textBoxScript textbox;
 
     PlayerController pcont;
+    PlayerSpawnController pspawn;
 
 	// Use this for initialization
 	void Start () {
         textbox = GameObject.FindObjectOfType<textBoxScript>();
         pcont = this.GetComponent<PlayerController>();
+        pspawn = this.GetComponent<PlayerSpawnController>();
+        currentLoc = pspawn.startDoorName;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(textbox == null)
+        {
+            GameObject.FindObjectOfType<textBoxScript>();
+        }
         if (pcont.isDisabled() == false)
         {
             if (Input.GetKey(KeyCode.R))
             {
-                giveAdvice(System.Array.IndexOf(nameArray, currentLoc));
+                int temp = System.Array.IndexOf(nameArray, currentLoc);
+                print(temp);
+                giveAdvice(temp);
             }
         }
 
@@ -33,6 +41,6 @@ public class AdviceGiver : MonoBehaviour {
 
     public void giveAdvice(int ID)
     {
-        textbox.startConvo(convoArray[ID]);
+        textBoxScript.instance.startConvo(convoArray[ID]);
     }
 }
