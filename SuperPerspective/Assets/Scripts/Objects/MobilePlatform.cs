@@ -24,6 +24,7 @@ public class MobilePlatform : ActiveInteractable {
 	private Rect rect;
 
     private AudioSource audio;
+    public AudioSource breakSFX;
 
     ParticleSystem.EmissionModule em1, em2;
 
@@ -173,6 +174,7 @@ public class MobilePlatform : ActiveInteractable {
 				player.transform.parent = null;
 			}
 			respawnFlag = true;
+            breakSFX.Play();
 		}
 	}
 

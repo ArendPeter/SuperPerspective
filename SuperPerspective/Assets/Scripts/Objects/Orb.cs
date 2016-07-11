@@ -32,6 +32,8 @@ public class Orb : ActiveInteractable {
 
 	public Activatable[] triggers;//Activatable objects which this switch triggers
 
+    public AudioSource pickup, putdown, breakSFX;
+
 	void Start() {
 		base.StartSetup ();
 		range = 2f;
@@ -51,6 +53,7 @@ public class Orb : ActiveInteractable {
 		isHeld = true;
 		destObj = null;
 		initialApproach = true;
+        pickup.Play();
 	}
 
 	//Update
@@ -111,6 +114,7 @@ public class Orb : ActiveInteractable {
 		if(pos.y < breakingPoint ){
 			pos.y = breakingPoint;
 			SetVisible(false);
+            breakSFX.Play();
 		}
 	}
 
@@ -135,9 +139,10 @@ public class Orb : ActiveInteractable {
 		if(PlayerController.instance.isHoldingOrb(this)){
 			if(destObj != null){
 				destObj.ReleaseOrb();
-			}
+                putdown.Play();
+            }
 			destObj = null;
-		}
+        }
 	}
 
 	//convenience
@@ -216,7 +221,7 @@ public class Orb : ActiveInteractable {
 			destObj.ReleaseOrb();
 			destObj = null;
 		}
-	}
+    }
 
 	public void SetOutwardDropVector(Vector2 dropVector){
 		this.dropVector = dropVector;
