@@ -27,9 +27,9 @@ public class textBoxScript : MonoBehaviour {
 //Display Speed variables
 	public float textSpeed = 15f;
 	public float endLineBlinkSpeed = 1f;
-	private float resetTextSpeed;
-	private float tinyTimer = 1f;
-	private float resetTimer;
+	[SerializeField] private float resetTextSpeed;
+	[SerializeField] private float tinyTimer = 1f;
+	[SerializeField] private float resetTimer;
 
 //Keeps track of our cursor so we know where we are in the string.
 	private int horiIndex = 0;
@@ -65,7 +65,10 @@ public class textBoxScript : MonoBehaviour {
 		InputManager.instance.InteractPressedEvent += progressConv;
 		//start out disabled
 		disableBox();
-	}
+        //So these don't get overwritten later.
+        resetTimer = tinyTimer;
+        resetTextSpeed = textSpeed;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -132,7 +135,7 @@ public class textBoxScript : MonoBehaviour {
         else
         {
             convArray = currentNode.convoTextArray;
-            init();
+            reInit();
             enableBox();
         }
 	}
@@ -140,7 +143,8 @@ public class textBoxScript : MonoBehaviour {
 
 	public void endConvo()//Ends the conversation! Use this at the end of EVERYTHING.
 	{
-		showBox = false;
+        //textSpeed = resetTextSpeed;
+        showBox = false;
 		disableBox();
 	}
 	public void enableBox()//This enables the textbox so you can see it.
@@ -240,7 +244,7 @@ public class textBoxScript : MonoBehaviour {
         {
             text.text = text.text + charArray[horiIndex];
             horiIndex++;
-            if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
+            /*if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
             {
                 switch (charArray[horiIndex])
                 {
@@ -254,7 +258,7 @@ public class textBoxScript : MonoBehaviour {
                         vertIndex++;//Move down a line if we've hit the end.
                         break;
                 }
-            }
+            }*/
         }
     }
 
@@ -294,7 +298,7 @@ public class textBoxScript : MonoBehaviour {
 					//Create a character at the horizontal length
 					text.text = text.text + charArray[horiIndex];
 					horiIndex++;
-					if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
+					/*if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
 					{
 						switch (charArray[horiIndex])
 						{
@@ -308,7 +312,7 @@ public class textBoxScript : MonoBehaviour {
 								vertIndex++;//Move down a line if we've hit the end.
 								break;
 						}
-					}
+					}*/
 					tinyTimer = resetTimer;
 				}
 
