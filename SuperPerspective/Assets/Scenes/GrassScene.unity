@@ -1824,7 +1824,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481416, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 50
+      value: 51.06
       objectReference: {fileID: 0}
     - target: {fileID: 481416, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3372,6 +3372,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11464616, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_IsPrefabParent: 0
@@ -3385,7 +3389,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 165755413}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13a9b15d4186a431cabe109256ad2261, type: 3}
   m_Name: 
@@ -10680,6 +10684,12 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400012, guid: 74c8ff9310ecd7f4d9492373fc6975d0, type: 2}
   m_PrefabInternal: {fileID: 978091818}
+--- !u!114 &553149897 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11416762, guid: 389f1d37719b61a4ebbaf09a039017de,
+    type: 2}
+  m_PrefabInternal: {fileID: 1031238191}
+  m_Script: {fileID: 11500000, guid: 30945bc94c65c3944b3af5440de6b4de, type: 3}
 --- !u!1 &553531940
 GameObject:
   m_ObjectHideFlags: 0
@@ -17525,7 +17535,7 @@ Prefab:
     - target: {fileID: 11434690, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
       propertyPath: bonfireUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 553149897}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
   m_IsPrefabParent: 0
@@ -19489,7 +19499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 112632, guid: 389f1d37719b61a4ebbaf09a039017de, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 389f1d37719b61a4ebbaf09a039017de, type: 2}
@@ -23249,7 +23259,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1201451470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.9, y: 16, z: 301.8}
+  m_LocalPosition: {x: -69.5, y: 16, z: 301.8}
   m_LocalScale: {x: 1.1, y: 1, z: 1}
   m_Children:
   - {fileID: 326325828}
@@ -29529,7 +29539,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11431752, guid: 430d86602f41f3c48bc94ff45b62cbc2, type: 2}
       propertyPath: destName
-      value: hub-grass-start
+      value: g7-start
       objectReference: {fileID: 0}
     - target: {fileID: 11431752, guid: 430d86602f41f3c48bc94ff45b62cbc2, type: 2}
       propertyPath: sceneName
@@ -38429,6 +38439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6844c66e113ec7641bd12a7b89936e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorListView: []
 --- !u!114 &1903523699
 MonoBehaviour:
   m_ObjectHideFlags: 0
