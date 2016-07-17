@@ -26,7 +26,7 @@ public class Bonfire : ActiveInteractable {
 			if (bonfireUI.teleportFlag) {
 				if (foundDoors[bonfireUI.choice] != "")
 					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice]);
-				bonfireUI.ToggleOff();
+				bonfireUI.exit();
 				bonfireUI.teleportFlag = false;
 				active = true;
 			}
@@ -40,7 +40,7 @@ public class Bonfire : ActiveInteractable {
 	void Toggle(){
 		string level = Application.loadedLevelName;
 		foundDoors = PlayerPrefs.GetString(level).Split(',');
-		bonfireUI.maxChoice = foundDoors.Length;
+		bonfireUI.maxIsle = foundDoors.Length - 1;
 		if (!active) {
 			bonfireUI.ToggleOn();
 			active = true;
