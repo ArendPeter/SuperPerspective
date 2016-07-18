@@ -11,15 +11,18 @@ public class MainCollectable : MonoBehaviour {
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
     public GameObject sound;
+	static Color collectedColor = new Color(0.3f, 0.3f, 0.6f);
 
 	private string uid;
 
 	void Start() {
 		uid = transform.position.x + "" + transform.position.y + "" + transform.position.z;
 		if (PlayerPrefs.HasKey(uid)) {
-			active = false;
-			consumed = true;
-			gameObject.SetActive(false);
+			foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
+				rend.material.SetColor("_EmissionColor", collectedColor);
+			}
+			ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
+			ps.startColor = collectedColor;
 		}
 	}
 
