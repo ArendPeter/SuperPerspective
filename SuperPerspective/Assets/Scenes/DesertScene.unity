@@ -21008,7 +21008,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1207191501}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 411.5, y: -13, z: -42}
+  m_LocalPosition: {x: 499.5, y: -13, z: -42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1314836284}
@@ -31796,6 +31796,24 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 478288, guid: b63f11504197427448421c1386db5242, type: 2}
   m_PrefabInternal: {fileID: 1754732856}
+--- !u!1 &1895724159 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 180044, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+  m_PrefabInternal: {fileID: 842111337}
+--- !u!114 &1895724170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1895724159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a9b15d4186a431cabe109256ad2261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startAtDoor: 1
+  startDoorName: d8-start
+  teleportOffset: {x: 0, y: 5, z: 0}
 --- !u!1001 &1898965945
 Prefab:
   m_ObjectHideFlags: 0
