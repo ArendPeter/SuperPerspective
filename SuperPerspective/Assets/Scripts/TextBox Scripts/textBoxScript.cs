@@ -314,7 +314,8 @@ public class textBoxScript : MonoBehaviour {
 						}
 					}*/
 					tinyTimer = resetTimer;
-				}
+                    showEndLine = false;
+                }
 
 				else
 				{

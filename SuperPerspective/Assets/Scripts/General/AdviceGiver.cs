@@ -5,18 +5,19 @@ public class AdviceGiver : MonoBehaviour {
 
     public string currentLoc;//The text name of the island on which we currently reside.
 
-    //nameArray & convoArray are linked in size. Make sure they are the same. 
-    public string[] nameArray = new string[50];//We find the Index of the name in NameArray...
-    public convoNode[] convoArray = new convoNode[50];//And use it to load the ConvoNode in ConvoArray
+    //The convoArray is used to hold all of the convoNodes that will be added into the 
+    public convoNode[] convoArray = new convoNode[50];
+    private Hashtable htab = new Hashtable();
 
     //This will get the scene TextBox by itself.
-    [SerializeField] private textBoxScript textbox;
+    private textBoxScript textbox;
 
     //This is our player. We find it programmatically.
     PlayerController pcont;
 
     //This is our player spawner. We find it programmatically.
-    PlayerSpawnController pspawn;
+    [SerializeField]
+     PlayerSpawnController pspawn;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class AdviceGiver : MonoBehaviour {
         pcont = this.GetComponent<PlayerController>();
         pspawn = this.GetComponent<PlayerSpawnController>();
         currentLoc = pspawn.startDoorName;//We gotta figure out where we're starting, after all.
+        populateHashtable();
 	}
 	
 	// Update is called once per frame
@@ -34,18 +36,44 @@ public class AdviceGiver : MonoBehaviour {
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.T))
             {
-                int temp = System.Array.IndexOf(nameArray, currentLoc);
-                print(temp);
-                giveAdvice(temp);
+                giveAdvice(currentLoc);
             }
         }
 
 	}
 
-    public void giveAdvice(int ID)
+    public void populateHashtable()
     {
-        textBoxScript.instance.startConvo(convoArray[ID]);
+        foreach(convoNode i in convoArray)
+        {
+            htab.Add(i.name, i);
+            print(i.name+" added.");
+        }
+    }
+
+    public void giveAdvice(string ID)
+    {
+        
+        bool swap = false;
+        char[] chArr = ID.ToCharArray();
+        for (int i = 0; i<chArr.Length; i++)
+        {
+            if (chArr[i] == 'e')
+            {
+                if (chArr[i + 1] == 'n')
+                {
+                    if (chArr[i + 2] == 'd')
+                    {
+                        swap = true;
+                    }
+                }
+            }
+        }
+        if (swap) { ID = ID.Replace("end", "start");  }
+        print("result: " + ID);
+        
+        textBoxScript.instance.startConvo((convoNode)(htab[ID]));
     }
 }

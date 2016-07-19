@@ -68,7 +68,15 @@ public class Door : ActiveInteractable {
 				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
 			}
 		}else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement){
-			player.GetComponent<PlayerController>().Teleport(
+
+            if (AG == null)
+            {
+                AG = GameObject.FindObjectOfType<AdviceGiver>();
+            }
+            print("Teleport to " + destName);
+            AG.currentLoc = destName;
+
+            player.GetComponent<PlayerController>().Teleport(
 				destDoor.GetComponent<Collider>().bounds.center + teleportOffset);
 
 			// Saving level progress

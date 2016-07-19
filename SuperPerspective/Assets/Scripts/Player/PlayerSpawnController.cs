@@ -8,7 +8,9 @@ public class PlayerSpawnController : MonoBehaviour {
 	public Vector3 teleportOffset = new Vector3(0,5,0);
 	Door destDoor;
 
-	void Start () {
+    
+
+    void Start () {
 		destDoor = this.findDoor(startDoorName);
 		if(startAtDoor){
 			this.moveToDoor(destDoor);
@@ -22,7 +24,8 @@ public class PlayerSpawnController : MonoBehaviour {
 	//spawn player at door
 	public void moveToDoor(Door doorObject){
 		if(doorObject != null)
-			this.gameObject.GetComponent<PlayerController>().Teleport(
+
+            this.gameObject.GetComponent<PlayerController>().Teleport(
 				doorObject.transform.position + teleportOffset);
 	}
 
