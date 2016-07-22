@@ -11,7 +11,7 @@ public class MainCollectable : MonoBehaviour {
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
     public GameObject sound;
-	static Color collectedColor = new Color(0.3f, 0.3f, 0.6f);
+	static Color collectedColor = new Color(0.7f, 0.7f, 0.9f, 0.3f);
 
 	private string uid;
 
