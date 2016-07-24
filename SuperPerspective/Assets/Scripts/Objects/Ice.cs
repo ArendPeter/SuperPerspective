@@ -134,6 +134,7 @@ public class Ice : ActiveInteractable {
 				if(spawnCircle != null){
 					GameObject.Instantiate(spawnCircle, transform.position, Quaternion.identity);
 				}
+				GetComponent<LevelGeometry>().AdjustPosition(GameStateManager.instance.currentPerspective);
 				velocity = Vector3.zero;
 				respawnFlag = false;
 			}
