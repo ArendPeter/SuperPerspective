@@ -337,6 +337,9 @@ public class GameStateManager : MonoBehaviour
 				"to game objects which also have Camera components.");
 		bool dyIs2D = cam.orthographic;
 		bool curIs2D = (currentPerspective == PerspectiveType.p2D);
+
+		cam.transparencySortMode = TransparencySortMode.Orthographic;//
+
 		if(dyIs2D != curIs2D)
 			return;
 

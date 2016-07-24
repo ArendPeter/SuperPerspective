@@ -2952,7 +2952,6 @@ GameObject:
   - 114: {fileID: 11425672}
   - 114: {fileID: 11415094}
   - 114: {fileID: 11471126}
-  - 114: {fileID: 11464616}
   - 114: {fileID: 11446532}
   - 114: {fileID: 11406978}
   m_Layer: 2
@@ -8374,6 +8373,7 @@ MonoBehaviour:
   - {fileID: 11417412, guid: d766c5f6414d22342bf1b1a721212b8f, type: 2}
   - {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f, type: 2}
   - {fileID: 11417412, guid: 4597fb8da88837c4bba5f3fc6ba47f3b, type: 2}
+  pspawn: {fileID: 0}
 --- !u!114 &11412916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8663,20 +8663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d257f496f54086147bf253d1e1695c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11464616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180044}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a9b15d4186a431cabe109256ad2261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startAtDoor: 1
-  startDoorName: g2-start
-  teleportOffset: {x: 0, y: 5, z: 0}
 --- !u!114 &11466118
 MonoBehaviour:
   m_ObjectHideFlags: 1
