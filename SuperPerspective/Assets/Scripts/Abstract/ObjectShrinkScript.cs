@@ -6,6 +6,7 @@ public class ObjectShrinkScript : MonoBehaviour {
 	public float targetScale = 0.0001f;
 	public float destroySize = .01f;
 	public float shrinkSpeed = 1f;
+    public bool shouldDestroy = true;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,10 @@ public class ObjectShrinkScript : MonoBehaviour {
 		else{
 			transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), Time.deltaTime*shrinkSpeed);
 			if(transform.localScale.x < destroySize){
-				Destroy(gameObject);
+                if (shouldDestroy)
+                {
+                    Destroy(gameObject);
+                }
 			}
 		}
 	}
