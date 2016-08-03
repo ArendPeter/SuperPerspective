@@ -38,23 +38,28 @@ public class CrystalShard : MonoBehaviour
         if (transform.localScale != new Vector3(targetScale, targetScale, targetScale))
         {
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(targetScale, targetScale, targetScale), Time.deltaTime * shrinkSpeed);
-            if (transform.localScale.x < minimumSize)
+        }
+        if (transform.localScale.x < minimumSize)
+        {
+            if (holdTimer > 0)
             {
-                if (holdTimer > 0)
-                {
-                    holdTimer -= Time.deltaTime;
-                }
-                else
-                {
-                    shouldConverge = true;
-                }
-                if (transform.position != convergencePoint.transform.position && shouldConverge)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, convergencePoint.transform.position, ((convergeSpeed+ convergeAddMultiplier) * Time.deltaTime));
-                }
+                holdTimer -= Time.deltaTime;
+            }
+            else
+            {
+                shouldConverge = true;
+            }
+            if (transform.position != convergencePoint.transform.position && shouldConverge)
+            {
+                //transform.position = Vector3.MoveTowards(transform.position, convergencePoint.transform.position, ((convergeSpeed+ convergeAddMultiplier) * Time.deltaTime));
+                transform.position = Vector3.Lerp(transform.position, convergencePoint.transform.position, convergeSpeed);
+                convergeSpeed += convergeAddMultiplier;
+
             }
         }
-        
-        rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0, 0, 0), velocityDamper);
+        if (!shouldConverge)
+        {
+            rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(0, 0, 0), velocityDamper);
+        }
     }
 }

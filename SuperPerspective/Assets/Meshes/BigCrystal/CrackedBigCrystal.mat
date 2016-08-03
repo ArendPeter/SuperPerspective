@@ -6,13 +6,12 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: crystal
+  m_Name: CrackedBigCrystal
   m_Shader: {fileID: 4800000, guid: 6cdac19e45b358840aa5c32436bd4de1, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _DYNAMICEMISSIONLM_ON _EMISSION
-  m_LightmapFlags: 2
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -55,7 +54,7 @@ Material:
         first:
           name: _EmissionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 1f0d3b140a0611846bc66a039e3b5f86, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -101,7 +100,7 @@ Material:
       data:
         first:
           name: _DstBlend
-        second: 10
+        second: 0
       data:
         first:
           name: _Cutoff
@@ -113,11 +112,11 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 0
+        second: 1
       data:
         first:
           name: _Glossiness
-        second: 0.829
+        second: 0.664
       data:
         first:
           name: _BumpScale
@@ -137,11 +136,11 @@ Material:
       data:
         first:
           name: _Mode
-        second: 3
+        second: 0
       data:
         first:
           name: _Metallic
-        second: 0
+        second: 0.329
       data:
         first:
           name: _SliceAmount
@@ -149,21 +148,17 @@ Material:
       data:
         first:
           name: _EmissionAmount
-        second: 0.78
+        second: 1
       data:
         first:
           name: _DetailRange
-        second: 2
-      data:
-        first:
-          name: _FollowsScreen
-        second: 1
+        second: 4.21
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0.5374659, g: 0.16463022, b: 0.77205884, a: 0}
+        second: {r: 0.5588235, g: 0, b: 0.4740364, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0.30882353, g: 0.25205448, b: 0.25205448, a: 0.428}
+        second: {r: 1, g: 0.3602941, b: 0.9823531, a: 1}

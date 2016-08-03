@@ -6,13 +6,12 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: crystal
+  m_Name: DissolvablePedestal
   m_Shader: {fileID: 4800000, guid: 6cdac19e45b358840aa5c32436bd4de1, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _DYNAMICEMISSIONLM_ON _EMISSION
-  m_LightmapFlags: 2
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -20,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: f99f0186ad734804cb1f86d7d442ab48, type: 3}
+          m_Texture: {fileID: 2800000, guid: c506437bb0714d1429a4dee50cb8d4b6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -55,7 +54,7 @@ Material:
         first:
           name: _EmissionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 1f0d3b140a0611846bc66a039e3b5f86, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -83,14 +82,14 @@ Material:
         first:
           name: _SliceGuide
         second:
-          m_Texture: {fileID: 2800000, guid: 1f0d3b140a0611846bc66a039e3b5f86, type: 3}
+          m_Texture: {fileID: 2800000, guid: c506437bb0714d1429a4dee50cb8d4b6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _DetailMap
         second:
-          m_Texture: {fileID: 2800000, guid: 1f0d3b140a0611846bc66a039e3b5f86, type: 3}
+          m_Texture: {fileID: 2800000, guid: c506437bb0714d1429a4dee50cb8d4b6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -101,7 +100,7 @@ Material:
       data:
         first:
           name: _DstBlend
-        second: 10
+        second: 0
       data:
         first:
           name: _Cutoff
@@ -113,11 +112,11 @@ Material:
       data:
         first:
           name: _ZWrite
-        second: 0
+        second: 1
       data:
         first:
           name: _Glossiness
-        second: 0.829
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -137,7 +136,7 @@ Material:
       data:
         first:
           name: _Mode
-        second: 3
+        second: 0
       data:
         first:
           name: _Metallic
@@ -149,21 +148,21 @@ Material:
       data:
         first:
           name: _EmissionAmount
-        second: 0.78
+        second: 0.5
       data:
         first:
           name: _DetailRange
-        second: 2
+        second: 13.7
       data:
         first:
           name: _FollowsScreen
-        second: 1
+        second: 0
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0.5374659, g: 0.16463022, b: 0.77205884, a: 0}
+        second: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 1}
       data:
         first:
           name: _Color
-        second: {r: 0.30882353, g: 0.25205448, b: 0.25205448, a: 0.428}
+        second: {r: 1, g: 1, b: 1, a: 1}
