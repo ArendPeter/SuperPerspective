@@ -6,6 +6,7 @@ public class CrystalExplosionTrigger : MonoBehaviour {
     public bool shouldDissolveShield = false;
 
     private Renderer dissolveRenderer;
+    private Renderer wholeRenderer;
     public GameObject dissolveShield;
 
     public float dissolveAmount = 0;
@@ -27,6 +28,7 @@ public class CrystalExplosionTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
+        wholeRenderer = wholeCrystal.GetComponent<Renderer>();
         chargeLight.intensity = 0;
 	}
 	
@@ -41,6 +43,8 @@ public class CrystalExplosionTrigger : MonoBehaviour {
                 //Keep going
                 dissolveRenderer.material.SetFloat("_SliceAmount", dissolveAmount);
                 dissolveAmount += dissolveSpeed;
+                wholeRenderer.material.SetFloat("_DetailRange", 0);
+                wholeRenderer.material.SetFloat("_EmissionAmount", 1);
             }
             else
             {
@@ -54,6 +58,11 @@ public class CrystalExplosionTrigger : MonoBehaviour {
 
                 if(chargeAmount < chargeMax)
                 {
+                    if (chargeAmount > (chargeMax / 2))
+                    {
+                        wholeRenderer.material.SetFloat("_DetailRange", 2);
+                        wholeRenderer.material.SetFloat("_EmissionAmount", (chargeMax - chargeAmount));
+                    }
                     chargeAmount += chargeSpeed;
                     chargeLight.intensity = chargeAmount;
                 }

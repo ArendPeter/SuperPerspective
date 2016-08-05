@@ -42,15 +42,10 @@ Shader "Custom Shaders/DissolveShader" {
 		clip(tex2D(_SliceGuide, IN.uv_SliceGuide).rgb - _SliceAmount);
 		o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
 
-		float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
-		//screenUV *= float2(8, 6);
+		
 
-		if (_FollowsScreen > 0) {
-			o.Albedo *= tex2D(_DetailMap, screenUV).rgb * _DetailRange;
-		}
-		else {
-			//o.Albedo *= tex2D(_DetailMap, IN.uv_DetailMap).rgb *_DetailRange;
-		}
+		//if(_FollowsScreen > 0) {o.Albedo *= tex2D(_DetailMap, (IN.screenPos.xy / IN.screenPos.w)).rgb;}		
+		if(_FollowsScreen <= 0) {o.Albedo *= tex2D(_DetailMap, IN.uv_DetailMap).rgb *_DetailRange;}
 		
 		o.Emission = _EmissionColor.rgba * _EmissionAmount;
 
