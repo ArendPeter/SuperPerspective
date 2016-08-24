@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CrystalExplosionTrigger : MonoBehaviour {
+public class CrystalExplosionTrigger : ActiveInteractable {
 
     public bool shouldDissolveShield = false;
 
@@ -27,16 +27,27 @@ public class CrystalExplosionTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        StartSetup();
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
         wholeRenderer = wholeCrystal.GetComponent<Renderer>();
         chargeLight.intensity = 0;
 	}
 	
+    override public void Triggered()
+    {
+        shouldDissolveShield = true;
+    }
+
 	// Update is called once per frame
 	void Update () {
+        eventCheck();
+	}
+
+    void eventCheck()
+    {
         if (shouldDissolveShield)//Start Dissolving
         {
-            
+
             //If we aren't done yet
             if (dissolveAmount <= 1)
             {
@@ -50,13 +61,14 @@ public class CrystalExplosionTrigger : MonoBehaviour {
             {
                 //We're done and we don't need this thing any more.
                 Destroy(dissolveShield.gameObject);
+                shouldExplode = true;
             }
 
             //If we're done dissolving and we should start exploding, let's start exploding.
             if (shouldExplode)
             {
 
-                if(chargeAmount < chargeMax)
+                if (chargeAmount < chargeMax)
                 {
                     if (chargeAmount > (chargeMax / 2))
                     {
@@ -71,7 +83,7 @@ public class CrystalExplosionTrigger : MonoBehaviour {
                     wholeCrystal.SetActive(false);
                     brokeCrystal.SetActive(true);
 
-                    foreach(GenericDissolver i in dissArr)
+                    foreach (GenericDissolver i in dissArr)
                     {
                         i.shouldDissolveObject = true;
                         i.gameObject.transform.SetParent(null);
@@ -80,5 +92,5 @@ public class CrystalExplosionTrigger : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 }

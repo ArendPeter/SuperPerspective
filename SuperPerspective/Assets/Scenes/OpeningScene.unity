@@ -3936,6 +3936,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1161476269}
+--- !u!198 &1161726744 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19834376, guid: 278fe3ee306802243a78a1f64115beb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 2134378351}
 --- !u!1001 &1164417347
 Prefab:
   m_ObjectHideFlags: 0
@@ -7262,7 +7267,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418436, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418436, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
       propertyPath: m_LocalRotation.y
@@ -7274,7 +7279,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418436, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 418436, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
       propertyPath: m_RootOrder
@@ -7297,6 +7302,42 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11402552, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: dissolveSpeed
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 418436, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335194, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160208, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19880910, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: SubModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19880910, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: SubModule.subEmitterBirth1
+      value: 
+      objectReference: {fileID: 1161726744}
+    - target: {fileID: 6506000, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: m_Size.z
+      value: 13.821329
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506000, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: m_Center.z
+      value: 5.2244043
+      objectReference: {fileID: 0}
+    - target: {fileID: 11436238, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: dissolveSpeed
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485828, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
       propertyPath: dissolveSpeed
       value: 0.005
       objectReference: {fileID: 0}

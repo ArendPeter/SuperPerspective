@@ -75,12 +75,12 @@ public class ActiveInteractable : PhysicalObject {
 		float dist = GetDistance();
 
 		bool inRange = dist < range;
-
+        
 		bool playerFacing = isPlayerFacingObject();
-
-		bool inYRange = IsInYRange();
-
-		bool canTrigger =
+        
+        bool inYRange = IsInYRange();
+        print(inYRange);
+        bool canTrigger =
 			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
 
 		//checks for competing notifications (I think)
