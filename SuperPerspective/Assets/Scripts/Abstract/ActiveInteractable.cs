@@ -79,7 +79,7 @@ public class ActiveInteractable : PhysicalObject {
 		bool playerFacing = isPlayerFacingObject();
         
         bool inYRange = IsInYRange();
-        print(inYRange);
+
         bool canTrigger =
 			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
 
