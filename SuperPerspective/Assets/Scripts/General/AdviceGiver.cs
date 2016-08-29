@@ -49,7 +49,7 @@ public class AdviceGiver : MonoBehaviour {
         foreach(convoNode i in convoArray)
         {
             htab.Add(i.name, i);
-            print(i.name+" added.");
+            //print(i.name+" added.");
         }
     }
 

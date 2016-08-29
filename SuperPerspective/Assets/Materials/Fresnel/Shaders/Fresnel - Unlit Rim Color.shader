@@ -1,4 +1,6 @@
-﻿//Copyright (c) 2014 Kyle Halladay
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+//Copyright (c) 2014 Kyle Halladay
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -63,8 +65,8 @@ Shader "FresnelPack/Unlit Rim Color"
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = v.texcoord;
 
-				float3 posWorld = mul(_Object2World, v.vertex).xyz;
-				float3 normWorld = normalize(mul(_Object2World, float4(v.normal,0.0)).xyz);
+				float3 posWorld = mul(unity_ObjectToWorld, v.vertex).xyz;
+				float3 normWorld = normalize(mul(unity_ObjectToWorld, float4(v.normal,0.0)).xyz);
 
 				float3 I = posWorld - _WorldSpaceCameraPos.xyz;
 				o.reflectionFactor = _Scale * pow(1.0 + dot(normalize(I), normWorld), 1.4);

@@ -1,4 +1,6 @@
-﻿//Copyright (c) 2014 Kyle Halladay
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+//Copyright (c) 2014 Kyle Halladay
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -73,8 +75,8 @@ Shader "FresnelPack/Diffuse"
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = v.texcoord;
 
-				o.normWorld = normalize(mul(_Object2World, float4(v.normal,0.0)).xyz);
-				o.posWorld = mul(_Object2World, v.vertex);
+				o.normWorld = normalize(mul(unity_ObjectToWorld, float4(v.normal,0.0)).xyz);
+				o.posWorld = mul(unity_ObjectToWorld, v.vertex);
 				TRANSFER_VERTEX_TO_FRAGMENT(o);
 				o.lightDir = ObjSpaceLightDir(v.vertex);
 				
@@ -177,8 +179,8 @@ Shader "FresnelPack/Diffuse"
 				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = v.texcoord;
 
-				o.normWorld = normalize(mul(_Object2World, float4(v.normal,0.0)).xyz);
-				o.posWorld = mul(_Object2World, v.vertex);
+				o.normWorld = normalize(mul(unity_ObjectToWorld, float4(v.normal,0.0)).xyz);
+				o.posWorld = mul(unity_ObjectToWorld, v.vertex);
 				TRANSFER_VERTEX_TO_FRAGMENT(o);
 				o.lightDir = ObjSpaceLightDir(v.vertex);
 				
