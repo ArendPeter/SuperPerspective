@@ -8,9 +8,11 @@ public class StepManager : MonoBehaviour {
 
 	//init vars
 
-	AudioClip[] grassSteps, snowSteps, rockSteps, clothes, curClips;
+	AudioClip[] grassSteps, snowSteps, rockSteps, sandSteps, clothes, curClips;
 	AudioSource source;
     public AudioSource clothesSound;
+
+    bool sand;
 
     float stepTimer;
 
@@ -28,6 +30,11 @@ public class StepManager : MonoBehaviour {
         snowSteps[2] = Resources.Load("Sound/SFX/Player/Steps/Snow3") as AudioClip;
         snowSteps[3] = Resources.Load("Sound/SFX/Player/Steps/Snow4") as AudioClip;
 
+        sandSteps = new AudioClip[3];
+        sandSteps[0] = Resources.Load("Sound/SFX/Player/Steps/Sand1") as AudioClip;
+        sandSteps[1] = Resources.Load("Sound/SFX/Player/Steps/Sand2") as AudioClip;
+        sandSteps[2] = Resources.Load("Sound/SFX/Player/Steps/Sand3") as AudioClip;
+
         rockSteps = new AudioClip[4];
         rockSteps[0] = Resources.Load("Sound/SFX/Player/Steps/Hard1") as AudioClip;
         rockSteps[1] = Resources.Load("Sound/SFX/Player/Steps/Hard2") as AudioClip;
@@ -44,6 +51,8 @@ public class StepManager : MonoBehaviour {
 
         source = gameObject.GetComponent<AudioSource> ();
         clothesSound = GameObject.Find("ClothesSounds").GetComponent<AudioSource>();
+        sand = false;
+
     }
 	
 	// Update is called once per frame
@@ -57,18 +66,28 @@ public class StepManager : MonoBehaviour {
         if (type.gameObject.layer == LayerMask.NameToLayer("Grass"))
         {
             curClips = grassSteps;
+            sand = false;
             //Debug.Log("grass");
         }
 
         else if (type.gameObject.layer == LayerMask.NameToLayer("Snow"))
         {
             curClips = snowSteps;
+            sand = false;
+            //Debug.Log("snow");
+        }
+
+        else if (type.gameObject.layer == LayerMask.NameToLayer("Sand"))
+        {
+            curClips = sandSteps;
+            sand = true;
             //Debug.Log("snow");
         }
 
         else
         {
             curClips = rockSteps;
+            sand = false;
             //Debug.Log("rock");
         }
         //Debug.Log(curClips[0].name);
@@ -76,10 +95,13 @@ public class StepManager : MonoBehaviour {
 
     public void Step()
     {
-        source.clip = curClips[Random.Range(0, 4)];
+        source.clip = curClips[Random.Range(0, curClips.Length)];
         //Debug.Log(source.gameObject.name);
         source.pitch = Random.Range(0.95f, 1.05f);
-        source.volume = 0.1f;
+        if(sand)
+            source.volume = 0.05f;
+        else
+            source.volume = 0.1f;
         source.Play();
 
         ClothesRustle();
