@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Ice : ActiveInteractable {
 
+    GameObject kickSFX;
+
 	#pragma warning disable 219
 	private const float gravity = 1.5f;
 	private const float terminalVelocity = 60;
@@ -39,7 +41,8 @@ public class Ice : ActiveInteractable {
 	}
 
 	void Start() {
-		base.StartSetup ();
+
+        base.StartSetup ();
 		grounded = false;
 		startFalling = false;
 		velocity = Vector3.zero;
@@ -341,7 +344,8 @@ public class Ice : ActiveInteractable {
 	}
 	//Mathf.Abs(player.transform.position.x - transform.position.x) > colliderWidth / 2
 	public override void Triggered() {
-		Vector2 horizontalVelocity = new Vector2(velocity.x, velocity.z);
+        kickSFX = Instantiate(Resources.Load("Sound/IceKickSFX") as GameObject);
+        Vector2 horizontalVelocity = new Vector2(velocity.x, velocity.z);
 		if (horizontalVelocity.magnitude < epsilon) {
 			switch (GetQuadrant()) {
 				case Quadrant.xPlus:
