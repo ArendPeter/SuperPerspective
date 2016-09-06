@@ -12,6 +12,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     public float dissolveAmount = 0;
     public float dissolveSpeed = .05f;
 
+    //Used when the character decides to select "Yes."
+
     //Charges up a light then when it hits max, swaps from the whole Crystal to the broke Crystal, which then proceeds to explode everywhere.
     public bool shouldExplode = false;
     public Light chargeLight;
@@ -25,6 +27,10 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
     public GenericDissolver[] dissArr;
 
+    //Conversation variables
+    public startTextEvent startEvent;//Used to activate the TextBoxScript that plays the conversation.
+    public bool conversationEnded;//Used to show that the player has ended the conversation
+
 	// Use this for initialization
 	void Start () {
         StartSetup();
@@ -35,7 +41,14 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 	
     override public void Triggered()
     {
-        shouldDissolveShield = true;
+        if (conversationEnded == false)
+        {
+
+        }
+        else
+        {
+            shouldDissolveShield = true;
+        }
     }
 
 	// Update is called once per frame

@@ -6,7 +6,7 @@ public class PlayerSpawnController : MonoBehaviour {
 	public bool startAtDoor = false;
 	public string startDoorName;
 	public Vector3 teleportOffset = new Vector3(0,5,0);
-	Door destDoor;
+	[SerializeField] Door destDoor;
 
     
 
@@ -27,6 +27,10 @@ public class PlayerSpawnController : MonoBehaviour {
 
             this.gameObject.GetComponent<PlayerController>().Teleport(
 				doorObject.transform.position + teleportOffset);
+        if (doorObject.teleparticle != null)
+        {
+            doorObject.teleparticle.Emit(700);
+        }
 	}
 
 	public void moveToScene(string sceneName) {

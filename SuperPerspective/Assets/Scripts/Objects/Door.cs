@@ -7,7 +7,9 @@ public class Door : ActiveInteractable {
 	public string myName;
 	public string destName;
 	Door destDoor;
-	//public Color particleColor;
+    //public Color particleColor;
+
+    public ParticleSystem teleparticle;
 
 	public string sceneName;
 	public int crystalRequirement;
@@ -39,6 +41,10 @@ public class Door : ActiveInteractable {
 		p.Teleport(
 			dest.GetComponent<Collider>().bounds.center + dest.teleportOffset);
 		Instantiate(dest.warpSound);
+        if (dest.teleparticle != null)
+        {
+            dest.teleparticle.Emit(700);
+        }
 	}
 
 	public override float GetDistance() {

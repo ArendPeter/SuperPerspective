@@ -220,6 +220,12 @@ public class askBoxScript : MonoBehaviour {
                     break;
             }
         }
+        else if (currentNode.endEventArray[choiceID] != null)
+        {
+            currentNode.endEventArray[choiceID].eventTrigger();
+            disableBox();
+            showBox = false;
+        }
         else {
             disableBox();
             showBox = false;

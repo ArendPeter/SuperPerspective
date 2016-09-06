@@ -22,6 +22,8 @@ public class convoNode : MonoBehaviour {
     public string question;//The question we ponder the the answer to.
     public string[] endQuestionArray;//The Answers you want the question to ask at the end.
 
+    public textEvent[] endEventArray;//The Events you want to happen based on the answer to the question at the end.
+
 	// Use this for initialization
 	void Start () {
 	
