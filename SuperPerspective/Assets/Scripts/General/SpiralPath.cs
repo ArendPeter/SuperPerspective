@@ -3,26 +3,28 @@ using System.Collections;
 
 public class SpiralPath : MonoBehaviour {
 
-	private static float spiralRadiusThresh = 5;
-	private static float spiralMinApproachSpeed = 3;
-	private static float spiralVerticalSpeed = .8f;
-	private static float spiralHeight = 1;
-	public static float spiralMaxRotSpeed = 720;
+	private static float[] spiralRadiusThresh = new float[]{5f,5f};
+	private static float[] spiralMinApproachSpeed = new float[]{3f,3f};
+	private static float[] spiralVerticalSpeed = new float[]{.8f,.8f};
+	private static float[] spiralHeight = new float[]{1f,1f};
+	public static float[] spiralMaxRotSpeed = new float[]{720f,200f};
+
 	private static float spiralAngle = -1f;
 	private static float spiralRadius = -1f;
 	private static float spiralRadialSpeed = -1f;
 	private static float spiralY = -1f;
 	private static float spiralRotSpeed = -1f;
 
-	public static Vector3 SpiralPositionTo(Vector3 curPos, Vector3 targetPos){
-		Vector3 initialTargetPos = targetPos + Vector3.down * spiralHeight;
+	public static Vector3 SpiralPositionTo(Vector3 curPos, Vector3 targetPos, bool t_isFinal){
+		int isFinal = (t_isFinal)? 1 : 0;
+		Vector3 initialTargetPos = targetPos + Vector3.down * spiralHeight[isFinal];
 		float dist2D = Vector2.Distance(
 			new Vector2(curPos.x, curPos.z),
 			new Vector2(initialTargetPos.x,initialTargetPos.z)
 		);
-		if(!SpiralAngleIsSet() && dist2D > spiralRadiusThresh){
+		if(!SpiralAngleIsSet() && dist2D > spiralRadiusThresh[isFinal]){
 			float dist = Vector3.Distance(curPos, initialTargetPos);
-			float speed = Mathf.Max(spiralMinApproachSpeed,(dist/spiralRadiusThresh) * spiralMinApproachSpeed);
+			float speed = Mathf.Max(spiralMinApproachSpeed[isFinal],(dist/spiralRadiusThresh[isFinal]) * spiralMinApproachSpeed[isFinal]);
 			return LerpPositionTo(curPos,initialTargetPos,speed);
 		}else{
 			//initialize
@@ -36,11 +38,11 @@ public class SpiralPath : MonoBehaviour {
 				spiralRadius = del2D.magnitude;
 				Vector3 temp_dir = targetPos - curPos;
 				spiralY = temp_dir.y;
-				spiralRadialSpeed = spiralRadius * spiralVerticalSpeed / spiralY;
+				spiralRadialSpeed = spiralRadius * spiralVerticalSpeed[isFinal] / spiralY;
 				spiralRotSpeed = 0f;
 			}else{
 				//update angle
-				spiralRotSpeed = Mathf.Min(spiralMaxRotSpeed,spiralRotSpeed+1500*Time.deltaTime);
+				spiralRotSpeed = Mathf.Min(spiralMaxRotSpeed[isFinal],spiralRotSpeed+1500*Time.deltaTime);
 				spiralAngle += spiralRotSpeed * Mathf.Deg2Rad * Time.deltaTime;
 				//update radius
 				if(Mathf.Abs(spiralRadius) < spiralRadialSpeed * Time.deltaTime){
@@ -51,7 +53,7 @@ public class SpiralPath : MonoBehaviour {
 					spiralRadius -= spiralRadialSpeed * Time.deltaTime;
 				}
 				//update y
-				spiralY -= spiralVerticalSpeed * Time.deltaTime;
+				spiralY -= spiralVerticalSpeed[isFinal] * Time.deltaTime;
 			}
 			//update position
 			return new Vector3(

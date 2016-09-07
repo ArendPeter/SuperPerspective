@@ -85,7 +85,7 @@ public class Orb : ActiveInteractable {
 
 	private void SpiralToPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
-		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos);
+		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos,false);
 
 		if(targetPos == transform.position){
 			initialApproach = false;

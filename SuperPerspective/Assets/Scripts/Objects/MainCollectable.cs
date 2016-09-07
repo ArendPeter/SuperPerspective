@@ -5,6 +5,7 @@ public class MainCollectable : MonoBehaviour {
 
 	#pragma warning disable 472, 1692
 
+	public bool isFinalCollectable = false;
 	static int collectableHeld = 0;
 	bool active = true;
 	bool consumed = false;
@@ -12,6 +13,7 @@ public class MainCollectable : MonoBehaviour {
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
     public GameObject sound;
 	static Color collectedColor = new Color(0.3f, 0.3f, 0.9f, 0.3f);
+	public Activatable[] triggers;
 
 	private string uid;
 
@@ -83,8 +85,8 @@ public class MainCollectable : MonoBehaviour {
 	}
 
 	private void spiralToPlayer(){
-		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
-		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos);
+		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer*((isFinalCollectable)?1.5f:1);
+		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos, isFinalCollectable );
 		float dist = (transform.position - targetPos).magnitude;
 		if(dist < .01){
 			if(effectOnCollect != null){
@@ -92,6 +94,8 @@ public class MainCollectable : MonoBehaviour {
 			}
 			gameObject.SetActive(false);
 			consumed = true;
+			foreach(Activatable o in triggers)
+				o.setActivated(true);
 		}
 	}
 
