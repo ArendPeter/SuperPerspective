@@ -47,6 +47,10 @@ public class askBoxScript : MonoBehaviour {
 	public Text text;//Text that we use to display our cursor
     public Text qText;//Text which we use to display our actual QUESTION
 
+	//This is mainly for controller support to ensure that
+	//tapping up or down isn't registered twice
+	private bool verticalAxisReleased = false;
+
 	// Use this for initialization
 	void Start () {
 		resetTimer = tinyTimer;
@@ -114,13 +118,13 @@ public class askBoxScript : MonoBehaviour {
 
 		textbox.enabled = true;
 		text.enabled = true;
-        qText.enabled = true;
+    qText.enabled = true;
 
-        for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
-        {
-            textArray[i].enabled = true;
-        }
+    for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
+    {
+        textArray[i].enabled = true;
     }
+  }
 
 	public void disableBox()//This disables the textbox so that you can't see it.
 	{
@@ -251,16 +255,31 @@ public class askBoxScript : MonoBehaviour {
 			text.transform.position = new Vector3(textArray[choiceID].transform.position.x - 1, textArray[choiceID].transform.position.y, 0);
 			text.text = "○";
 
-			if (Input.GetKeyUp(KeyCode.Space))
+			if (Input.GetButtonDown("Jump"))
 			{
+				print("choice made");
 				makeChoice();
 			}
 
-			if (Input.GetKeyUp(KeyCode.UpArrow) && choiceID != 0)
+			bool upPressed = false, downPressed = false;
+			if(verticalAxisReleased){
+				if(Input.GetAxis("Vertical")==1){
+					upPressed = true;
+					verticalAxisReleased = false;
+				}
+				if(Input.GetAxis("Vertical")==-1){
+					downPressed = true;
+					verticalAxisReleased = false;
+				}
+			}else if(Input.GetAxis("Vertical") == 0){
+				verticalAxisReleased = true;
+			}
+
+			if (upPressed && choiceID != 0)
 			{
 				choiceID--;
 			}
-			if (Input.GetKeyUp(KeyCode.DownArrow) && choiceID < choiceArray.Length-1)
+			if (downPressed && choiceID < choiceArray.Length-1)
 			{
 				choiceID++;
 			}

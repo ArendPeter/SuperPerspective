@@ -5,9 +5,9 @@ public class SpiralPath : MonoBehaviour {
 
 	private static float[] spiralRadiusThresh = new float[]{5f,5f};
 	private static float[] spiralMinApproachSpeed = new float[]{3f,3f};
-	private static float[] spiralVerticalSpeed = new float[]{.8f,.8f};
+	private static float[] spiralVerticalSpeed = new float[]{.8f,.4f};
 	private static float[] spiralHeight = new float[]{1f,1f};
-	public static float[] spiralMaxRotSpeed = new float[]{720f,200f};
+	public static float[] spiralMaxRotSpeed = new float[]{720f,100f};
 
 	private static float spiralAngle = -1f;
 	private static float spiralRadius = -1f;

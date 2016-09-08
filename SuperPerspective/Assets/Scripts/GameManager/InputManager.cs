@@ -6,9 +6,9 @@ using System.Collections;
 ///     Also notifies listeners when the game's perspective changes.
 /// </summary>
 public class InputManager : MonoBehaviour{
-	
+
 	public static InputManager instance;
-	
+
 	//suppress warnings
 	#pragma warning disable 414
 
@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour{
 	public event System.Action BackwardMovementEvent;
 	public event System.Action ForwardMovementEvent;
 	public event System.Action DevConsoleEvent;
-	
+
 	// Game's pause state
 	private bool continuePressed = false;//used as an alternate way to unpause
 
@@ -36,9 +36,9 @@ public class InputManager : MonoBehaviour{
 	private const float FAIL_TIME = 0.5f;
 	private float flipTimer = 0;
 	private bool flipFailed = false;
-	
+
 	private float previousForwardMovement = 0;
-	
+
 	#endregion Properties & Variables
 
 	#region Monobehavior Implementation
@@ -55,45 +55,40 @@ public class InputManager : MonoBehaviour{
 	void Update () {
 		if(Input.GetButtonUp("DevConsoleToggle"))
 			RaiseEvent(DevConsoleEvent);
-		
-		if(Input.GetButtonDown("Interaction"))			
+
+		if(Input.GetButtonDown("Interaction"))
 			RaiseEvent(InteractPressedEvent);
-		
+
 		if(Input.GetButtonDown("Pause") || continuePressed){
 			RaiseEvent(PausePressedEvent);
 			continuePressed = false;
 		}
-		if(Input.GetButtonDown("Jump")) 					
+		if(Input.GetButtonDown("Jump"))
 			RaiseEvent(JumpPressedEvent);
-		
-		if(Input.GetButtonDown("Grab"))						
+
+		if(Input.GetButtonDown("Grab"))
 			RaiseEvent(GrabPressedEvent);
-		
-		if(Input.GetButtonDown("PerspectiveShift"))		
+
+		if(Input.GetButtonDown("PerspectiveShift"))
 			RaiseEvent(ShiftPressedEvent);
-		
-		if(Input.GetButtonDown("LeanLeft"))					
+
+		if(Input.GetButtonDown("LeanLeft"))
 			RaiseEvent(LeanLeftPressedEvent);
-		
-		if(Input.GetButtonDown("LeanRight"))				
+
+		if(Input.GetButtonDown("LeanRight"))
 			RaiseEvent(LeanRightPressedEvent);
-		
+
 		if(Input.GetButtonUp("LeanLeft"))
 			RaiseEvent(LeanLeftReleasedEvent);
-		
+
 		if(Input.GetButtonUp("LeanRight"))
 			RaiseEvent(LeanRightReleasedEvent);
-		
+
 		if(previousForwardMovement != -1 && GetForwardMovement() == -1)
 			RaiseEvent(BackwardMovementEvent);
-		
+
 		if(previousForwardMovement != 1 && GetForwardMovement() == 1)
 			RaiseEvent(ForwardMovementEvent);
-
-		// TEMPORARY
-		if (Input.GetKeyDown(KeyCode.Backspace)) {
-			PlayerPrefs.DeleteAll();
-		}
 
 		previousForwardMovement = GetForwardMovement();
 	}
@@ -103,7 +98,7 @@ public class InputManager : MonoBehaviour{
 
 	#region Public Interface
 
-	// Returns the player's movement on the horizontal axis in 2D and the vertical axis in 3D 
+	// Returns the player's movement on the horizontal axis in 2D and the vertical axis in 3D
 	public float GetForwardMovement(){
 		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
 			return Input.GetAxis("Vertical");
@@ -138,20 +133,20 @@ public class InputManager : MonoBehaviour{
 	public void SetFailFlag(){
 		flipFailed = true;
 	}
-	
+
 	#endregion Public Interface
 
 	#region Event Raising Functions
-	
+
 	private void RaiseEvent(System.Action gameEvent){
 		if(gameEvent != null)
 			gameEvent();
 	}
-	
+
 	public void ContinuePressed(){
 		continuePressed = true;
 	}
-	
+
 
 	#endregion Event Raising Functions
 }
