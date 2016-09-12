@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class startTextEvent : textEvent {
+public class startTextEvent : textEvent
+{
 
     //Event that starts a conversation in the textBoxScript.
 
-    public textBoxScript tb;
+    private textBoxScript tb;
     public convoNode myConversation;
 
     void Start()
     {
-        if (tb == null)
+        if (!(tb != null))
         {
-            GameObject.FindObjectOfType<textBoxScript>();
+           tb = GameObject.FindObjectOfType<textBoxScript>();
         }
     }
 
-	public void eventTrigger()
+	public override void eventTrigger()
     {
+        
         tb.startConvo(myConversation);
     }
 }

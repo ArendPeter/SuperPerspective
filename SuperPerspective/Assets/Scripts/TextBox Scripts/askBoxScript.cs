@@ -234,7 +234,11 @@ public class askBoxScript : MonoBehaviour {
             disableBox();
             showBox = false;
         }
-	}
+        if (currentNode.endEventArray[choiceID] != null)
+        {
+            currentNode.endEventArray[choiceID].eventTrigger();
+        }
+    }
 
 	public void deleteText(){
 
@@ -252,7 +256,7 @@ public class askBoxScript : MonoBehaviour {
 	{
 		if (isFinishedDisplaying) { //If it's finshed displaying, that means it's time to MAKE A CHOICE.
 			text.alignment = TextAnchor.MiddleRight;
-			text.transform.position = new Vector3(textArray[choiceID].transform.position.x - 1, textArray[choiceID].transform.position.y, 0);
+			text.transform.position = new Vector3(textArray[choiceID].transform.position.x - 3, textArray[choiceID].transform.position.y, 0);
 			text.text = "○";
 
 			if (Input.GetButtonDown("Jump"))

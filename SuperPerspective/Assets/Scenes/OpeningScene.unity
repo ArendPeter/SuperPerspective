@@ -159,6 +159,64 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 11360011}
+--- !u!114 &11509548 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013613315510, guid: 471f72f3ca4c193489eae8f668503747,
+    type: 2}
+  m_PrefabInternal: {fileID: 35729085}
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+--- !u!4 &11509549 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747,
+    type: 2}
+  m_PrefabInternal: {fileID: 35729085}
+--- !u!1001 &35729085
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1896634609}
+    m_Modifications:
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -182.23355
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -604.49884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -360.3324
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013613315510, guid: 471f72f3ca4c193489eae8f668503747,
+        type: 2}
+      propertyPath: myConversation
+      value: 
+      objectReference: {fileID: 1432372923}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &67125520
 Prefab:
   m_ObjectHideFlags: 0
@@ -1135,6 +1193,48 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 327997274}
+--- !u!1 &331465693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 331465694}
+  - 114: {fileID: 331465695}
+  m_Layer: 1
+  m_Name: CrystalExplosionConversationEndedEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &331465694
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 331465693}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1432372924}
+  m_RootOrder: 0
+--- !u!114 &331465695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 331465693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5677c7c492c11f443a2c25dcf20706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cTrig: {fileID: 404766538}
+  ConversationBoolShouldBeSetTo: 1
 --- !u!1001 &337093379
 Prefab:
   m_ObjectHideFlags: 0
@@ -1204,6 +1304,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 337093379}
+--- !u!114 &404766538 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11402552, guid: 278fe3ee306802243a78a1f64115beb3,
+    type: 2}
+  m_PrefabInternal: {fileID: 2134378351}
+  m_Script: {fileID: 11500000, guid: 3960e48da80d636408fa3b01639c2b8f, type: 3}
 --- !u!1001 &424784040
 Prefab:
   m_ObjectHideFlags: 0
@@ -6310,27 +6416,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 1
-  nextNodeArray: []
-  hasNext: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 1821526413}
+  hasNext: 1
   choiceIndex: 0
   convoTextArray: []
   question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
   endQuestionArray:
   - Yes!
   - No...
+  endEventArray:
+  - {fileID: 331465695}
+  - {fileID: 0}
 --- !u!4 &1432372924
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432372922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.729003, y: 5.3713374, z: -16.622787}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Children:
+  - {fileID: 331465694}
+  - {fileID: 1821526412}
+  m_Father: {fileID: 11509549}
+  m_RootOrder: 0
 --- !u!4 &1442372026 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462438, guid: dc4f5f54459af5142ba84a63f23c513f, type: 2}
@@ -7902,6 +8015,62 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1806982535}
+--- !u!1 &1821526411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1821526412}
+  - 114: {fileID: 1821526413}
+  m_Layer: 0
+  m_Name: SaidNoConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1821526412
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1821526411}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1432372924}
+  m_RootOrder: 1
+--- !u!114 &1821526413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1821526411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  convoTextArray:
+  - 'You decide not to sate your curiosity. '
+  - The canister continues to glow ominously....
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1836255410
 Prefab:
   m_ObjectHideFlags: 0
@@ -8040,6 +8209,35 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1858029950}
+--- !u!1 &1896634608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1896634609}
+  m_Layer: 0
+  m_Name: EventObjectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1896634609
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1896634608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 196.96255, y: 609.8702, z: 343.70963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 11509549}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1001 &1899070112
 Prefab:
   m_ObjectHideFlags: 0
@@ -9156,6 +9354,42 @@ Prefab:
       propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 139694, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422518, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422518, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488782, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22429292, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 22429292, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488782, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422518, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_Text
+      value: "\u25CB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422518, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
   m_IsPrefabParent: 0
@@ -9254,6 +9488,10 @@ Prefab:
       propertyPath: dissolveSpeed
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 11402552, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
+      propertyPath: startEvent
+      value: 
+      objectReference: {fileID: 11509548}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 278fe3ee306802243a78a1f64115beb3, type: 2}
   m_IsPrefabParent: 0

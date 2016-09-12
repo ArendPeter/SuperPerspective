@@ -29,11 +29,13 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
     //Conversation variables
     public startTextEvent startEvent;//Used to activate the TextBoxScript that plays the conversation.
+    public textBoxScript textbox;
     public bool conversationEnded;//Used to show that the player has ended the conversation
 
 	// Use this for initialization
 	void Start () {
         StartSetup();
+        textbox = GameObject.FindObjectOfType<textBoxScript>();
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
         wholeRenderer = wholeCrystal.GetComponent<Renderer>();
         chargeLight.intensity = 0;
@@ -43,7 +45,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     {
         if (conversationEnded == false)
         {
-
+            startEvent.eventTrigger();
         }
         else
         {

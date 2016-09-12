@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface textEvent
+public abstract class textEvent : MonoBehaviour
 {
-    void eventTrigger();
+    public abstract void eventTrigger();
 }

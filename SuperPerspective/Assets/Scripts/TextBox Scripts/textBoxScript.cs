@@ -125,12 +125,12 @@ public class textBoxScript : MonoBehaviour {
 	//Overloaded enable that allows for new conversations to be loaded in.
 	public void startConvo(convoNode newNode)
 	{
-				PlayerController.instance.setCutsceneMode(true);
+        
+        PlayerController.instance.setCutsceneMode(true);
 				currentNode = newNode;
         if (currentNode.myType == convoNode.nodeType.question)
         {
             askQuestion(currentNode);
-
         }
         else
         {
@@ -264,7 +264,7 @@ public class textBoxScript : MonoBehaviour {
 
 	public void askQuestion(convoNode q)
 	{
-
+        print("trigger");
         askBoxPartner.activate(q);
         disableBox();
 	}
