@@ -45,8 +45,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 408084}
   - 65: {fileID: 6542852}
-  - 114: {fileID: 11434690}
   - 114: {fileID: 11409830}
+  - 114: {fileID: 114000013225131618}
   m_Layer: 0
   m_Name: Waystone
   m_TagString: Untagged
@@ -225,7 +225,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
---- !u!114 &11434690
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 179334}
+  m_IsPrefabParent: 1
+--- !u!114 &114000013225131618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -238,14 +249,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invisible: 0
   bonfireUI: {fileID: 0}
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 179334}
-  m_IsPrefabParent: 1
