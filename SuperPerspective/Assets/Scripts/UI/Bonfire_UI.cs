@@ -67,6 +67,7 @@ public class Bonfire_UI : MonoBehaviour {
     {
         all.SetActive(true);
 		active = true;
+        //Debug.Log("ON");
     }
 
     //TODO
@@ -115,6 +116,11 @@ public class Bonfire_UI : MonoBehaviour {
 		if (active && !readyForInput) {
 			readyForInput = true;
 		}
+        if (closeFlag)
+        {
+            ToggleOff();
+            closeFlag = false;
+        }
     }
 
     private void moveUp ()
