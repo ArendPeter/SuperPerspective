@@ -19,6 +19,7 @@ public class Bonfire : ActiveInteractable {
 	void Start() {
 		base.StartSetup ();
 		range = 2f;
+        bonfireUI = GameObject.FindObjectOfType<Bonfire_UI>();
 	}
 
 	public override float GetDistance() {
