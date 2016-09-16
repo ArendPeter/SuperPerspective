@@ -11,8 +11,11 @@ public class Pause_UI : MonoBehaviour {
     public PauseMenu pauseMenu;
     public GameStateManager gs;
 
+    //Adjusts menu if player is in hub
+    public bool isHub = false;
+
     int choice = 0;
-    int maxChoice = 2;
+    int maxChoice;
 
     public bool isPaused = false;
     bool active = false;
@@ -30,6 +33,7 @@ public class Pause_UI : MonoBehaviour {
         down2 = KeyCode.S;
         select = KeyCode.E;
         select2 = KeyCode.Space;
+        maxChoice = choices.Length - 1;
     }
 	
 	// Update is called once per frame
@@ -73,13 +77,13 @@ public class Pause_UI : MonoBehaviour {
         {
             if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
             {
-                if (choice == 1)
-                {
-                    returnToHUB();
-                }
-                else if (choice == 2)
+                if (choice == 2 || (choice == 1 && isHub))
                 {
                     quitGame();
+                }
+                else if (choice == 1)
+                {
+                    returnToHUB();
                 }
                 else
                 {
@@ -107,14 +111,14 @@ public class Pause_UI : MonoBehaviour {
         if (choice > 0)
             choice--;
         else
-            choice = 2;
+            choice = maxChoice;
         //choice = maxChoice - 1;
         //Debug.Log("Going up! Choice: " + choice);
     }
 
     private void moveDown()
     {
-        if (choice < 2)
+        if (choice < maxChoice)
             choice++;
         else
             choice = 0;
