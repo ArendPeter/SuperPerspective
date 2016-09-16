@@ -18,17 +18,25 @@ public class Bonfire : ActiveInteractable {
 
 	void Start() {
 		base.StartSetup ();
-		range = 1.5f;
+		range = 2f;
+	}
+
+	public override float GetDistance() {
+		if (GameStateManager.is3D())
+			return Vector3.Distance(transform.position, player.transform.position);
+		else
+			return Mathf.Abs(transform.position.x - player.transform.position.x);
 	}
 
 	void Update() {
 		if (active) {
-			if (bonfireUI.teleportFlag) {
-				if (foundDoors[bonfireUI.choice] != "")
+			if (bonfireUI.teleportFlag || bonfireUI.closeFlag) {
+				if (bonfireUI.teleportFlag && foundDoors[bonfireUI.choice] != "")
 					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice]);
 				bonfireUI.exit();
 				bonfireUI.teleportFlag = false;
-				active = true;
+				active = false;
+				GameStateManager.instance.ExitWaystoneState();
 			}
 		}
 	}
@@ -44,6 +52,7 @@ public class Bonfire : ActiveInteractable {
 		if (!active) {
 			bonfireUI.ToggleOn();
 			active = true;
+			GameStateManager.instance.EnterWaystoneState();
 		}
 	}
 

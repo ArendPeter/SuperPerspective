@@ -77,7 +77,7 @@ public class ActiveInteractable : PhysicalObject {
 		bool inRange = dist < range;
         
 		bool playerFacing = isPlayerFacingObject();
-        
+
         bool inYRange = IsInYRange();
 
         bool canTrigger =

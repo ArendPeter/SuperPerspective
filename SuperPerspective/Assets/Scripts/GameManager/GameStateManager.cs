@@ -26,7 +26,7 @@ public class GameStateManager : MonoBehaviour
 	private bool failedShift = false;
 
 	// view mounts & settings
-	private const int NUM_VIEW_TYPES = 9;
+	private const int NUM_VIEW_TYPES = 10;
 	private Transform[] view_mounts = new Transform[NUM_VIEW_TYPES];
 	private PerspectiveType[] view_perspectives = new PerspectiveType[NUM_VIEW_TYPES];
 	private bool[] view_pause = new bool[NUM_VIEW_TYPES];
@@ -66,8 +66,9 @@ public class GameStateManager : MonoBehaviour
 		view_perspectives[(int)ViewType.STANDARD_3D] =   PerspectiveType.p3D;
 		view_perspectives[(int)ViewType.STANDARD_2D] =   PerspectiveType.p2D;
 		view_perspectives[(int)ViewType.PAUSE_MENU] =    PerspectiveType.p3D;
+		view_perspectives[(int)ViewType.WAYSTONE_MENU] = PerspectiveType.p3D;
 		view_perspectives[(int)ViewType.MENU] =          PerspectiveType.p2D;
-		view_perspectives[(int)ViewType.LEAN_LEFT] =		 PerspectiveType.p3D;
+		view_perspectives[(int)ViewType.LEAN_LEFT] =     PerspectiveType.p3D;
 		view_perspectives[(int)ViewType.LEAN_RIGHT] =	 PerspectiveType.p3D;
 		view_perspectives[(int)ViewType.BACKWARD] =		 PerspectiveType.p3D;
 		view_perspectives[(int)ViewType.DYNAMIC] =		 PerspectiveType.p3D;
@@ -79,6 +80,7 @@ public class GameStateManager : MonoBehaviour
 		mounts[(int)ViewType.STANDARD_3D] = GameObject.Find("3DCameraMount");
 		mounts[(int)ViewType.STANDARD_2D] = GameObject.Find("2DCameraMount");
 		mounts[(int)ViewType.MENU] = GameObject.Find("MenuMount");
+		mounts[(int)ViewType.WAYSTONE_MENU] = GameObject.Find("MenuMount");
 		mounts[(int)ViewType.LEAN_LEFT] = GameObject.Find("LeanLeftCameraMount");
 		mounts[(int)ViewType.LEAN_RIGHT] = GameObject.Find("LeanRightCameraMount");
 		mounts[(int)ViewType.BACKWARD] = GameObject.Find("BackwardCameraMount");
@@ -93,12 +95,13 @@ public class GameStateManager : MonoBehaviour
 	void InitViewPauseStates(){
 		view_pause[(int)ViewType.STANDARD_3D] =   false;
 		view_pause[(int)ViewType.STANDARD_2D] =   false;
-		view_pause[(int)ViewType.PAUSE_MENU] =        true;
+		view_pause[(int)ViewType.PAUSE_MENU] =    true;
+		view_pause[(int)ViewType.WAYSTONE_MENU] = true;
 		view_pause[(int)ViewType.MENU] =          true;
-		view_pause[(int)ViewType.LEAN_LEFT] =		 false;
-		view_pause[(int)ViewType.LEAN_RIGHT] =	 false;
-		view_pause[(int)ViewType.BACKWARD] =		 false;
-		view_pause[(int)ViewType.DYNAMIC] =		 false;
+		view_pause[(int)ViewType.LEAN_LEFT] =     false;
+		view_pause[(int)ViewType.LEAN_RIGHT] =	  false;
+		view_pause[(int)ViewType.BACKWARD] =	  false;
+		view_pause[(int)ViewType.DYNAMIC] =		  false;
 	}
 
 	void RegisterEventHandlers(){
@@ -135,6 +138,14 @@ public class GameStateManager : MonoBehaviour
 			EnterState(ViewType.STANDARD_3D);
 			failedShift = false;
 		}
+	}
+
+	public void EnterWaystoneState() {
+		EnterState(ViewType.WAYSTONE_MENU);
+	}
+
+	public void ExitWaystoneState() {
+		EnterState(previousState);
 	}
 
 	//must be public so it can be called from continue button
@@ -406,5 +417,5 @@ public enum PerspectiveType{
 }
 
 public enum ViewType{
-	NULL_VIEW, STANDARD_3D, STANDARD_2D, MENU, PAUSE_MENU, LEAN_LEFT, LEAN_RIGHT, BACKWARD, DYNAMIC
+	NULL_VIEW, STANDARD_3D, STANDARD_2D, MENU, PAUSE_MENU, WAYSTONE_MENU, LEAN_LEFT, LEAN_RIGHT, BACKWARD, DYNAMIC
 }

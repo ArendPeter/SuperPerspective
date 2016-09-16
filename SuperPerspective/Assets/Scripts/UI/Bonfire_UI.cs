@@ -81,6 +81,12 @@ public class Bonfire_UI : MonoBehaviour {
 
     private void checkInput()
     {
+		if (closeFlag)
+		{
+			ToggleOff();
+			closeFlag = false;
+			return;
+		}
 		if (!teleportFlag && readyForInput) {
             if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
             {
@@ -116,11 +122,6 @@ public class Bonfire_UI : MonoBehaviour {
 		if (active && !readyForInput) {
 			readyForInput = true;
 		}
-        if (closeFlag)
-        {
-            ToggleOff();
-            closeFlag = false;
-        }
     }
 
     private void moveUp ()
