@@ -20,10 +20,26 @@ public class Mover : Activatable {
         smSFX = moverSFX.GetComponent<SwitchMoverSFX>();
     }
 
-	void Update(){
-		if (!PlayerController.instance.isPaused()){
-            //update prog
+	bool CrushingPlayerBelow(){
+		if(GetComponent<Collider>() == null)
+			return false;
+		Bounds myBounds = GetComponent<Collider>().bounds;
+		Bounds playerBounds = PlayerController.instance.GetComponent<Collider>().bounds;
+		Rect playerHorBounds = new Rect(playerBounds.min.x, playerBounds.min.z,
+		 		playerBounds.size.x, playerBounds.size.z);
+		Rect myHorBounds = new Rect(myBounds.min.x,myBounds.min.z,myBounds.size.x, myBounds.size.z);
+		bool horizontalOverlap = myHorBounds.Overlaps(playerHorBounds);
+		float spaceAboveHead = myBounds.min.y-playerBounds.max.y;
+		if(spaceAboveHead < 0){//this corresponds to the box being below the player
+			spaceAboveHead = 1e10f;
+		}
+		bool movingDown = (activated)? (movement.y < 0) : (movement.y > 0);
+		return horizontalOverlap && spaceAboveHead < .5 && movingDown;
+	}
 
+	void Update(){
+		if (!PlayerController.instance.isPaused() && !CrushingPlayerBelow()){
+            //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
 			prog = Mathf.Clamp01(prog); //clamp between 0 and 1
 
