@@ -15,12 +15,11 @@ public class GenericDissolver : MonoBehaviour {
     void Start () {
         dissolveRenderer = GetComponent<Renderer>();
     }
-	
+
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (shouldDissolveObject)//Start Dissolving
         {
-
             //If we aren't done yet
             if (dissolveAmount <= 1)
             {

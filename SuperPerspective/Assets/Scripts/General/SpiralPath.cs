@@ -3,11 +3,11 @@ using System.Collections;
 
 public class SpiralPath : MonoBehaviour {
 
-	private static float[] spiralRadiusThresh = new float[]{5f,5f};
+	private static float[] spiralRadiusThresh = new float[]{5f,10f};
 	private static float[] spiralMinApproachSpeed = new float[]{3f,3f};
-	private static float[] spiralVerticalSpeed = new float[]{.8f,.4f};
+	private static float[] spiralVerticalSpeed = new float[]{.8f,1.2f};
 	private static float[] spiralHeight = new float[]{1f,1f};
-	public static float[] spiralMaxRotSpeed = new float[]{720f,100f};
+	public static float[] spiralMaxRotSpeed = new float[]{720f,150f};
 
 	private static float spiralAngle = -1f;
 	private static float spiralRadius = -1f;

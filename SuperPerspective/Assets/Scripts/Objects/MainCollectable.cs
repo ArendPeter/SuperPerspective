@@ -11,7 +11,7 @@ public class MainCollectable : MonoBehaviour {
 	bool consumed = false;
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
-    public GameObject sound;
+  public GameObject sound;
 	static Color collectedColor = new Color(0.3f, 0.3f, 0.9f, 0.3f);
 	public Activatable[] triggers;
 
@@ -71,6 +71,11 @@ public class MainCollectable : MonoBehaviour {
 		Bounds pbound = PlayerController.instance.GetComponent<BoxCollider>().bounds;
 		bool intersect = mybound.Intersects(pbound);
 		if(active && intersect){
+			GenericDissolver dissolver = GetComponentInChildren<GenericDissolver>();
+			if(dissolver){
+					dissolver.shouldDissolveObject = true;
+					dissolver.dissolveAmount = -1.2f;
+			}
 			active = false;
             playSFX();
 			// Flag the collectable as collected
