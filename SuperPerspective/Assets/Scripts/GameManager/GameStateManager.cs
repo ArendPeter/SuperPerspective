@@ -369,6 +369,10 @@ public class GameStateManager : MonoBehaviour
 			EnterState(ViewType.STANDARD_2D);
 	}
 
+	public bool changingPerspective() {
+		return view_perspectives[(int)targetState] != view_perspectives[(int)currentState];
+	}
+
 	public static bool is3D(){
 		return GameStateManager.instance.currentPerspective == PerspectiveType.p3D;
 	}

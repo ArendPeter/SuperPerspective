@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour{
 		if(Input.GetButtonDown("Grab"))
 			RaiseEvent(GrabPressedEvent);
 
-		if(Input.GetButtonDown("PerspectiveShift"))
+		if(Input.GetButtonDown("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
 			RaiseEvent(ShiftPressedEvent);
 
 		if(Input.GetButtonDown("LeanLeft"))
