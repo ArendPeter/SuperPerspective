@@ -38,8 +38,9 @@ public class CameraController : MonoBehaviour
 
 	// Event to alert Gameplay State Manager of completed shift
 	public event System.Action TransitionStartEvent;
+	public event System.Action TransitionEndingEvent;
 	public event System.Action TransitionCompleteEvent;
-	private bool transitionComplete = false;
+	private bool transitionComplete = false, transitionEnding = false;
 
 	#endregion Properties & Variables
 
@@ -76,6 +77,10 @@ public class CameraController : MonoBehaviour
 
 			// Check if the shift is complete
 			if (!transitionComplete){
+				if (CheckTransitionEnding() && !transitionEnding){
+					transitionEnding = true;
+					RaiseEvent(TransitionEndingEvent);
+				}
 				// IF the shift is over alert listeners
 				if (CheckTransitionOver()){
 					transitionComplete = true;
@@ -108,6 +113,7 @@ public class CameraController : MonoBehaviour
 						targetMatrix = (newPerspective == PerspectiveType.p3D)? CameraMatrixTypes.Standard3D
 							: CameraMatrixTypes.Standard2D;
             transitionComplete = false;
+			transitionEnding = false;
             if (blender != null){
               blender.BlendToMatrix(targetMatrix, cameraBlendSpeed);
 						}
@@ -137,6 +143,21 @@ public class CameraController : MonoBehaviour
 
         return true;
     }
+
+	private bool CheckTransitionEnding()
+	{
+		Vector3 positionDif = transform.position - mount.position;
+		if (positionDif.magnitude / shiftThreshold > 1.1f){
+			return false;
+		}
+
+		float rotationDif = Quaternion.Angle(transform.rotation, mount.rotation);
+		if (rotationDif / shiftThreshold > 1.1f){
+			return false;
+		}
+
+		return true;
+	}
 
 		private void updateTransitionFactor(){
 			transitionSpeedFactor =

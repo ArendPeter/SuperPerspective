@@ -11,13 +11,16 @@ public class MainCollectable : MonoBehaviour {
 	bool consumed = false;
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
-  public GameObject sound;
+    public GameObject sound;
 	static Color collectedColor = new Color(0.3f, 0.3f, 0.9f, 0.3f);
+	string sceneName;
 	public Activatable[] triggers;
+	public bool isEndCrystal;
 
 	private string uid;
 
 	void Start() {
+		sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 		uid = transform.position.x + "" + transform.position.y + "" + transform.position.z;
 		if (PlayerPrefs.HasKey(uid)) {
 			foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
@@ -80,8 +83,10 @@ public class MainCollectable : MonoBehaviour {
             playSFX();
 			// Flag the collectable as collected
 			PlayerPrefs.SetInt(uid, 1);
-			// Update saved value for collectableHeld
-			if (PlayerPrefs.HasKey("CollectableHeld")) {
+			if (isEndCrystal) {
+				// Mark the level as beaten
+				PlayerPrefs.SetInt(sceneName, 1);
+			} else if (PlayerPrefs.HasKey("CollectableHeld")) { // Update number of collectables held
 				PlayerPrefs.SetInt("CollectableHeld", 1);
 			} else {
 				PlayerPrefs.SetInt("CollectableHeld", PlayerPrefs.GetInt("CollectableHeld") + 1);
