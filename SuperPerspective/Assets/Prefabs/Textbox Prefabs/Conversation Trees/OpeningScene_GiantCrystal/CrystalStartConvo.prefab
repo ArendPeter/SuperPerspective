@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000010237338390}
+  m_IsPrefabParent: 1
+--- !u!1 &1000010237338390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012535274034}
+  - 114: {fileID: 114000010421418710}
+  m_Layer: 0
+  m_Name: CrystalStartConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000011349012136
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013064551448}
+  - 114: {fileID: 114000013536719282}
+  m_Layer: 0
+  m_Name: SaidNoConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012333744302
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011832491356}
+  - 114: {fileID: 114000011151239102}
+  m_Layer: 1
+  m_Name: CrystalExplosionConversationEndedEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013176459982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011785555520}
+  - 114: {fileID: 114000011616220534}
+  m_Layer: 0
+  m_Name: GiantCrystalConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011785555520
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013176459982}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000011832491356}
+  - {fileID: 4000013064551448}
+  m_Father: {fileID: 4000012535274034}
+  m_RootOrder: 0
+--- !u!4 &4000011832491356
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012333744302}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011785555520}
+  m_RootOrder: 0
+--- !u!4 &4000012535274034
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010237338390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000011785555520}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &4000013064551448
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011349012136}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011785555520}
+  m_RootOrder: 1
+--- !u!114 &114000010421418710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010237338390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 114000011616220534}
+--- !u!114 &114000011151239102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012333744302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5677c7c492c11f443a2c25dcf20706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cTrig: {fileID: 0}
+  ConversationBoolShouldBeSetTo: 1
+--- !u!114 &114000011616220534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013176459982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 1
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 114000013536719282}
+  hasNext: 1
+  choiceIndex: 0
+  convoTextArray: []
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 114000011151239102}
+  - {fileID: 0}
+--- !u!114 &114000013536719282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011349012136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  convoTextArray:
+  - 'You decide not to sate your curiosity. '
+  - The canister continues to glow ominously....
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 0}
+  - {fileID: 0}

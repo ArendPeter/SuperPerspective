@@ -71,7 +71,7 @@ public class PlayerController : PhysicalObject{
 	private int cactusKnockBackTimer = 0;
 	private const int CACTUS_TIME = 20;
 
-	bool cutsceneMode = false;
+	[SerializeField] bool cutsceneMode = false;
 
 	private bool _paused;
 
@@ -636,6 +636,9 @@ public class PlayerController : PhysicalObject{
 
 	public void setCutsceneMode(bool c){
 		cutsceneMode = c; }
+
+    public bool getCutsceneMode(){
+        return cutsceneMode;}
 
 	public bool canMove(){
 		return !isDisabled() && !isKicking() && !isClimbing() &&

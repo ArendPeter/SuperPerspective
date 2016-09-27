@@ -47,10 +47,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         {
             startEvent.eventTrigger();
         }
-        else
-        {
-            shouldDissolveShield = true;
-        }
+        
     }
 
 	// Update is called once per frame
@@ -60,6 +57,10 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
     void eventCheck()
     {
+        if(conversationEnded)
+        {
+            shouldDissolveShield = true;
+        }
         if (shouldDissolveShield)//Start Dissolving
         {
 
@@ -100,8 +101,11 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
                     foreach (GenericDissolver i in dissArr)
                     {
-                        i.shouldDissolveObject = true;
-                        i.gameObject.transform.SetParent(null);
+                        if (i != null)
+                        { 
+                            i.shouldDissolveObject = true;
+                            i.gameObject.transform.SetParent(null);
+                        }
                     }
                     //Destroy(this.gameObject);
                 }

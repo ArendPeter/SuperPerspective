@@ -161,61 +161,70 @@ Transform:
   m_PrefabInternal: {fileID: 11360011}
 --- !u!114 &11509548 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013613315510, guid: 471f72f3ca4c193489eae8f668503747,
+  m_PrefabParentObject: {fileID: 114000010421418710, guid: 859950f5d46aeaf469540602c3e1ce7e,
     type: 2}
   m_PrefabInternal: {fileID: 35729085}
   m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
---- !u!4 &11509549 stripped
+--- !u!4 &11509549
 Transform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747,
     type: 2}
-  m_PrefabInternal: {fileID: 35729085}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068065562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 752705594}
+  m_RootOrder: 0
 --- !u!1001 &35729085
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1896634609}
+    m_TransformParent: {fileID: 752705594}
     m_Modifications:
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -182.23355
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -604.49884
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -360.3324
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010626583498, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+    - target: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013613315510, guid: 471f72f3ca4c193489eae8f668503747,
+    - target: {fileID: 114000011151239102, guid: 859950f5d46aeaf469540602c3e1ce7e,
         type: 2}
-      propertyPath: myConversation
+      propertyPath: cTrig
       value: 
-      objectReference: {fileID: 1432372923}
+      objectReference: {fileID: 404766538}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 471f72f3ca4c193489eae8f668503747, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 859950f5d46aeaf469540602c3e1ce7e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &67125520
 Prefab:
@@ -1124,6 +1133,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 298076141}
+--- !u!4 &321659030 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012535274034, guid: 859950f5d46aeaf469540602c3e1ce7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 35729085}
 --- !u!1001 &327997274
 Prefab:
   m_ObjectHideFlags: 0
@@ -1193,48 +1207,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 327997274}
---- !u!1 &331465693
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 331465694}
-  - 114: {fileID: 331465695}
-  m_Layer: 1
-  m_Name: CrystalExplosionConversationEndedEvent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &331465694
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 331465693}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
-  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1432372924}
-  m_RootOrder: 0
---- !u!114 &331465695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 331465693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5677c7c492c11f443a2c25dcf20706eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cTrig: {fileID: 404766538}
-  ConversationBoolShouldBeSetTo: 1
 --- !u!1001 &337093379
 Prefab:
   m_ObjectHideFlags: 0
@@ -4374,6 +4346,36 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 750471083}
+--- !u!1 &752705593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 752705594}
+  m_Layer: 0
+  m_Name: EventHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &752705594
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752705593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 11509549}
+  - {fileID: 321659030}
+  m_Father: {fileID: 1896634609}
+  m_RootOrder: 0
 --- !u!1001 &754911314
 Prefab:
   m_ObjectHideFlags: 0
@@ -6388,62 +6390,6 @@ Transform:
   - {fileID: 1636845051}
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1 &1432372922
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1432372924}
-  - 114: {fileID: 1432372923}
-  m_Layer: 0
-  m_Name: GiantCrystalConvo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1432372923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1432372922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myType: 1
-  nextNodeArray:
-  - {fileID: 0}
-  - {fileID: 1821526413}
-  hasNext: 1
-  choiceIndex: 0
-  convoTextArray: []
-  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
-  endQuestionArray:
-  - Yes!
-  - No...
-  endEventArray:
-  - {fileID: 331465695}
-  - {fileID: 0}
---- !u!4 &1432372924
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1432372922}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 331465694}
-  - {fileID: 1821526412}
-  m_Father: {fileID: 11509549}
-  m_RootOrder: 0
 --- !u!4 &1442372026 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462438, guid: dc4f5f54459af5142ba84a63f23c513f, type: 2}
@@ -8015,62 +7961,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1806982535}
---- !u!1 &1821526411
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1821526412}
-  - 114: {fileID: 1821526413}
-  m_Layer: 0
-  m_Name: SaidNoConvo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1821526412
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1821526411}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1432372924}
-  m_RootOrder: 1
---- !u!114 &1821526413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1821526411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myType: 0
-  nextNodeArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  hasNext: 0
-  choiceIndex: 0
-  convoTextArray:
-  - 'You decide not to sate your curiosity. '
-  - The canister continues to glow ominously....
-  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
-  endQuestionArray:
-  - Yes!
-  - No...
-  endEventArray:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1836255410
 Prefab:
   m_ObjectHideFlags: 0
@@ -8235,7 +8125,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 11509549}
+  - {fileID: 752705594}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!1001 &1899070112
@@ -9035,6 +8925,21 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 2063742952}
+--- !u!1 &2068065562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 11509549}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &2078647083
 Prefab:
   m_ObjectHideFlags: 0

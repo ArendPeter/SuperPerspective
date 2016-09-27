@@ -8,7 +8,7 @@ public class askBoxScript : MonoBehaviour {
 	public GameObject textStartPoint; //Tells where our text will begin generating.
     public convoNode currentNode; //This is the node we are currently pulling info from
     public textBoxScript textBoxPartner; //Our askBox's textbox partner to switch between
-    //public playerChar player;
+    [SerializeField] private PlayerController player;
 
     public string question;//The question we ponder the the answer to.
 	public string[] choiceArray; //Holds the strings we want to display in the textbox.
@@ -67,7 +67,7 @@ public class askBoxScript : MonoBehaviour {
 
 	public void init()
 	{
-        //player = (playerChar)GameObject.FindObjectOfType(typeof(playerChar));//DYNAMICALLY GET OUR CHARACTER ON INIT!
+        player = GameObject.FindObjectOfType<PlayerController>();//DYNAMICALLY GET OUR CHARACTER ON INIT!
         if (currentNode.myType != convoNode.nodeType.textOnly)
         {
             progressIndex = 0;
@@ -143,6 +143,8 @@ public class askBoxScript : MonoBehaviour {
         init();
         enableBox();
         showBox = true;
+        PlayerController.instance.setCutsceneMode(true);
+        print("Cutscenemode: "+PlayerController.instance.getCutsceneMode());
     }
 
 	//This method acts as an update loop for when the text box should be displaying normal conversation text.
@@ -200,6 +202,11 @@ public class askBoxScript : MonoBehaviour {
 	public void makeChoice()
 	{
 		isFinishedDisplaying = false;
+        if (currentNode.endEventArray[choiceID] != null)
+        {
+            print("EndEvenTrigger!");
+            currentNode.endEventArray[choiceID].eventTrigger();
+        }
         //First we check if what our answer even corresponds to even exists.
         if (currentNode.hasNext && currentNode.nextNodeArray[choiceID] != null)
         {
@@ -229,15 +236,14 @@ public class askBoxScript : MonoBehaviour {
             currentNode.endEventArray[choiceID].eventTrigger();
             disableBox();
             showBox = false;
+            PlayerController.instance.setCutsceneMode(false);
         }
         else {
             disableBox();
             showBox = false;
+            PlayerController.instance.setCutsceneMode(false);
         }
-        if (currentNode.endEventArray[choiceID] != null)
-        {
-            currentNode.endEventArray[choiceID].eventTrigger();
-        }
+        
     }
 
 	public void deleteText(){
@@ -261,7 +267,6 @@ public class askBoxScript : MonoBehaviour {
 
 			if (Input.GetButtonDown("Jump"))
 			{
-				print("choice made");
 				makeChoice();
 			}
 

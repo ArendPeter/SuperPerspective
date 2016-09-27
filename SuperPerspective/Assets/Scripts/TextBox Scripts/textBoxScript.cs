@@ -13,7 +13,7 @@ public class textBoxScript : MonoBehaviour {
     public convoNode currentNode; //This is the node we are currently pulling info from
 
     public askBoxScript askBoxPartner; //Our textBox's askBox partner to switch between
-    //public playerChar player;//Our connection to the player in the scene.
+    public PlayerController player;//Our connection to the player in the scene.
 
 
     public string[] convArray; //Holds the strings we want to display in the textbox.
@@ -68,6 +68,8 @@ public class textBoxScript : MonoBehaviour {
         //So these don't get overwritten later.
         resetTimer = tinyTimer;
         resetTextSpeed = textSpeed;
+
+        
     }
 
 	// Update is called once per frame
@@ -78,7 +80,9 @@ public class textBoxScript : MonoBehaviour {
     //The initialization function for when our program has started running.
     public void init()
     {
-        //player = (playerChar)GameObject.FindObjectOfType(typeof(playerChar));//DYNAMICALLY GET OUR CHARACTER ON INIT!
+        //So we can make our player stop moving.
+        player = GameObject.FindObjectOfType<PlayerController>();
+
         if (currentNode.myType != convoNode.nodeType.question) {//Make sure to check whether or not we should even be bothering to set up.
             convArray = currentNode.convoTextArray;//Load up our text to sidplay from our node.
             text.text = "";//Make sure our text is empty before we start.
@@ -95,7 +99,7 @@ public class textBoxScript : MonoBehaviour {
         else//If it's just a question, immediately activate our Ask Box buddy.
         {
             disableBox();
-            //askQuestion(currentNode);
+            askQuestion(currentNode);
         }
 
 
@@ -113,7 +117,8 @@ public class textBoxScript : MonoBehaviour {
 		prepStrings();
 		horiIndex = 0;
 		vertIndex = 0;
-	}
+        PlayerController.instance.setCutsceneMode(true);
+    }
 
 	//Makes the box show after resetting it.
 	public void startConvo()
@@ -127,7 +132,7 @@ public class textBoxScript : MonoBehaviour {
 	{
         
         PlayerController.instance.setCutsceneMode(true);
-				currentNode = newNode;
+		currentNode = newNode;
         if (currentNode.myType == convoNode.nodeType.question)
         {
             askQuestion(currentNode);
