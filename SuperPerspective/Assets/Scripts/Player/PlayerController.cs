@@ -279,6 +279,9 @@ public class PlayerController : PhysicalObject{
 	}
 
 	void CheckCollisionsOnAxis(int axis){
+		if (axis == Y && isRiding())
+			return;
+
 		Vector3 axisVector = getAxisVector(axis);
 
 		Vector3 trajectory;
@@ -289,7 +292,7 @@ public class PlayerController : PhysicalObject{
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
 
-    if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
+    	if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
 		{
 
       //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
@@ -405,6 +408,8 @@ public class PlayerController : PhysicalObject{
 
 	//Checks Type of Object and collides accordingly
 	private void CollideWithObject(RaycastHit hitInfo, Vector3 trajectory) {
+		if (isRiding())
+			return;
 		GameObject other = hitInfo.collider.gameObject;
 		float colliderDim = 0;
 		if (trajectory.normalized == Vector3.up || trajectory.normalized == Vector3.down)

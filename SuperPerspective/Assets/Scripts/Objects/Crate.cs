@@ -300,13 +300,18 @@ public class Crate : ActiveInteractable {
 
 	void checkBreak() {
 		if(GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect()) {
-			if (grabbed){
-				player.GetComponent<PlayerController> ().Grab (null);
-				grabbed = false;
-			}
-			respawnFlag = true;
-			playBreakSound();
+			doBreak();
 		}
+	}
+
+	void doBreak() {
+		setVelocity(Vector3.zero);
+		if (grabbed){
+			player.GetComponent<PlayerController> ().Grab (null);
+			grabbed = false;
+		}
+		respawnFlag = true;
+		playBreakSound();
 	}
 
 	private void playBreakSound(){
@@ -331,6 +336,12 @@ public class Crate : ActiveInteractable {
         // Pressure Plate
 		if (other.GetComponent<PushSwitchOld>() && colliderDim == colliderWidth) {
 			transform.Translate(0, 0.1f, 0);
+		}
+		// Fall on Player
+		if ((other.GetComponent<MobilePlatform>() || other.GetComponent<PlayerController>()) && colliderDim == colliderHeight) {
+			if ((other.GetComponent<MobilePlatform>() && other.GetComponent<MobilePlatform>().isActiveAndEnabled) ||
+				(other.GetComponent<PlayerController>() && other.GetComponent<PlayerController>().isRiding()))
+				doBreak();
 		}
 		//Collision w/ PlayerInteractable
 		foreach(Interactable c in other.GetComponents<Interactable>()){
