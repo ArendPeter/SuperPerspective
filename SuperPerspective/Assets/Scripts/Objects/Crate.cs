@@ -337,9 +337,9 @@ public class Crate : ActiveInteractable {
 		if (other.GetComponent<PushSwitchOld>() && colliderDim == colliderWidth) {
 			transform.Translate(0, 0.1f, 0);
 		}
-		// Fall on Player
+		// Fall on Player/Moving Platform
 		if ((other.GetComponent<MobilePlatform>() || other.GetComponent<PlayerController>()) && colliderDim == colliderHeight) {
-			if ((other.GetComponent<MobilePlatform>() && other.GetComponent<MobilePlatform>().isActiveAndEnabled) ||
+			if ((other.GetComponent<MobilePlatform>() && other.GetComponent<MobilePlatform>().controlled) ||
 				(other.GetComponent<PlayerController>() && other.GetComponent<PlayerController>().isRiding()))
 				doBreak();
 		}
