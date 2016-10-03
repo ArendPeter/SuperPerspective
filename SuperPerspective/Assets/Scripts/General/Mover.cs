@@ -5,8 +5,7 @@ public class Mover : Activatable {
 	public Vector3 movement = Vector3.zero;//path along which object will move
 	public float transitionTime = 1f;//time it takes for transition to occur
 
-	Vector3 startPosition;//start position
-	float prog = 0f; //progression from start to start+ movement
+	Vector3 startPosition;//start position float prog = 0f; //progression from start to start+ movement
 
     GameObject moverSFX;
     SwitchMoverSFX smSFX;
@@ -37,8 +36,31 @@ public class Mover : Activatable {
 		return horizontalOverlap && spaceAboveHead < .5 && movingDown;
 	}
 
+	bool PushingPlayer(){
+		if(GetComponent<Collider>() == null)
+			return false;
+		Bounds myBounds = GetComponent<Collider>().bounds;
+		Bounds playerBounds = PlayerController.instance.GetComponent<Collider>().bounds;
+		bool isPushing = false;
+		for(int axis = 0; axis < 3; axis+=2){//loop through x and z axis
+			int otherAxis = 2 - axis;
+			Rect playerSideBounds = new Rect(playerBounds.min[otherAxis], playerBounds.min.y,
+			 		playerBounds.size[otherAxis], playerBounds.size.y);
+			Rect mySideBounds = new Rect(myBounds.min[otherAxis],myBounds.min.y,myBounds.size[otherAxis], myBounds.size.y);
+			bool overlaps = mySideBounds.Overlaps(playerSideBounds);
+			bool movingTowardPlayer = Mathf.Abs(movement[axis]) < 0.01 ||
+				(Mathf.Sign(movement[axis]) * (activated?1:-1)) ==
+				Mathf.Sign(playerBounds.center[axis] -myBounds.center[axis]);
+			float dist = Mathf.Max(
+				myBounds.min[axis]-playerBounds.max[axis],
+				playerBounds.min[axis]-myBounds.max[axis]);
+			isPushing = isPushing || (overlaps && dist < .5 && movingTowardPlayer);
+		}
+		return isPushing;
+	}
+
 	void Update(){
-		if (!PlayerController.instance.isPaused() && !CrushingPlayerBelow()){
+		if (!PlayerController.instance.isPaused() && !CrushingPlayerBelow() && !PushingPlayer()){
             //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
 			prog = Mathf.Clamp01(prog); //clamp between 0 and 1

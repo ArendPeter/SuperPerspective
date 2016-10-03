@@ -5141,7 +5141,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5163,7 +5163,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!4 &400970027
 Transform:
   m_ObjectHideFlags: 0
@@ -7622,7 +7622,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7644,7 +7644,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!4 &627122177
 Transform:
   m_ObjectHideFlags: 0
@@ -11693,15 +11693,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.000000115202326
+      value: 0.00000019861236
       objectReference: {fileID: 0}
     - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.7071067
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.00000011520231
+      value: 0.00000019861236
       objectReference: {fileID: 0}
     - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
       propertyPath: m_RootOrder
@@ -11727,6 +11727,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ccc945ce70a16db4494c781a020e6139, type: 2}
+    - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 179.99998
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
   m_IsPrefabParent: 0

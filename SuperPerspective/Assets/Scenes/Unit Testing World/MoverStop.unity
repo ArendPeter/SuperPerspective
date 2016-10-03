@@ -1935,6 +1935,10 @@ MonoBehaviour:
   activated: 0
   movement: {x: 10, y: 0, z: 0}
   transitionTime: 5
+  testDist: 0
+  testMovingToward: 0
+  testOverlaps: 0
+  testMovement: 0
 --- !u!1001 &582498371
 Prefab:
   m_ObjectHideFlags: 0
@@ -2574,6 +2578,10 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 10, z: 0}
   transitionTime: 5
+  testDist: 0
+  testMovingToward: 0
+  testOverlaps: 0
+  testMovement: 0
 --- !u!1001 &901143381
 Prefab:
   m_ObjectHideFlags: 0
@@ -4152,6 +4160,10 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 0, z: -10}
   transitionTime: 5
+  testDist: 0
+  testMovingToward: 0
+  testOverlaps: 0
+  testMovement: 0
 --- !u!1001 &1512416835
 Prefab:
   m_ObjectHideFlags: 0
@@ -4883,6 +4895,10 @@ Prefab:
     - target: {fileID: 144290, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
       propertyPath: m_Name
       value: rounded-cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 144290, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
