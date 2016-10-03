@@ -243,7 +243,7 @@ public class askBoxScript : MonoBehaviour {
             showBox = false;
             PlayerController.instance.setCutsceneMode(false);
         }
-        
+
     }
 
 	public void deleteText(){
@@ -272,11 +272,11 @@ public class askBoxScript : MonoBehaviour {
 
 			bool upPressed = false, downPressed = false;
 			if(verticalAxisReleased){
-				if(Input.GetAxis("Vertical")==1){
+				if(Input.GetAxis("Vertical")>.25){
 					upPressed = true;
 					verticalAxisReleased = false;
 				}
-				if(Input.GetAxis("Vertical")==-1){
+				if(Input.GetAxis("Vertical")<-.25){
 					downPressed = true;
 					verticalAxisReleased = false;
 				}
