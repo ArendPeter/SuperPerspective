@@ -67,6 +67,7 @@ public class Bonfire_UI : MonoBehaviour {
     {
         all.SetActive(true);
 		active = true;
+        moveSelect();
         //Debug.Log("ON");
     }
 
@@ -96,7 +97,7 @@ public class Bonfire_UI : MonoBehaviour {
                     active = false;
                     readyForInput = false;
                 }
-                else if (choice > maxIsle)
+                else if (choice + 1 > maxIsle)
                 {
                     GetComponent<AudioSource>().Play();
                 }
@@ -189,7 +190,7 @@ public class Bonfire_UI : MonoBehaviour {
 
         if (choice != 10)
         {
-            if (choice > maxIsle)
+            if (choice + 1 > maxIsle)
                 locked.GetComponent<Image>().enabled = true;
             else
                 locked.GetComponent<Image>().enabled = false;

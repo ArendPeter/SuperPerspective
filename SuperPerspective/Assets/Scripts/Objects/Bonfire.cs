@@ -32,8 +32,8 @@ public class Bonfire : ActiveInteractable {
 	void Update() {
 		if (active) {
 			if (bonfireUI.teleportFlag || bonfireUI.closeFlag) {
-				if (bonfireUI.teleportFlag && foundDoors[bonfireUI.choice] != "")
-					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice]);
+				if (bonfireUI.teleportFlag && foundDoors[bonfireUI.choice+1] != "")
+					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice+1]);
 				bonfireUI.exit();
 				bonfireUI.teleportFlag = false;
 				active = false;
