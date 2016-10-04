@@ -5,7 +5,8 @@ public class Mover : Activatable {
 	public Vector3 movement = Vector3.zero;//path along which object will move
 	public float transitionTime = 1f;//time it takes for transition to occur
 
-	Vector3 startPosition;//start position float prog = 0f; //progression from start to start+ movement
+	Vector3 startPosition;//start position
+	float prog = 0f; //progression from start to start+ movement
 
     GameObject moverSFX;
     SwitchMoverSFX smSFX;
