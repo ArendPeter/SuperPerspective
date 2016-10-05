@@ -16,6 +16,8 @@ public class GameStateManager : MonoBehaviour
 	#region Properties & Variables
 
 	// State variables
+	public ViewType testCurrentState;
+
 	public ViewType currentState { get; private set; }
 	public ViewType previousState { get; private set; }
 	public ViewType targetState { get; private set; }
@@ -154,16 +156,18 @@ public class GameStateManager : MonoBehaviour
 			case ViewType.MENU:
 				if(previousState != null)
 					EnterState(previousState);
-                pause_UI.isPaused = false;
-                break;
+        pause_UI.isPaused = false;
+        break;
 			case ViewType.PAUSE_MENU:
-				EnterState(previousState);
-                pause_UI.isPaused = false;
-                break;
+				if(previousState != ViewType.PAUSE_MENU){
+					EnterState(previousState);
+	        pause_UI.isPaused = false;
+				}
+        break;
 			default:
 				EnterState(ViewType.PAUSE_MENU);
-                pause_UI.isPaused = true;
-                break;
+        pause_UI.isPaused = true;
+        break;
 		}
 	}
 
@@ -194,6 +198,7 @@ public class GameStateManager : MonoBehaviour
 
 	private void HandleTransitionComplete(){
 		currentState = targetState;
+		testCurrentState = currentState;
 
 		if(failedShift){
 			FlipFailIndicator.instance.blink();
