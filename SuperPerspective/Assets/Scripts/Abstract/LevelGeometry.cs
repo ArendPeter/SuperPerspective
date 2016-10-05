@@ -81,5 +81,9 @@ public class LevelGeometry : MonoBehaviour
 		return colliderSize;
 	}
 
+	public bool foundPlatform(){
+		return parentPlatform != null;
+	}
+
     #endregion Perspective Shift Event
 }

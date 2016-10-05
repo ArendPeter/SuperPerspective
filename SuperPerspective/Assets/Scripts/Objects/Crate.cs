@@ -132,9 +132,7 @@ public class Crate : ActiveInteractable {
 	}
 
 	void LateUpdate () {
-		if (!startFalling) {
-			if (Physics.Raycast(transform.position, Vector3.down))
-				startFalling = true;
+		if (!GetComponent<LevelGeometry>().foundPlatform()) {
 			return;
 		}
 		if(!PlayerController.instance.isPaused()){
@@ -192,76 +190,79 @@ public class Crate : ActiveInteractable {
 			velocity = new Vector3(velocity.x, 0f, velocity.z);
 		}
 
-		// Third check the player's velocity along the X axis and check for collisions in that direction is non-zero
+		if (velocity.x != 0){
+			// Third check the player's velocity along the X axis and check for collisions in that direction is non-zero
 
-		// If any rays connected move the player and set grounded to true since we're now on the ground
+			// If any rays connected move the player and set grounded to true since we're now on the ground
 
-		hits = colCheck.CheckXCollision (velocity, Margin);
+			hits = colCheck.CheckXCollision (velocity, Margin);
 
-		close = -1;
-		for (int i = 0; i < hits.Length; i++) {
-			RaycastHit hitInfo = hits[i];
-			if (hitInfo.collider != null)
-			{
-				float verticalOverlap = getVerticalOverlap(hitInfo);
-				bool significantVerticalOverlap =
-					verticalOverlap > verticalOverlapThreshhold;
-				if(!significantVerticalOverlap){
-					transform.Translate(new Vector3(0f,verticalOverlap,0f));
-					continue;
-				}
-				if (hitInfo.collider.gameObject.tag == "Intangible") {
-					trajectory = velocity.x * Vector3.right;
-					CollideWithObject(hitInfo, trajectory);
-				} else if (close == -1 || close > hitInfo.distance) {
-					close = hitInfo.distance;
-					transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (hitInfo.distance - colliderWidth / 2));
-					trajectory = velocity.x * Vector3.right;
-					if (trajectory != Vector3.zero)
-						axisBlocked[HashAxis(trajectory)] = true;
-					CollideWithObject(hitInfo, trajectory);
-				}
-			}
-		}
-		if (close != -1) {
-			//transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (close - colliderWidth / 2));
-			velocity = new Vector3(0f, velocity.y, velocity.z);
-		}
-
-
-		// Fourth do the same along the Z axis
-
-		// If any rays connected move the player and set grounded to true since we're now on the ground
-		hits = colCheck.CheckZCollision (velocity, Margin);
-
-		close = -1;
-		for (int i = 0; i < hits.Length; i++) {
-			RaycastHit hitInfo = hits[i];
-			if (hitInfo.collider != null)
-			{
-				float verticalOverlap = getVerticalOverlap(hitInfo);
-				bool significantVerticalOverlap =
-					verticalOverlap > verticalOverlapThreshhold;
-				if(!significantVerticalOverlap){
-					transform.Translate(new Vector3(0f,verticalOverlap,0f));
-					continue;
-				}
-				if (hitInfo.collider.gameObject.tag == "Intangible") {
-					trajectory = velocity.z * Vector3.forward;
-					CollideWithObject(hitInfo, trajectory);
-				} else if (close == -1 || close > hitInfo.distance) {
-					close = hitInfo.distance;
-					transform.Translate(Vector3.forward * Mathf.Sign(velocity.z) * (hitInfo.distance - colliderDepth / 2));
-					trajectory = velocity.z * Vector3.forward;
-					if (trajectory != Vector3.zero)
-						axisBlocked[HashAxis(trajectory)] = true;
-					CollideWithObject(hitInfo, trajectory);
+			close = -1;
+			for (int i = 0; i < hits.Length; i++) {
+				RaycastHit hitInfo = hits[i];
+				if (hitInfo.collider != null)
+				{
+					float verticalOverlap = getVerticalOverlap(hitInfo);
+					bool significantVerticalOverlap =
+						verticalOverlap > verticalOverlapThreshhold;
+					if(!significantVerticalOverlap){
+						transform.Translate(new Vector3(0f,verticalOverlap,0f));
+						continue;
+					}
+					if (hitInfo.collider.gameObject.tag == "Intangible") {
+						trajectory = velocity.x * Vector3.right;
+						CollideWithObject(hitInfo, trajectory);
+					} else if (close == -1 || close > hitInfo.distance) {
+						close = hitInfo.distance;
+						transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (hitInfo.distance - colliderWidth / 2));
+						trajectory = velocity.x * Vector3.right;
+						if (trajectory != Vector3.zero)
+							axisBlocked[HashAxis(trajectory)] = true;
+						CollideWithObject(hitInfo, trajectory);
+					}
 				}
 			}
+			if (close != -1) {
+				//transform.Translate(Vector3.right * Mathf.Sign(velocity.x) * (close - colliderWidth / 2));
+				velocity = new Vector3(0f, velocity.y, velocity.z);
+			}
 		}
-		if (close != -1) {
-			//transform.Translate(Vector3.forward * Mathf.Sign(velocity.z) * (close - colliderDepth / 2));
-			velocity = new Vector3(velocity.x, velocity.y, 0f);
+
+		if (velocity.z != 0){
+			// Fourth do the same along the Z axis
+
+			// If any rays connected move the player and set grounded to true since we're now on the ground
+			hits = colCheck.CheckZCollision (velocity, Margin);
+
+			close = -1;
+			for (int i = 0; i < hits.Length; i++) {
+				RaycastHit hitInfo = hits[i];
+				if (hitInfo.collider != null)
+				{
+					float verticalOverlap = getVerticalOverlap(hitInfo);
+					bool significantVerticalOverlap =
+						verticalOverlap > verticalOverlapThreshhold;
+					if(!significantVerticalOverlap){
+						transform.Translate(new Vector3(0f,verticalOverlap,0f));
+						continue;
+					}
+					if (hitInfo.collider.gameObject.tag == "Intangible") {
+						trajectory = velocity.z * Vector3.forward;
+						CollideWithObject(hitInfo, trajectory);
+					} else if (close == -1 || close > hitInfo.distance) {
+						close = hitInfo.distance;
+						transform.Translate(Vector3.forward * Mathf.Sign(velocity.z) * (hitInfo.distance - colliderDepth / 2));
+						trajectory = velocity.z * Vector3.forward;
+						if (trajectory != Vector3.zero)
+							axisBlocked[HashAxis(trajectory)] = true;
+						CollideWithObject(hitInfo, trajectory);
+					}
+				}
+			}
+			if (close != -1) {
+				//transform.Translate(Vector3.forward * Mathf.Sign(velocity.z) * (close - colliderDepth / 2));
+				velocity = new Vector3(velocity.x, velocity.y, 0f);
+			}
 		}
 	}
 

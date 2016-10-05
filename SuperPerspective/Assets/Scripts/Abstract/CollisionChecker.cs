@@ -5,7 +5,7 @@ public class CollisionChecker {
 
 	Collider col;
 	float colliderWidth, colliderHeight, colliderDepth;
-	public float precision = 2;
+	public float precision = 8;
 	
 	#pragma warning disable 219
 
