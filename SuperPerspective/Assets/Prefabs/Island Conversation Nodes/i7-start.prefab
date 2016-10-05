@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &112290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 462134}
+  - 114: {fileID: 11417412}
+  m_Layer: 0
+  m_Name: i7-start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &462134
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.3058379, y: 7.7896457, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11417412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray: []
+  hasNext: 0
+  choiceIndex: 0
+  convoTextArray:
+  - Okay, I'll admit this one has me pretty stumped kid.
+  - Two of the switches are pretty straightforward, but what about that last one?
+  - Maybe try pushing it backwards?
+  - Remember you can shift kid, you might have to if you want it to stop in the right
+    place!
+  question: QUESTION
+  endQuestionArray: []
+  endEventArray: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[0]
+      value: Hey, Listen
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[1]
+      value: Pixies are cool
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: convoTextArray.Array.data[2]
+      value: Pixie
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 112290}
+  m_IsPrefabParent: 1

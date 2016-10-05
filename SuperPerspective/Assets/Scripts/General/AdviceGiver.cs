@@ -9,6 +9,8 @@ public class AdviceGiver : MonoBehaviour {
     public convoNode[] convoArray = new convoNode[50];
     private Hashtable htab = new Hashtable();
 
+    public convoNode defaultNode;
+
     //This will get the scene TextBox by itself.
     private textBoxScript textbox;
 
@@ -38,7 +40,14 @@ public class AdviceGiver : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.T))
             {
-                giveAdvice(currentLoc);
+                if (htab.ContainsKey(currentLoc))
+                {
+                    giveAdvice(currentLoc);
+                }
+                else
+                {
+                    textBoxScript.instance.startConvo(defaultNode);
+                }
             }
         }
 
