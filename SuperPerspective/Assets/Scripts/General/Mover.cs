@@ -49,12 +49,15 @@ public class Mover : Activatable {
 			 		playerBounds.size[otherAxis], playerBounds.size.y);
 			Rect mySideBounds = new Rect(myBounds.min[otherAxis],myBounds.min.y,myBounds.size[otherAxis], myBounds.size.y);
 			bool overlaps = mySideBounds.Overlaps(playerSideBounds);
-			bool movingTowardPlayer = Mathf.Abs(movement[axis]) < 0.01 ||
+			bool movingTowardPlayer = Mathf.Abs(movement[axis]) > 0.01 &&
 				(Mathf.Sign(movement[axis]) * (activated?1:-1)) ==
 				Mathf.Sign(playerBounds.center[axis] -myBounds.center[axis]);
 			float dist = Mathf.Max(
 				myBounds.min[axis]-playerBounds.max[axis],
 				playerBounds.min[axis]-myBounds.max[axis]);
+			if(dist < 0){
+				dist = 100;
+			}
 			isPushing = isPushing || (overlaps && dist < .5 && movingTowardPlayer);
 		}
 		return isPushing;

@@ -279,9 +279,6 @@ public class PlayerController : PhysicalObject{
 	}
 
 	void CheckCollisionsOnAxis(int axis){
-		if (axis == Y && isRiding())
-			return;
-
 		Vector3 axisVector = getAxisVector(axis);
 
 		Vector3 trajectory;
@@ -292,20 +289,20 @@ public class PlayerController : PhysicalObject{
 		for (int i = 0; i < hits.Length; i++) {
 			RaycastHit hitInfo = hits[i];
 
-    	if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
-		{
+	    	if (hitInfo.collider != null && !hitInfo.collider.isTrigger)
+			{
 
-      //Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
+	      		//Nick code: call to StepManager method that uses type of y axis collision to chage footstep sound
 
-        if (axis == Y)
-        {
-            if (step != null)
-                step.updateStepType(hitInfo.collider);
-        }
+		        if (axis == Y)
+		        {
+		            if (step != null)
+		                step.updateStepType(hitInfo.collider);
+		        }
 
-        //end Nick code
+		        //end Nick code
 
-        float verticalOverlap = getVerticalOverlap(hitInfo);
+		        float verticalOverlap = getVerticalOverlap(hitInfo);
 				bool significantVerticalOverlap =
 				verticalOverlap > verticalOverlapThreshhold;
 				if(axis != Y && !significantVerticalOverlap){
@@ -349,21 +346,31 @@ public class PlayerController : PhysicalObject{
 
 		bool collisionWithTangibleOccurred = distToCollision!=-1;
 		if (collisionWithTangibleOccurred) {
-			if(axis == Y){
-				if (!bounced) {
-					transform.Translate(
-						axisVector *
-						Mathf.Sign(velocity[axis]) *
-						(distToCollision - getDimensionAlongAxis(axis) / 2)
-					);
-					velocity[axis] = 0f;
-				} else {
-					bounced = false;
+			if (isRiding()) {
+				Vector3 pos = transform.position;
+				ridingPlatform.transform.Translate(ridingPlatform.GetComponent<MobilePlatform>().getVelocity() * -Time.deltaTime);
+				pos.x = ridingPlatform.transform.position.x;
+				pos.y = ridingPlatform.transform.position.y + colliderHeight / 2f + ridingPlatform.GetComponent<Collider>().bounds.extents.y - 0.1f;
+				pos.z = ridingPlatform.transform.position.z;
+				transform.position = pos;
+				ridingPlatform.GetComponent<MobilePlatform>().setVelocity(Vector3.zero);
+			} else {
+				if(axis == Y){
+					if (!bounced) {
+						transform.Translate(
+							axisVector *
+							Mathf.Sign(velocity[axis]) *
+							(distToCollision - getDimensionAlongAxis(axis) / 2)
+						);
+						velocity[axis] = 0f;
+					} else {
+						bounced = false;
+					}
+				}else{
+					if(!passivePush && !isInCactusKnockBack()) velocity[axis] = 0f;
 				}
-			}else{
-				if(!passivePush && !isInCactusKnockBack()) velocity[axis] = 0f;
 			}
-		}else if(axis == Y){
+		} else if (axis == Y) {
 			grounded = false;
 		}
 	}
@@ -693,21 +700,21 @@ public class PlayerController : PhysicalObject{
 
 	public bool isRunning(){
 		bool movingFast = velocity.magnitude > maxSpeed/2;
-		return isGrounded() && movingFast;
+		return !isRiding() && isGrounded() && movingFast;
 	}
 
 	public bool isWalking(){
 		bool movingSlow = 0 < velocity.magnitude && velocity.magnitude <= maxSpeed/2;
-		return isGrounded() && movingSlow;
+		return !isRiding() && isGrounded() && movingSlow;
 	}
 
 	public bool isFalling(){
 		bool onEdge = edgeState == PlayerEdgeState.HANGING;
-		return velocity.y < -epsilon && !onEdge;
+		return !isRiding() && velocity.y < -epsilon && !onEdge;
 	}
 
     public bool isGrounded(){
-		return grounded;
+		return isRiding() || grounded;
 	}
 
 	public bool isRiding() {
@@ -718,7 +725,9 @@ public class PlayerController : PhysicalObject{
 		ridingPlatform = platform;
 	}
 
-	public bool isJumping(){ return jumping; }
+	public bool isJumping(){ 
+		return !isRiding() && jumping;
+	}
 
 	public bool isShimmying(){
 		bool moving = velocity.magnitude > epsilon;

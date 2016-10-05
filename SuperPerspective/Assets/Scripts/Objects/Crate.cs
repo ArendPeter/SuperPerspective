@@ -132,13 +132,13 @@ public class Crate : ActiveInteractable {
 	}
 
 	void LateUpdate () {
+		if (!startFalling) {
+			if (Physics.Raycast(transform.position, Vector3.down))
+				startFalling = true;
+			return;
+		}
 		if(!PlayerController.instance.isPaused()){
 			base.LateUpdateLogic ();
-			if (!startFalling) {
-				if (Physics.Raycast(transform.position, Vector3.down))
-					startFalling = true;
-				return;
-			}
 			transform.Translate(velocity * Time.deltaTime);
 			bool playerAwayFromSpawn =
 			 	Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth;

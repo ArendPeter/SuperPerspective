@@ -184,6 +184,7 @@ public class MobilePlatform : ActiveInteractable {
 			controlled = true;
 			player.transform.Translate(transform.position.x - player.transform.position.x, 0, transform.position.z - player.transform.position.z);
 			player.transform.parent = transform;
+			player.GetComponent<PlayerController>().setVelocity(Vector3.zero);
 		} else {
 			PlayerController.instance.setRiding(null);
 			controlled = false;
