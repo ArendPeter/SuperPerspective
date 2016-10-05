@@ -212,6 +212,11 @@ public class ActiveInteractable : PhysicalObject {
 		}
 	}
 
+    public void setNotMarkerVisibility(bool set)
+    {
+        notiMarker.updateVisible(set);
+    }
+
 	public enum Quadrant {
 		zPlus, zMinus, xPlus, xMinus, none
 	}

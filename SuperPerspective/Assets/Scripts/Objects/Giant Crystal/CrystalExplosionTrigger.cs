@@ -14,26 +14,33 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
     //Used when the character decides to select "Yes."
 
-    //Charges up a light then when it hits max, swaps from the whole Crystal to the broke Crystal, which then proceeds to explode everywhere.
-    public bool shouldExplode = false;
-    public Light chargeLight;
-    public GameObject wholeCrystal;
-    public GameObject brokeCrystal;
+        //Charges up a light then when it hits max, swaps from the whole Crystal to the broke Crystal, which then proceeds to explode everywhere.
+        public bool shouldExplode = false;
+        public Light chargeLight;
+        public GameObject wholeCrystal;
+        public GameObject brokeCrystal;
 
-    //These variables control how long the light shines up before it explodes
-    public float chargeAmount;
-    public float chargeMax;
-    public float chargeSpeed;
+        //These variables control how long the light shines up before it explodes
+        public float chargeAmount;
+        public float chargeMax;
+        public float chargeSpeed;
 
-    public GenericDissolver[] dissArr;
+        public GenericDissolver[] dissArr;
 
     //Conversation variables
     public startTextEvent startEvent;//Used to activate the TextBoxScript that plays the conversation.
     public textBoxScript textbox;
     public bool conversationEnded;//Used to show that the player has ended the conversation
 
+
+    //Variables for post-deletion cleanup
+    private Collider myCollider;
+
+
+
 	// Use this for initialization
 	void Start () {
+        myCollider = GameObject.FindObjectOfType<Collider>();
         StartSetup();
         textbox = GameObject.FindObjectOfType<textBoxScript>();
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
@@ -107,7 +114,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
                             i.gameObject.transform.SetParent(null);
                         }
                     }
-                    //Destroy(this.gameObject);
+                    this.setNotMarkerVisibility(false);
+                    Destroy(this);
                 }
             }
         }

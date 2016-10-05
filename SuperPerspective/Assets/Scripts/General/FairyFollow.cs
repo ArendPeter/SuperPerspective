@@ -9,12 +9,19 @@ public class FairyFollow : MonoBehaviour {
     public float floatHeight = 1f;
     public int arrayID = 0;
 
+    [Tooltip("Used to determine if our Spirit is going to collide with something above us.")]
     public float rayLength = 10f;
 
+    [Tooltip("This is where our spirit crystal floats toward. Essentially a location transform tagged by a specific class.")]
     public SpiritMount mount;
 
+    //The locations we can foat to.
     private GameObject[] floatPoints = new GameObject[3];
+    //We use this to show which of the current locations we can use are currently free.
     [SerializeField] private bool[] boolArr = new bool[3];
+
+    [Tooltip("Whether or not we should even be floating towards our target")]
+    public bool shouldFollow = true;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +32,14 @@ public class FairyFollow : MonoBehaviour {
 	void Update () {
         if (mount != null)
         {
-            posCheck();
-            Vector3 playerPos = new Vector3(floatPoints[arrayID].transform.position.x, floatPoints[arrayID].transform.position.y + floatHeight, floatPoints[arrayID].transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, playerPos, followSpeed);
-            Vector3 vec = Vector3.Lerp(transform.localRotation.eulerAngles, player.transform.localRotation.eulerAngles, followSpeed);
-            transform.rotation = Quaternion.Euler(vec.x, vec.y, vec.z);
+            if (shouldFollow)
+            {
+                posCheck();
+                Vector3 playerPos = new Vector3(floatPoints[arrayID].transform.position.x, floatPoints[arrayID].transform.position.y + floatHeight, floatPoints[arrayID].transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, playerPos, followSpeed);
+                Vector3 vec = Vector3.Lerp(transform.localRotation.eulerAngles, player.transform.localRotation.eulerAngles, followSpeed);
+                transform.rotation = Quaternion.Euler(vec.x, vec.y, vec.z);
+            }
         }
         else
         {
