@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27116352, g: 0.4412939, b: 0.5153754, a: 1}
+  m_IndirectSpecularColor: {r: 0.2711635, g: 0.4412939, b: 0.5153754, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5591,25 +5591,6 @@ Transform:
   - {fileID: 281979138}
   m_Father: {fileID: 1318059222}
   m_RootOrder: 3
---- !u!1 &501926762 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 180044, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-  m_PrefabInternal: {fileID: 787953360}
---- !u!114 &501926763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 501926762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a9b15d4186a431cabe109256ad2261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startAtDoor: 1
-  startDoorName: i1-start
-  teleportOffset: {x: 0, y: 5, z: 0}
-  destDoor: {fileID: 0}
 --- !u!1001 &506069542
 Prefab:
   m_ObjectHideFlags: 0
@@ -7660,6 +7641,7 @@ MonoBehaviour:
   rayLength: 2
   mount: {fileID: 0}
   boolArr: 000000
+  shouldFollow: 1
 --- !u!95 &714092934
 Animator:
   serializedVersion: 3
@@ -8318,6 +8300,11 @@ Prefab:
     - target: {fileID: 11446532, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: startDoorName
       value: i9-start
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011591027188, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: startAtDoor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11480128, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
@@ -9413,7 +9400,7 @@ ParticleSystem:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 883886917}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -9451,13 +9438,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
-  autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18961,7 +18947,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705211406}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -18999,13 +18985,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -21685,7 +21670,7 @@ ParticleSystem:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1807709534}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 0.1
   startDelay:
     scalar: 0
@@ -21723,13 +21708,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -23800,6 +23784,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 224000013950707294, guid: 389f1d37719b61a4ebbaf09a039017de,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -23895,6 +23884,60 @@ Prefab:
       propertyPath: maxChoice
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d3c5bb0f11ce184fab74bb66140a742,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 49bf8418c02a4114e9a024623627f508,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4399da055093b564281697efa3f1f254,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 47ba90162bda0774d8047ed20adfbe7b,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 39bf337363ff3874dae45d9ba8838c77,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: cf8658c64ff81d246ba187f7578946d0,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: cf8658c64ff81d246ba187f7578946d0,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464187abf1caa5a47b9b63c207af0b6a,
+        type: 3}
+    - target: {fileID: 114000012485023808, guid: 389f1d37719b61a4ebbaf09a039017de,
+        type: 2}
+      propertyPath: pictures.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: a8db9b0cc1730e34eb12bd94d5f7889c,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 389f1d37719b61a4ebbaf09a039017de, type: 2}
   m_IsPrefabParent: 0
