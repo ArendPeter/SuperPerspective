@@ -62,7 +62,7 @@ public class textBoxScript : MonoBehaviour {
 			Destroy(this);
 		}
 		//link action
-		InputManager.instance.InteractPressedEvent += progressConv;
+		InputManager.instance.JumpPressedEvent += progressConv;
 		//start out disabled
 		disableBox();
         //So these don't get overwritten later.

@@ -21,6 +21,8 @@ public class AdviceGiver : MonoBehaviour {
     [SerializeField]
      PlayerSpawnController pspawn;
 
+    bool help = false;
+
 	// Use this for initialization
 	void Start () {
         textbox = GameObject.FindObjectOfType<textBoxScript>();
@@ -28,17 +30,23 @@ public class AdviceGiver : MonoBehaviour {
         pspawn = this.GetComponent<PlayerSpawnController>();
         currentLoc = pspawn.startDoorName;//We gotta figure out where we're starting, after all.
         populateHashtable();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        InputManager.instance.HelpEvent += XboxHelp;
+    }
+
+    void XboxHelp()
+    {
+        help = true;
+    }
+
+    // Update is called once per frame
+    void Update () {
         if(textbox == null)//This is a fix in case we don't find the TextBox on the first frame.
         {
             GameObject.FindObjectOfType<textBoxScript>();
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            if (Input.GetKey(KeyCode.T))
+            if (Input.GetKey(KeyCode.T) || help)
             {
                 if (htab.ContainsKey(currentLoc))
                 {
@@ -49,6 +57,7 @@ public class AdviceGiver : MonoBehaviour {
                     textBoxScript.instance.startConvo(defaultNode);
                 }
             }
+            help = false;
         }
 
 	}
