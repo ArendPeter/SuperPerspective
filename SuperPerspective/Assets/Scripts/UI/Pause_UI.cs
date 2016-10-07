@@ -25,8 +25,33 @@ public class Pause_UI : MonoBehaviour {
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
     public KeyCode up, up2, down, down2, select, select2;
 
+    private bool goUp = false, goDown = false, goSel = false;
+
+    void RegisterEventHandlers()
+    {
+        InputManager.instance.MenuDownEvent += XboxMenuDown;
+        InputManager.instance.MenuUpEvent += XboxMenuUp;
+        InputManager.instance.JumpPressedEvent += XboxSelect;
+    }
+
+    void XboxMenuDown()
+    {
+        goDown = true;
+    }
+
+    void XboxMenuUp()
+    {
+        goUp = true;
+    }
+
+    void XboxSelect()
+    {
+        goSel = true;
+    }
+
     // Use this for initialization
     void Start () {
+        RegisterEventHandlers();
         up = KeyCode.UpArrow;
         up2 = KeyCode.W;
         down = KeyCode.DownArrow;
@@ -75,7 +100,7 @@ public class Pause_UI : MonoBehaviour {
     {
         if (active)
         {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
+            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || goSel)
             {
                 if (choice == 2 || (choice == 1 && isHub))
                 {
@@ -92,18 +117,21 @@ public class Pause_UI : MonoBehaviour {
 
             }
 
-            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2))
+            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
             {
                 moveUp();
                 moveSelect();
             }
 
-            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2))
+            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
             {
                 moveDown();
                 moveSelect();
             }
         }
+        goUp = false;
+        goDown = false;
+        goSel = false;
     }
 
     private void moveUp()

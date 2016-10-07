@@ -27,17 +27,20 @@ public class InputManager : MonoBehaviour{
 	public event System.Action BackwardMovementEvent;
 	public event System.Action ForwardMovementEvent;
 	public event System.Action DevConsoleEvent;
+    public event System.Action MenuUpEvent;
+    public event System.Action MenuDownEvent;
+    public event System.Action HelpEvent;
 
-	// Game's pause state
-	private bool continuePressed = false;//used as an alternate way to unpause
+    // Game's pause state
+    private bool continuePressed = false;//used as an alternate way to unpause
 
 	// Perspective shift properties
 	// TODO: Move this funcionality to the camera script
-	private const float FAIL_TIME = 0.5f;
-	private float flipTimer = 0;
+	private const float FAIL_TIME = 0.5f, MENU_PAUSE = 0.15f;
+	private float flipTimer = 0, menuTimer = 0;
 	private bool flipFailed = false;
 
-	private float previousForwardMovement = 0;
+	private float previousForwardMovement = 0, menuMove = 0;
 
 	#endregion Properties & Variables
 
@@ -51,46 +54,70 @@ public class InputManager : MonoBehaviour{
 			Destroy (this);
 	}
 
-	// listens to player input and raises events for listeners.
-	void Update () {
-		if(Input.GetButtonUp("DevConsoleToggle"))
-			RaiseEvent(DevConsoleEvent);
+    // listens to player input and raises events for listeners.
+    void Update() {
+        if (Input.GetButtonUp("DevConsoleToggle"))
+            RaiseEvent(DevConsoleEvent);
 
-		if(Input.GetButtonDown("Interaction"))
-			RaiseEvent(InteractPressedEvent);
+        if (Input.GetButtonDown("Interaction"))
+            RaiseEvent(InteractPressedEvent);
 
-		if(Input.GetButtonDown("Pause") || continuePressed){
-			RaiseEvent(PausePressedEvent);
-			continuePressed = false;
-		}
-		if(Input.GetButtonDown("Jump"))
-			RaiseEvent(JumpPressedEvent);
+        if (Input.GetButtonDown("Pause") || continuePressed) {
+            RaiseEvent(PausePressedEvent);
+            continuePressed = false;
+        }
+        if (Input.GetButtonDown("Jump"))
+            RaiseEvent(JumpPressedEvent);
 
-		if(Input.GetButtonDown("Grab"))
-			RaiseEvent(GrabPressedEvent);
+        if (Input.GetButtonDown("Grab"))
+            RaiseEvent(GrabPressedEvent);
 
-		if(Input.GetButtonDown("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
-			RaiseEvent(ShiftPressedEvent);
+        if (Input.GetButtonDown("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
+            RaiseEvent(ShiftPressedEvent);
 
-		if(Input.GetButtonDown("LeanLeft"))
-			RaiseEvent(LeanLeftPressedEvent);
+        if (Input.GetButtonDown("LeanLeft"))
+            RaiseEvent(LeanLeftPressedEvent);
 
-		if(Input.GetButtonDown("LeanRight"))
-			RaiseEvent(LeanRightPressedEvent);
+        if (Input.GetButtonDown("LeanRight"))
+            RaiseEvent(LeanRightPressedEvent);
 
-		if(Input.GetButtonUp("LeanLeft"))
-			RaiseEvent(LeanLeftReleasedEvent);
+        if (Input.GetButtonUp("LeanLeft"))
+            RaiseEvent(LeanLeftReleasedEvent);
 
-		if(Input.GetButtonUp("LeanRight"))
-			RaiseEvent(LeanRightReleasedEvent);
+        if (Input.GetButtonUp("LeanRight"))
+            RaiseEvent(LeanRightReleasedEvent);
 
-		if(previousForwardMovement != -1 && GetForwardMovement() == -1)
+        if (Input.GetButtonDown("Help"))
+        {
+            RaiseEvent(HelpEvent);
+        }
+
+        if (previousForwardMovement != -1 && GetForwardMovement() == -1)
 			RaiseEvent(BackwardMovementEvent);
 
 		if(previousForwardMovement != 1 && GetForwardMovement() == 1)
 			RaiseEvent(ForwardMovementEvent);
 
-		previousForwardMovement = GetForwardMovement();
+        if (menuTimer <= 0)
+        {
+            if (menuMove > 0)
+            {
+                RaiseEvent(MenuUpEvent);
+                menuTimer = MENU_PAUSE;
+            }
+            if (menuMove < 0)
+            {
+                RaiseEvent(MenuDownEvent);
+                menuTimer = MENU_PAUSE;
+            }
+        }
+        else
+        {
+            menuTimer -= Time.deltaTime;
+        }
+
+        previousForwardMovement = GetForwardMovement();
+        menuMove = GetMenuMovement();
 	}
 
 	#endregion MonobehaviorImplementation
@@ -114,8 +141,13 @@ public class InputManager : MonoBehaviour{
 			return 0f;
 	}
 
-	// Returns true if the jump button is currently pressed
-	public bool JumpStatus(){
+    public float GetMenuMovement()
+    {
+        return Input.GetAxis("Menu");
+    }
+
+    // Returns true if the jump button is currently pressed
+    public bool JumpStatus(){
 		return Input.GetButton("Jump");
 	}
 

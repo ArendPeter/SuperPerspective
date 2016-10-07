@@ -33,14 +33,37 @@ public class Bonfire_UI : MonoBehaviour {
     //Hey Peter, use closeFlag to tell when to back out of the UI. Set it back to false when you're done.
     public bool teleportFlag, closeFlag;
 
-	private bool readyForInput = false, active = false;
+    private bool readyForInput = false, active = false, goUp = false, goDown = false, goSel = false;
 
     //Used to make my life easier, hooray
     private float x, y, z;
     private Vector3 vec;
 
-	// Use this for initialization
-	void Start () {
+    void RegisterEventHandlers()
+    {
+        InputManager.instance.MenuDownEvent += XboxMenuDown;
+        InputManager.instance.MenuUpEvent += XboxMenuUp;
+        InputManager.instance.JumpPressedEvent += XboxSelect;
+    }
+
+    void XboxMenuDown()
+    {
+        goDown = true;
+    }
+
+    void XboxMenuUp()
+    {
+        goUp = true;
+    }
+
+    void XboxSelect()
+    {
+        goSel = true;
+    }
+
+    // Use this for initialization
+    void Start () {
+        RegisterEventHandlers();
         up = KeyCode.UpArrow;
         up2 = KeyCode.W;
         down = KeyCode.DownArrow;
@@ -89,7 +112,7 @@ public class Bonfire_UI : MonoBehaviour {
 			return;
 		}
 		if (!teleportFlag && readyForInput) {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2))
+            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || goSel)
             {
                 if (choice == 10)
                 {
@@ -108,13 +131,13 @@ public class Bonfire_UI : MonoBehaviour {
                 }
         }
 
-            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2))
+            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
             {
                 moveUp();
                 moveSelect();
             }
 
-            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2))
+            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
             {
                 moveDown();
                 moveSelect();
@@ -123,6 +146,9 @@ public class Bonfire_UI : MonoBehaviour {
 		if (active && !readyForInput) {
 			readyForInput = true;
 		}
+        goUp = false;
+        goDown = false;
+        goSel = false;
     }
 
     private void moveUp ()
