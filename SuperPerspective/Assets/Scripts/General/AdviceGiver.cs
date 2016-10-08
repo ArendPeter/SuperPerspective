@@ -46,7 +46,7 @@ public class AdviceGiver : MonoBehaviour {
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            /*if (Input.GetKey(KeyCode.T) || help)
+            if (Input.GetKey(KeyCode.T) || help)
             {
                 if (htab.ContainsKey(currentLoc))
                 {
@@ -56,7 +56,7 @@ public class AdviceGiver : MonoBehaviour {
                 {
                     textBoxScript.instance.startConvo(defaultNode);
                 }
-            }*/
+            }
             help = false;
         }
 

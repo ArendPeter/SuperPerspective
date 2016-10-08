@@ -7382,6 +7382,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.size
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 488.71
@@ -7538,8 +7542,58 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 11417412, guid: 576533a7ddf6561448971b35067cbf7b,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[21]
+      value: 
+      objectReference: {fileID: 11417412, guid: 3eae5e9a24cb3b645b1df93b66d221fd,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[22]
+      value: 
+      objectReference: {fileID: 11417412, guid: 466536321cd7f3c48bfda47b186e7eb5,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[23]
+      value: 
+      objectReference: {fileID: 11417412, guid: b79147ebab1404e4297becf1be0679f1,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[24]
+      value: 
+      objectReference: {fileID: 11417412, guid: 27efdace25942d047bab3a18ce971546,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[25]
+      value: 
+      objectReference: {fileID: 11417412, guid: 05950f96b679ec54c866bc117cf47b74,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[26]
+      value: 
+      objectReference: {fileID: 11417412, guid: 4302f95ea40f7584498e69ff23f2017c,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[27]
+      value: 
+      objectReference: {fileID: 11417412, guid: efdca9e7565e4a74ca8d112c748ff761,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[28]
+      value: 
+      objectReference: {fileID: 11417412, guid: 729a9fdf3f6226d4bbaae5ae47fdc631,
+        type: 2}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[29]
+      value: 
+      objectReference: {fileID: 11417412, guid: 7155f14934f4a2845af0caec40763722,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 11480128, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
     - {fileID: 8172190, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
@@ -15300,7 +15354,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705211406}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -15338,12 +15392,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 2
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
