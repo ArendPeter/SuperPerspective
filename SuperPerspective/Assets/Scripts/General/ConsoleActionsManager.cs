@@ -38,8 +38,9 @@ public class ConsoleActionsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("Enter") && dcl.text != ""){
+		if(Input.GetKeyDown("return") && dcl.text != ""){
 			// dcl.text = "";
+			print("pls");
 			this.consoleCommand(dcl.text);
 		}
 	}
