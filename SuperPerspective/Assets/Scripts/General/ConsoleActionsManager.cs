@@ -40,7 +40,6 @@ public class ConsoleActionsManager : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown("return") && dcl.text != ""){
 			// dcl.text = "";
-			print("pls");
 			this.consoleCommand(dcl.text);
 		}
 	}
