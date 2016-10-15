@@ -4,10 +4,14 @@ using System.Collections;
 //can be activated by player
 public class ActiveInteractable : PhysicalObject {
 
-	//suppress warnings
-	#pragma warning disable 414
+    //For glowiness
+    [SerializeField] private Renderer glowRenderer;
 
-	bool ignoreYDistance = true;
+
+    //suppress warnings
+    #pragma warning disable 414
+
+    bool ignoreYDistance = true;
 
 	//player
 	protected GameObject player;
@@ -69,7 +73,10 @@ public class ActiveInteractable : PhysicalObject {
 		}
 		//register interactpressed to the InputManager
 		InputManager.instance.InteractPressedEvent += InteractPressed;
-	}
+
+        //Get your material
+        glowRenderer = GetComponentInChildren<Renderer>();
+    }
 
 	protected void FixedUpdateLogic() {
 		float dist = GetDistance();
@@ -94,7 +101,16 @@ public class ActiveInteractable : PhysicalObject {
 			notiDist = dist;
 		}
 
-		fixedCalled = true;
+        if (canTrigger)
+        {
+            glowRenderer.material.SetFloat("_RimPower", .5f);
+        }
+        else
+        {
+            glowRenderer.material.SetFloat("_RimPower", 8.0f);
+        }
+
+        fixedCalled = true;
 	}
 
 	protected virtual bool IsEnabled(){
