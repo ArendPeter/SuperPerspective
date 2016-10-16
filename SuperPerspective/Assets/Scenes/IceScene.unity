@@ -2615,6 +2615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93e104735afd3042941653f7c2fc95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionTexture: {fileID: 2800000, guid: 6341a535ce0fbfd4b8585fa108e6a25a, type: 3}
 --- !u!114 &240815539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15354,7 +15355,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705211406}
-  serializedVersion: 4
+  serializedVersion: 2
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -15392,13 +15393,12 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
+  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
-  autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
