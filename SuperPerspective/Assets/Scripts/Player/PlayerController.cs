@@ -551,7 +551,7 @@ public class PlayerController : PhysicalObject{
 		}
 
 		//set overlap in flip fail indicator
-		FlipFailIndicator.instance.setOverlappingBlock(hitInfo.collider);
+		GetComponentInChildren<FlipFailIndicator>().setOverlappingBlock(hitInfo.collider);
 
 		foreach (GameObject obj in intangibles) {
 			obj.layer = 0;
@@ -725,7 +725,7 @@ public class PlayerController : PhysicalObject{
 		ridingPlatform = platform;
 	}
 
-	public bool isJumping(){ 
+	public bool isJumping(){
 		return !isRiding() && jumping;
 	}
 

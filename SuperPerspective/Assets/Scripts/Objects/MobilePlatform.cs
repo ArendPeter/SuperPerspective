@@ -37,7 +37,7 @@ public class MobilePlatform : ActiveInteractable {
 		colliderWidth = GetComponent<Collider>().bounds.size.x;
 		colliderDepth = GetComponent<Collider>().bounds.size.z;
 		rect = GetComponent<BoundObject>().GetBounds();
-		CameraController.instance.TransitionCompleteEvent += checkBreak;
+		//CameraController.instance.TransitionCompleteEvent += checkBreak;
 		startPos = transform.position;
         audio = GetComponent<AudioSource>();
         em1 = particle1.emission;
@@ -148,6 +148,7 @@ public class MobilePlatform : ActiveInteractable {
 	}
 
 	public bool Check2DIntersect() {
+		print("Intersect called");
 		// True if any ray hits a collider
 		bool connected = false;
 
@@ -160,12 +161,28 @@ public class MobilePlatform : ActiveInteractable {
 		float maxY 		= GetComponent<Collider>().bounds.max.y - Margin;
 		float centerZ   = GetComponent<Collider>().bounds.center.z;
 
+
+		RaycastHit hitInfo = new RaycastHit();
 		float rad = (GetComponent<Collider>().bounds.max.z - GetComponent<Collider>().bounds.max.z) * 0.5f;
-		connected = Physics.CapsuleCast(new Vector3(minX + rad, centerY, centerZ), new Vector3(maxX - rad, centerY, centerZ), rad, Vector3.forward) ||
-					Physics.CapsuleCast(new Vector3(minX + rad, centerY, centerZ), new Vector3(maxX - rad, centerY, centerZ), rad, Vector3.back);
+		connected =
+			Physics.CapsuleCast(
+					new Vector3(minX + rad, centerY, centerZ),
+					new Vector3(maxX - rad, centerY, centerZ),
+					rad, Vector3.forward, out hitInfo) ||
+			Physics.CapsuleCast(
+					new Vector3(minX + rad, centerY, centerZ),
+					new Vector3(maxX - rad, centerY, centerZ),
+					rad, Vector3.back, out hitInfo);
+
+		//set overlap in flip fail indicator
+		if(connected)
+			print("overlap set");
+		GetComponentInChildren<FlipFailIndicator>().setOverlappingBlock(hitInfo.collider);
+
 		return connected;
 	}
 
+	//note: checkBreak has been unlinked in favor of triggered shift failed
 	void checkBreak() {
 		if(GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect()) {
 			if (controlled){
@@ -174,7 +191,7 @@ public class MobilePlatform : ActiveInteractable {
 				player.transform.parent = null;
 			}
 			respawnFlag = true;
-            breakSFX.Play();
+      breakSFX.Play();
 		}
 	}
 

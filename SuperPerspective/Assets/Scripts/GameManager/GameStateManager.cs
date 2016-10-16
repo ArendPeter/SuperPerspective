@@ -135,8 +135,13 @@ public class GameStateManager : MonoBehaviour
 	}
 
 	private void checkForBlinkEnd(){
+		bool blinking = false;
+		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
+			FlipFailIndicator flipper = obj.GetComponent<FlipFailIndicator>();
+			blinking = blinking || flipper.isBlinking();
+		}
 		if(failedShift && !isTransitioning() &&
-				!FlipFailIndicator.instance.isBlinking()){
+				!blinking){
 			EnterState(ViewType.STANDARD_3D);
 			failedShift = false;
 		}
@@ -177,7 +182,14 @@ public class GameStateManager : MonoBehaviour
 				ViewType.STANDARD_2D : ViewType.STANDARD_3D;
 
 
-			if(PlayerController.instance.Check2DIntersect()){
+			bool playerIntersects = PlayerController.instance.Check2DIntersect();
+			bool platformIntersects = false;
+			foreach(GameObject ind in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
+				MobilePlatform plat = ind.transform.parent.GetComponent<MobilePlatform>();
+				if(plat == null) continue;
+				platformIntersects = platformIntersects || plat.Check2DIntersect();
+			}
+			if(playerIntersects || platformIntersects){
 				RaisePerspectiveShiftFailEvent();
 				failedShift = true;
 			}else{
@@ -201,7 +213,10 @@ public class GameStateManager : MonoBehaviour
 		testCurrentState = currentState;
 
 		if(failedShift){
-			FlipFailIndicator.instance.blink();
+			foreach(GameObject obj in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
+				FlipFailIndicator flipper = obj.GetComponent<FlipFailIndicator>();
+				flipper.blink();
+			}
 		}
 
 		RaisePerspectiveShiftEvent();

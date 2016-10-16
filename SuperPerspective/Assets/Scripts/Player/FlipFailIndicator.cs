@@ -2,10 +2,9 @@
 using System.Collections;
 
 public class FlipFailIndicator : MonoBehaviour {
-	public static FlipFailIndicator instance;
+	public Transform perspCam;
 
-	Transform perspCam;
-
+	public static Transform sharedPerspCam;
 	Collider overlappingBlock;
 
 	public float[] blinkDurations = new float[3]{.1f,.2f,.3f};
@@ -13,10 +12,12 @@ public class FlipFailIndicator : MonoBehaviour {
 	float blinkThresh = 0;
 	float blinkTime = -1f;
 
-	public void Start(){
-		instance = this;
+	void Start(){
 		this.GetComponent<Renderer>().enabled = false;
-		perspCam = transform.parent.Find("CameraMounts").Find("2DCameraMount");
+		if(perspCam != null){
+			print("persp set");
+			sharedPerspCam = perspCam;
+		}
 	}
 
 	public void FixedUpdate(){
@@ -42,19 +43,22 @@ public class FlipFailIndicator : MonoBehaviour {
 	}
 
 	public void blink(){
-	  updateZPosition();
-		bindToOverlap();
-		initBlinkVars();
+		bool hasOverlap = overlappingBlock != null;
+		if(hasOverlap){
+		  updateZPosition();
+			bindToOverlap();
+			initBlinkVars();
+		}
 	}
 
 	private void updateZPosition(){
 		Vector3 pos = transform.position;
-		pos.z = perspCam.transform.position.z + 1;
+		pos.z = sharedPerspCam.transform.position.z + 1;
 		transform.position = pos;
 	}
 
 	private void bindToOverlap(){
-		Bounds myBounds = PlayerController.instance.GetComponent<Collider>().bounds;
+		Bounds myBounds = transform.parent.gameObject.GetComponent<Collider>().bounds;
 		Bounds ovBounds = overlappingBlock.bounds;
 
 		float minX = Mathf.Max(myBounds.min.x,ovBounds.min.x);
