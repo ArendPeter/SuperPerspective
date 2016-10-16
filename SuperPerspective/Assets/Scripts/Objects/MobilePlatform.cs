@@ -83,7 +83,7 @@ public class MobilePlatform : ActiveInteractable {
 			InputManager.instance.GetForwardMovement():
 				-InputManager.instance.GetSideMovement();
 
-		if (!controlled)
+		if (!controlled || PlayerController.instance.isDisabled())
 			axisInput = 0;
 
 		if (axisInput != 0){
@@ -148,7 +148,6 @@ public class MobilePlatform : ActiveInteractable {
 	}
 
 	public bool Check2DIntersect() {
-		print("Intersect called");
 		// True if any ray hits a collider
 		bool connected = false;
 
@@ -175,8 +174,6 @@ public class MobilePlatform : ActiveInteractable {
 					rad, Vector3.back, out hitInfo);
 
 		//set overlap in flip fail indicator
-		if(connected)
-			print("overlap set");
 		GetComponentInChildren<FlipFailIndicator>().setOverlappingBlock(hitInfo.collider);
 
 		return connected;

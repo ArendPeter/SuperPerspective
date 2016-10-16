@@ -141,7 +141,10 @@ public class GameStateManager : MonoBehaviour
 			blinking = blinking || flipper.isBlinking();
 		}
 		if(failedShift && !isTransitioning() &&
-				!blinking){
+				!blinking && !Input.GetButton("PerspectiveShift")){
+			foreach(GameObject obj in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
+				obj.GetComponent<FlipFailIndicator>().disableVisible();
+			}
 			EnterState(ViewType.STANDARD_3D);
 			failedShift = false;
 		}
@@ -186,7 +189,7 @@ public class GameStateManager : MonoBehaviour
 			bool platformIntersects = false;
 			foreach(GameObject ind in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
 				MobilePlatform plat = ind.transform.parent.GetComponent<MobilePlatform>();
-				if(plat == null) continue;
+				if(plat == null || !plat.controlled) continue;
 				platformIntersects = platformIntersects || plat.Check2DIntersect();
 			}
 			if(playerIntersects || platformIntersects){

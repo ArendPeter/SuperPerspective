@@ -4,10 +4,12 @@ using System.Collections;
 public class FlipFailIndicator : MonoBehaviour {
 	public Transform perspCam;
 
+	public Collider testOverlap;
+
 	public static Transform sharedPerspCam;
 	Collider overlappingBlock;
 
-	public float[] blinkDurations = new float[3]{.1f,.2f,.3f};
+	public float[] blinkDurations;
   int blinkFrame = 0;
 	float blinkThresh = 0;
 	float blinkTime = -1f;
@@ -27,7 +29,6 @@ public class FlipFailIndicator : MonoBehaviour {
 				toggleVisible();
 				if(blinkFrame == blinkDurations.Length){
 				  blinkTime = -1f;
-					this.GetComponent<Renderer>().enabled = false;
 				}else{
 					blinkThresh+=blinkDurations[blinkFrame];
 					blinkFrame++;
@@ -42,12 +43,19 @@ public class FlipFailIndicator : MonoBehaviour {
 		this.GetComponent<Renderer>().enabled = vis;
 	}
 
+	public void disableVisible(){
+		this.GetComponent<Renderer>().enabled = false;
+	}
+
 	public void blink(){
 		bool hasOverlap = overlappingBlock != null;
 		if(hasOverlap){
+			testOverlap = overlappingBlock;
 		  updateZPosition();
 			bindToOverlap();
 			initBlinkVars();
+		}else{
+			testOverlap = null;
 		}
 	}
 
