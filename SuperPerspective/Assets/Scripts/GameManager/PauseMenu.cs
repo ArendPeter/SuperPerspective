@@ -38,9 +38,7 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void returnToHUB()	{
-			ResetController.LoadScene("Hub");
-			TransitionManager.instance.MovePlayerToDoor(PlayerController.instance.GetComponent<PlayerController>(),
-				"hub-tutorial-start");
+		TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-tutorial-start", "Hub");
 	}
 
 	public void quitGame(){

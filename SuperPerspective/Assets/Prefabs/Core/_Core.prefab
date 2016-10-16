@@ -2728,6 +2728,7 @@ MonoBehaviour:
   textStartPoint: {fileID: 1000012400041360}
   currentNode: {fileID: 11417412, guid: 5abf1ee37e121074cae96bc93c0f4fce, type: 2}
   askBoxPartner: {fileID: 114000010713274704}
+  player: {fileID: 0}
   convArray: []
   lineLength: 35
   kerning: 0.1
@@ -2858,6 +2859,7 @@ MonoBehaviour:
   textStartPoint: {fileID: 1000013336336722}
   currentNode: {fileID: 11417412, guid: 5abf1ee37e121074cae96bc93c0f4fce, type: 2}
   textBoxPartner: {fileID: 114000010422901824}
+  player: {fileID: 0}
   question: 
   choiceArray: []
   lineLength: 25
@@ -3177,6 +3179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93e104735afd3042941653f7c2fc95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionTexture: {fileID: 2800000, guid: 6341a535ce0fbfd4b8585fa108e6a25a, type: 3}
 --- !u!114 &114000012509911962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3263,6 +3266,7 @@ MonoBehaviour:
   rayLength: 2
   mount: {fileID: 0}
   boolArr: 000000
+  shouldFollow: 1
 --- !u!114 &114000012667813948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3373,6 +3377,7 @@ MonoBehaviour:
   all: {fileID: 1000012977311738}
   pauseMenu: {fileID: 114000013614587894}
   gs: {fileID: 114000013212329014}
+  isHub: 0
   isPaused: 0
   standardCol: {r: 0.57254905, g: 0.6627451, b: 1, a: 1}
   selectedCol: {r: 0.06666667, g: 0.15294118, b: 0.48235294, a: 1}
@@ -3654,6 +3659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d927cdd02f5239440a771ccfacdceb98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testCurrentState: 0
   pause_UI: {fileID: 114000012700546650}
 --- !u!114 &114000013226708056
 MonoBehaviour:

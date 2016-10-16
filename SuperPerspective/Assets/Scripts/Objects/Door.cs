@@ -69,10 +69,7 @@ public class Door : ActiveInteractable {
         Instantiate(warpSound);
 
 		if(sceneName != "") {
-			ResetController.LoadScene(sceneName);
-			if (destName != "") {
-				TransitionManager.instance.MovePlayerToDoor(player.GetComponent<PlayerController>(), destName);
-			}
+			TransitionManager.instance.SceneTransition(player.GetComponent<PlayerController>(), destName, sceneName);
 		}else if(destDoor!=null && MainCollectable.GetMainCollectableHeld() >= crystalRequirement){
 
             if (AG == null)
