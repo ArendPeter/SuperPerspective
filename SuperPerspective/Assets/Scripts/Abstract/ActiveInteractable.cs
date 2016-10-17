@@ -101,13 +101,16 @@ public class ActiveInteractable : PhysicalObject {
 			notiDist = dist;
 		}
 
-        if (canTrigger)
+        if (glowRenderer != null)
         {
-            glowRenderer.material.SetFloat("_RimPower", .5f);
-        }
-        else
-        {
-            glowRenderer.material.SetFloat("_RimPower", 8.0f);
+            if (canTrigger)
+            {
+                glowRenderer.material.SetFloat("_RimPower", .5f);
+            }
+            else
+            {
+                glowRenderer.material.SetFloat("_RimPower", 8.0f);
+            }
         }
 
         fixedCalled = true;
