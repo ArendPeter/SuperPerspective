@@ -7609,6 +7609,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[6]
+      value: 
+      objectReference: {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 11480128, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
     - {fileID: 8172190, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
@@ -15418,7 +15423,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705211406}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -15456,12 +15461,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 2
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
