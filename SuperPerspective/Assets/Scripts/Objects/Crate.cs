@@ -287,14 +287,15 @@ public class Crate : ActiveInteractable {
 			new Vector3(centerX, centerY, centerZ)
 		};
 
-		Vector3 side = new Vector3(0,0,colliderDepth/2 + Margin);
+		// Was there a point to this? It only seems to mess it up in some cases
+		//Vector3 side = new Vector3(0,0,colliderDepth/2 - Margin);
 
 		//check all startpoints
 		for (int i = 0; i < startPoints.Length; i++) {
 			RaycastHit hit;
 			connected = connected ||
-			Physics.Raycast (startPoints [i] + side, Vector3.forward) ||
-			Physics.Raycast (startPoints [i] - side, -Vector3.forward);
+			Physics.Raycast (startPoints [i], Vector3.forward) ||
+			Physics.Raycast (startPoints [i], -Vector3.forward);
 		}
 		return connected;
 	}
