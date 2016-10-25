@@ -570,7 +570,7 @@ public class PlayerController : PhysicalObject{
 	}
 
    //note: this is only called from the Edge.cs
-   public void UpdateEdgeState(Edge e, byte edgeState){
+	public void UpdateEdgeState(Edge e, byte edgeState){
 		UpdateEdgeState(e,edgeState,-1);
 	}
 

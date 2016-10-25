@@ -92,8 +92,10 @@ public class Edge : MonoBehaviour {
 			status = 0;
 			player.UpdateEdgeState(this, status);
 		}
+	}
 
-		//check for making the player let go
+	public void DropPlayerIfNotValid(){
+		bool is3D = GameStateManager.is3D();
 		if(status != 0 && !is3D && !validIn2D){
 			status = 0;
 			player.UpdateEdgeState(this, status);
@@ -155,6 +157,7 @@ public class Edge : MonoBehaviour {
 		cuboid = new Vector3[2];
 		updateCuboid();
 
+    GameStateManager.instance.PerspectiveShiftSuccessEvent += DropPlayerIfNotValid;
 		//initialization has been completed
 		init = true;
 	}
