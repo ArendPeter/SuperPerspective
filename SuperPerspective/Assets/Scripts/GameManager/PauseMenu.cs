@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour {
 		//update alpha
 		menuAlpha += ((menuVisible)? (1/fadeTime) : -(1/fadeTime))*Time.deltaTime;
 		menuAlpha = Mathf.Clamp(menuAlpha,0f,1f);
-		menu.GetComponent<CanvasGroup>().alpha = menuAlpha;
+		//menu.GetComponent<CanvasGroup>().alpha = menuAlpha;
 	}
 
 	public void UpdateMenuVisible(bool visible){
