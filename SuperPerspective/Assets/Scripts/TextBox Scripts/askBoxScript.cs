@@ -118,7 +118,7 @@ public class askBoxScript : MonoBehaviour {
 
 		textbox.enabled = true;
 		text.enabled = true;
-    qText.enabled = true;
+        qText.enabled = true;
 
     for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
     {
