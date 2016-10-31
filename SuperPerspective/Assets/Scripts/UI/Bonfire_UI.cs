@@ -68,7 +68,7 @@ public class Bonfire_UI : MonoBehaviour {
         up2 = KeyCode.W;
         down = KeyCode.DownArrow;
         down2 = KeyCode.S;
-        select = KeyCode.E;
+        //select = KeyCode.E;
         select2 = KeyCode.Space;
         reset();
         teleportFlag = false;
@@ -114,22 +114,8 @@ public class Bonfire_UI : MonoBehaviour {
 		if (!teleportFlag && readyForInput) {
             if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || goSel)
             {
-                if (choice == 10)
-                {
-                    closeFlag = true;
-                    active = false;
-                    readyForInput = false;
-                }
-                else if (choice + 1 > maxIsle)
-                {
-                    GetComponent<AudioSource>().Play();
-                }
-                else { 
-                    teleportFlag = true;
-                    active = false;
-                    readyForInput = false;
-                }
-        }
+                Teleport();
+            }
 
             else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
             {
@@ -151,6 +137,28 @@ public class Bonfire_UI : MonoBehaviour {
         goSel = false;
     }
 
+    private void Teleport()
+    {
+        Debug.Log("Choice: " + choice);
+        if (choice == 10)
+        {
+            Debug.Log("Whoops");
+            closeFlag = true;
+            active = false;
+            readyForInput = false;
+        }
+        else if (choice + 1 > maxIsle)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            teleportFlag = true;
+            active = false;
+            readyForInput = false;
+        }
+    }
+
     private void moveUp ()
     {
         if (choice == 10)
@@ -161,6 +169,14 @@ public class Bonfire_UI : MonoBehaviour {
             choice = 10;
             //choice = maxChoice - 1;
         //Debug.Log("Going up! Choice: " + choice);
+    }
+
+    public void clickChoice(int choice)
+    {
+        this.choice = choice;
+        moveSelect();
+        goSel = true;
+        checkInput();
     }
 
     private void moveDown()
