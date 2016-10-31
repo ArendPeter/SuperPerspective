@@ -34,13 +34,14 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
 
     //Variables for post-deletion cleanup
-    private Collider myCollider;
+    public Collider[] myColliders;
 
 
 
 	// Use this for initialization
 	void Start () {
-        myCollider = GameObject.FindObjectOfType<Collider>();
+        
+        myColliders = GetComponentsInChildren<Collider>();
         StartSetup();
         textbox = GameObject.FindObjectOfType<textBoxScript>();
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
@@ -115,6 +116,12 @@ public class CrystalExplosionTrigger : ActiveInteractable {
                         }
                     }
                     this.setNotMarkerVisibility(false);
+
+                    for (int i = 0; i < this.myColliders.Length; i++)
+                    {
+                        Destroy(this.myColliders[i]);
+                    }
+
                     Destroy(this);
                 }
             }
