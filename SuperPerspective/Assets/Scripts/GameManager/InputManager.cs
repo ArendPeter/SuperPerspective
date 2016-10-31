@@ -56,38 +56,38 @@ public class InputManager : MonoBehaviour{
 
     // listens to player input and raises events for listeners.
     void Update() {
-        if (Input.GetButtonUp("DevConsoleToggle"))
+		if (GetButtonUpAbsolute("DevConsoleToggle"))
             RaiseEvent(DevConsoleEvent);
 
-        if (Input.GetButtonDown("Interaction"))
+		if (GetButtonDownAbsolute("Interaction"))
             RaiseEvent(InteractPressedEvent);
 
-        if (Input.GetButtonDown("Pause") || continuePressed) {
+		if (GetButtonDownAbsolute("Pause") || continuePressed) {
             RaiseEvent(PausePressedEvent);
             continuePressed = false;
         }
-        if (Input.GetButtonDown("Jump"))
+		if (GetButtonDownAbsolute("Jump"))
             RaiseEvent(JumpPressedEvent);
 
-        if (Input.GetButtonDown("Grab"))
+		if (GetButtonDownAbsolute("Grab"))
             RaiseEvent(GrabPressedEvent);
 
-        if (Input.GetButtonDown("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
+		if (GetButtonDownAbsolute("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
             RaiseEvent(ShiftPressedEvent);
 
-        if (Input.GetButtonDown("LeanLeft"))
+		if (GetButtonDownAbsolute("LeanLeft"))
             RaiseEvent(LeanLeftPressedEvent);
 
-        if (Input.GetButtonDown("LeanRight"))
+		if (GetButtonDownAbsolute("LeanRight"))
             RaiseEvent(LeanRightPressedEvent);
 
-        if (Input.GetButtonUp("LeanLeft"))
+		if (GetButtonUpAbsolute("LeanLeft"))
             RaiseEvent(LeanLeftReleasedEvent);
 
-        if (Input.GetButtonUp("LeanRight"))
+		if (GetButtonUpAbsolute("LeanRight"))
             RaiseEvent(LeanRightReleasedEvent);
 
-        if (Input.GetButtonDown("Help"))
+		if (GetButtonDownAbsolute("Help"))
         {
             RaiseEvent(HelpEvent);
         }
@@ -122,6 +122,31 @@ public class InputManager : MonoBehaviour{
 
 	#endregion MonobehaviorImplementation
 
+	#region Private Functions
+
+	private bool GetButtonAbsolute(string button) {
+		if (SystemInfo.operatingSystem.StartsWith("Mac")) {
+			return Input.GetButton("OSX" + button);
+		}
+		return Input.GetButton(button);
+	}
+
+
+	private bool GetButtonDownAbsolute(string button) {
+		if (SystemInfo.operatingSystem.StartsWith("Mac")) {
+			return Input.GetButtonDown("OSX" + button);
+		}
+		return Input.GetButtonDown(button);
+	}
+
+	private bool GetButtonUpAbsolute(string button) {
+		if (SystemInfo.operatingSystem.StartsWith("Mac")) {
+			return Input.GetButtonUp("OSX" + button);
+		}
+		return Input.GetButtonUp(button);
+	}
+
+	#endregion
 
 	#region Public Interface
 
@@ -148,18 +173,18 @@ public class InputManager : MonoBehaviour{
 
     // Returns true if the jump button is currently pressed
     public bool JumpStatus(){
-		return Input.GetButton("Jump");
+		return GetButtonAbsolute("Jump");
 	}
 
 	// Returns true if the interaction button is currently pressed
 	public bool InteractStatus(){
-		return Input.GetButton("Interaction");
+		return GetButtonAbsolute("Interaction");
 	}
 
 	// Returns true if the grab button is currently pressed
 	// NOTE: refers to crate grabbing
 	public bool GrabStatus(){
-		return Input.GetButton("Grab");
+		return GetButtonAbsolute("Grab");
 	}
 
 	public void SetFailFlag(){
