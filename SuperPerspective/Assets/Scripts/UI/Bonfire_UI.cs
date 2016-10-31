@@ -175,14 +175,7 @@ public class Bonfire_UI : MonoBehaviour {
     {
         this.choice = choice;
         moveSelect();
-        if (active && !readyForInput)
-        {
-            readyForInput = true;
-        }
-        goUp = false;
-        goDown = false;
         goSel = true;
-        checkInput();
     }
 
     private void moveDown()
