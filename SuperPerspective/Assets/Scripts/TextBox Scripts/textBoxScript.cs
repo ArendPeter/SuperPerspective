@@ -226,6 +226,10 @@ public class textBoxScript : MonoBehaviour {
                         {
                             endConvo();
                         }
+                        if (currentNode.hasTextEndEvent)
+                        {
+                            currentNode.endTextEvent.eventTrigger();
+                        }
                     }
                 }
                 else//Otherwise, MAKE THE LINE FINISH DISPLAYING.

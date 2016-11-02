@@ -51,9 +51,25 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011832491356}
-  - 114: {fileID: 114000011151239102}
+  - 114: {fileID: 114000012262949934}
   m_Layer: 1
-  m_Name: SaidNoEvent
+  m_Name: SaidYesEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013034288276
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010495305244}
+  - 114: {fileID: 114000012576310830}
+  m_Layer: 1
+  m_Name: SpiritJoinEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +77,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000013176459982
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -69,28 +85,57 @@ GameObject:
   - 4: {fileID: 4000011785555520}
   - 114: {fileID: 114000011616220534}
   m_Layer: 0
-  m_Name: GiantCrystalConvo
+  m_Name: CrystalSpiritConvo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000014044426188
+--- !u!1 &1000013190519314
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013419235940}
-  - 114: {fileID: 114000011845359364}
+  - 4: {fileID: 4000012147234290}
+  - 114: {fileID: 114000010173095734}
   m_Layer: 1
-  m_Name: CrystalExplosionConversationEndedEvent
+  m_Name: SaidNoEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000014077631478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014054799248}
+  - 114: {fileID: 114000011978787434}
+  m_Layer: 0
+  m_Name: GiantCrystalConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010495305244
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013034288276}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011785555520}
+  m_RootOrder: 0
 --- !u!4 &4000011785555520
 Transform:
   m_ObjectHideFlags: 1
@@ -98,14 +143,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013176459982}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.2661722, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000013419235940}
-  - {fileID: 4000011832491356}
-  m_Father: {fileID: 4000012535274034}
-  m_RootOrder: 0
+  - {fileID: 4000010495305244}
+  m_Father: {fileID: 4000012147234290}
+  m_RootOrder: 1
 --- !u!4 &4000011832491356
 Transform:
   m_ObjectHideFlags: 1
@@ -116,9 +160,23 @@ Transform:
   m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
   m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000014054799248}
+  m_RootOrder: 0
+--- !u!4 &4000012147234290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013190519314}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013064551448}
-  m_Father: {fileID: 4000011785555520}
+  - {fileID: 4000011785555520}
+  m_Father: {fileID: 4000014054799248}
   m_RootOrder: 1
 --- !u!4 &4000012535274034
 Transform:
@@ -131,7 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000011785555520}
+  - {fileID: 4000014054799248}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013064551448
@@ -145,21 +203,35 @@ Transform:
   m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 4000011832491356}
+  m_Father: {fileID: 4000012147234290}
   m_RootOrder: 0
---- !u!4 &4000013419235940
+--- !u!4 &4000014054799248
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014044426188}
+  m_GameObject: {fileID: 1000014077631478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
-  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000011785555520}
+  m_Children:
+  - {fileID: 4000011832491356}
+  - {fileID: 4000012147234290}
+  m_Father: {fileID: 4000012535274034}
   m_RootOrder: 0
+--- !u!114 &114000010173095734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013190519314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 114000013536719282}
 --- !u!114 &114000010421418710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,8 +243,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myConversation: {fileID: 114000011616220534}
---- !u!114 &114000011151239102
+  myConversation: {fileID: 114000011978787434}
+--- !u!114 &114000011616220534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013176459982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 1
+  convoTextArray:
+  - WHAT HAVE YOU DONE?
+  - "You shouldn\u2019t have touched that, kid."
+  - "That was the Great Crystal, and it holds this \u2018place\u2019 together. It\u2019s
+    very fragile."
+  - "If that thing isn\u2019t formed together soon, this whole world is going to dissolve.
+    And us with it!"
+  - "You need to help me fix this! If we can get the pieces of the Great Crystal before
+    it\u2019s too late, the world will stabilize."
+  - "The name\u2019s Ivan, and I\u2019m a Crystal Spirit. I get to fix things when
+    they go wrong...."
+  - "..and you\u2019re going to help me. You break it, you fix it!"
+  - "Ready? You don\u2019t get a choice. Let\u2019s go."
+  - '[Ivan joined your party]'
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 114000012576310830}
+--- !u!114 &114000011978787434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014077631478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 1
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 114000013536719282}
+  hasNext: 1
+  choiceIndex: 0
+  hasTextEndEvent: 0
+  convoTextArray: []
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 114000012262949934}
+  - {fileID: 114000010173095734}
+  endTextEvent: {fileID: 0}
+--- !u!114 &114000012262949934
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -185,44 +322,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cTrig: {fileID: 0}
   ConversationBoolShouldBeSetTo: 1
---- !u!114 &114000011616220534
+--- !u!114 &114000012576310830
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013176459982}
+  m_GameObject: {fileID: 1000013034288276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Script: {fileID: 11500000, guid: 20c72bd0b7e4cee4cb23c29dc75c432c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: 1
-  nextNodeArray:
-  - {fileID: 0}
-  - {fileID: 114000013536719282}
-  hasNext: 1
-  choiceIndex: 0
-  convoTextArray: []
-  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
-  endQuestionArray:
-  - Yes!
-  - No...
-  endEventArray:
-  - {fileID: 114000011845359364}
-  - {fileID: 0}
---- !u!114 &114000011845359364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014044426188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5677c7c492c11f443a2c25dcf20706eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cTrig: {fileID: 0}
-  ConversationBoolShouldBeSetTo: 1
+  setFollowTo: 1
 --- !u!114 &114000013536719282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,6 +351,7 @@ MonoBehaviour:
   - {fileID: 0}
   hasNext: 0
   choiceIndex: 0
+  hasTextEndEvent: 0
   convoTextArray:
   - 'You decide not to sate your curiosity. '
   - The canister continues to glow ominously....
@@ -250,3 +362,4 @@ MonoBehaviour:
   endEventArray:
   - {fileID: 0}
   - {fileID: 0}
+  endTextEvent: {fileID: 0}

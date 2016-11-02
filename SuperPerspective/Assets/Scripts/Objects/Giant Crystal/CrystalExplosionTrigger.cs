@@ -12,6 +12,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     public float dissolveAmount = 0;
     public float dissolveSpeed = .05f;
 
+    private LevelGeometry lg;
+
     //Used when the character decides to select "Yes."
 
         //Charges up a light then when it hits max, swaps from the whole Crystal to the broke Crystal, which then proceeds to explode everywhere.
@@ -32,6 +34,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     public textBoxScript textbox;
     public bool conversationEnded;//Used to show that the player has ended the conversation
 
+    public bool allDone = false;
 
     //Variables for post-deletion cleanup
     public Collider[] myColliders;
@@ -47,6 +50,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         dissolveRenderer = dissolveShield.GetComponent<Renderer>();
         wholeRenderer = wholeCrystal.GetComponent<Renderer>();
         chargeLight.intensity = 0;
+        lg = GameObject.FindObjectOfType<LevelGeometry>();
 	}
 	
     override public void Triggered()
@@ -60,7 +64,10 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
 	// Update is called once per frame
 	void Update () {
-        eventCheck();
+        if (!allDone)
+        {
+            eventCheck();
+        }
 	}
 
     void eventCheck()
@@ -119,10 +126,13 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
                     for (int i = 0; i < this.myColliders.Length; i++)
                     {
-                        Destroy(this.myColliders[i]);
+                        this.myColliders[i].enabled = false;
+                        allDone = true;
                     }
-
-                    Destroy(this);
+                    lg.enabled = false;
+                    //this.enabled = false;
+                    allDone = true;
+                    //Destroy(this);
                 }
             }
         }
