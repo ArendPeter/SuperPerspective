@@ -53,10 +53,17 @@ public class textBoxScript : MonoBehaviour {
 //Text so we have something to edit
 	public Text text;
 
-	// Use this for initialization
-	void Start () {
-		//singleton
-		if(instance == null){
+
+    [SerializeField]
+    private CharacterChatter chatter;
+    private int chatterTrigger = 2;
+    private int chatterCount = 0;
+
+    // Use this for initialization
+    void Start () {
+        chatter = GameObject.FindObjectOfType<CharacterChatter>();
+        //singleton
+        if (instance == null){
 			instance = this;
 		}else{
 			Destroy(this);
@@ -324,6 +331,7 @@ public class textBoxScript : MonoBehaviour {
 					}*/
 					tinyTimer = resetTimer;
                     showEndLine = false;
+                    chatterCheck();
                 }
 
 				else
@@ -349,5 +357,20 @@ public class textBoxScript : MonoBehaviour {
 	public bool IsEnabled(){
 			return showBox;
 	}
+
+    //Used to check if we should make the chatterNoise
+    private void chatterCheck()
+    {
+        if (chatterCount == chatterTrigger)
+        {
+            print("CHATTER");
+            chatter.Chatter();
+            chatterCount = 0;
+        }
+        else
+        {
+            chatterCount++;
+        }
+    }
 
 }

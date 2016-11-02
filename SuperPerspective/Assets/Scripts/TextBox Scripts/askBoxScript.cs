@@ -8,7 +8,7 @@ public class askBoxScript : MonoBehaviour {
 	public GameObject textStartPoint; //Tells where our text will begin generating.
     public convoNode currentNode; //This is the node we are currently pulling info from
     public textBoxScript textBoxPartner; //Our askBox's textbox partner to switch between
-    [SerializeField] private PlayerController player;
+    private PlayerController player;
 
     public string question;//The question we ponder the the answer to.
 	public string[] choiceArray; //Holds the strings we want to display in the textbox.
@@ -51,8 +51,13 @@ public class askBoxScript : MonoBehaviour {
 	//tapping up or down isn't registered twice
 	private bool verticalAxisReleased = false;
 
+    [SerializeField] private CharacterChatter chatter;
+    private int chatterTrigger = 2;
+    private int chatterCount = 0;
+
 	// Use this for initialization
 	void Start () {
+        chatter = GameObject.FindObjectOfType<CharacterChatter>();
 		resetTimer = tinyTimer;
 		resetTextSpeed = textSpeed;
 		init();
@@ -157,6 +162,7 @@ public class askBoxScript : MonoBehaviour {
 			//Every time we time down to zero, do the thing.
 			if (tinyTimer <= 0)
 			{
+                
 				if (progressIndex < choiceArray.Length)//This allows us to increment our texts properly.
 				{
 					if (horiIndex < charArray.Length)//If we haven't filled out to the end of our singular line...
@@ -166,7 +172,8 @@ public class askBoxScript : MonoBehaviour {
 						//Create a character at the horizontal length
 						textArray[progressIndex].text = textArray[progressIndex].text + charArray[horiIndex];//This controls which actual TEXT object we're writing to.
 						horiIndex++;
-						if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
+                        chatterCheck();
+                        if (horiIndex % lineLength == 0 && horiIndex != charArray.Length)//Check if we've hit the line length by checking if your horiIndex is divisible by our linelength
 						{
 							switch (charArray[horiIndex])//Special cases for line breaks if we hit the line length with our one-line responses....
 							{
@@ -299,4 +306,17 @@ public class askBoxScript : MonoBehaviour {
 
     }
 
+    //Used to check if we should make the chatterNoise
+    private void chatterCheck()
+    {
+        if(chatterCount == chatterTrigger)
+        {
+            chatter.Chatter();
+            chatterCount = 0;
+        }
+        else
+        {
+            chatterCount++;
+        }
+    }
 }
