@@ -10,6 +10,8 @@ public class CameraRotate : MonoBehaviour {
 	public float[] trans;
 	public float transitionRange;
 
+    public GameObject[] seats;
+
 	public float rotateSpeed, radius, height;
 
 	private float angle = 0;
@@ -52,5 +54,15 @@ public class CameraRotate : MonoBehaviour {
 		}
 		//skys[3].Lerp(skys[0],skys[1],test);
 		RenderSettings.skybox = skys[curIndex];
-	}
+        disableAllSeats();
+        seats[curIndex].SetActive(true);
+    }
+
+    public void disableAllSeats()
+    {
+        for (int i = 0; i < seats.Length; i++)
+        {
+            seats[i].SetActive(false);
+        }
+    }
 }

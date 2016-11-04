@@ -3,6 +3,8 @@ using System.Collections;
 
 public class multiEvent : textEvent {
 
+    //This class is used to fire off multiple TextEvents all at the same time.
+
     public textEvent[] eventArray;
 
 	// Use this for initialization
@@ -22,7 +24,7 @@ public class multiEvent : textEvent {
             
             if (eventArray[i] != null)
             {
-                print("lol");
+                //print("lol");
                 eventArray[i].eventTrigger();
             }
 }
