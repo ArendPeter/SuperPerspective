@@ -5112,6 +5112,7 @@ MonoBehaviour:
   showBox: 1
   textbox: {fileID: 701289605}
   text: {fileID: 876050662}
+  chatter: {fileID: 0}
 --- !u!114 &701289605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13861,7 +13862,6 @@ MonoBehaviour:
   textStartPoint: {fileID: 619206041}
   currentNode: {fileID: 11417412, guid: 5abf1ee37e121074cae96bc93c0f4fce, type: 2}
   textBoxPartner: {fileID: 701289604}
-  player: {fileID: 0}
   question: 
   choiceArray: []
   lineLength: 25
@@ -13875,6 +13875,7 @@ MonoBehaviour:
   textbox: {fileID: 1870495873}
   text: {fileID: 1571078339}
   qText: {fileID: 1958081666}
+  chatter: {fileID: 0}
 --- !u!114 &1870495873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15098,6 +15099,11 @@ Prefab:
     - target: {fileID: 456992, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.z
       value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
