@@ -632,6 +632,8 @@ public class PlayerController : PhysicalObject{
 
 	public bool GrabbedCrate() { return crate != null; }
 
+	public Crate GetCrate() { return crate; }
+
 	public bool isPassivelyPushing(){ return passivePush; }
 
 	public Vector3[] getCuboid(){ return cuboid; }

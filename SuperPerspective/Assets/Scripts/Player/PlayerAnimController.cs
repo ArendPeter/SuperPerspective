@@ -71,10 +71,13 @@ public class PlayerAnimController : MonoBehaviour {
 
 	private void updateCrateStates(){
 		if(player.GrabbedCrate()){
+			Crate crate = player.GetCrate();
+			float posDif = Mathf.Sign(Vector3.Dot(crate.transform.position, player.getGrabAxis()) - Vector3.Dot(player.transform.position, player.getGrabAxis()));
 			float crateVel = Vector3.Dot(player.getVelocity(), player.getGrabAxis());
-			anim.SetBool("Pushing", crateVel > epsilon);
-			anim.SetBool("Pulling", crateVel < -epsilon);
-			anim.SetBool("CrateIdle", -epsilon <= crateVel && crateVel <= epsilon);
+			float delta = crateVel * posDif;
+			anim.SetBool("Pushing", delta > epsilon);
+			anim.SetBool("Pulling", delta < -epsilon);
+			anim.SetBool("CrateIdle", Mathf.Abs(delta) <= epsilon);
 		}else{
 			anim.SetBool("Pulling", false);
 			anim.SetBool("CrateIdle", false);
