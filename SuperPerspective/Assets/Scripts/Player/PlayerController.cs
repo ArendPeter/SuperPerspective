@@ -560,9 +560,10 @@ public class PlayerController : PhysicalObject{
 		return connected;
 	}
 
-	#region EdgeGrabbing
+    
+    #region EdgeGrabbing
 
-	private void ReleaseEdge(){
+    private void ReleaseEdge(){
 		if(grabbedEdge!=null)
 			grabbedEdge.resetStatus();
 		grabbedEdge = null;

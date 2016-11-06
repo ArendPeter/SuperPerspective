@@ -363,7 +363,7 @@ public class textBoxScript : MonoBehaviour {
     {
         if (chatterCount == chatterTrigger)
         {
-            print("CHATTER");
+            //print("CHATTER");
             chatter.Chatter();
             chatterCount = 0;
         }

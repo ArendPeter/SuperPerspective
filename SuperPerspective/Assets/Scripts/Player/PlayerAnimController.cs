@@ -44,6 +44,7 @@ public class PlayerAnimController : MonoBehaviour {
 		checkForJumpTrigger();
 		updateAnimationStates();
 		updateOrientation();
+        learningCheck();
 	}
 
 	private void checkForJumpTrigger(){
@@ -136,9 +137,19 @@ public class PlayerAnimController : MonoBehaviour {
 		}
 	}
 
-	#region public interface
+    //This is used to properly control and set the Animator's Learning variables
+    public void learningCheck()
+    {
+        if(anim.GetBool("LearningStart"))
+        {
+            anim.SetBool("LearningStart", false);
+        }
+    }
 
-	public void updateEdgeState(int animEdgeState){
+
+    #region public interface
+
+    public void updateEdgeState(int animEdgeState){
 		anim.SetInteger("EdgeState", animEdgeState);
 	}
 

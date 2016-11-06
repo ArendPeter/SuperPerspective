@@ -15,6 +15,8 @@ public class FairyFollow : MonoBehaviour {
     [Tooltip("This is where our spirit crystal floats toward. Essentially a location transform tagged by a specific class.")]
     public SpiritMount mount;
 
+    public Animator anim;
+
     //The locations we can foat to.
     private GameObject[] floatPoints = new GameObject[3];
     //We use this to show which of the current locations we can use are currently free.
@@ -83,6 +85,7 @@ public class FairyFollow : MonoBehaviour {
         floatPoints[1] = mount.leftFloatPoint;
         floatPoints[2] = mount.rightFloatPoint;
         player = GameObject.Find("HoodieAnim1");
+        anim = this.GetComponent<Animator>();
     }
 
 }
