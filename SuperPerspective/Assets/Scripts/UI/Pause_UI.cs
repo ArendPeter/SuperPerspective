@@ -22,6 +22,8 @@ public class Pause_UI : MonoBehaviour {
 
     public Color standardCol, selectedCol;
 
+    public UISFXManager uiSFX;
+
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
     public KeyCode up, up2, down, down2, select, select2;
 
@@ -59,6 +61,7 @@ public class Pause_UI : MonoBehaviour {
         select = KeyCode.E;
         select2 = KeyCode.Space;
         maxChoice = choices.Length - 1;
+        uiSFX = FindObjectOfType<UISFXManager>();
     }
 	
 	// Update is called once per frame
@@ -114,17 +117,24 @@ public class Pause_UI : MonoBehaviour {
                 {
                     gs.HandlePausePressed();
                 }
-
             }
 
             else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
             {
+                if (uiSFX != null)
+                {
+                    uiSFX.PlayMenuMove();
+                }
                 moveUp();
                 moveSelect();
             }
 
             else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
             {
+                if (uiSFX != null)
+                {
+                    uiSFX.PlayMenuMove();
+                }
                 moveDown();
                 moveSelect();
             }

@@ -7272,7 +7272,7 @@ GameObject:
   - 82: {fileID: 400970026}
   m_Layer: 0
   m_Name: HubTheme
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7340,7 +7340,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -9203,6 +9203,7 @@ MonoBehaviour:
   showBox: 1
   textbox: {fileID: 506538606}
   text: {fileID: 1776892988}
+  chatter: {fileID: 0}
 --- !u!114 &506538606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13619,6 +13620,48 @@ Transform:
   - {fileID: 1447814135}
   m_Father: {fileID: 1963492909}
   m_RootOrder: 1
+--- !u!1001 &789792488
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011070481846, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &794187711
 Prefab:
   m_ObjectHideFlags: 0
@@ -30176,7 +30219,6 @@ MonoBehaviour:
   textStartPoint: {fileID: 1531302983}
   currentNode: {fileID: 11417412, guid: 5abf1ee37e121074cae96bc93c0f4fce, type: 2}
   textBoxPartner: {fileID: 506538605}
-  player: {fileID: 0}
   question: 
   choiceArray: []
   lineLength: 25
@@ -30190,6 +30232,7 @@ MonoBehaviour:
   textbox: {fileID: 1687949470}
   text: {fileID: 409163122}
   qText: {fileID: 1375441021}
+  chatter: {fileID: 0}
 --- !u!114 &1687949470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32203,6 +32246,7 @@ MonoBehaviour:
   arrayID: 0
   rayLength: 2
   mount: {fileID: 0}
+  anim: {fileID: 0}
   boolArr: 000000
   shouldFollow: 1
 --- !u!95 &1775548599

@@ -39,6 +39,8 @@ public class Bonfire_UI : MonoBehaviour {
     private float x, y, z;
     private Vector3 vec;
 
+    UISFXManager uiSFX;
+
     void RegisterEventHandlers()
     {
         InputManager.instance.MenuDownEvent += XboxMenuDown;
@@ -77,6 +79,7 @@ public class Bonfire_UI : MonoBehaviour {
         //ToggleOn();
         ToggleOff();
         closeFlag = false;
+        uiSFX = FindObjectOfType<UISFXManager>();
     }
 	
 	// Update is called once per frame
@@ -161,6 +164,7 @@ public class Bonfire_UI : MonoBehaviour {
 
     private void moveUp ()
     {
+        uiSFX.PlayMenuMove();
         if (choice == 10)
             choice = maxChoice - 1;
         else if (choice > 0)
@@ -180,6 +184,7 @@ public class Bonfire_UI : MonoBehaviour {
 
     private void moveDown()
     {
+        uiSFX.PlayMenuMove();
         if (choice < maxChoice -1)
             choice++;
         else if (choice == 10)
