@@ -21,12 +21,12 @@ public class AdviceGiver : MonoBehaviour {
     [SerializeField]
     private PlayerSpawnController pspawn;
 
-    
-
     //This is our player animator. We find it programmatically.
+    [SerializeField]
     Animator panim;
 
     //This is Ivan. We need Ivan.
+    [SerializeField]
     FairyFollow ivan;
 
     bool help = false;
@@ -36,12 +36,12 @@ public class AdviceGiver : MonoBehaviour {
         
         textbox = GameObject.FindObjectOfType<textBoxScript>();
         pcont = this.GetComponent<PlayerController>();
-        //panim = PlayerController.instance.GetComponentInChildren<Animator>();
+        panim = PlayerController.instance.GetComponentInChildren<Animator>();
         pspawn = this.GetComponent<PlayerSpawnController>();
         currentLoc = pspawn.startDoorName;//We gotta figure out where we're starting, after all.
         populateHashtable();
         InputManager.instance.HelpEvent += XboxHelp;
-        //ivan = GameObject.FindObjectOfType<FairyFollow>();
+        ivan = GameObject.FindObjectOfType<FairyFollow>();
     }
 
     void XboxHelp()
@@ -104,7 +104,7 @@ public class AdviceGiver : MonoBehaviour {
         print("result: " + ID);
         
         textBoxScript.instance.startConvo((convoNode)(htab[ID]));
-        //ivan.anim.SetTrigger("Teach");
-        //panim.SetBool("LearningStart", true);
+        ivan.anim.SetTrigger("Teach");
+        panim.SetTrigger("LearnTrigger");
     }
 }
