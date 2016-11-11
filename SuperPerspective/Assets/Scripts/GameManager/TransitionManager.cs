@@ -15,6 +15,8 @@ public class TransitionManager : MonoBehaviour {
 	static string gotoScene = "", gotoDoor = "";
 	PlayerController player;
 
+    UISFXManager uiSFXManager;
+
 	void Awake(){
 		if(instance == null)
 			instance = this;
@@ -24,7 +26,8 @@ public class TransitionManager : MonoBehaviour {
 
 	void Start() {
 		player = PlayerController.instance;
-	}
+        uiSFXManager = FindObjectOfType<UISFXManager>();
+    }
 
 	void OnGUI() {
 		if (transition != 0) {
@@ -60,7 +63,7 @@ public class TransitionManager : MonoBehaviour {
 	}
 
 	void DoTransition() {
-		ResetController.LoadScene(gotoScene);
+        ResetController.LoadScene(gotoScene);
 		player = PlayerController.instance;
 		MovePlayerToDoor(player, gotoDoor);
 	}
@@ -71,7 +74,11 @@ public class TransitionManager : MonoBehaviour {
 	}
 
 	public void SceneTransition(PlayerController p, string door, string scene) {
-		player.setCutsceneMode(true);
+        if (uiSFXManager != null)
+        {
+            uiSFXManager.FadeOutEverything();
+        }
+        player.setCutsceneMode(true);
 		transition = 1;
 		gotoScene = scene;
 		gotoDoor = door;
