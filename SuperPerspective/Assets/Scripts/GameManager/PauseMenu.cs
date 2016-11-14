@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour {
 	//init settings
 	void Start () {
 		//Find menu
-		menu = transform.GetChild(0).GetComponent<Canvas>();
+		menu = transform.Find("PauseMenu").GetComponent<Canvas>();
 	}
 
 	//called every frame
