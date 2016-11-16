@@ -55,8 +55,12 @@ public class askBoxScript : MonoBehaviour {
     private int chatterTrigger = 2;
     private int chatterCount = 0;
 
-	// Use this for initialization
-	void Start () {
+    //This is so we can stop music that shouldn't be playing anymore.
+    UISFXManager uim;
+
+    // Use this for initialization
+    void Start () {
+        uim = GameObject.FindObjectOfType<UISFXManager>();
         chatter = GameObject.FindObjectOfType<CharacterChatter>();
 		resetTimer = tinyTimer;
 		resetTextSpeed = textSpeed;
@@ -243,6 +247,7 @@ public class askBoxScript : MonoBehaviour {
             disableBox();
             showBox = false;
             PlayerController.instance.setCutsceneMode(false);
+            uim.StopCrystalFairyTheme();
         }
 
     }
