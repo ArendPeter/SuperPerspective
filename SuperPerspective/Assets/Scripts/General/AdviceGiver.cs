@@ -29,6 +29,9 @@ public class AdviceGiver : MonoBehaviour {
     [SerializeField]
     FairyFollow ivan;
 
+    //Used to start Ivan's theme.
+    UISFXManager uim;
+
     bool help = false;
 
 	// Use this for initialization
@@ -37,6 +40,7 @@ public class AdviceGiver : MonoBehaviour {
         textbox = GameObject.FindObjectOfType<textBoxScript>();
         pcont = this.GetComponent<PlayerController>();
         panim = PlayerController.instance.GetComponentInChildren<Animator>();
+        uim = GameObject.FindObjectOfType<UISFXManager>();
         pspawn = this.GetComponent<PlayerSpawnController>();
         currentLoc = pspawn.startDoorName;//We gotta figure out where we're starting, after all.
         populateHashtable();
@@ -106,5 +110,6 @@ public class AdviceGiver : MonoBehaviour {
         textBoxScript.instance.startConvo((convoNode)(htab[ID]));
         ivan.anim.SetTrigger("Teach");
         panim.SetTrigger("LearnTrigger");
+        uim.PlayCrystalFairyTheme();
     }
 }

@@ -54,10 +54,13 @@ public class textBoxScript : MonoBehaviour {
 	public Text text;
 
 
-    [SerializeField]
+    //This is so we can make chattering noises when people speak.
     private CharacterChatter chatter;
     private int chatterTrigger = 2;
     private int chatterCount = 0;
+
+    //This is so we can stop music that shouldn't be playing anymore.
+    UISFXManager uim;
 
     // Use this for initialization
     void Start () {
@@ -76,6 +79,8 @@ public class textBoxScript : MonoBehaviour {
         resetTimer = tinyTimer;
         resetTextSpeed = textSpeed;
 
+        //So we can stop the music.
+        uim = GameObject.FindObjectOfType<UISFXManager>();
         
     }
 
@@ -158,6 +163,7 @@ public class textBoxScript : MonoBehaviour {
         //textSpeed = resetTextSpeed;
         showBox = false;
 		disableBox();
+        uim.StopCrystalFairyTheme();
 	}
 	public void enableBox()//This enables the textbox so you can see it.
 	{
