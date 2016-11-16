@@ -17,6 +17,8 @@ public class UISFXManager : MonoBehaviour {
         musicVol = music.volume;
         fairyThemeVol = fairyTheme.volume;
         SetMasterVol(mixVolume);
+        fadeRate = fadeRateInit;
+        PlayCrystalFairyTheme();
     }
 	
 	// Update is called once per frame
