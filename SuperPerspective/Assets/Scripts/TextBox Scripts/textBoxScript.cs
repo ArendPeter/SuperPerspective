@@ -308,7 +308,9 @@ public class textBoxScript : MonoBehaviour {
 	{
 		if (showBox) {//If we're even active...
 
-			tinyTimer -= Time.deltaTime * textSpeed;
+            if (PlayerController.instance.getCutsceneMode() == false) { PlayerController.instance.setCutsceneMode(true); }
+
+            tinyTimer -= Time.deltaTime * textSpeed;
 
 			//Every time we time down to zero, do the thing.
 			if (tinyTimer <= 0)

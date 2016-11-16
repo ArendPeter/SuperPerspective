@@ -159,6 +159,8 @@ public class askBoxScript : MonoBehaviour {
 	//This method acts as an update loop for when the text box should be displaying normal conversation text.
 	public void printLoop()
 	{
+        if (PlayerController.instance.getCutsceneMode() == false) { PlayerController.instance.setCutsceneMode(true); }
+
 		if (showBox)
 		{//If we're even active...
 			tinyTimer -= Time.deltaTime * textSpeed; //Run the timer.
