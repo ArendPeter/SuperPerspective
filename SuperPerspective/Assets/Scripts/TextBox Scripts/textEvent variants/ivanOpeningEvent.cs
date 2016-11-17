@@ -6,6 +6,8 @@ public class ivanOpeningEvent : textEvent{
     public FairyFollow ff;
     private InteractableSpirit spirit;
 
+    public Collider blocker;
+
     public bool setFollowTo = true;
 
     //keeps track of notification marker
@@ -31,6 +33,7 @@ public class ivanOpeningEvent : textEvent{
         this.setNotMarkerVisibility(false);
         setFairyFollow(setFollowTo);
         deleteSpirit();
+        deleteBarrier();
     }
 
     public void setNotMarkerVisibility(bool set)
@@ -51,6 +54,11 @@ public class ivanOpeningEvent : textEvent{
     {
         spirit.gameObject.GetComponent<Collider>().enabled = false;
         spirit.enabled = false;
+    }
+
+    public void deleteBarrier()
+    {
+        blocker.enabled = false;
     }
 
 }
