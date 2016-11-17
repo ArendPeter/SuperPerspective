@@ -7,8 +7,8 @@ public class startTextEvent : textEvent
     //Event that starts a conversation in the textBoxScript.
 
     
-    private textBoxScript tb;
-    private askBoxScript ab;
+    [SerializeField] private textBoxScript tb;
+    [SerializeField] private askBoxScript ab;
     public convoNode myConversation;
 
     void Start()
