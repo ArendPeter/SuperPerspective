@@ -74,12 +74,17 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayCrystalFairyTheme()
     {
-        fadeMusic = true;
+        Debug.Log("Play song");
+        FadeOutMusic();
         playFairyTheme = true;
     }
     public void StopCrystalFairyTheme()
     {
-        fadeFairyTheme = true;
+        if (fairyTheme.isPlaying)
+        {
+            fadeFairyTheme = true;
+            fadeRate = fadeRateInit;
+        }
     }
 
     public void PlayMusic()
