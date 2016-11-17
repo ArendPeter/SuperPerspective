@@ -16,7 +16,7 @@ public class ivanOpeningEvent : textEvent{
     void Start () {
         player = PlayerController.instance.gameObject;
         //ff = GameObject.FindObjectOfType<FairyFollow>();
-        spirit = GameObject.FindObjectOfType<InteractableSpirit>();
+        spirit = ff.gameObject.GetComponent<InteractableSpirit>();
         notiMarker = player.transform.Find("Notification").GetComponent<NotificationController>();
     }
 	

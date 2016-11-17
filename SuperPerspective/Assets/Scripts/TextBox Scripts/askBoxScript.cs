@@ -315,14 +315,16 @@ public class askBoxScript : MonoBehaviour {
     //Used to check if we should make the chatterNoise
     private void chatterCheck()
     {
-        if(chatterCount == chatterTrigger)
-        {
-            chatter.Chatter();
-            chatterCount = 0;
-        }
-        else
-        {
-            chatterCount++;
+        if (!(chatter != null)) { 
+            if(chatterCount == chatterTrigger)
+            {
+                chatter.Chatter();
+                chatterCount = 0;
+            }
+            else
+            {
+                chatterCount++;
+            }
         }
     }
 }
