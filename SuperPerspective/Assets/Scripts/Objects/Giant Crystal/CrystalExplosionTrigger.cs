@@ -12,6 +12,9 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     public float dissolveAmount = 0;
     public float dissolveSpeed = .05f;
 
+    [Tooltip("Set this to skip everything and activate the FairyFollow script.")]
+    public bool skipAll;
+
     private LevelGeometry lg;
 
     //Used when the character decides to select "Yes."
@@ -51,6 +54,18 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         wholeRenderer = wholeCrystal.GetComponent<Renderer>();
         chargeLight.intensity = 0;
         lg = GameObject.FindObjectOfType<LevelGeometry>();
+
+        if (skipAll)
+        {
+           InteractableSpirit spirit = brokeCrystal.GetComponentInChildren<InteractableSpirit>();
+            spirit.gameObject.transform.SetParent(null);
+            spirit.enabled = true;
+            spirit.GetComponent<FairyFollow>().shouldFollow = true;
+            spirit.gameObject.GetComponent<Collider>().enabled = false;
+            spirit.enabled = false;
+            Destroy(this.gameObject);
+        }
+
 	}
 	
     override public void Triggered()
