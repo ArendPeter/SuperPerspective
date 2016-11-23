@@ -79,13 +79,22 @@ public class FairyFollow : MonoBehaviour {
 
     public void init()
     {
-        //playerC = GameObject.FindObjectOfType<PlayerController>();
+        player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         mount = GameObject.FindObjectOfType<SpiritMount>();
         floatPoints[0] = mount.topFloatPoint;
         floatPoints[1] = mount.leftFloatPoint;
         floatPoints[2] = mount.rightFloatPoint;
-        player = GameObject.Find("HoodieAnim1");
+        //player = GameObject.Find("HoodieAnim1");
         anim = this.GetComponent<Animator>();
+    }
+
+    public void findPlayer()
+    {
+        if (!(player != null)){
+            player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        }
+        AdviceGiver ag = GameObject.FindObjectOfType<AdviceGiver>();
+        ag.ivan = this;
     }
 
 }

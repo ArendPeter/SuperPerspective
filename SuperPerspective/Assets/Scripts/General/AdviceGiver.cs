@@ -26,8 +26,7 @@ public class AdviceGiver : MonoBehaviour {
     Animator panim;
 
     //This is Ivan. We need Ivan.
-    [SerializeField]
-    FairyFollow ivan;
+    public FairyFollow ivan;
 
     //Used to start Ivan's theme.
     UISFXManager uim;

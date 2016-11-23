@@ -48,6 +48,7 @@ public class ivanOpeningEvent : textEvent{
             ff = GameObject.FindObjectOfType<FairyFollow>();
         }
         ff.shouldFollow = set;
+        ff.findPlayer();
     }
 
     public void deleteSpirit()
