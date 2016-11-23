@@ -65,7 +65,9 @@ public class TransitionManager : MonoBehaviour {
 	void DoTransition() {
         ResetController.LoadScene(gotoScene);
 		player = PlayerController.instance;
-		MovePlayerToDoor(player, gotoDoor);
+		if (gotoDoor != "") {
+			MovePlayerToDoor (player, gotoDoor);
+		}
 	}
 
 	public void MovePlayerToDoor(PlayerController p, string door) {
@@ -78,7 +80,9 @@ public class TransitionManager : MonoBehaviour {
         {
             uiSFXManager.FadeOutEverything();
         }
-        player.setCutsceneMode(true);
+		if (p != null) {
+			p.setCutsceneMode (true);
+		}
 		transition = 1;
 		gotoScene = scene;
 		gotoDoor = door;

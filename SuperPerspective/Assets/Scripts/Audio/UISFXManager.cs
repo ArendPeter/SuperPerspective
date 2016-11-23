@@ -15,7 +15,9 @@ public class UISFXManager : MonoBehaviour {
 	void Start () {
         music = GameObject.FindGameObjectWithTag("Music").GetComponent<AudioSource>();
         musicVol = music.volume;
-        fairyThemeVol = fairyTheme.volume;
+		if (fairyTheme != null) {
+        	fairyThemeVol = fairyTheme.volume;
+		}
         SetMasterVol(mixVolume);
         fadeRate = fadeRateInit;
     }
