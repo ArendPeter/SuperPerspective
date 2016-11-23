@@ -55,7 +55,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         chargeLight.intensity = 0;
         lg = GameObject.FindObjectOfType<LevelGeometry>();
 
-        if (skipAll)
+        Debug.Log("IntroCutsceneFinished = " + PlayerPrefs.GetString("IntroCutsceneFinished"));
+        if (skipAll || PlayerPrefs.GetString("IntroCutsceneFinished") == "true")
         {
            InteractableSpirit spirit = brokeCrystal.GetComponentInChildren<InteractableSpirit>();
             spirit.gameObject.transform.SetParent(null);
@@ -143,10 +144,13 @@ public class CrystalExplosionTrigger : ActiveInteractable {
                     {
                         this.myColliders[i].enabled = false;
                         allDone = true;
+                        Debug.Log("All done");
+                        PlayerPrefs.SetString("IntroCutsceneFinished", "true");
                     }
+                    //Is this unreachable code? What's the deal? -Nick
+                    allDone = true;
                     lg.enabled = false;
                     //this.enabled = false;
-                    allDone = true;
                     //Destroy(this);
                 }
             }
