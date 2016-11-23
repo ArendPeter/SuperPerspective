@@ -63,7 +63,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
             spirit.GetComponent<FairyFollow>().shouldFollow = true;
             spirit.gameObject.GetComponent<Collider>().enabled = false;
             spirit.enabled = false;
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
 
 	}
