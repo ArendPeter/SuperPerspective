@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2711635, g: 0.4412939, b: 0.5153754, a: 1}
+  m_IndirectSpecularColor: {r: 0.27116352, g: 0.44129375, b: 0.5153753, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3697,6 +3697,30 @@ Prefab:
     - target: {fileID: 11434690, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
       propertyPath: bonfireUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542852, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_Center.x
+      value: -9.299494e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542852, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_Center.y
+      value: -0.30374452
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542852, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_Center.z
+      value: 9.299494e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542852, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_Size.y
+      value: 1.1007508
+      objectReference: {fileID: 0}
+    - target: {fileID: 478262, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 462414, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.86
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe94d178e0c7bd45b697c1336f7904d, type: 2}
@@ -14992,7 +15016,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705211406}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -15030,12 +15054,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 1
   scalingMode: 2
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18314,7 +18339,6 @@ MonoBehaviour:
   showBox: 1
   textbox: {fileID: 1918422948}
   text: {fileID: 190584562}
-  chatter: {fileID: 0}
 --- !u!114 &1918422948
 MonoBehaviour:
   m_ObjectHideFlags: 0
