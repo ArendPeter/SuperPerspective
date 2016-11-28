@@ -83,12 +83,12 @@ public class ActiveInteractable : PhysicalObject {
 
 		bool inRange = dist < range;
         
-		bool playerFacing = isPlayerFacingObject();
+		bool playerFacing = GameStateManager.is3D() ? isPlayerFacingObject() : isPlayerFacingObject2D();
 
         bool inYRange = IsInYRange();
 
         bool canTrigger =
-			inRange && (playerFacing || !GameStateManager.is3D()) && inYRange && IsEnabled();
+			inRange && playerFacing && inYRange && IsEnabled();
 
 		//checks for competing notifications (I think)
 		bool notificationCanBeShown = !notiShown || dist < notiDist;
@@ -192,6 +192,14 @@ public class ActiveInteractable : PhysicalObject {
 			angleDiff = 360 - angleDiff;
 		//determine whether player is facing interactable
 		return angleDiff < angleBuffer;
+	}
+
+	protected virtual bool isPlayerFacingObject2D(){
+		float playerOrientation = PlayerAnimController.instance.getOrientation();
+		playerOrientation = (playerOrientation + 360) % 360;
+		if (transform.position.x > player.transform.position.x)
+			return playerOrientation < 180;
+		return playerOrientation > 180;
 	}
 
 	protected virtual bool IsInYRange(){
