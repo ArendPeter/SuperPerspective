@@ -91,6 +91,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         if(conversationEnded)
         {
             shouldDissolveShield = true;
+            isInteractable = false;
+            this.setNotMarkerVisibility(false);
         }
         if (shouldDissolveShield)//Start Dissolving
         {

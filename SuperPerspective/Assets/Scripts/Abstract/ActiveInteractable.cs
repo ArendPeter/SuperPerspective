@@ -39,16 +39,20 @@ public class ActiveInteractable : PhysicalObject {
 
 	public bool invisible = false;
 
+    public bool isInteractable = true;
+
 	void Start(){
 		StartSetup ();
 	}
 
 	void FixedUpdate(){
-		FixedUpdateLogic ();
+        if(isInteractable)
+		    FixedUpdateLogic ();
 	}
 
 	void LateUpdate(){
-		LateUpdateLogic ();
+        if (isInteractable)
+            LateUpdateLogic ();
 	}
 
 	void InteractPressed(){
