@@ -27,12 +27,12 @@ public class InputManager : MonoBehaviour{
 	public event System.Action BackwardMovementEvent;
 	public event System.Action ForwardMovementEvent;
 	public event System.Action DevConsoleEvent;
-    public event System.Action MenuUpEvent;
-    public event System.Action MenuDownEvent;
-    public event System.Action HelpEvent;
+  public event System.Action MenuUpEvent;
+  public event System.Action MenuDownEvent;
+  public event System.Action HelpEvent;
 
-    // Game's pause state
-    private bool continuePressed = false;//used as an alternate way to unpause
+  // Game's pause state
+  private bool continuePressed = false;//used as an alternate way to unpause
 
 	// Perspective shift properties
 	// TODO: Move this funcionality to the camera script
@@ -76,7 +76,7 @@ public class InputManager : MonoBehaviour{
             RaiseEvent(ShiftPressedEvent);
 
 		if (GetButtonDownAbsolute("LeanLeft"))
-            RaiseEvent(LeanLeftPressedEvent);
+          RaiseEvent(LeanLeftPressedEvent);
 
 		if (GetButtonDownAbsolute("LeanRight"))
             RaiseEvent(LeanRightPressedEvent);
@@ -204,6 +204,10 @@ public class InputManager : MonoBehaviour{
 		continuePressed = true;
 	}
 
+	public void callShiftPressed(){
+		if (!GameStateManager.instance.changingPerspective())
+            RaiseEvent(ShiftPressedEvent);
+	}
 
 	#endregion Event Raising Functions
 }
