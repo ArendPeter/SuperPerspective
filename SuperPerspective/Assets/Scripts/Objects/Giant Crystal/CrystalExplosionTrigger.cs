@@ -42,6 +42,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     //Variables for post-deletion cleanup
     public Collider[] myColliders;
 
+    //Used to delay explosion to match SFX
+    float explosionCountdown = 0;
 
 
 	// Use this for initialization
@@ -84,6 +86,14 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         {
             eventCheck();
         }
+        if (explosionCountdown > 0)
+        {
+            explosionCountdown -= Time.deltaTime;
+            if (explosionCountdown <= 0)
+            {
+                shouldDissolveShield = true;
+            }
+        }
 	}
 
     void eventCheck()
@@ -91,10 +101,11 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         if(conversationEnded)
         {
             InputManager.instance.callShiftPressed();
-            shouldDissolveShield = true;
             isInteractable = false;
             this.setNotMarkerVisibility(false);
             conversationEnded = false;
+            explosionCountdown = 1.3f;
+            GetComponent<AudioSource>().Play();
         }
         if (shouldDissolveShield)//Start Dissolving
         {
