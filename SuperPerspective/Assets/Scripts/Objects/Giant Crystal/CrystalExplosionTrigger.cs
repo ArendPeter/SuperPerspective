@@ -90,9 +90,11 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     {
         if(conversationEnded)
         {
+            InputManager.instance.callShiftPressed();
             shouldDissolveShield = true;
             isInteractable = false;
             this.setNotMarkerVisibility(false);
+            conversationEnded = false;
         }
         if (shouldDissolveShield)//Start Dissolving
         {
