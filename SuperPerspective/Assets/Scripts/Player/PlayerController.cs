@@ -440,7 +440,8 @@ public class PlayerController : PhysicalObject{
 			}
 		}
 		// Crate
-		if (trajectory.normalized != Vector3.down && trajectory.normalized != Vector3.zero &&
+		// first bit was to fix crates moving inside player when you hit another crate while pulling
+		if ((!GrabbedCrate() || crate.gameObject.Equals(other.gameObject)) && trajectory.normalized != Vector3.down && trajectory.normalized != Vector3.zero &&
 				other.GetComponent<Crate>() && !other.GetComponent<Crate>().IsAxisBlocked(trajectory)) {
 			other.GetComponent<Crate>().FreePush((trajectory*0.75f).x, (trajectory*0.75f).z);
 			passivePush = true;
