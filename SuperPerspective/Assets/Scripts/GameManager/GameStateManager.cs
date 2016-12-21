@@ -22,7 +22,7 @@ public class GameStateManager : MonoBehaviour
 	public ViewType previousState { get; private set; }
 	public ViewType targetState { get; private set; }
 	//TODO combine PerspectiveType and Matrix4x4 to have same purpose
-	public PerspectiveType currentPerspective { get; private set; }
+	public PerspectiveType currentPerspective{ get; private set; }
 
 	// Flip failure timer variables
 	private bool failedShift = false;

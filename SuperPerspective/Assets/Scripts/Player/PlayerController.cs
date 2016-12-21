@@ -147,6 +147,7 @@ public class PlayerController : PhysicalObject{
 	#endregion Init
 
 	void Update(){
+        PlayerPrefs.DeleteAll();
 		frameRate = 1 / Time.deltaTime;
 		testFrameRate = frameRate;
 		if(canControl()) checkForJump();

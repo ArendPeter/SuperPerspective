@@ -4,7 +4,7 @@ using System.Collections;
 public class FairyFollow : MonoBehaviour {
 
     //PlayerController playerC;
-    GameObject player;
+    public GameObject player;
     public float followSpeed = .5f;
     public float floatHeight = 1f;
     public int arrayID = 0;
@@ -37,10 +37,17 @@ public class FairyFollow : MonoBehaviour {
             if (shouldFollow)
             {
                 posCheck();
+
+                //Lerp to player's location
                 Vector3 playerPos = new Vector3(floatPoints[arrayID].transform.position.x, floatPoints[arrayID].transform.position.y + floatHeight, floatPoints[arrayID].transform.position.z);
                 transform.position = Vector3.Lerp(transform.position, playerPos, followSpeed);
-                Vector3 vec = Vector3.Lerp(transform.localRotation.eulerAngles, player.transform.localRotation.eulerAngles, followSpeed);
-                transform.rotation = Quaternion.Euler(vec.x, vec.y, vec.z);
+
+                //Lerp to player's rotation
+                //Vector3 vec = Vector3.Lerp(transform.localRotation.eulerAngles, player.transform.localRotation.eulerAngles, followSpeed);
+                //transform.localRotation = Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z);
+                //transform.rotation = player.transform.rotation;
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, followSpeed);
             }
         }
         else
@@ -79,12 +86,12 @@ public class FairyFollow : MonoBehaviour {
 
     public void init()
     {
-        player = GameObject.FindObjectOfType<PlayerController>().gameObject;
+        //player = GameObject.FindObjectOfType<PlayerController>().gameObject;
         mount = GameObject.FindObjectOfType<SpiritMount>();
         floatPoints[0] = mount.topFloatPoint;
         floatPoints[1] = mount.leftFloatPoint;
         floatPoints[2] = mount.rightFloatPoint;
-        //player = GameObject.Find("HoodieAnim1");
+        player = GameObject.Find("HoodieHD");
         anim = this.GetComponent<Animator>();
     }
 
