@@ -77,7 +77,7 @@ public class Crate : ActiveInteractable {
 
 	private void stayAboveGround(){
 		Vector3 pos = transform.position;
-		if(pos.y < groundY){
+		if(pos.y < groundY && velocity.y < -.01f){
 			pos.y = groundY;
 			velocity.y = 0f;
 			transform.position = pos;
