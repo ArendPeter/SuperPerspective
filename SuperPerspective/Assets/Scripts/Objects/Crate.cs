@@ -27,8 +27,10 @@ public class Crate : ActiveInteractable {
 	public GameObject brokenCrateSpawnPoint;
 	public GameObject brokenCrate;
 	public GameObject spawnCircle;
-	
+
 	float verticalOverlapThreshhold = .3f;
+
+	float groundY = 0f;
 
 	void Start() {
 		base.StartSetup ();
@@ -49,6 +51,16 @@ public class Crate : ActiveInteractable {
 
 		for (int i = 0; i < 4; i++)
 			axisBlocked[i] = false;
+
+		findGroundY();
+	}
+
+	private void findGroundY(){
+		GameObject groundObj = IslandControl.instance.findGround(gameObject);
+		groundY = groundObj.transform.position.y;
+		float myHeight = GetComponent<Collider>().bounds.max.y - GetComponent<Collider>().bounds.min.y;
+		float groundHeight = groundObj.GetComponent<Collider>().bounds.max.y - groundObj.GetComponent<Collider>().bounds.min.y;
+		groundY += (myHeight + groundHeight) * .5f;
 	}
 
 	void Update() {
@@ -59,6 +71,16 @@ public class Crate : ActiveInteractable {
 					grabbed = false;
 				}
 			}
+		}
+		stayAboveGround();
+	}
+
+	private void stayAboveGround(){
+		Vector3 pos = transform.position;
+		if(pos.y < groundY){
+			pos.y = groundY;
+			velocity.y = 0f;
+			transform.position = pos;
 		}
 	}
 
