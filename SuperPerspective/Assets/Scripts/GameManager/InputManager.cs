@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 ///     Sends notifications on user input and allows polling for current input state of buttons and axes.
@@ -152,6 +153,11 @@ public class InputManager : MonoBehaviour{
 
 	// Returns the player's movement on the horizontal axis in 2D and the vertical axis in 3D
 	public float GetForwardMovement(){
+        if (SceneManager.GetActiveScene().name == "CreditsScene")
+        {
+            //Workaround for my credits scene -Nick
+            return Input.GetAxis("Horizontal");
+        }
 		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
 			return Input.GetAxis("Vertical");
 		else
