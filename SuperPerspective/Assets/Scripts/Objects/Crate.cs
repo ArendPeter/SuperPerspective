@@ -40,6 +40,8 @@ public class Crate : ActiveInteractable {
 		colliderWidth = GetComponent<Collider>().bounds.size.x;
 		colliderDepth = GetComponent<Collider>().bounds.size.z;
 
+		range = 1.25f;
+
 		//player = GameObject.Find("Player").GetComponent<PlayerController>();
 
 		// Register CheckGrab to grab input event
