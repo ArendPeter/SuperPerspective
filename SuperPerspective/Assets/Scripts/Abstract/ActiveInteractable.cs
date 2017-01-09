@@ -41,6 +41,8 @@ public class ActiveInteractable : PhysicalObject {
 
     public bool isInteractable = true;
 
+	private int boundIndex;
+
 	void Start(){
 		StartSetup ();
 	}
@@ -80,22 +82,31 @@ public class ActiveInteractable : PhysicalObject {
 
         //Get your material
         glowRenderer = GetComponentInChildren<Renderer>();
+
+		Vector3 pos = transform.position;
+		boundIndex = IslandControl.instance.getBound(pos.x, pos.y, pos.z, !GameStateManager.is3D());
     }
 
 	protected void FixedUpdateLogic() {
-		float dist = GetDistance();
+		int playerBoundIndex = player.GetComponent<PlayerController>().getBoundIndex();
 
-		bool inRange = dist < range;
-        
-		bool playerFacing = GameStateManager.is3D() ? isPlayerFacingObject() : isPlayerFacingObject2D();
+		bool canTrigger = false, notificationCanBeShown = false;
+		float dist = 0f;
+		if (playerBoundIndex == boundIndex) {
+			dist = GetDistance();
 
-        bool inYRange = IsInYRange();
+			bool inRange = dist < range;
+	        
+			bool playerFacing = GameStateManager.is3D() ? isPlayerFacingObject() : isPlayerFacingObject2D();
 
-        bool canTrigger =
-			inRange && playerFacing && inYRange && IsEnabled();
+	        bool inYRange = IsInYRange();
 
-		//checks for competing notifications (I think)
-		bool notificationCanBeShown = !notiShown || dist < notiDist;
+	        canTrigger =
+				inRange && playerFacing && inYRange && IsEnabled();
+
+			//checks for competing notifications (I think)
+			notificationCanBeShown = !notiShown || dist < notiDist;
+		}
 
 		//update notiShown
 		if(canTrigger && notificationCanBeShown){

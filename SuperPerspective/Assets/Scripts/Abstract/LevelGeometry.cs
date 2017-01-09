@@ -85,5 +85,9 @@ public class LevelGeometry : MonoBehaviour
 		return parentPlatform != null;
 	}
 
+	public GameObject getPlatform() {
+		return parentPlatform;
+	}
+
     #endregion Perspective Shift Event
 }

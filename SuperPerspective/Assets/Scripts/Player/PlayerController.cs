@@ -758,6 +758,9 @@ public class PlayerController : PhysicalObject{
 		return orb;
 	}
 
+	public int getBoundIndex() {
+		return gameObject.GetComponent<BoundObject>().GetBoundIndex();
+	}
 
 	#endregion Accessor Methods
 

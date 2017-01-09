@@ -11,6 +11,7 @@ public class BoundObject : MonoBehaviour {
 	//float altRightBound = -1;
 	private float groundY = 0;
 	private bool hasBound = false;
+	private int boundIndex = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,7 @@ public class BoundObject : MonoBehaviour {
 
 	public void updateBounds(){
 		Vector3 pos = transform.position;
-		int boundIndex = IslandControl.instance.getBound (pos.x, pos.y, pos.z, !GameStateManager.is3D());
+		boundIndex = IslandControl.instance.getBound (pos.x, pos.y, pos.z, !GameStateManager.is3D());
 		if(boundIndex == -1)
 				return;
 		hasBound = true;
@@ -85,5 +86,9 @@ public class BoundObject : MonoBehaviour {
 
 	public Rect GetBounds() {
 		return myBounds;
+	}
+
+	public int GetBoundIndex() {
+		return boundIndex;
 	}
 }
