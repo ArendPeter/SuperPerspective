@@ -6,6 +6,8 @@ using System.Collections;
  **/
 public class ObjectFade : MonoBehaviour {
 
+	const float MAX_DIST = 25;
+
 	float setAlpha = 1, fadeSpeed = 0.15f;
 	Renderer[] rends;
 	GameObject player;
@@ -23,6 +25,8 @@ public class ObjectFade : MonoBehaviour {
 	}
 
 	void Update() {
+		if (Vector3.Distance(transform.position, player.transform.position) > MAX_DIST)
+			return;
 		setAlpha = 1;
 		float dist;
 		if (getBounds().IntersectRay(new Ray(Camera.main.transform.position, player.transform.position - Camera.main.transform.position), out dist)) {
@@ -46,7 +50,10 @@ public class ObjectFade : MonoBehaviour {
 			);
 		}
 	}
+
 	void FixedUpdate () {
+		if (Vector3.Distance(transform.position, player.transform.position) > MAX_DIST)
+			return;
 		foreach (Renderer rend in rends) {
 			if (!rend.material.HasProperty("_Color") || !rend.material.HasProperty("_Mode"))
 				continue;
