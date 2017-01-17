@@ -3452,11 +3452,22 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!4 &66949842 stripped
+--- !u!4 &66949842
 Transform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
     type: 2}
-  m_PrefabInternal: {fileID: 564287233}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1819971905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 196.96255, y: 609.8702, z: 343.70963}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1471943075}
+  - {fileID: 818140540}
+  m_Father: {fileID: 826095868}
+  m_RootOrder: 1
 --- !u!4 &73412915 stripped
 Transform:
   m_PrefabParentObject: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
@@ -4261,6 +4272,52 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 472290, guid: 061821cf59031ea4fbe48cd37f903b6d, type: 2}
   m_PrefabInternal: {fileID: 115040967}
+--- !u!1 &115382909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010094708622, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 115382910}
+  - 114: {fileID: 115382911}
+  m_Layer: 1
+  m_Name: MultiEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &115382910
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013569774840, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 115382909}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.84578, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 775673203}
+  m_Father: {fileID: 164017181}
+  m_RootOrder: 0
+--- !u!114 &115382911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011793968122, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 115382909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11930f9e798f9d945bcaef6f4b4f9060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventArray:
+  - {fileID: 775673204}
 --- !u!1 &126265398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,6 +4885,69 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: -0.007882953, z: -0.6511525}
     m_Extent: {x: 0.079450876, y: 0.017479599, z: 0.65421355}
   m_DirtyAABB: 0
+--- !u!1 &164017180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000014265633984, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 164017181}
+  - 114: {fileID: 164017182}
+  m_Layer: 0
+  m_Name: CrystalSpiritConvo2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164017181
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012371662808, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164017180}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2661724, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 115382910}
+  m_Father: {fileID: 203761134}
+  m_RootOrder: 0
+--- !u!114 &164017182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011557259106, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164017180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 1
+  convoTextArray:
+  - "You shouldn\u2019t have touched that, kid."
+  - "That was the Great Crystal, and it holds this \u2018place\u2019 together. It\u2019s
+    very fragile."
+  - "If that thing isn\u2019t formed together soon, this whole world is going to dissolve.
+    And us with it!"
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 115382911}
 --- !u!1 &167707882
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5777,52 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 432712, guid: 6639f7e067a2d5b42bc5e63e48db8a35, type: 2}
   m_PrefabInternal: {fileID: 196762752}
+--- !u!1 &203761133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010560930410, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 203761134}
+  - 114: {fileID: 203761135}
+  m_Layer: 1
+  m_Name: StartConvo2Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &203761134
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010689930668, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 203761133}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 164017181}
+  m_Father: {fileID: 2084958559}
+  m_RootOrder: 0
+--- !u!114 &203761135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010088810974, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 203761133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 164017182}
+  startCrystalFairyTheme: 1
 --- !u!1 &207742861
 GameObject:
   m_ObjectHideFlags: 0
@@ -10920,6 +11086,70 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 427960947}
   m_Mesh: {fileID: 4300000, guid: 42fa7379464905049bed662de51e52ac, type: 3}
+--- !u!1 &429100735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012303837264, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 429100736}
+  - 114: {fileID: 429100737}
+  m_Layer: 0
+  m_Name: CrystalSpiritConvo3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429100736
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010488653684, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 429100735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2661726, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 697620411}
+  m_Father: {fileID: 775673203}
+  m_RootOrder: 0
+--- !u!114 &429100737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010152231978, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 429100735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 1
+  convoTextArray:
+  - "You need to help me fix this! If we can get the pieces of the Great Crystal before
+    it\u2019s too late, the world will stabilize."
+  - "The name\u2019s Ivan, and I\u2019m a Crystal Spirit. I get to fix things when
+    they go wrong...."
+  - "..and you\u2019re going to help me. You break it, you fix it!"
+  - "Ready? You don\u2019t get a choice. Let\u2019s go."
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 697620412}
 --- !u!1 &431235712
 GameObject:
   m_ObjectHideFlags: 0
@@ -16783,67 +17013,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 432712, guid: 6639f7e067a2d5b42bc5e63e48db8a35, type: 2}
   m_PrefabInternal: {fileID: 562284957}
---- !u!1001 &564287233
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 826095868}
-    m_Modifications:
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 196.96255
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 609.8702
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 343.70963
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012608111636, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010893653234, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
-        type: 2}
-      propertyPath: ff
-      value: 
-      objectReference: {fileID: 2071204100}
-    - target: {fileID: 114000011919044322, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
-        type: 2}
-      propertyPath: hasTextEndEvent
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012633014192, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010893653234, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
-        type: 2}
-      propertyPath: blocker
-      value: 
-      objectReference: {fileID: 1471943072}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 80aa5e212c1130a41b03545fd8a7ffc2, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &567283673
 GameObject:
   m_ObjectHideFlags: 0
@@ -20653,6 +20822,65 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 663334544}
+--- !u!1 &664934312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010751377232, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 664934313}
+  - 114: {fileID: 664934314}
+  m_Layer: 0
+  m_Name: CrystalSpiritConvo4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664934313
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012709120264, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664934312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2661726, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1176120898}
+  m_Father: {fileID: 1769484658}
+  m_RootOrder: 0
+--- !u!114 &664934314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011919044322, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664934312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 1
+  convoTextArray:
+  - '[Ivan joined your party]'
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 1176120899}
 --- !u!1 &664950805 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000014028811476, guid: de83d96658944fd4684e4560f5cf49d2,
@@ -21809,6 +22037,52 @@ Light:
   m_BounceIntensity: 0.1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &697620410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011541944076, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 697620411}
+  - 114: {fileID: 697620412}
+  m_Layer: 1
+  m_Name: MultiEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697620411
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012508019482, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697620410}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457801, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1769484658}
+  m_Father: {fileID: 429100736}
+  m_RootOrder: 0
+--- !u!114 &697620412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010998102738, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697620410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11930f9e798f9d945bcaef6f4b4f9060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventArray:
+  - {fileID: 1769484659}
 --- !u!1001 &701416737
 Prefab:
   m_ObjectHideFlags: 0
@@ -23317,6 +23591,52 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773485349}
   m_Mesh: {fileID: 4300000, guid: 42fa7379464905049bed662de51e52ac, type: 3}
+--- !u!1 &775673202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012304735146, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 775673203}
+  - 114: {fileID: 775673204}
+  m_Layer: 1
+  m_Name: StartConvo3Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775673203
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000011480883646, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775673202}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 429100736}
+  m_Father: {fileID: 115382910}
+  m_RootOrder: 0
+--- !u!114 &775673204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000013036128392, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 775673202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 429100737}
+  startCrystalFairyTheme: 0
 --- !u!1 &776670657
 GameObject:
   m_ObjectHideFlags: 0
@@ -24390,6 +24710,38 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &818140539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012103023202, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 818140540}
+  m_Layer: 0
+  m_Name: EventHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818140540
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012633014192, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 818140539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1506160629}
+  - {fileID: 2121576410}
+  m_Father: {fileID: 66949842}
+  m_RootOrder: 1
 --- !u!1001 &821076917
 Prefab:
   m_ObjectHideFlags: 0
@@ -25086,12 +25438,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fd469d6414f9914c87f30f4eaf3fb4e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &841642340 stripped
+--- !u!114 &841642340
 MonoBehaviour:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 114000010246717820, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
     type: 2}
-  m_PrefabInternal: {fileID: 564287233}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121576409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 1
+  convoTextArray:
+  - WHAT HAVE YOU DONE?
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 2084958560}
 --- !u!1 &842670460
 GameObject:
   m_ObjectHideFlags: 0
@@ -25581,6 +25954,51 @@ Transform:
   - {fileID: 14459018}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1 &874319621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012783124564, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 874319622}
+  - 114: {fileID: 874319623}
+  m_Layer: 1
+  m_Name: SaidYesEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874319622
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012689860596, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 874319621}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1867277369}
+  m_RootOrder: 0
+--- !u!114 &874319623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010341372620, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 874319621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5677c7c492c11f443a2c25dcf20706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cTrig: {fileID: 0}
+  ConversationBoolShouldBeSetTo: 1
 --- !u!1 &876052946
 GameObject:
   m_ObjectHideFlags: 0
@@ -30996,6 +31414,67 @@ Transform:
   - {fileID: 668534683}
   m_Father: {fileID: 361176276}
   m_RootOrder: 86
+--- !u!1 &1110344287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000014213955952, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1110344288}
+  - 114: {fileID: 1110344289}
+  m_Layer: 0
+  m_Name: SaidNoConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110344288
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012437826974, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110344287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2661722, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1728175547}
+  m_RootOrder: 0
+--- !u!114 &1110344289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000012263306556, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110344287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 0
+  convoTextArray:
+  - 'You decide not to sate your curiosity. '
+  - The canister continues to glow ominously....
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  endTextEvent: {fileID: 0}
 --- !u!1 &1121456374
 GameObject:
   m_ObjectHideFlags: 0
@@ -31809,6 +32288,53 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1176120897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011541944076, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1176120898}
+  - 114: {fileID: 1176120899}
+  m_Layer: 1
+  m_Name: MultiEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176120898
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012508019482, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176120897}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8458104, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1491934029}
+  m_Father: {fileID: 664934313}
+  m_RootOrder: 0
+--- !u!114 &1176120899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010998102738, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176120897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11930f9e798f9d945bcaef6f4b4f9060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventArray:
+  - {fileID: 1491934030}
+  - {fileID: 1491934030}
 --- !u!1 &1183080496
 GameObject:
   m_ObjectHideFlags: 0
@@ -38538,6 +39064,53 @@ Transform:
   - {fileID: 1123239178}
   m_Father: {fileID: 361176276}
   m_RootOrder: 46
+--- !u!1 &1491934028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010970467058, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1491934029}
+  - 114: {fileID: 1491934030}
+  m_Layer: 1
+  m_Name: SpiritJoinEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491934029
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000011784563770, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491934028}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000012150992, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1176120898}
+  m_RootOrder: 0
+--- !u!114 &1491934030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000010893653234, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491934028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c72bd0b7e4cee4cb23c29dc75c432c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ff: {fileID: 2071204100}
+  blocker: {fileID: 1471943072}
+  setFollowTo: 1
+  stopCrystalFairyTheme: 1
 --- !u!1 &1499183313
 GameObject:
   m_ObjectHideFlags: 0
@@ -38935,6 +39508,38 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 5, z: 0}
   transitionTime: 1.5
+--- !u!1 &1506160628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010395065572, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1506160629}
+  - 114: {fileID: 1764955039}
+  m_Layer: 0
+  m_Name: CrystalStartConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506160629
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013350207574, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506160628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1867277369}
+  m_Father: {fileID: 818140540}
+  m_RootOrder: 0
 --- !u!1 &1507429493
 GameObject:
   m_ObjectHideFlags: 0
@@ -43547,6 +44152,52 @@ Transform:
   - {fileID: 1234606433}
   m_Father: {fileID: 361176276}
   m_RootOrder: 77
+--- !u!1 &1728175546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011292875690, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1728175547}
+  - 114: {fileID: 1728175548}
+  m_Layer: 1
+  m_Name: SaidNoEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1728175547
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012749876512, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728175546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457794, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 1110344288}
+  m_Father: {fileID: 1867277369}
+  m_RootOrder: 1
+--- !u!114 &1728175548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011324016136, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728175546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 1110344289}
+  startCrystalFairyTheme: 0
 --- !u!1 &1728953910
 GameObject:
   m_ObjectHideFlags: 0
@@ -45039,12 +45690,20 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1764149405}
---- !u!114 &1764955039 stripped
+--- !u!114 &1764955039
 MonoBehaviour:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 114000011321512608, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
     type: 2}
-  m_PrefabInternal: {fileID: 564287233}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506160628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 1867277370}
+  startCrystalFairyTheme: 0
 --- !u!1001 &1766074534
 Prefab:
   m_ObjectHideFlags: 0
@@ -45143,6 +45802,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonInstance: {fileID: 229770660}
+--- !u!1 &1769484657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011518981180, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1769484658}
+  - 114: {fileID: 1769484659}
+  m_Layer: 1
+  m_Name: StartConvo4Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1769484658
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010251887812, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769484657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 664934313}
+  m_Father: {fileID: 697620411}
+  m_RootOrder: 0
+--- !u!114 &1769484659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011513370140, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769484657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 664934314}
+  startCrystalFairyTheme: 0
 --- !u!1001 &1769784518
 Prefab:
   m_ObjectHideFlags: 0
@@ -46000,6 +46705,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1816609488}
   m_Mesh: {fileID: 4300000, guid: 42fa7379464905049bed662de51e52ac, type: 3}
+--- !u!1 &1819971905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011224473618, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 66949842}
+  m_Layer: 0
+  m_Name: EventObjectHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1831581056
 GameObject:
   m_ObjectHideFlags: 0
@@ -46315,6 +47036,67 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 421240, guid: 7fd469d6414f9914c87f30f4eaf3fb4e, type: 2}
   m_PrefabInternal: {fileID: 839920105}
+--- !u!1 &1867277368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011573086332, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1867277369}
+  - 114: {fileID: 1867277370}
+  m_Layer: 0
+  m_Name: GiantCrystalConvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1867277369
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012874960244, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867277368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 874319622}
+  - {fileID: 1728175547}
+  m_Father: {fileID: 1506160629}
+  m_RootOrder: 0
+--- !u!114 &1867277370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000014229182134, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867277368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 1
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 1110344289}
+  hasNext: 1
+  choiceIndex: 0
+  hasTextEndEvent: 0
+  convoTextArray: []
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray:
+  - {fileID: 874319623}
+  - {fileID: 1728175548}
+  endTextEvent: {fileID: 0}
 --- !u!1 &1873273836
 GameObject:
   m_ObjectHideFlags: 0
@@ -52107,6 +52889,52 @@ Transform:
   - {fileID: 832138980}
   m_Father: {fileID: 361176276}
   m_RootOrder: 16
+--- !u!1 &2084958558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011276426584, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2084958559}
+  - 114: {fileID: 2084958560}
+  m_Layer: 1
+  m_Name: MultiEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2084958559
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000013785041016, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2084958558}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8457797, y: -3.8813477, z: 9.571564}
+  m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 203761134}
+  m_Father: {fileID: 2121576410}
+  m_RootOrder: 0
+--- !u!114 &2084958560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011334988662, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2084958558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11930f9e798f9d945bcaef6f4b4f9060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventArray:
+  - {fileID: 203761135}
 --- !u!1 &2087421190
 GameObject:
   m_ObjectHideFlags: 0
@@ -53061,6 +53889,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2119527205}
   m_Mesh: {fileID: 4300000, guid: 42fa7379464905049bed662de51e52ac, type: 3}
+--- !u!1 &2121576409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000012792527512, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2121576410}
+  - 114: {fileID: 841642340}
+  m_Layer: 0
+  m_Name: CrystalSpiritConvo1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121576410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000011933392534, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121576409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 2084958559}
+  m_Father: {fileID: 818140540}
+  m_RootOrder: 1
 --- !u!1 &2123660489
 GameObject:
   m_ObjectHideFlags: 0

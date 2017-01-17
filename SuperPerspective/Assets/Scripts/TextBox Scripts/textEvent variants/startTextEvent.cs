@@ -7,9 +7,11 @@ public class startTextEvent : textEvent
     //Event that starts a conversation in the textBoxScript.
 
     
-    [SerializeField] private textBoxScript tb;
-    [SerializeField] private askBoxScript ab;
+    private textBoxScript tb;
+    private askBoxScript ab;
     public convoNode myConversation;
+    public bool startCrystalFairyTheme;
+    private UISFXManager sfx;
 
     void Start()
     {
@@ -22,6 +24,11 @@ public class startTextEvent : textEvent
         {
             ab = GameObject.FindObjectOfType<askBoxScript>();
         }
+
+        if(!(sfx != null))
+        {
+            sfx = GameObject.FindObjectOfType<UISFXManager>();
+        }
     }
 
 	public override void eventTrigger()
@@ -31,5 +38,11 @@ public class startTextEvent : textEvent
         ab.disableBox();
         ab.showBox = false;
         tb.startConvo(myConversation);
+
+        if (startCrystalFairyTheme)
+        {
+            sfx.PlayCrystalFairyTheme();
+        }
+
     }
 }

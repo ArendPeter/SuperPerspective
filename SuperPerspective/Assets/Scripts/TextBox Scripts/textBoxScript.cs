@@ -163,7 +163,7 @@ public class textBoxScript : MonoBehaviour {
         //textSpeed = resetTextSpeed;
         showBox = false;
 		disableBox();
-        uim.StopCrystalFairyTheme();
+        //uim.StopCrystalFairyTheme();
 	}
 	public void enableBox()//This enables the textbox so you can see it.
 	{

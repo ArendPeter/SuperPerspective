@@ -157,7 +157,10 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 
                     for (int i = 0; i < this.myColliders.Length; i++)
                     {
-                        this.myColliders[i].enabled = false;
+                        if (!(this.myColliders[i] == null))
+                        {
+                            this.myColliders[i].enabled = false;
+                        }
                         allDone = true;
                         Debug.Log("All done");
                         PlayerPrefs.SetString("IntroCutsceneFinished", "true");

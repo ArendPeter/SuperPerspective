@@ -10,6 +10,9 @@ public class ivanOpeningEvent : textEvent{
 
     public bool setFollowTo = true;
 
+    public bool stopCrystalFairyTheme;
+    private UISFXManager sfx;
+
     //keeps track of notification marker
     static NotificationController notiMarker;
     protected GameObject player;
@@ -20,6 +23,11 @@ public class ivanOpeningEvent : textEvent{
         //ff = GameObject.FindObjectOfType<FairyFollow>();
         spirit = ff.gameObject.GetComponent<InteractableSpirit>();
         notiMarker = player.transform.Find("Notification").GetComponent<NotificationController>();
+
+        if (!(sfx != null))
+        {
+            sfx = GameObject.FindObjectOfType<UISFXManager>();
+        }
     }
 	
 	// Update is called once per frame
@@ -34,6 +42,12 @@ public class ivanOpeningEvent : textEvent{
         setFairyFollow(setFollowTo);
         deleteSpirit();
         deleteBarrier();
+
+        if (stopCrystalFairyTheme)
+        {
+            sfx.StopCrystalFairyTheme();
+        }
+
     }
 
     public void setNotMarkerVisibility(bool set)
