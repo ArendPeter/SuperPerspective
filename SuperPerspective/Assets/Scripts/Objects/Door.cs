@@ -33,7 +33,7 @@ public class Door : ActiveInteractable {
 			p.Play();
 		}*/
 
-        range = 3;
+    range = 2;
 	}
 
 	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
@@ -49,10 +49,10 @@ public class Door : ActiveInteractable {
 
 	public override float GetDistance() {
 		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
-			return Vector3.Distance(transform.position, player.transform.position);
+			return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.z),
+			                        new Vector2(transform.position.x, transform.position.z));
 		else
-			return Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.y),
-			                        new Vector2(transform.position.x, transform.position.y));
+			return Mathf.Abs(player.transform.position.x - transform.position.x);
 	}
 
 	protected override bool isPlayerFacingObject() {
@@ -61,7 +61,17 @@ public class Door : ActiveInteractable {
 		if (pPos.x >= bounds.min.x && pPos.x <= bounds.max.x && pPos.z >= bounds.min.z && pPos.z <= bounds.max.z) {
 			return true;
 		}
+
 		return base.isPlayerFacingObject();
+	}
+
+	protected override bool isPlayerFacingObject2D(){
+		Vector3 pPos = player.transform.position;
+		Bounds bounds = GetComponent<Collider>().bounds;
+		if(bounds.min.x <= pPos.x && pPos.x <= bounds.max.x){
+			return true;
+		}
+		return base.isPlayerFacingObject2D();
 	}
 
 	public override void Triggered(){

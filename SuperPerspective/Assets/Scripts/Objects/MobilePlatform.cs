@@ -218,6 +218,9 @@ public class MobilePlatform : ActiveInteractable {
 	protected override bool isPlayerFacingObject() {
 		return true;
 	}
+	protected override bool isPlayerFacingObject2D() {
+		return true;
+	}
 
 	protected override bool IsInYRange(){
 		float playerY = PlayerController.instance.transform.position.y;
