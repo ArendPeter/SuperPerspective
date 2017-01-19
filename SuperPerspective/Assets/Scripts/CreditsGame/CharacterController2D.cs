@@ -13,7 +13,15 @@ public class CharacterController2D : MonoBehaviour {
     SpriteRenderer playerSprite;
     Color initCol;
     bool fadeOut;
+    int facingForward = 1;
     public Fadeout2D fade;
+
+    public Orb2D orb;
+
+    public Transform middle, orbMount;
+
+    private RaycastHit2D hit;
+    public LayerMask mask;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +30,17 @@ public class CharacterController2D : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         initCol = playerSprite.color;
-	}
+
+        InputManager.instance.InteractPressedEvent += Interact;
+    }
+
+    void Interact() {
+        hit = Physics2D.Raycast(middle.position, new Vector2(facingForward, 0), 0.35f, mask);
+        if (hit.collider != null)
+        {
+            hit.collider.gameObject.GetComponent<Interactible2D>().Activate(this);
+        }
+    }
 
     void DetectMovement()
     {
@@ -32,13 +50,14 @@ public class CharacterController2D : MonoBehaviour {
             Move(new Vector2(temp * 3, rb.velocity.y));
             anim.SetBool("Walking", true);
             transform.localScale = new Vector3(1, 1, 1);
-
+            facingForward = 1;
         }
         else if (temp < 0)
         {
             Move(new Vector2(temp * 3, rb.velocity.y));
             anim.SetBool("Walking", true);
             transform.localScale = new Vector3(-1, 1, 1);
+            facingForward = -1;
         }
         else
         {
