@@ -13,6 +13,8 @@ public class Fadeout2D : MonoBehaviour {
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         playerSprite = gameObject.GetComponent<SpriteRenderer>();
         playerCol = playerSprite.color;
+        playerSprite.color = new Color(playerCol.r, playerCol.g, playerCol.b, 1);
+        FadeOut();
     }
 	
 	// Update is called once per frame

@@ -22,6 +22,8 @@ public class Crystal2D : MonoBehaviour {
             CharacterController2D temp = coll.gameObject.GetComponent<CharacterController2D>();
             if (temp != null)
             {
+                ProgressManager2D.instance.crystalProgress++;
+                MessageManager2D.instance.crystalScore.text = "Crystals Collected: " + ProgressManager2D.instance.crystalProgress;
                 GetComponent<SpriteRenderer>().enabled = false;
                 ambient.Stop();
                 poof.Play();

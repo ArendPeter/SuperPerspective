@@ -10,10 +10,18 @@ public class MessageManager2D : MonoBehaviour {
     GameObject activeMessage;
     int count = 0;
     float fadeSpeed = 0.05f;
-    float tempTimer = 5;
+    public float tempTimerMax = 10;
+    float tempTimer = 3;
 
-	// Use this for initialization
-	void Start () {
+    public static MessageManager2D instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
 	    
 	}
 	
@@ -27,7 +35,7 @@ public class MessageManager2D : MonoBehaviour {
         {
             LoadMessage(count, 2);
             count++;
-            tempTimer = 5;
+            tempTimer = tempTimerMax;
         }
 	}
 

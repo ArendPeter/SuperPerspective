@@ -23,6 +23,11 @@ public class CharacterController2D : MonoBehaviour {
     private RaycastHit2D hit;
     public LayerMask mask;
 
+    bool controlActive = true;
+
+    public SpriteRenderer interact;
+    public GameObject control;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +40,6 @@ public class CharacterController2D : MonoBehaviour {
     }
 
     void Interact() {
-        hit = Physics2D.Raycast(middle.position, new Vector2(facingForward, 0), 0.35f, mask);
         if (hit.collider != null)
         {
             hit.collider.gameObject.GetComponent<Interactible2D>().Activate(this);
@@ -51,6 +55,11 @@ public class CharacterController2D : MonoBehaviour {
             anim.SetBool("Walking", true);
             transform.localScale = new Vector3(1, 1, 1);
             facingForward = 1;
+            if (controlActive)
+            {
+                control.SetActive(false);
+                controlActive = false;
+            }
         }
         else if (temp < 0)
         {
@@ -58,6 +67,11 @@ public class CharacterController2D : MonoBehaviour {
             anim.SetBool("Walking", true);
             transform.localScale = new Vector3(-1, 1, 1);
             facingForward = -1;
+            if (controlActive)
+            {
+                control.SetActive(false);
+                controlActive = false;
+            }
         }
         else
         {
@@ -69,6 +83,11 @@ public class CharacterController2D : MonoBehaviour {
     public void Jump() {
         if (grounded)
         {
+            if (controlActive)
+            {
+                control.SetActive(false);
+                controlActive = false;
+            }
             rb.velocity = (new Vector3(rb.velocity.x, 6f));
         }
     }
@@ -106,12 +125,14 @@ public class CharacterController2D : MonoBehaviour {
         fade.FadeIn();
     }
 
-    public void EndTeleport(Vector2 newPos)
+    public IEnumerator EndTeleport(Vector2 newPos, float delay)
     {
+        yield return new WaitForSeconds(delay);
         isActive = true;
         fadeOut = false;
         anim.SetTrigger("Idle");
         transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+        fade.FadeOut();
     }
 
     void FixedUpdate()
@@ -127,6 +148,17 @@ public class CharacterController2D : MonoBehaviour {
         else if (!fadeOut)
         {
             playerSprite.color = initCol;
+        }
+        hit = Physics2D.Raycast(middle.position, new Vector2(facingForward, 0), 0.35f, mask);
+        {
+            if (hit.collider != null)
+            {
+                interact.enabled = true;
+            }
+            else
+            {
+                interact.enabled = false;
+            }
         }
     }
 }
