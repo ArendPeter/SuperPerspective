@@ -73,6 +73,7 @@ public class textBoxScript : MonoBehaviour {
 		}
 		//link action
 		InputManager.instance.JumpPressedEvent += progressConv;
+		InputManager.instance.InteractPressedEvent += progressConv;
 		//start out disabled
 		disableBox();
         //So these don't get overwritten later.
@@ -81,7 +82,7 @@ public class textBoxScript : MonoBehaviour {
 
         //So we can stop the music.
         uim = GameObject.FindObjectOfType<UISFXManager>();
-        
+
     }
 
 	// Update is called once per frame
@@ -142,7 +143,7 @@ public class textBoxScript : MonoBehaviour {
 	//Overloaded enable that allows for new conversations to be loaded in.
 	public void startConvo(convoNode newNode)
 	{
-        
+
         PlayerController.instance.setCutsceneMode(true);
 		currentNode = newNode;
         if (currentNode.myType == convoNode.nodeType.question)

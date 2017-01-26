@@ -46,6 +46,7 @@ public class Bonfire_UI : MonoBehaviour {
         InputManager.instance.MenuDownEvent += XboxMenuDown;
         InputManager.instance.MenuUpEvent += XboxMenuUp;
         InputManager.instance.JumpPressedEvent += XboxSelect;
+    		InputManager.instance.InteractPressedEvent += XboxSelect;
     }
 
     void XboxMenuDown()
@@ -81,7 +82,7 @@ public class Bonfire_UI : MonoBehaviour {
         closeFlag = false;
         uiSFX = FindObjectOfType<UISFXManager>();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
         checkInput();

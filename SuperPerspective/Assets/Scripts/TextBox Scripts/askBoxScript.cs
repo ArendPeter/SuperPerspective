@@ -167,7 +167,7 @@ public class askBoxScript : MonoBehaviour {
 			//Every time we time down to zero, do the thing.
 			if (tinyTimer <= 0)
 			{
-                
+
 				if (progressIndex < choiceArray.Length)//This allows us to increment our texts properly.
 				{
 					if (horiIndex < charArray.Length)//If we haven't filled out to the end of our singular line...
@@ -272,7 +272,7 @@ public class askBoxScript : MonoBehaviour {
             text.transform.position = new Vector3(textArray[choiceID].transform.position.x - 30, textArray[choiceID].transform.position.y, 0);
 			text.text = "➽";
 
-			if (Input.GetButtonDown("Jump"))
+			if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interaction"))
 			{
 				makeChoice();
 			}
@@ -315,7 +315,7 @@ public class askBoxScript : MonoBehaviour {
     //Used to check if we should make the chatterNoise
     private void chatterCheck()
     {
-        if (!(chatter != null)) { 
+        if (!(chatter != null)) {
             if(chatterCount == chatterTrigger)
             {
                 chatter.Chatter();
