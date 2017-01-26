@@ -7,6 +7,7 @@ public class ActiveInteractable : PhysicalObject {
     //For glowiness
     [SerializeField] private Renderer glowRenderer;
 
+    public bool notificationSuppressed = false;
 
     //suppress warnings
     #pragma warning disable 414
@@ -96,7 +97,7 @@ public class ActiveInteractable : PhysicalObject {
 			dist = GetDistance();
 
 			bool inRange = dist < range;
-	        
+
 			bool playerFacing = GameStateManager.is3D() ? isPlayerFacingObject() : isPlayerFacingObject2D();
 
 	        bool inYRange = IsInYRange();
@@ -105,14 +106,16 @@ public class ActiveInteractable : PhysicalObject {
 				inRange && playerFacing && inYRange && IsEnabled();
 
 			//checks for competing notifications (I think)
-			notificationCanBeShown = !notiShown || dist < notiDist;
+			notificationCanBeShown = (!notiShown || dist < notiDist);
 		}
 
 		//update notiShown
 		if(canTrigger && notificationCanBeShown){
 			selected = this;
 			notiShown = true;
-			notiMarker.updateVisible(true);
+      if(!notificationSuppressed){
+  			notiMarker.updateVisible(true);
+      }
 			notiDist = dist;
 		}
 
