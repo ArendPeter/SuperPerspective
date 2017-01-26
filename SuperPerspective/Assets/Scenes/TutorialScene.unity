@@ -12025,6 +12025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowRenderer: {fileID: 0}
+  notificationSuppressed: 0
   invisible: 0
   isInteractable: 1
   myNode: {fileID: 841642340}
@@ -28483,6 +28484,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 99464ddf86c79c0439a6503bb18f3f59, type: 2}
+    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: startAtDoor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_IsPrefabParent: 0
@@ -31060,6 +31066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowRenderer: {fileID: 0}
+  notificationSuppressed: 0
   invisible: 0
   isInteractable: 1
   shouldDissolveShield: 0

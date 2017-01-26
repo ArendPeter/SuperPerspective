@@ -15,6 +15,8 @@ public class TransitionManager : MonoBehaviour {
 	static string gotoScene = "", gotoDoor = "";
 	PlayerController player;
 
+	static bool firstScene = true;
+
     UISFXManager uiSFXManager;
 
 	void Awake(){
@@ -86,9 +88,15 @@ public class TransitionManager : MonoBehaviour {
 		transition = 1;
 		gotoScene = scene;
 		gotoDoor = door;
+
+		firstScene = false;
 	}
 
 	public bool isActive() {
 		return instance != null;
+	}
+
+	public bool isFirstScene(){
+			return firstScene;
 	}
 }

@@ -8,11 +8,11 @@ public class PlayerSpawnController : MonoBehaviour {
 	public Vector3 teleportOffset = new Vector3(0,5,0);
 	[SerializeField] Door destDoor;
 
-    
+
 
     void Start () {
 		destDoor = this.findDoor(startDoorName);
-		if(startAtDoor){
+		if(startAtDoor && TransitionManager.instance.isFirstScene()){
 			this.moveToDoor(destDoor);
 		}
 	}
@@ -60,9 +60,9 @@ public class PlayerSpawnController : MonoBehaviour {
 	public Door getDefaultDest(){
 		return destDoor;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 }
