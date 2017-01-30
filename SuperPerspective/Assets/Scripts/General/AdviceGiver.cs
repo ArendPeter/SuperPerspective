@@ -60,7 +60,12 @@ public class AdviceGiver : MonoBehaviour {
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            if (ivan.shouldFollow)
+            if (!ivan.shouldFollow || pcont.isPassivelyPushing() || pcont.isRiding() || pcont.isPaused() || pcont.isLaunched() ||
+                pcont.isJumping() || pcont.isFalling() || pcont.isClimbing() || pcont.isDisabled() || pcont.isShimmying() || pcont.isInCactusKnockBack())
+            {
+                //Do nothing
+            }
+            else
             {
                 if (Input.GetKey(KeyCode.T) || help)
                 {
