@@ -17,7 +17,7 @@ public class Teleporter2D : MonoBehaviour {
 	
 	}
 
-    void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll != null && !hasEntered)
         {
@@ -25,11 +25,8 @@ public class Teleporter2D : MonoBehaviour {
             if (temp != null && temp.grounded)
             {
                 hasEntered = true;
-                if (!Fadeout2D.instance.totallyDone)
-                {
-                    ProgressManager2D.instance.levelProgress++;
-                    MessageManager2D.instance.levelScore.text = "Levels Completed: " + ProgressManager2D.instance.levelProgress + "/3";
-                }
+                ProgressManager2D.instance.levelProgress++;
+                MessageManager2D.instance.levelScore.text = "Levels Completed: " + ProgressManager2D.instance.levelProgress;
                 temp.StartTeleport();
                 if (target != null)
                 {

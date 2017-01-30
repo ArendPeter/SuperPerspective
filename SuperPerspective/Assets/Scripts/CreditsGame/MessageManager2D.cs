@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MessageManager2D : MonoBehaviour {
 
@@ -32,21 +31,11 @@ public class MessageManager2D : MonoBehaviour {
         {
             tempTimer -= Time.deltaTime;
         }
-        else if (count < 9)
+        else if(count < 9)
         {
             LoadMessage(count, 2);
             count++;
             tempTimer = tempTimerMax;
-        }
-        else if (count == 9)
-        {
-            StartCoroutine(FadeOut(activeMessage));
-            count++;
-            tempTimer = tempTimerMax * 0.5f;
-        }
-        else
-        {
-            SceneManager.LoadScene("Menu");
         }
 	}
 
