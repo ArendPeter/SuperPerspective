@@ -60,18 +60,21 @@ public class AdviceGiver : MonoBehaviour {
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            if (Input.GetKey(KeyCode.T) || help)
+            if (ivan.shouldFollow)
             {
-                if (htab.ContainsKey(currentLoc))
+                if (Input.GetKey(KeyCode.T) || help)
                 {
-                    giveAdvice(currentLoc);
+                    if (htab.ContainsKey(currentLoc))
+                    {
+                        giveAdvice(currentLoc);
+                    }
+                    else
+                    {
+                        textBoxScript.instance.startConvo(defaultNode);
+                    }
                 }
-                else
-                {
-                    textBoxScript.instance.startConvo(defaultNode);
-                }
+                help = false;
             }
-            help = false;
         }
 
 	}
@@ -87,28 +90,27 @@ public class AdviceGiver : MonoBehaviour {
 
     public void giveAdvice(string ID)
     {
-        
-        bool swap = false;
-        char[] chArr = ID.ToCharArray();
-        for (int i = 0; i<chArr.Length; i++)
-        {
-            if (chArr[i] == 'e')
+            bool swap = false;
+            char[] chArr = ID.ToCharArray();
+            for (int i = 0; i < chArr.Length; i++)
             {
-                if (chArr[i + 1] == 'n')
+                if (chArr[i] == 'e')
                 {
-                    if (chArr[i + 2] == 'd')
+                    if (chArr[i + 1] == 'n')
                     {
-                        swap = true;
+                        if (chArr[i + 2] == 'd')
+                        {
+                            swap = true;
+                        }
                     }
                 }
             }
-        }
-        if (swap) { ID = ID.Replace("end", "start");  }
-        print("result: " + ID);
-        
-        textBoxScript.instance.startConvo((convoNode)(htab[ID]));
-        ivan.anim.SetTrigger("Teach");
-        panim.SetTrigger("LearnTrigger");
-        uim.PlayCrystalFairyTheme();
+            if (swap) { ID = ID.Replace("end", "start"); }
+            print("result: " + ID);
+
+            textBoxScript.instance.startConvo((convoNode)(htab[ID]));
+            ivan.anim.SetTrigger("Teach");
+            panim.SetTrigger("LearnTrigger");
+            uim.PlayCrystalFairyTheme();
     }
 }
