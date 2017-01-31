@@ -55,7 +55,7 @@ public class textBoxScript : MonoBehaviour {
 
 
     //This is so we can make chattering noises when people speak.
-    private CharacterChatter chatter;
+    [SerializeField]private CharacterChatter chatter;
     private int chatterTrigger = 2;
     private int chatterCount = 0;
 

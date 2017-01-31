@@ -31,7 +31,7 @@ public class AdviceGiver : MonoBehaviour {
     //Used to start Ivan's theme.
     UISFXManager uim;
 
-    bool help = false;
+    [SerializeField] bool help = false;
 
 	// Use this for initialization
 	void Start () {
@@ -78,11 +78,11 @@ public class AdviceGiver : MonoBehaviour {
                         textBoxScript.instance.startConvo(defaultNode);
                     }
                 }
-                help = false;
+                
             }
         }
-
-	}
+        help = false;
+    }
 
     public void populateHashtable()
     {

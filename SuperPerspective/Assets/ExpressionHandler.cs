@@ -32,7 +32,7 @@ public class ExpressionHandler : MonoBehaviour {
     {
         
         currentAngle = Mathf.Lerp(currentAngle, closedAngle, animSpeed);
-        print(currentAngle);
+        //print(currentAngle);
         mouthBone.transform.rotation = Quaternion.Euler(currentAngle, mouthBone.transform.rotation.y, mouthBone.transform.rotation.z);
     }
 
