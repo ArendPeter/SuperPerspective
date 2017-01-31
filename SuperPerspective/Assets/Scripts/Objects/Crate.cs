@@ -61,8 +61,7 @@ public class Crate : ActiveInteractable {
 		GameObject groundObj = IslandControl.instance.findGround(gameObject);
 		groundY = groundObj.transform.position.y;
 		float myHeight = GetComponent<Collider>().bounds.max.y - GetComponent<Collider>().bounds.min.y;
-		float groundHeight = groundObj.GetComponent<Collider>().bounds.max.y - groundObj.GetComponent<Collider>().bounds.min.y;
-		groundY += (myHeight + groundHeight) * .5f;
+		groundY = groundObj.GetComponent<Collider>().bounds.max.y + myHeight * .5f;
 	}
 
 	void Update() {

@@ -160,6 +160,8 @@ public class GameStateManager : MonoBehaviour
 
 	//must be public so it can be called from continue button
 	public void HandlePausePressed(){
+		if(currentState == ViewType.WAYSTONE_MENU || targetState == ViewType.WAYSTONE_MENU)
+			return;
 		switch(currentState){
 			case ViewType.MENU:
 				if(previousState != null)
