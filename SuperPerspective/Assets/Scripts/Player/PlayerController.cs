@@ -84,11 +84,20 @@ public class PlayerController : PhysicalObject{
 	float frameRate;
 	public float testFrameRate;
 
-  //Nick addition, used for footstep and voice sound selection
-  public StepManager step;
-  public VoiceManager voice;
+    GameObject hoodieGirl;
 
-  #endregion
+    RaycastHit hit;
+    public LayerMask mask;
+
+    NotificationController nCont;
+
+    public bool canInteract = false;
+
+    //Nick addition, used for footstep and voice sound selection
+    public StepManager step;
+    public VoiceManager voice;
+
+    #endregion
 
 	#region Init
 
@@ -110,6 +119,11 @@ public class PlayerController : PhysicalObject{
         //Nick addition, used for footstep and voice sound selection
         step = GameObject.Find("Steps").GetComponent<StepManager>();
         voice = GameObject.Find("Voice").GetComponent<VoiceManager>();
+
+        //Used to obtain player direction for traditional raycasting collision -Nick
+        hoodieGirl = FindObjectOfType<playerControllerProxy>().gameObject;
+        nCont = FindObjectOfType<NotificationController>();
+        InputManager.instance.InteractPressedEvent += OnInteract;
     }
 
 	public void Reset() {
@@ -142,16 +156,40 @@ public class PlayerController : PhysicalObject{
 
 	private void registerEventHandlers(){
 		GameStateManager.instance.GamePausedEvent += OnPauseGame;
-	}
+    }
 
 	#endregion Init
 
 	void Update(){
-        PlayerPrefs.DeleteAll();
 		frameRate = 1 / Time.deltaTime;
 		testFrameRate = frameRate;
 		if(canControl()) checkForJump();
+        if (hoodieGirl != null)
+        {
+            CheckForInteractibleRaycast();
+        }
 	}
+
+    private void OnInteract()
+    {
+        if (canInteract)
+        {
+            hit.collider.gameObject.GetComponent<GreatCrystalWall>().Activate();
+        }
+    }
+
+    void CheckForInteractibleRaycast()
+    {
+        if (Physics.Raycast(hoodieGirl.transform.position, hoodieGirl.transform.forward, out hit, 1.5f, mask))
+        {
+            if (hit.collider != null && hit.collider.gameObject.GetComponent<GreatCrystalWall>() != null)
+            {
+                canInteract = true;
+                return;
+            }
+        }
+        canInteract = false;
+    }
 
 	#region Jump
 	private void checkForJump(){
