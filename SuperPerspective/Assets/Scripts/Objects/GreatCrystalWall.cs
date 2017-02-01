@@ -10,6 +10,7 @@ public class GreatCrystalWall : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        Debug.Log("Grass Scene: " + PlayerPrefs.GetInt("GrassScene"));
         if (PlayerPrefs.GetInt("GrassScene") == 1){
             grass = true;
             c1.SetActive(true);
