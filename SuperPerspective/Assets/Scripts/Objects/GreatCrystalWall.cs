@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GreatCrystalWall : MonoBehaviour {
 
     public Activatable[] switches;
     bool grass = false, ice = false, desert = false, activated = false;
     public GameObject c1, c2, c3;
+    public TextMesh bigCrystalText;
+    int bigCrystalCount = 0;
 
     // Use this for initialization
     void Start() {
@@ -14,17 +17,21 @@ public class GreatCrystalWall : MonoBehaviour {
         if (PlayerPrefs.GetInt("GrassScene") == 1){
             grass = true;
             c1.SetActive(true);
+            bigCrystalCount++;
         }
         if (PlayerPrefs.GetInt("DesertScene") == 1)
         {
             desert = true;
             c2.SetActive(true);
+            bigCrystalCount++;
         }
         if (PlayerPrefs.GetInt("IceScene") == 1)
         {
             ice = true;
             c3.SetActive(true);
+            bigCrystalCount++;
         }
+        bigCrystalText.text = "Big Crystals: " + bigCrystalCount + "/3";
     }
 
     public void Activate()
