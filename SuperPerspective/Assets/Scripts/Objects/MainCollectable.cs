@@ -126,9 +126,6 @@ public class MainCollectable : MonoBehaviour {
 			if(colList[0] == ""){
 				return false;
 			}
-			for(int i=0;i<colList.Length;i++){
-				print("crystaluidlist:" + colList[i]);
-			}
 			if(colList.Length > 0){
 				return ArrayUtility.Contains(colList, this.uid);
 			}
