@@ -1862,6 +1862,102 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 168121044}
+--- !u!1 &175209213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 175209214}
+  - component: {fileID: 175209217}
+  - component: {fileID: 175209216}
+  - component: {fileID: 175209215}
+  m_Layer: 0
+  m_Name: Crystal Text - Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175209214
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175209213}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.96, y: 3.57, z: -0.30999994}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.31028998}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175209215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175209213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ef82fcc6c332745ab1a3ef9c8813af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: TutorialScene
+  maxCount: 4
+--- !u!102 &175209216
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175209213}
+  m_Text: Crystals
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 1
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 30
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 293ba3d6871b5074bb9fe752176c58ee, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &175209217
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 175209213}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2ddff32648e46434e824a0e3f0dfedd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &175999803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,7 +3010,7 @@ GameObject:
   - component: {fileID: 277217045}
   - component: {fileID: 277217044}
   m_Layer: 0
-  m_Name: Control1 (1)
+  m_Name: Grass Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2927,11 +3023,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 277217042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.53, y: 9.82, z: -0.30999994}
+  m_LocalPosition: {x: 17.32, y: 10.99, z: -0.30999994}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &277217044
 TextMesh:
@@ -3259,7 +3355,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &318009436
 Prefab:
@@ -4376,7 +4472,7 @@ Transform:
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.31028998}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 12
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &427116157
 TextMesh:
@@ -4527,7 +4623,7 @@ Transform:
   m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &441803606
 TextMesh:
@@ -6669,7 +6765,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 8
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &652211632
 Prefab:
@@ -9273,7 +9369,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011369393076, guid: d6b435273fa89d242ab5bf7e66ad4da2, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4000011369393076, guid: d6b435273fa89d242ab5bf7e66ad4da2, type: 2}
       propertyPath: m_LocalScale.x
@@ -10313,7 +10409,7 @@ GameObject:
   - component: {fileID: 934363223}
   - component: {fileID: 934363222}
   m_Layer: 0
-  m_Name: Control1 (3)
+  m_Name: Tundra Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10326,11 +10422,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 934363220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.05, y: 14.24, z: -0.30999994}
+  m_LocalPosition: {x: 57.05, y: 15.87, z: -0.30999994}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &934363222
 TextMesh:
@@ -13521,6 +13617,102 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1225492402}
+--- !u!1 &1233493526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1233493527}
+  - component: {fileID: 1233493530}
+  - component: {fileID: 1233493529}
+  - component: {fileID: 1233493528}
+  m_Layer: 0
+  m_Name: Crystal Text - Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1233493527
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233493526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.39, y: 9.29, z: -0.30999994}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.31028998}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233493528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233493526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ef82fcc6c332745ab1a3ef9c8813af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: GrassScene
+  maxCount: 9
+--- !u!102 &1233493529
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233493526}
+  m_Text: Crystals
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 1
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 30
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 293ba3d6871b5074bb9fe752176c58ee, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &1233493530
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233493526}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2ddff32648e46434e824a0e3f0dfedd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1001 &1234735803
 Prefab:
   m_ObjectHideFlags: 0
@@ -15521,13 +15713,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1706665240}
+  - {fileID: 175209214}
   - {fileID: 1636845051}
   - {fileID: 441803605}
   - {fileID: 2103830475}
   - {fileID: 1962048274}
   - {fileID: 277217043}
+  - {fileID: 1233493527}
   - {fileID: 1794393335}
+  - {fileID: 2091159501}
   - {fileID: 934363221}
+  - {fileID: 1681729800}
   - {fileID: 651261908}
   - {fileID: 1612315318}
   - {fileID: 313525474}
@@ -16881,7 +17077,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1617816509
 Prefab:
@@ -17315,7 +17511,7 @@ Transform:
   m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637381358
 GameObject:
@@ -17992,6 +18188,102 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 1664102706}
+--- !u!1 &1681729799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1681729800}
+  - component: {fileID: 1681729803}
+  - component: {fileID: 1681729802}
+  - component: {fileID: 1681729801}
+  m_Layer: 0
+  m_Name: Crystal Text - Tundra
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1681729800
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681729799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 57.05, y: 14.25, z: -0.30999994}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.31028998}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1681729801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681729799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ef82fcc6c332745ab1a3ef9c8813af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: DesertScene
+  maxCount: 8
+--- !u!102 &1681729802
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681729799}
+  m_Text: Crystals
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 1
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 30
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 293ba3d6871b5074bb9fe752176c58ee, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &1681729803
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681729799}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2ddff32648e46434e824a0e3f0dfedd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1001 &1682645682
 Prefab:
   m_ObjectHideFlags: 0
@@ -18504,7 +18796,7 @@ GameObject:
   - component: {fileID: 1706665242}
   - component: {fileID: 1706665241}
   m_Layer: 0
-  m_Name: Control1
+  m_Name: Tutorial Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18517,7 +18809,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1706665239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.58, y: 3.8249288, z: -0.31}
+  m_LocalPosition: {x: 7.96, y: 5.12, z: -0.31}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
@@ -19911,7 +20203,7 @@ GameObject:
   - component: {fileID: 1794393337}
   - component: {fileID: 1794393336}
   m_Layer: 0
-  m_Name: Control1 (2)
+  m_Name: Desert Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19924,11 +20216,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794393334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.35, y: 5.74, z: -0.30999994}
+  m_LocalPosition: {x: 47.48, y: 6.94, z: -0.30999994}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &1794393336
 TextMesh:
@@ -21574,7 +21866,7 @@ Transform:
   m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1962929130
 Prefab:
@@ -23507,6 +23799,102 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 2087909348}
+--- !u!1 &2091159500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2091159501}
+  - component: {fileID: 2091159504}
+  - component: {fileID: 2091159503}
+  - component: {fileID: 2091159502}
+  m_Layer: 0
+  m_Name: Crystal Text - Desert
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2091159501
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091159500}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 47.44, y: 5.21, z: -0.30999994}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.31028998}
+  m_Children: []
+  m_Father: {fileID: 1423095799}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2091159502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091159500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ef82fcc6c332745ab1a3ef9c8813af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: DesertScene
+  maxCount: 9
+--- !u!102 &2091159503
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091159500}
+  m_Text: Crystals
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 1
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 30
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: 293ba3d6871b5074bb9fe752176c58ee, type: 3}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &2091159504
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091159500}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 2ddff32648e46434e824a0e3f0dfedd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &2103830474
 GameObject:
   m_ObjectHideFlags: 0
@@ -23535,7 +23923,7 @@ Transform:
   m_LocalScale: {x: 0.3102944, y: 0.3102944, z: 0.3102944}
   m_Children: []
   m_Father: {fileID: 1423095799}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!102 &2103830476
 TextMesh:

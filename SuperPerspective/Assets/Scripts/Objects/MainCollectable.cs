@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class MainCollectable : MonoBehaviour {
 
@@ -29,6 +30,8 @@ public class MainCollectable : MonoBehaviour {
 			ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
 			ps.startColor = collectedColor;
 		}
+
+		this.isPickedUp();
 	}
 
 	void FixedUpdate() {
@@ -81,6 +84,8 @@ public class MainCollectable : MonoBehaviour {
 			}
 			active = false;
             playSFX();
+
+            bool wasPickedUp = this.isPickedUp();
 			// Flag the collectable as collected
 			PlayerPrefs.SetInt(uid, 1);
 			if (isEndCrystal) {
@@ -88,8 +93,14 @@ public class MainCollectable : MonoBehaviour {
 				PlayerPrefs.SetInt(sceneName, 1);
 			} else if (PlayerPrefs.HasKey("CollectableHeld")) { // Update number of collectables held
 				PlayerPrefs.SetInt("CollectableHeld", 1);
+				if(!wasPickedUp) {
+					this.addToCollectableList();
+				}
 			} else {
 				PlayerPrefs.SetInt("CollectableHeld", PlayerPrefs.GetInt("CollectableHeld") + 1);
+				if(!wasPickedUp) {
+					this.addToCollectableList();
+				}
 			}
         }
 	}
@@ -106,6 +117,30 @@ public class MainCollectable : MonoBehaviour {
 			consumed = true;
 			foreach(Activatable o in triggers)
 				o.setActivated(true);
+		}
+	}
+
+	private bool isPickedUp() {
+		if(PlayerPrefs.HasKey(sceneName+"CollectableList")) {
+			string[] colList = PlayerPrefs.GetString(sceneName+"CollectableList").Split(","[0]);
+			if(colList[0] == ""){
+				return false;
+			}
+			for(int i=0;i<colList.Length;i++){
+				print("crystaluidlist:" + colList[i]);
+			}
+			if(colList.Length > 0){
+				return ArrayUtility.Contains(colList, this.uid);
+			}
+		}
+		return false;
+	}
+	private void addToCollectableList() {
+		string colString = PlayerPrefs.GetString(sceneName+"CollectableList");
+		if(colString == ""){
+			PlayerPrefs.SetString(sceneName+"CollectableList", uid);
+		} else {
+			PlayerPrefs.SetString(sceneName+"CollectableList", string.Concat(colString, "," + uid));
 		}
 	}
 
