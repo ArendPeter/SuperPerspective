@@ -49,9 +49,16 @@ public class Bonfire : ActiveInteractable {
 	}
 
 	void Toggle(){
-		string level = Application.loadedLevelName;
+        string level = Application.loadedLevelName;
 		foundDoors = PlayerPrefs.GetString(level).Split(',');
-		bonfireUI.maxIsle = foundDoors.Length - 1;
+        if (foundDoors[0] != "")
+        {
+            bonfireUI.maxIsle = foundDoors.Length;
+        }
+        else
+        {
+            bonfireUI.maxIsle = 0;
+        }
 		if (!active) {
 			bonfireUI.ToggleOn();
 			active = true;
