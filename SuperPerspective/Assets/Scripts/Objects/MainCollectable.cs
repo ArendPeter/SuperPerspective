@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 public class MainCollectable : MonoBehaviour {
 
@@ -127,7 +126,7 @@ public class MainCollectable : MonoBehaviour {
 				return false;
 			}
 			if(colList.Length > 0){
-				return ArrayUtility.Contains(colList, this.uid);
+				return System.Array.IndexOf(colList, this.uid) > -1;
 			}
 		}
 		return false;
