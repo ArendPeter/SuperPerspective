@@ -45,4 +45,10 @@ public class PlayerParticles : MonoBehaviour {
 	public void startSparkle(){
 		ParticleDictionary["Sparkle Particle"].enableEmission = true;
 	}
+
+    public void stopDustEmission()
+    {
+        ParticleDictionary["DustEmitter"].enableEmission = false;
+    }
+
 }

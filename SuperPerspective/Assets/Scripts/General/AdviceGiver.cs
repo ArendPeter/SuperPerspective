@@ -116,6 +116,8 @@ public class AdviceGiver : MonoBehaviour {
             textBoxScript.instance.startConvo((convoNode)(htab[ID]));
             ivan.anim.SetTrigger("Teach");
             panim.SetTrigger("LearnTrigger");
+            PlayerParticles lol = this.GetComponent<PlayerParticles>();
+            lol.stopDustEmission();
             uim.PlayCrystalFairyTheme();
     }
 }
