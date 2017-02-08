@@ -10,6 +10,9 @@ public class GreatCrystalWall : MonoBehaviour {
     public GameObject c1, c2, c3;
     public TextMesh bigCrystalText;
     int bigCrystalCount = 0;
+    int littleCrystalCount = 0, maxLittleCrystalCount = 0;
+    public CrystalCountText tutCount, grassCount, iceCount, desertCount;
+    public bool gotAllSmallCrystals = false;
 
     // Use this for initialization
     void Start() {
@@ -32,6 +35,14 @@ public class GreatCrystalWall : MonoBehaviour {
             bigCrystalCount++;
         }
         bigCrystalText.text = "Big Crystals: " + bigCrystalCount + "/3";
+        littleCrystalCount = tutCount.currentCount + grassCount.currentCount + iceCount.currentCount + desertCount.currentCount;
+        maxLittleCrystalCount = tutCount.maxCount + grassCount.maxCount + iceCount.maxCount + desertCount.maxCount;
+        if (littleCrystalCount >= maxLittleCrystalCount)
+        {
+            gotAllSmallCrystals = true;
+        }
+        //Debug.Log("Current crystals: " + littleCrystalCount);
+        //Debug.Log("Max crystals: " + maxLittleCrystalCount);
     }
 
     public void Activate()
