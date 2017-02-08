@@ -13,6 +13,9 @@ public class GreatCrystalWall : MonoBehaviour {
     int littleCrystalCount = 0, maxLittleCrystalCount = 0;
     public CrystalCountText tutCount, grassCount, iceCount, desertCount;
     public bool gotAllSmallCrystals = false;
+    public convoNode creditsConvo;
+    public convoNode failureConvo;
+
 
     // Use this for initialization
     void Start() {
@@ -52,12 +55,14 @@ public class GreatCrystalWall : MonoBehaviour {
             if (grass && ice && desert)
             {
                 //Crystal Fairy closing dialogue
+                textBoxScript.instance.startConvo(creditsConvo);
                 //TODO Larry, call this class's OpenGate function after the dialogue
-                OpenGate();
+                //OpenGate();
             }
             else
             {
                 //Crystal Fairy tells you to gather big crystals
+                textBoxScript.instance.startConvo(failureConvo);
             }
         }
     }
