@@ -4788,6 +4788,7 @@ MonoBehaviour:
   showBox: 1
   textbox: {fileID: 97618645}
   text: {fileID: 145099807}
+  chatter: {fileID: 0}
 --- !u!114 &97618645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32312,7 +32313,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -574.29
+      value: -564.29
       objectReference: {fileID: 0}
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -32341,6 +32342,16 @@ Prefab:
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 11417412, guid: 09598092d44d98f43a5a3ae0d31a9e2a,
+        type: 2}
+    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: startDoorName
+      value: t1-start
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
@@ -40497,6 +40508,7 @@ MonoBehaviour:
   showBox: 1
   textbox: {fileID: 1350992858}
   text: {fileID: 323866969}
+  chatter: {fileID: 0}
 --- !u!114 &1350992858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57690,7 +57702,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481416, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.3615074
+      value: -2.02
       objectReference: {fileID: 0}
     - target: {fileID: 481416, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_LocalPosition.z
@@ -57718,7 +57730,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 101364, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_Name
-      value: Start Telepad (3)
+      value: Start Telepad
       objectReference: {fileID: 0}
     - target: {fileID: 11434086, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: myName
@@ -57726,31 +57738,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11434086, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: destName
-      value: hub
+      value: hub-tutorial-start
       objectReference: {fileID: 0}
     - target: {fileID: 195112, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 125984, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 169372, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 173778, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 165110, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 104362, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11434086, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: sceneName
@@ -57758,7 +57770,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11434086, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
       propertyPath: invisible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 008cd25eb44f3c04aa841ca9784fa993, type: 2}
