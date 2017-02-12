@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public class UISFXManager : MonoBehaviour {
 
     public AudioSource music, menuMoveSFX, fairyTheme;
-    bool fadeMusic = false, playFairyTheme = false, fadeFairyTheme = false, fadeEverything = false, fadeInFairy = false;
+    bool fadeMusic = false, fadeInMusic = false, playFairyTheme = false, fadeFairyTheme = false, fadeEverything = false, fadeInFairy = false;
     float fadeRateInit = 0.3f, fadeRate, mixVolume = 18;
     float musicVol, fairyThemeVol;
 
@@ -38,6 +38,7 @@ public class UISFXManager : MonoBehaviour {
             music.volume -= Time.deltaTime * fadeRate;
             if (music.volume <= 0)
             {
+                music.Pause();
                 fadeMusic = false;
                 if (playFairyTheme)
                 {
@@ -50,7 +51,7 @@ public class UISFXManager : MonoBehaviour {
         {
             if (fairyTheme.volume < fairyThemeVol)
             {
-                fairyTheme.volume = fairyTheme.volume += Time.deltaTime * fadeRate;
+                fairyTheme.volume = Mathf.Min(fairyThemeVol, fairyTheme.volume += Time.deltaTime * fadeRate);
             }
             else
             {
@@ -64,7 +65,18 @@ public class UISFXManager : MonoBehaviour {
             {
                 fadeFairyTheme = false;
                 fairyTheme.Stop();
-                PlayMusic();
+                FadeInMusic();
+            }
+        }
+        else if (fadeInMusic)
+        {
+            if (music.volume < musicVol)
+            {
+                music.volume = Mathf.Min(musicVol, music.volume += Time.deltaTime * fadeRate);
+            }
+            else
+            {
+                fadeInMusic = false;
             }
         }
 	}
@@ -112,7 +124,7 @@ public class UISFXManager : MonoBehaviour {
         }
         else
         {
-            PlayMusic();
+            FadeInMusic();
         }
     }
 
@@ -120,6 +132,17 @@ public class UISFXManager : MonoBehaviour {
     {
         music.volume = musicVol;
         music.Play();
+    }
+
+    void FadeInMusic()
+    {
+        fadeInFairy = false;
+        fadeFairyTheme = false;
+        fadeMusic = false;
+        playFairyTheme = false;
+        music.volume = 0;
+        music.UnPause();
+        fadeInMusic = true;
     }
 
     public void PlayFairyTheme()
