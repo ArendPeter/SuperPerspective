@@ -44,7 +44,10 @@ public class AdviceGiver : MonoBehaviour {
         currentLoc = pspawn.startDoorName;//We gotta figure out where we're starting, after all.
         populateHashtable();
         InputManager.instance.HelpEvent += XboxHelp;
-        ivan = GameObject.FindObjectOfType<FairyFollow>();
+        if (!(ivan != null))
+        {
+            ivan = GameObject.FindObjectOfType<FairyFollow>();
+        }
     }
 
     void XboxHelp()
