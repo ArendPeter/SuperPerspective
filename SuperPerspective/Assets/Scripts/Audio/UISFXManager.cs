@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 public class UISFXManager : MonoBehaviour {
 
     public AudioSource music, menuMoveSFX, fairyTheme;
-    bool fadeMusic = false, playFairyTheme = false, fadeFairyTheme = false, fadeEverything = false;
+    bool fadeMusic = false, playFairyTheme = false, fadeFairyTheme = false, fadeEverything = false, fadeInFairy = false;
     float fadeRateInit = 0.3f, fadeRate, mixVolume = 18;
     float musicVol, fairyThemeVol;
 
@@ -24,7 +24,8 @@ public class UISFXManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (fadeEverything) {
+        if (fadeEverything)
+        {
             float tempVol = GetMasterVol();
             SetMasterVol(tempVol - Time.deltaTime * fadeRate);
             if (tempVol <= 0)
@@ -45,12 +46,24 @@ public class UISFXManager : MonoBehaviour {
                 }
             }
         }
+        else if (fadeInFairy)
+        {
+            if (fairyTheme.volume < fairyThemeVol)
+            {
+                fairyTheme.volume = fairyTheme.volume += Time.deltaTime * fadeRate;
+            }
+            else
+            {
+                fadeInFairy = false;
+            }
+        }
         else if (fadeFairyTheme)
         {
             fairyTheme.volume -= Time.deltaTime * fadeRate;
             if (fairyTheme.volume <= 0)
             {
                 fadeFairyTheme = false;
+                fairyTheme.Stop();
                 PlayMusic();
             }
         }
@@ -76,16 +89,30 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayCrystalFairyTheme()
     {
-        Debug.Log("Play song");
-        FadeOutMusic();
+        //Debug.Log("Play song");
+        if (!fairyTheme.isPlaying)
+        {
+            FadeOutMusic();
+        }
+        else
+        {
+            fadeInFairy = true;
+        }
         playFairyTheme = true;
+        fadeFairyTheme = false;
     }
     public void StopCrystalFairyTheme()
     {
+        playFairyTheme = false;
+        fadeInFairy = false;
         if (fairyTheme.isPlaying)
         {
             fadeFairyTheme = true;
             fadeRate = fadeRateInit;
+        }
+        else
+        {
+            PlayMusic();
         }
     }
 
@@ -97,7 +124,7 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayFairyTheme()
     {
-        fairyTheme.volume = musicVol;
+        fairyTheme.volume = fairyThemeVol;
         fairyTheme.Play();
     }
 
