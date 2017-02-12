@@ -10,7 +10,8 @@ public class Crate : ActiveInteractable {
 	private const float decelleration = 1;
 
 	private Vector3 trajectory, newVelocity;
-	private bool grounded, svFlag, startFalling;
+    public bool grounded;
+    private bool svFlag, startFalling;
 	private float colliderHeight, colliderWidth, colliderDepth;
 	private float Margin = .05f;
 
@@ -129,27 +130,33 @@ public class Crate : ActiveInteractable {
 
 			CheckCollisions();
 
-			//Adding in pushing sound, initialize after break sound -Nick
+            //Adding in pushing sound, initialize after break sound -Nick
 
-			//Init
-			if (gameObject.GetComponent<AudioSource> ().clip.name != "CratePush" && !respawnFlag && grounded) {
-				gameObject.GetComponent<AudioSource> ().clip =  Resources.Load ("Sound/SFX/Objects/Box/CratePush")  as AudioClip;
-				gameObject.GetComponent<AudioSource> ().loop = true;
-				gameObject.GetComponent<AudioSource>().volume = 0;
-				gameObject.GetComponent<AudioSource>().Play ();
+            //Init
+            if (!(gameObject.GetComponent<AudioSource>().clip.name == "CrateBreak" && gameObject.GetComponent<AudioSource>().isPlaying))
+            {
+                if (gameObject.GetComponent<AudioSource>().clip.name != "CratePush" && !respawnFlag && grounded)
+                {
+                    gameObject.GetComponent<AudioSource>().clip = Resources.Load("Sound/SFX/Objects/Box/CratePush") as AudioClip;
+                    gameObject.GetComponent<AudioSource>().loop = true;
+                    gameObject.GetComponent<AudioSource>().volume = 0;
+                    gameObject.GetComponent<AudioSource>().Play();
 
-			}
+                }
 
-			//Check
-			if (velocity.magnitude > 0.1f && grounded){
-				if(gameObject.GetComponent<AudioSource>().volume < 1){
-					gameObject.GetComponent<AudioSource>().volume += 0.5f;
-				}
-			}
-			else{
-				gameObject.GetComponent<AudioSource>().volume = 0;
-			}
-
+                //Check
+                if (velocity.magnitude > 0.1f && grounded)
+                {
+                    if (gameObject.GetComponent<AudioSource>().volume < 1)
+                    {
+                        gameObject.GetComponent<AudioSource>().volume += 0.5f;
+                    }
+                }
+                else
+                {
+                    gameObject.GetComponent<AudioSource>().volume = 0;
+                }
+            }
 			//End Nick stuff
 		}
 	}
@@ -343,7 +350,7 @@ public class Crate : ActiveInteractable {
 		gameObject.GetComponent<AudioSource>().loop = false;
 		gameObject.GetComponent<AudioSource>().Stop ();
 		gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Box/CrateBreak")  as AudioClip;
-		gameObject.GetComponent<AudioSource>().volume = 1;
+		gameObject.GetComponent<AudioSource>().volume = .9f;
 		gameObject.GetComponent<AudioSource>().Play();
 	}
 
