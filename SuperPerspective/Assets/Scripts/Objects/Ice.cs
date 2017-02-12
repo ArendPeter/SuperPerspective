@@ -151,12 +151,12 @@ public class Ice : ActiveInteractable {
 			if (startPush) {
 				if (velocity.Equals(Vector3.zero)){
 					respawnFlag = true;
-					//Adding in break sound -Nick
-					gameObject.GetComponent<AudioSource>().loop = false;
-					gameObject.GetComponent<AudioSource>().Stop ();
-					gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Ice/IceBreak")  as AudioClip;
-					gameObject.GetComponent<AudioSource>().volume = 1;
-					gameObject.GetComponent<AudioSource>().Play();
+                    //Adding in slide sound -Nick
+                    gameObject.GetComponent<AudioSource>().loop = false;
+                    gameObject.GetComponent<AudioSource>().Stop();
+                    gameObject.GetComponent<AudioSource>().clip = Resources.Load("Sound/SFX/Objects/Ice/IceBreak") as AudioClip;
+                    gameObject.GetComponent<AudioSource>().volume = 0.6f;
+                    gameObject.GetComponent<AudioSource>().Play();
 
 					//End Nick stuff
 					GetComponent<Collider>().enabled = false;
@@ -318,7 +318,7 @@ public class Ice : ActiveInteractable {
 			gameObject.GetComponent<AudioSource>().loop = false;
 			gameObject.GetComponent<AudioSource>().Stop ();
 			gameObject.GetComponent<AudioSource>().clip = Resources.Load ("Sound/SFX/Objects/Ice/IceBreak")  as AudioClip;
-			gameObject.GetComponent<AudioSource>().volume = 1;
+			gameObject.GetComponent<AudioSource>().volume = 0.6f;
 			gameObject.GetComponent<AudioSource>().Play();
 
 			//End Nick stuff
