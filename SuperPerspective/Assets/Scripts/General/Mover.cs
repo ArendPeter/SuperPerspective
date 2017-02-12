@@ -63,8 +63,40 @@ public class Mover : Activatable {
 		return isPushing;
 	}
 
+	bool MovingPlatformInWay(){
+		if(GetComponent<Collider>() == null)
+			return false;
+		Bounds myBounds = GetComponent<Collider>().bounds;
+		bool isPushing = false;
+		foreach(MobilePlatform plat in Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[]){
+			Bounds platBounds = plat.GetComponent<Collider>().bounds;
+			for(int axis = 0; axis < 3; axis++){
+				int[] otherAxis = new int[2];
+				otherAxis[0] = (axis == 0)? 1 : 0;
+				otherAxis[1] = (axis == 2)? 1 : 2;
+				Rect platSideBounds = new Rect(platBounds.min[otherAxis[0]], platBounds.min[otherAxis[1]],
+				 		platBounds.size[otherAxis[0]], platBounds.size[otherAxis[1]]);
+				Rect mySideBounds = new Rect(myBounds.min[otherAxis[0]], myBounds.min[otherAxis[1]],
+				 		myBounds.size[otherAxis[0]], myBounds.size[otherAxis[1]]);
+				bool overlaps = mySideBounds.Overlaps(platSideBounds);
+				bool movingTowardPlayer = Mathf.Abs(movement[axis]) > 0.01 &&
+					(Mathf.Sign(movement[axis]) * (activated?1:-1)) ==
+					Mathf.Sign(platBounds.center[axis] - myBounds.center[axis]);
+				float dist = Mathf.Max(
+					myBounds.min[axis]-platBounds.max[axis],
+					platBounds.min[axis]-myBounds.max[axis]);
+				if(dist < 0){
+					dist = 100;
+				}
+				isPushing = isPushing || (overlaps && dist < .5 && movingTowardPlayer);
+			}
+		}
+		return isPushing;
+	}
+
 	void Update(){
-		if (!PlayerController.instance.isPaused() && !CrushingPlayerBelow() && !PushingPlayer()){
+		bool somethingInWay = CrushingPlayerBelow() || PushingPlayer() || MovingPlatformInWay();
+		if (!PlayerController.instance.isPaused() && !somethingInWay){
             //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
 			prog = Mathf.Clamp01(prog); //clamp between 0 and 1
