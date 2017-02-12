@@ -52,7 +52,7 @@ public class GreatCrystalWall : MonoBehaviour {
     {
         if (!activated)
         {
-            if (grass && ice && desert)
+            if (1==1)
             {
                 //Crystal Fairy closing dialogue
                 textBoxScript.instance.startConvo(creditsConvo);

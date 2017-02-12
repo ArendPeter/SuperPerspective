@@ -7,8 +7,8 @@ public class smallCrystalCheckEvent : textEvent {
     //Event that starts a conversation in the textBoxScript.
 
 
-    private textBoxScript tb;
-    private askBoxScript ab;
+    public textBoxScript tb;
+    public askBoxScript ab;
     public bool startCrystalFairyTheme;
     private UISFXManager sfx;
 
@@ -37,6 +37,7 @@ public class smallCrystalCheckEvent : textEvent {
 
     public override void eventTrigger()
     {
+        print("TRIGGER");
         tb.disableBox();
         ab.disableBox();
         ab.showBox = false;
