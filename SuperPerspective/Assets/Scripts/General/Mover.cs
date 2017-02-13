@@ -11,6 +11,8 @@ public class Mover : Activatable {
     GameObject moverSFX;
     SwitchMoverSFX smSFX;
 
+	private MobilePlatform[] platforms = Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[];
+
 	void Start(){
 		//make startPositon to be current position
 		Vector3 pos = transform.localPosition;
@@ -68,7 +70,8 @@ public class Mover : Activatable {
 			return false;
 		Bounds myBounds = GetComponent<Collider>().bounds;
 		bool isPushing = false;
-		foreach(MobilePlatform plat in Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[]){
+
+		foreach(MobilePlatform plat in platforms){
 			MobilePlatformSpawn spawner = GetComponent<MobilePlatformSpawn>();
 			if(spawner && plat.gameObject == spawner.platform){
 				continue;//edge case where platform is moving up w/ mover
