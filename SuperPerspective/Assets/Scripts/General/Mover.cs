@@ -69,6 +69,11 @@ public class Mover : Activatable {
 		Bounds myBounds = GetComponent<Collider>().bounds;
 		bool isPushing = false;
 		foreach(MobilePlatform plat in Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[]){
+			MobilePlatformSpawn spawner = GetComponent<MobilePlatformSpawn>();
+			if(spawner && plat.gameObject == spawner.platform){
+				continue;//edge case where platform is moving up w/ mover
+			}
+
 			Bounds platBounds = plat.GetComponent<Collider>().bounds;
 			for(int axis = 0; axis < 3; axis++){
 				int[] otherAxis = new int[2];

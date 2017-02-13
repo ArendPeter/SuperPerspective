@@ -6,8 +6,9 @@ public class MobilePlatformSpawn : ActiveInteractable {
 	public GameObject platform = null;
 
 	Vector3 spawnVector = new Vector3(0,-1.5f,0);
-
 	float animSpeed = 0f;
+
+	public float localY = -1.5f;
 
 	void Update() {
 		if (player.transform.position.y - 0.5f < spawnVector.y) {
@@ -19,6 +20,7 @@ public class MobilePlatformSpawn : ActiveInteractable {
 
 	void FixedUpdate() {
 		base.FixedUpdateLogic();
+		//initial rising animation
 		platform.transform.Translate(Vector3.up * animSpeed);
 		float ydiff = Vector3.zero.y - platform.transform.localPosition.y;
 		if (ydiff < 0.05) {
@@ -74,6 +76,7 @@ public class MobilePlatformSpawn : ActiveInteractable {
 	public override void Triggered() {
 		if (animSpeed == 0) {
 			platform.transform.localPosition = spawnVector;
+			localY = -1.5f;
 			animSpeed = 1/10f;
 		}
 	}

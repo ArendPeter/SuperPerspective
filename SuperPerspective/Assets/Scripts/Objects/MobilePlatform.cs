@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MobilePlatform : ActiveInteractable {
 
+	public float testYVel = 0f;
+	public Vector3 testStartPos;
+
 	public float acceleration = 1.5f;
 	public float decelleration = 15f;
 	public float maxSpeed = 8f;
@@ -10,7 +13,10 @@ public class MobilePlatform : ActiveInteractable {
     public float vol;
     bool respawnFlag = false;
 	Vector3 startPos;
+	public bool atStart = false;
     public ParticleSystem particle1, particle2;
+
+	float prevY;
 
 	private float colliderHeight, colliderWidth, colliderDepth;
 
@@ -29,20 +35,23 @@ public class MobilePlatform : ActiveInteractable {
     ParticleSystem.EmissionModule em1, em2;
 
     void Start() {
+				atStart = true;
         vol = 1f;
-		StartSetup();
-		colCheck = new CollisionChecker (GetComponent<Collider> ());
-		colCheck.precision = 3;
-		colliderHeight = GetComponent<Collider>().bounds.size.y;
-		colliderWidth = GetComponent<Collider>().bounds.size.x;
-		colliderDepth = GetComponent<Collider>().bounds.size.z;
-		rect = GetComponent<BoundObject>().GetBounds();
-		//CameraController.instance.TransitionCompleteEvent += checkBreak;
-		startPos = transform.position;
-        audio = GetComponent<AudioSource>();
-        em1 = particle1.emission;
-        em2 = particle2.emission;
-        //transform.parent = null;
+				StartSetup();
+				colCheck = new CollisionChecker (GetComponent<Collider> ());
+				colCheck.precision = 3;
+				colliderHeight = GetComponent<Collider>().bounds.size.y;
+				colliderWidth = GetComponent<Collider>().bounds.size.x;
+				colliderDepth = GetComponent<Collider>().bounds.size.z;
+				rect = GetComponent<BoundObject>().GetBounds();
+				CameraController.instance.TransitionEndingEvent += checkFlipBreak;
+				startPos = transform.position;
+		    audio = GetComponent<AudioSource>();
+		    em1 = particle1.emission;
+		    em2 = particle2.emission;
+		    //transform.parent = null;
+
+			prevY = transform.position.y;
     }
 
 	void FixedUpdate () {
@@ -53,6 +62,11 @@ public class MobilePlatform : ActiveInteractable {
 	}
 
 	void Update() {
+		//ensure we stay at start if moving vertically
+		if(prevY != transform.position.y && atStart){
+			transform.localPosition = Vector3.zero;
+		}
+
 		if (player.transform.position.y - 0.5f < transform.position.y) {
 			range = float.MinValue;
 		} else {
@@ -67,12 +81,17 @@ public class MobilePlatform : ActiveInteractable {
 		transform.Translate(velocity * Time.deltaTime);
 		if (respawnFlag) {
 			Vector3 pos = transform.position;
-			pos = startPos;
-			transform.position = pos;
+			if(prevY == pos.y){
+				pos = startPos;
+				transform.position = pos;
+			}else{
+				transform.localPosition = Vector3.zero;
+			}
 			GetComponent<Collider>().enabled = true;
 			GetComponentInChildren<Renderer>().enabled = true;
 			GetComponent<LevelGeometry>().AdjustPosition(GameStateManager.instance.currentPerspective);
 			respawnFlag = false;
+			atStart = true;
 		}
 	}
 
@@ -145,6 +164,28 @@ public class MobilePlatform : ActiveInteractable {
 				velocity = new Vector3(velocity.x, velocity.y, 0f);
 			}
 		}
+
+		float vertVel = transform.position.y - prevY;
+		testYVel = vertVel;
+		if(vertVel != 0){
+			Vector3 vel = new Vector3(0f,vertVel,0f);
+			hits = colCheck.CheckYCollision (vel, Margin);
+			close = -1;
+			for (int i = 0; i < hits.Length; i++) {
+				RaycastHit hitInfo = hits[i];
+				if (hitInfo.collider != null)
+				{
+					if (close == -1 || close > hitInfo.distance) {
+						close = hitInfo.distance;
+					}
+				}
+			}
+			if (close != -1) {
+				print("break");
+				doBreak();
+			}
+		}
+		prevY = transform.position.y;
 	}
 
 	public bool Check2DIntersect() {
@@ -179,23 +220,27 @@ public class MobilePlatform : ActiveInteractable {
 		return connected;
 	}
 
-	//note: checkBreak has been unlinked in favor of triggered shift failed
-	void checkBreak() {
+	void checkFlipBreak() {
 		if(GameStateManager.is2D() && !GameStateManager.isFailedShift() && Check2DIntersect()) {
-			if (controlled){
+			doBreak();
+		}
+	}
+
+	private void doBreak(){
+		if (controlled){
 				PlayerController.instance.setRiding(null);
 				controlled = false;
 				player.transform.parent = null;
 			}
 			respawnFlag = true;
       breakSFX.Play();
-		}
 	}
 
 	public override void Triggered() {
 		if (!controlled && player.transform.position.y > transform.position.y) {
 			PlayerController.instance.setRiding(this.gameObject);
 			controlled = true;
+			atStart = false;
 			player.transform.Translate(transform.position.x - player.transform.position.x, 0, transform.position.z - player.transform.position.z);
 			player.transform.parent = transform;
 			player.GetComponent<PlayerController>().setVelocity(Vector3.zero);
@@ -229,10 +274,10 @@ public class MobilePlatform : ActiveInteractable {
 		return 1.3f < deltaY && deltaY < 3f;
 	}
 
-	public float GetStartY() {
+	/*public float GetStartY() {
 		//this.transform.parent.gameObject.transform.position.y;
 		return startPos.y;
-	}
+	}*/
 
     private void adjustSound()
     {

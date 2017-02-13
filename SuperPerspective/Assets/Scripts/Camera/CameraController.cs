@@ -60,7 +60,7 @@ public class CameraController : MonoBehaviour
     }
 
 	// Since the behavior in each state is the same we execute behavior in Update and just check conditions to change state
-	void Update(){
+	void FixedUpdate(){
 		checkStateChange();
 	}
 
