@@ -250,7 +250,7 @@ public class GameStateManager : MonoBehaviour
 	}
 
 	private void HandleBackwardMovement(){
-		if(InputManager.instance.GetForwardMovement() == -1 && currentState == ViewType.STANDARD_3D){
+		if(InputManager.instance.GetForwardMovement() == -1 && currentState == ViewType.STANDARD_3D && !isTransitioning()){
 			EnterState(ViewType.BACKWARD);
 		}
 	}
