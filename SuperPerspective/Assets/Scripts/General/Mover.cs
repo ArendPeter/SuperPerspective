@@ -11,7 +11,7 @@ public class Mover : Activatable {
     GameObject moverSFX;
     SwitchMoverSFX smSFX;
 
-	private MobilePlatform[] platforms = Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[];
+	private MobilePlatform[] platforms;
 
 	void Start(){
 		//make startPositon to be current position
@@ -20,6 +20,7 @@ public class Mover : Activatable {
         moverSFX = Instantiate(Resources.Load("Sound/SwitchMoverSFX") as GameObject);
         moverSFX.transform.parent = gameObject.transform;
         smSFX = moverSFX.GetComponent<SwitchMoverSFX>();
+		platforms = Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[];
     }
 
 	bool CrushingPlayerBelow(){
