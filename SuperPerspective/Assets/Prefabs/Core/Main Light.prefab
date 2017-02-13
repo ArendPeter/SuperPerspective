@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 470842}
-  - 108: {fileID: 10837422}
+  - component: {fileID: 470842}
+  - component: {fileID: 10837422}
   m_Layer: 0
   m_Name: Back Light
   m_TagString: Untagged
@@ -21,10 +21,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 445536}
-  - 108: {fileID: 10831340}
+  - component: {fileID: 445536}
+  - component: {fileID: 10831340}
   m_Layer: 0
   m_Name: Secondary Light (1)
   m_TagString: Untagged
@@ -37,10 +37,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 436752}
-  - 114: {fileID: 11410066}
+  - component: {fileID: 436752}
+  - component: {fileID: 11410066}
   m_Layer: 0
   m_Name: Main Light
   m_TagString: Untagged
@@ -53,10 +53,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 404176}
-  - 108: {fileID: 10870596}
+  - component: {fileID: 404176}
+  - component: {fileID: 10870596}
   m_Layer: 0
   m_Name: Build Light
   m_TagString: Untagged
@@ -69,10 +69,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 457464}
-  - 108: {fileID: 10856582}
+  - component: {fileID: 457464}
+  - component: {fileID: 10856582}
   m_Layer: 0
   m_Name: Primary Light
   m_TagString: Untagged
@@ -85,10 +85,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 469912}
-  - 108: {fileID: 10840436}
+  - component: {fileID: 469912}
+  - component: {fileID: 10840436}
   m_Layer: 0
   m_Name: Secondary Light
   m_TagString: Untagged
@@ -108,6 +108,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436752}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &436752
 Transform:
   m_ObjectHideFlags: 1
@@ -115,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5560055, y: 23.992727, z: -35.960587}
+  m_LocalPosition: {x: -14.5560055, y: 23.992727, z: -941}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457464}
@@ -125,6 +126,7 @@ Transform:
   - {fileID: 404176}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &445536
 Transform:
   m_ObjectHideFlags: 1
@@ -137,6 +139,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436752}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &457464
 Transform:
   m_ObjectHideFlags: 1
@@ -149,6 +152,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436752}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &469912
 Transform:
   m_ObjectHideFlags: 1
@@ -161,6 +165,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436752}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &470842
 Transform:
   m_ObjectHideFlags: 1
@@ -173,6 +178,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436752}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &10831340
 Light:
   m_ObjectHideFlags: 1
@@ -180,7 +186,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124920}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 0.85294116, g: 0.90263695, b: 1, a: 1}
   m_Intensity: 0.5
@@ -190,6 +196,7 @@ Light:
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 0.783
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -202,10 +209,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0.1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10837422
 Light:
   m_ObjectHideFlags: 1
@@ -213,7 +220,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115610}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 0.85294116, g: 0.90263695, b: 1, a: 1}
   m_Intensity: 0.5
@@ -223,6 +230,7 @@ Light:
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 0.783
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -235,10 +243,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0.1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10840436
 Light:
   m_ObjectHideFlags: 1
@@ -246,7 +254,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193162}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 0.85294116, g: 0.90263695, b: 1, a: 1}
   m_Intensity: 0.5
@@ -256,6 +264,7 @@ Light:
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 0.783
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -268,10 +277,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0.1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10856582
 Light:
   m_ObjectHideFlags: 1
@@ -279,7 +288,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188348}
   m_Enabled: 0
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
@@ -287,8 +296,9 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 0.783
     m_Bias: 0.05
     m_NormalBias: 0.4
@@ -301,10 +311,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1.38
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!108 &10870596
 Light:
   m_ObjectHideFlags: 1
@@ -312,7 +322,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174692}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.6
@@ -322,6 +332,7 @@ Light:
   m_Shadows:
     m_Type: 1
     m_Resolution: -1
+    m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 1.14
     m_NormalBias: 0
@@ -334,10 +345,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11410066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +368,7 @@ MonoBehaviour:
   linearFogEnd: 300
   ambientLight: {r: 0.9485294, g: 0.98509127, b: 1, a: 1}
   ambientIntensity: 0
-  skyboxMaterial: {fileID: 2100000, guid: 9fe876bce96a402499a25e5a5d081b8a, type: 2}
+  skyboxMaterial: {fileID: 2100000, guid: 3511ed89b9e21f545a49d6d23624c70d, type: 2}
   reflectionIntensity: 0.4
   haloStrength: 0
   flareStrength: 0
