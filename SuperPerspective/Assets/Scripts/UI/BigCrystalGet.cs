@@ -10,6 +10,21 @@ public class BigCrystalGet : MonoBehaviour {
     Vector3 scale;
     Image image;
     UISFXManager sfxMan;
+    public bool uiActive;
+
+    public static BigCrystalGet instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +38,7 @@ public class BigCrystalGet : MonoBehaviour {
         image.color = color;
         image.enabled = false;
         sfxMan = FindObjectOfType<UISFXManager>();
+        uiActive = false;
     }
 	
 	// Update is called once per frame
@@ -42,6 +58,7 @@ public class BigCrystalGet : MonoBehaviour {
     IEnumerator FadeIn()
     {
         image.enabled = true;
+        uiActive = true;
         float timer = fadeInTime;
         while (timer > 0)
         {
@@ -73,10 +90,13 @@ public class BigCrystalGet : MonoBehaviour {
             yield return null;
         }
         image.enabled = false;
+        uiActive = false;
         if (sfxMan != null)
         {
             sfxMan.FadeInMusic();
         }
     }
+
+
 
 }
