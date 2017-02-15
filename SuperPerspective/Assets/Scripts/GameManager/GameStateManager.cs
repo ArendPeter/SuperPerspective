@@ -162,7 +162,7 @@ public class GameStateManager : MonoBehaviour
 
 	//must be public so it can be called from continue button
 	public void HandlePausePressed(){
-		if(currentState == ViewType.WAYSTONE_MENU || targetState == ViewType.WAYSTONE_MENU || (PlayerController.instance != null && PlayerController.instance.isDisabled()) ||
+		if(currentState == ViewType.WAYSTONE_MENU || targetState == ViewType.WAYSTONE_MENU || (PlayerController.instance != null && !PlayerController.instance.isPaused() &&PlayerController.instance.isDisabled()) ||
             (BigCrystalGet.instance != null && BigCrystalGet.instance.uiActive))
 			return;
 		switch(currentState){
