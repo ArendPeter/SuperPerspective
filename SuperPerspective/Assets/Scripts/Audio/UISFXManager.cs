@@ -134,7 +134,7 @@ public class UISFXManager : MonoBehaviour {
         music.Play();
     }
 
-    void FadeInMusic()
+    public void FadeInMusic()
     {
         fadeInFairy = false;
         fadeFairyTheme = false;
@@ -161,5 +161,12 @@ public class UISFXManager : MonoBehaviour {
         float temp;
         masterMixer.GetFloat("MasterVol", out temp);
         return temp;
+    }
+
+    //For big crystal fanfare
+    public void PauseMusicSetVolumeToZero()
+    {
+        music.Pause();
+        music.volume = 0;
     }
 }

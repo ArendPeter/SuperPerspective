@@ -9,6 +9,7 @@ public class BigCrystalGet : MonoBehaviour {
     Vector4 color;
     Vector3 scale;
     Image image;
+    UISFXManager sfxMan;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class BigCrystalGet : MonoBehaviour {
         color[3] = 0;
         image.color = color;
         image.enabled = false;
+        sfxMan = FindObjectOfType<UISFXManager>();
     }
 	
 	// Update is called once per frame
@@ -31,6 +33,10 @@ public class BigCrystalGet : MonoBehaviour {
     public void BigCrystalGot()
     {
         StartCoroutine(FadeIn());
+        if (sfxMan != null)
+        {
+            sfxMan.PauseMusicSetVolumeToZero();
+        }
     }
 
     IEnumerator FadeIn()
@@ -67,6 +73,10 @@ public class BigCrystalGet : MonoBehaviour {
             yield return null;
         }
         image.enabled = false;
+        if (sfxMan != null)
+        {
+            sfxMan.FadeInMusic();
+        }
     }
 
 }
