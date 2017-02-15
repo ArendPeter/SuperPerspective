@@ -100,7 +100,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
     {
         if(conversationEnded)
         {
-            InputManager.instance.callShiftPressed();
+            GameStateManager.instance.ShiftSpecialCase();
             isInteractable = false;
             this.setNotMarkerVisibility(false);
             conversationEnded = false;

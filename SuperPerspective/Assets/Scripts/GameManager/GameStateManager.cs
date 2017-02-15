@@ -42,6 +42,8 @@ public class GameStateManager : MonoBehaviour
 
     public Pause_UI pause_UI;
 
+    bool specialCase = false;
+
 	#endregion Properties & Variables
 
 	#region Initialization
@@ -181,8 +183,15 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
+    public void ShiftSpecialCase()
+    {
+        specialCase = true;
+        HandleShiftPressed();
+    }
+
 	private void HandleShiftPressed(){
-		if (!failedShift && !IsPauseState(targetState) && !PlayerController.instance.GrabbedCrate()){
+		if (specialCase || (!failedShift && !IsPauseState(targetState) && !PlayerController.instance.GrabbedCrate() && PlayerPrefs.GetString("IntroCutsceneFinished") == "true"))
+        {
 			ViewType newState = (view_perspectives[(int)currentState] == PerspectiveType.p3D) ?
 				ViewType.STANDARD_2D : ViewType.STANDARD_3D;
 
@@ -203,7 +212,8 @@ public class GameStateManager : MonoBehaviour
 
 			EnterState(newState);
 		}
-	}
+        specialCase = false;
+    }
 
 	private void HandleMenuEnterPressed(){
 		if (currentState == ViewType.MENU){
