@@ -52,7 +52,7 @@ public class GreatCrystalWall : MonoBehaviour {
     {
         if (!activated)
         {
-            if (1==1)
+            if (bigCrystalCount >= 3)
             {
                 //Crystal Fairy closing dialogue
                 textBoxScript.instance.startConvo(creditsConvo);
