@@ -41,6 +41,8 @@ public class Bonfire_UI : MonoBehaviour {
 
     UISFXManager uiSFX;
 
+    public GameObject BigCrystalGetUI;
+
     void RegisterEventHandlers()
     {
         InputManager.instance.MenuDownEvent += XboxMenuDown;
@@ -81,6 +83,10 @@ public class Bonfire_UI : MonoBehaviour {
         ToggleOff();
         closeFlag = false;
         uiSFX = FindObjectOfType<UISFXManager>();
+        //Creates big crystal get UI
+        BigCrystalGetUI = Instantiate(BigCrystalGetUI);
+        BigCrystalGetUI.transform.parent = transform.parent;
+        BigCrystalGetUI.transform.localPosition = transform.localPosition;
     }
 
 	// Update is called once per frame

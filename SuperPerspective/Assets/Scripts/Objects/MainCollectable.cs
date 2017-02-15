@@ -83,6 +83,10 @@ public class MainCollectable : MonoBehaviour {
 			}
 			active = false;
             playSFX();
+            if (isEndCrystal)
+            {
+                playUI();
+            }
 
             bool wasPickedUp = this.isPickedUp();
 			// Flag the collectable as collected
@@ -144,5 +148,15 @@ public class MainCollectable : MonoBehaviour {
     private void playSFX()
     {
         Instantiate(sound);
+    }
+
+    //Play UI upon big crystal pickup
+    private void playUI()
+    {
+        BigCrystalGet temp = FindObjectOfType<BigCrystalGet>();
+        if (temp != null)
+        {
+            temp.BigCrystalGot();
+        }
     }
 }
