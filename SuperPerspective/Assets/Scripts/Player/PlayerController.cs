@@ -125,7 +125,7 @@ public class PlayerController : PhysicalObject{
         nCont = FindObjectOfType<NotificationController>();
         InputManager.instance.InteractPressedEvent += OnInteract;
 
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
 
 	public void Reset() {
