@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17936426, g: 0.42173377, b: 0.15222904, a: 1}
+  m_IndirectSpecularColor: {r: 0.17934299, g: 0.42166522, b: 0.15219441, a: 1}
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -22687,8 +22687,8 @@ Transform:
   - {fileID: 1378675081}
   - {fileID: 63412926}
   - {fileID: 464990206}
-  - {fileID: 1698695783}
   - {fileID: 1069232949}
+  - {fileID: 1698695783}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24890,7 +24890,7 @@ Transform:
   - {fileID: 1021943300}
   - {fileID: 1385570381}
   m_Father: {fileID: 1002978210}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1070363532
 Prefab:
@@ -44317,6 +44317,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.size
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -267.1
@@ -44352,7 +44356,7 @@ Prefab:
     - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: convoArray.Array.data[4]
       value: 
-      objectReference: {fileID: 11417412, guid: 09598092d44d98f43a5a3ae0d31a9e2a,
+      objectReference: {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f,
         type: 2}
     - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: convoArray.Array.data[5]
@@ -45015,7 +45019,7 @@ Prefab:
     - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
         type: 2}
       propertyPath: startDoorName
-      value: g-1-start
+      value: g1-start
       objectReference: {fileID: 0}
     - target: {fileID: 456992, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -45026,6 +45030,11 @@ Prefab:
       propertyPath: startAtDoor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
+      propertyPath: convoArray.Array.data[35]
+      value: 
+      objectReference: {fileID: 11417412, guid: cbc216af61994e94486749de9ed6419d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_IsPrefabParent: 0
