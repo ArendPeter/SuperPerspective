@@ -28,6 +28,10 @@ public class MainCollectable : MonoBehaviour {
 			}
 			ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
 			ps.startColor = collectedColor;
+            if (isEndCrystal)
+            {
+                GameObject.Destroy(this.gameObject);
+            }
 		}
 
 		this.isPickedUp();
