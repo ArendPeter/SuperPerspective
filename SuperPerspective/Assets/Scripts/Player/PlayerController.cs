@@ -124,6 +124,8 @@ public class PlayerController : PhysicalObject{
         hoodieGirl = FindObjectOfType<playerControllerProxy>().gameObject;
         nCont = FindObjectOfType<NotificationController>();
         InputManager.instance.InteractPressedEvent += OnInteract;
+
+        //PlayerPrefs.DeleteAll();
     }
 
 	public void Reset() {

@@ -162,8 +162,8 @@ public class CrystalExplosionTrigger : ActiveInteractable {
                             this.myColliders[i].enabled = false;
                         }
                         allDone = true;
-                        Debug.Log("All done");
-                        PlayerPrefs.SetString("IntroCutsceneFinished", "true");
+                        //Debug.Log("All done");
+                        //PlayerPrefs.SetString("IntroCutsceneFinished", "true");
                     }
                     //Is this unreachable code? What's the deal? -Nick
                     allDone = true;

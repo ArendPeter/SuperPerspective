@@ -32,7 +32,7 @@ public class ivanOpeningEvent : textEvent{
 	
 	// Update is called once per frame
 	void Update () {
-	    
+
 	}
 
     public override void eventTrigger()
@@ -42,10 +42,11 @@ public class ivanOpeningEvent : textEvent{
         setFairyFollow(setFollowTo);
         deleteSpirit();
         deleteBarrier();
+        PlayerPrefs.SetString("IntroCutsceneFinished", "true");
 
         if (stopCrystalFairyTheme)
         {
-            sfx.StopCrystalFairyTheme();
+            //sfx.StopCrystalFairyTheme();
         }
 
     }
