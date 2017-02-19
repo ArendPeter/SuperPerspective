@@ -12,12 +12,20 @@ public class CollisionChecker {
 	private const int X = 0;
 	private const int Y = 1;
 	private const int Z = 2;
-	
+
 	public CollisionChecker(Collider col) {
 		this.col = col;
 		colliderWidth = col.bounds.size.x;
 		colliderHeight = col.bounds.size.y;
 		colliderDepth = col.bounds.size.z;
+	}
+
+	public CollisionChecker(Collider col, int prec) {
+		this.col = col;
+		colliderWidth = col.bounds.size.x;
+		colliderHeight = col.bounds.size.y;
+		colliderDepth = col.bounds.size.z;
+		precision = prec;
 	}
 	
 	public RaycastHit[] CheckCollisionOnAxis(int axis, Vector3 velocity, float Margin){

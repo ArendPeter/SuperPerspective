@@ -33,6 +33,7 @@ public class Ice : ActiveInteractable {
 	public GameObject brokenIceSpawnPoint;
 	public GameObject brokenIce;
 	public GameObject spawnCircle;
+	public int collisionPrecision = 8;
 
 	void Awake() {
 		colliderHeight = GetComponent<Collider>().bounds.size.y;
@@ -52,7 +53,7 @@ public class Ice : ActiveInteractable {
         //InputManager.instance.InteractPressed += CheckGrab;
         CameraController.instance.TransitionStartEvent += checkBreak;
         CameraController.instance.TransitionCompleteEvent += doBreak;
-		colCheck = new CollisionChecker (GetComponent<Collider> ());
+		colCheck = new CollisionChecker (GetComponent<Collider> (), collisionPrecision);
 		startPos = transform.position;
 
 		for (int i = 0; i < 4; i++)

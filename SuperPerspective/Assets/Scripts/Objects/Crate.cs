@@ -28,6 +28,7 @@ public class Crate : ActiveInteractable {
 	public GameObject brokenCrateSpawnPoint;
 	public GameObject brokenCrate;
 	public GameObject spawnCircle;
+	public int collisionPrecision = 8;
 
 	float verticalOverlapThreshhold = .3f;
 
@@ -49,7 +50,7 @@ public class Crate : ActiveInteractable {
 		//InputManager.instance.InteractPressed += CheckGrab;
 		GameStateManager.instance.PerspectiveShiftEvent += Shift;
 		CameraController.instance.TransitionEndingEvent += checkBreak;
-		colCheck = new CollisionChecker (GetComponent<Collider> ());
+		colCheck = new CollisionChecker (GetComponent<Collider> (), collisionPrecision);
 		startPos = transform.position;
 
 		for (int i = 0; i < 4; i++)
