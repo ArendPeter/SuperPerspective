@@ -100,10 +100,12 @@ public class Door : ActiveInteractable {
 					doorsFound += destDoor.getName();
 					PlayerPrefs.SetString(level, doorsFound);
 					PlayerPrefs.Save();
+					Saved_UI.instance.ShowSaved();
 				} else if (!doorsFound.Contains(destDoor.getName())) {
 					doorsFound += "," + destDoor.getName();
 					PlayerPrefs.SetString(level, doorsFound);
 					PlayerPrefs.Save();
+					Saved_UI.instance.ShowSaved();
 				}
 			}
 		}else{
