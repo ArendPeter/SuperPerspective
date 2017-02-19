@@ -33,7 +33,19 @@ public class Door : ActiveInteractable {
 			p.Play();
 		}*/
 
-    range = 2;
+    	range = 2;
+
+	    if (this.invisible) {
+            MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
+            foreach(MeshRenderer mr in children) {
+            	mr.enabled = false;
+            }
+
+            ParticleSystem[] particleChildren = GetComponentsInChildren<ParticleSystem>();
+            foreach(ParticleSystem ps in particleChildren) {
+            	ps.Stop();
+            }
+        }		
 	}
 
 	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
