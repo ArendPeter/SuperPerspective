@@ -348,9 +348,9 @@ public class Ice : ActiveInteractable {
 	}
 	//Mathf.Abs(player.transform.position.x - transform.position.x) > colliderWidth / 2
 	public override void Triggered() {
-        kickSFX = Instantiate(Resources.Load("Sound/IceKickSFX") as GameObject);
-        Vector2 horizontalVelocity = new Vector2(velocity.x, velocity.z);
-		if (horizontalVelocity.magnitude < epsilon) {
+		Vector2 horizontalVelocity = new Vector2(velocity.x, velocity.z);
+		if (horizontalVelocity.magnitude < epsilon && kickDelay == 0 && !respawnFlag) { // not moving, not just kicked, and not trying to respawn
+			kickSFX = Instantiate(Resources.Load("Sound/IceKickSFX") as GameObject);
 			switch (GetQuadrant()) {
 				case Quadrant.xPlus:
 						nextVelocity = Vector3.left * slideSpeed;
@@ -365,8 +365,12 @@ public class Ice : ActiveInteractable {
 						nextVelocity = Vector3.forward * slideSpeed;
 						break;
 			}
-			kickDelay = DELAY;
-			PlayerController.instance.StartKick();
+			if (PlayerController.instance.isGrounded()) {
+				PlayerController.instance.StartKick();
+				kickDelay = DELAY;
+			} else {
+				kickDelay = 1;
+			}
 		}
   }
 }
