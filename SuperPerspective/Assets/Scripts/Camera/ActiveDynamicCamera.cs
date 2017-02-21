@@ -43,6 +43,9 @@ public class ActiveDynamicCamera : Activatable {
 			letterboxParam = Mathf.PI / 4;
 		if (letterboxParam > 0) {
 			GUI.enabled = true;
+			Color col = GUI.color;
+			col.a = 1;
+			GUI.color = col;
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height / 5.0f * Mathf.Sin(letterboxParam)), letterboxTexture);
 			GUI.DrawTexture(new Rect(0, Screen.height - (Screen.height / 5.0f * Mathf.Sin(letterboxParam)), Screen.width, Screen.height / 5.0f), letterboxTexture);
 		}
