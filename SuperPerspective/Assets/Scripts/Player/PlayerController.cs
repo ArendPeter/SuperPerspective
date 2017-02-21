@@ -693,7 +693,7 @@ public class PlayerController : PhysicalObject{
 	public bool isPaused(){ return _paused; }
 
 	public void setCutsceneMode(bool c){
-		if(c == false){
+		if(c == false && getCutsceneMode() == true){
 			cutsceneModeDisableTime = Time.time;
 		}
 		cutsceneMode = c; }
