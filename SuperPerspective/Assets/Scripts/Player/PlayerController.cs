@@ -603,7 +603,7 @@ public class PlayerController : PhysicalObject{
 		return connected;
 	}
 
-    
+
     #region EdgeGrabbing
 
     private void ReleaseEdge(){

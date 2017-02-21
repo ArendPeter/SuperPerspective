@@ -12021,6 +12021,9 @@ MonoBehaviour:
   - "The name\u2019s Ivan, and I\u2019m a Crystal Spirit. I get to fix things when
     they go wrong...."
   - "..and you\u2019re going to help me. You break it, you fix it!"
+  - We're going to need crystal shards. BIG ONES.
+  - Bigger than you, shrimp. At least 3 of them.
+  - 'Not those little ones you find lying around everywhere. '
   - "Ready? You don\u2019t get a choice. Let\u2019s go."
   question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
   endQuestionArray:
@@ -32352,7 +32355,7 @@ Prefab:
     - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
         type: 2}
       propertyPath: startDoorName
-      value: t4-start
+      value: t1-start
       objectReference: {fileID: 0}
     - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: ivan
@@ -36236,6 +36239,7 @@ Transform:
   m_LocalScale: {x: 1.255765, y: 1.2557659, z: 1.2557659}
   m_Children:
   - {fileID: 1491934029}
+  - {fileID: 1470727379}
   m_Father: {fileID: 664934313}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36253,6 +36257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventArray:
   - {fileID: 1491934030}
+  - {fileID: 1470727380}
 --- !u!1 &1183080496
 GameObject:
   m_ObjectHideFlags: 0
@@ -42496,6 +42501,52 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 421240, guid: 7fd469d6414f9914c87f30f4eaf3fb4e, type: 2}
   m_PrefabInternal: {fileID: 1466194216}
+--- !u!1 &1470727378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000011518981180, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1470727379}
+  - component: {fileID: 1470727380}
+  m_Layer: 1
+  m_Name: StartConvo5Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470727379
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000010251887812, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470727378}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1692149507}
+  m_Father: {fileID: 1176120898}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470727380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011513370140, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470727378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2246a04b06a5249b2974979028348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myConversation: {fileID: 1692149508}
+  startCrystalFairyTheme: 0
 --- !u!1 &1471943071
 GameObject:
   m_ObjectHideFlags: 0
@@ -47597,6 +47648,67 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1689221673}
   m_Mesh: {fileID: 4300000, guid: 42fa7379464905049bed662de51e52ac, type: 3}
+--- !u!1 &1692149506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1000010751377232, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1692149507}
+  - component: {fileID: 1692149508}
+  m_Layer: 0
+  m_Name: CrystalSpiritConvo5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692149507
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4000012709120264, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692149506}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2661726, y: 3.090821, z: -7.6220922}
+  m_LocalScale: {x: 0.79632735, y: 0.79632676, z: 0.79632676}
+  m_Children: []
+  m_Father: {fileID: 1470727379}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1692149508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114000011919044322, guid: 80aa5e212c1130a41b03545fd8a7ffc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692149506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1b0956473b55c46829890d1010d07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myType: 0
+  nextNodeArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  hasNext: 0
+  choiceIndex: 0
+  hasTextEndEvent: 0
+  convoTextArray:
+  - By the way kid, that shift you just did?
+  - I can do that for you.
+  - Without blowing up anything important, of course.
+  - Just read these ancient runes, they'll tell you what to do.
+  question: "It\u2019s a mesmerizing cylinder of energy. Touch it?"
+  endQuestionArray:
+  - Yes!
+  - No...
+  endEventArray: []
+  endTextEvent: {fileID: 0}
 --- !u!1 &1693799588
 GameObject:
   m_ObjectHideFlags: 0
