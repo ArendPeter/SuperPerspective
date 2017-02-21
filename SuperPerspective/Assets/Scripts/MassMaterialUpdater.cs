@@ -1,5 +1,5 @@
 //C# Example
-
+/*
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -15,7 +15,7 @@ public class MassMaterialUpdater : EditorWindow
       /*Renderer[] rends = Resources.FindObjectsOfTypeAll(typeof(Renderer)) as Renderer[];
       foreach(Renderer rend in rends){
   			rend.material.SetFloat("_Mode", 0);
-      }*/
+      }
     }
     public void OnGUI()
    {
@@ -73,3 +73,4 @@ public class MassMaterialUpdater : EditorWindow
        }
     }
 }
+*/
