@@ -5,7 +5,7 @@ public class CollisionChecker {
 
 	Collider col;
 	float colliderWidth, colliderHeight, colliderDepth;
-	public float precision = 8;
+	float precision = 2;
 	
 	#pragma warning disable 219
 
@@ -20,12 +20,12 @@ public class CollisionChecker {
 		colliderDepth = col.bounds.size.z;
 	}
 
-	public CollisionChecker(Collider col, int prec) {
+	public CollisionChecker(Collider col, int precision) {
 		this.col = col;
 		colliderWidth = col.bounds.size.x;
 		colliderHeight = col.bounds.size.y;
 		colliderDepth = col.bounds.size.z;
-		precision = prec;
+		this.precision = precision;
 	}
 	
 	public RaycastHit[] CheckCollisionOnAxis(int axis, Vector3 velocity, float Margin){
@@ -61,11 +61,12 @@ public class CollisionChecker {
 		
 		//test all startpoints
 		Vector3 dir = Vector3.right * Mathf.Sign(velocity.x);
+		int count = 0;
 		for (int i = 0; i <= precision; i++) {
 			for (int j = 0; j <= precision; j++) {
+				Debug.DrawRay(new Vector3(centerX, minY + (maxY - minY) * (i / precision), minZ + (maxZ - minZ) * (j / precision)), dir);
 				connected = Physics.Raycast(new Vector3(centerX, minY + (maxY - minY) * (i / precision), minZ + (maxZ - minZ) * (j / precision)), dir, out hitInfo, distance);
-				hits[(int)(i * precision + j)] = hitInfo;
-				i++;
+				hits[count++] = hitInfo;
 			}
 		}
 		
@@ -104,12 +105,11 @@ public class CollisionChecker {
 		
 		//test all startpoints
 		Vector3 dir = Vector3.up * Mathf.Sign(velocity.y);
-		// must run outside loop once to ensure hitInfo is initialized
+		int count = 0;
 		for (int i = 0; i <= precision; i++) {
 			for (int j = 0; j <= precision; j++) {
 				connected = Physics.Raycast(new Vector3(minX + (maxX - minX) * (i / precision), centerY, minZ + (maxZ - minZ) * (j / precision)), dir, out hitInfo, distance);
-				hits[(int)(i * precision + j)] = hitInfo;
-				i++;
+				hits[count++] = hitInfo;
 			}
 		}
 		
@@ -138,11 +138,11 @@ public class CollisionChecker {
 		
 		//loop through and check all startpoints
 		Vector3 dir = Vector3.forward * Mathf.Sign(velocity.z);
+		int count = 0;
 		for (int i = 0; i <= precision; i++) {
 			for (int j = 0; j <= precision; j++) {
 				connected = Physics.Raycast(new Vector3(minX + (maxX - minX) * (i / precision), minY + (maxY - minY) * (j / precision), centerZ), dir, out hitInfo, distance);
-				hits[(int)(i * precision + j)] = hitInfo;
-				i++;
+				hits[count++] = hitInfo;
 			}
 		}
 

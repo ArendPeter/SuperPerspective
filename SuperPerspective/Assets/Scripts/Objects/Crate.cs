@@ -13,7 +13,7 @@ public class Crate : ActiveInteractable {
     public bool grounded;
     private bool svFlag, startFalling;
 	private float colliderHeight, colliderWidth, colliderDepth;
-	private float Margin = .05f;
+	private float Margin = 0.05f;
 
 	private Vector3 startPos;
 
@@ -28,7 +28,7 @@ public class Crate : ActiveInteractable {
 	public GameObject brokenCrateSpawnPoint;
 	public GameObject brokenCrate;
 	public GameObject spawnCircle;
-	public int collisionPrecision = 8;
+	public int collisionPrecision = 2;
 
 	float verticalOverlapThreshhold = .3f;
 

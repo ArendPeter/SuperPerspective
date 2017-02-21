@@ -38,8 +38,7 @@ public class MobilePlatform : ActiveInteractable {
 				atStart = true;
         vol = 1f;
 				StartSetup();
-				colCheck = new CollisionChecker (GetComponent<Collider> ());
-				colCheck.precision = 3;
+				colCheck = new CollisionChecker (GetComponent<Collider> (), 3);
 				colliderHeight = GetComponent<Collider>().bounds.size.y;
 				colliderWidth = GetComponent<Collider>().bounds.size.x;
 				colliderDepth = GetComponent<Collider>().bounds.size.z;

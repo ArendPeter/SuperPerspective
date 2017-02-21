@@ -33,7 +33,7 @@ public class Ice : ActiveInteractable {
 	public GameObject brokenIceSpawnPoint;
 	public GameObject brokenIce;
 	public GameObject spawnCircle;
-	public int collisionPrecision = 8;
+	public int collisionPrecision = 2;
 
 	void Awake() {
 		colliderHeight = GetComponent<Collider>().bounds.size.y;
