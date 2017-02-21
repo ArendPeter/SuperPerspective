@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 223000012124593838}
   - component: {fileID: 114000014281122280}
   - component: {fileID: 114000012296917684}
+  - component: {fileID: 114492727389279190}
   m_Layer: 5
   m_Name: Bonfire_UI
   m_TagString: Untagged
@@ -2077,6 +2078,19 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: Use the movement keys to select an island, and press the action button to
     warp to places you've been before.
+--- !u!114 &114492727389279190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011103109042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39057a02a24cbd499176865ca1ed6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SavedUIGraphic: {fileID: 1655296494705386, guid: 3dbd4367bf414154196ed09858494c29,
+    type: 2}
 --- !u!222 &222000010105434144
 CanvasRenderer:
   m_ObjectHideFlags: 1

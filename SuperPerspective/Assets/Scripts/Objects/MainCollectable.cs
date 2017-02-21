@@ -118,7 +118,7 @@ public class MainCollectable : MonoBehaviour {
 		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos, isFinalCollectable );
 		float dist = (transform.position - targetPos).magnitude;
 		if(dist < .01){
-					Saved_UI.instance.ShowSaved();
+			Saved_UI.instance.ShowSaved();
 
 			if(effectOnCollect != null){
 				Instantiate(effectOnCollect, this.transform.position, Quaternion.identity);// PlayerController.instance.transform.position
@@ -143,13 +143,14 @@ public class MainCollectable : MonoBehaviour {
 		return false;
 	}
 	private void addToCollectableList() {
-		Saved_UI.instance.ShowSaved();
 
 		string colString = PlayerPrefs.GetString(sceneName+"CollectableList");
 		if(colString == ""){
 			PlayerPrefs.SetString(sceneName+"CollectableList", uid);
+			Saved_UI.instance.ShowSaved();
 		} else {
 			PlayerPrefs.SetString(sceneName+"CollectableList", string.Concat(colString, "," + uid));
+			Saved_UI.instance.ShowSaved();
 		}
 	}
 
