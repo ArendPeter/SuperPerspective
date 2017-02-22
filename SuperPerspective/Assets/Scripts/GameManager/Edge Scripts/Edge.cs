@@ -4,7 +4,6 @@ using System.Collections;
 public class Edge : MonoBehaviour {
 	//suppress warnings
 	#pragma warning disable 162, 649, 219, 414
-
 	int or = 0; //orientation of game object (0-3: right,back,left,front)
 
 	int overlapIndex; //how many of the overlaps that we've checked
@@ -32,6 +31,8 @@ public class Edge : MonoBehaviour {
 	float hangCounter = 0.0f;
 
 	public float edgeDropEpsilon = .1f;
+
+	private double epsilon = .001;
 
 	public void FixedUpdate(){
 		if(!init)
@@ -296,12 +297,13 @@ public class Edge : MonoBehaviour {
 		Vector3 localScale = gameObject.transform.localScale;
 		Vector3 parentScale = findAdjustedParentScale();
 		if(or%2==0){//left/right
-			if(lossyScale.z >= 1)
+			if((lossyScale.z + epsilon) >= 1f)
 				localScale.z -= 1f / parentScale.z;
-			else
+			else{
 				Destroy(this);
+			}
 		}else{//back/front
-			if(lossyScale.x >= 1)
+			if((lossyScale.x + epsilon) >= 1)
 				localScale.x -= 1f / parentScale.x;
 			else
 				Destroy(this);
