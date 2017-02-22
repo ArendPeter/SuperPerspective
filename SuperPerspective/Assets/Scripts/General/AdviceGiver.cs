@@ -63,7 +63,7 @@ public class AdviceGiver : MonoBehaviour {
         }
         if (pcont.isDisabled() == false && pcont.isGrounded() == true)//Check to see if we can push the button. Also, we can't push the button in the air.
         {
-            if (!ivan.shouldFollow || pcont.isPassivelyPushing() || pcont.isRiding() || pcont.isPaused() || pcont.isLaunched() ||
+			if ((ivan != null && !ivan.shouldFollow) || pcont.isPassivelyPushing() || pcont.isRiding() || pcont.isPaused() || pcont.isLaunched() ||
                 pcont.isJumping() || pcont.isFalling() || pcont.isClimbing() || pcont.isDisabled() || pcont.isShimmying() || pcont.isInCactusKnockBack() || (BigCrystalGet.instance != null && BigCrystalGet.instance.uiActive))
             {
                 //Do nothing
