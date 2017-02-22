@@ -147,11 +147,10 @@ public class MainCollectable : MonoBehaviour {
 		string colString = PlayerPrefs.GetString(sceneName+"CollectableList");
 		if(colString == ""){
 			PlayerPrefs.SetString(sceneName+"CollectableList", uid);
-			Saved_UI.instance.ShowSaved();
 		} else {
 			PlayerPrefs.SetString(sceneName+"CollectableList", string.Concat(colString, "," + uid));
-			Saved_UI.instance.ShowSaved();
 		}
+		Saved_UI.instance.ShowSaved();
 	}
 
     //Plays SFX upon pickup -Nick
