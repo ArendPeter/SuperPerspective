@@ -2146,22 +2146,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &157514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 413066}
-  - component: {fileID: 11477160}
-  m_Layer: 0
-  m_Name: Ambient Particle Handler (dreamlike)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &157620
 GameObject:
   m_ObjectHideFlags: 1
@@ -4075,19 +4059,6 @@ Transform:
   m_Father: {fileID: 481276}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &413066
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157514}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 414812}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &413142
 Transform:
   m_ObjectHideFlags: 1
@@ -4140,22 +4111,20 @@ Transform:
   m_LocalPosition: {x: -175, y: 42, z: -866}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
-  - {fileID: 4690168163628078}
-  - {fileID: 413066}
   - {fileID: 487868}
   - {fileID: 483920}
   - {fileID: 466256}
-  - {fileID: 4000011124483088}
   - {fileID: 448266}
   - {fileID: 469304}
+  - {fileID: 444470}
+  - {fileID: 433222}
   - {fileID: 484372}
+  - {fileID: 4000011124483088}
   - {fileID: 400212}
   - {fileID: 444184}
-  - {fileID: 489688}
   - {fileID: 437444}
-  - {fileID: 433222}
+  - {fileID: 489688}
   - {fileID: 463986}
-  - {fileID: 444470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4796,7 +4765,7 @@ Transform:
   - {fileID: 421502}
   - {fileID: 437764}
   m_Father: {fileID: 414812}
-  m_RootOrder: 13
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &434260
 Transform:
@@ -4931,7 +4900,7 @@ Transform:
   - {fileID: 446796}
   - {fileID: 422410}
   m_Father: {fileID: 414812}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &437764
 Transform:
@@ -5176,7 +5145,7 @@ Transform:
   m_LocalScale: {x: 0.12, y: 0.1, z: 0.12}
   m_Children: []
   m_Father: {fileID: 414812}
-  m_RootOrder: 15
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -89.980194, y: 0, z: 0}
 --- !u!4 &444534
 Transform:
@@ -5285,7 +5254,7 @@ Transform:
   - {fileID: 444326}
   - {fileID: 472258}
   m_Father: {fileID: 414812}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &448660
 Transform:
@@ -5874,7 +5843,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.93220854, z: 0.5897249}
   m_Children: []
   m_Father: {fileID: 414812}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &463998
 Transform:
@@ -5980,7 +5949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 414812}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &467154
 Transform:
@@ -6141,7 +6110,7 @@ Transform:
   - {fileID: 444330}
   - {fileID: 413650}
   m_Father: {fileID: 414812}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &469374
 Transform:
@@ -6507,7 +6476,7 @@ Transform:
   - {fileID: 461390}
   - {fileID: 431496}
   m_Father: {fileID: 414812}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &484372
 Transform:
@@ -6533,7 +6502,7 @@ Transform:
   - {fileID: 461666}
   - {fileID: 458554}
   m_Father: {fileID: 414812}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &485102
 Transform:
@@ -6685,7 +6654,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 414812}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &488104
 Transform:
@@ -6775,7 +6744,7 @@ Transform:
   - {fileID: 459922}
   - {fileID: 452366}
   m_Father: {fileID: 414812}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &489902
 Transform:
@@ -8431,9 +8400,9 @@ MonoBehaviour:
   - {fileID: 11417412, guid: e6580890e1b194841b34d139f327146b, type: 2}
   - {fileID: 11417412, guid: 027df0e479747e64cb196f25f20a0afb, type: 2}
   - {fileID: 11417412, guid: 1f98b649f7f49eb4889591a76c8b5b8a, type: 2}
-  - {fileID: 11417412, guid: 576533a7ddf6561448971b35067cbf7b, type: 2}
+  - {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f, type: 2}
   - {fileID: 11417412, guid: d766c5f6414d22342bf1b1a721212b8f, type: 2}
-  - {fileID: 11417412, guid: 12e74e402c6b343728053d4835018579, type: 2}
+  - {fileID: 0}
   - {fileID: 11417412, guid: 4597fb8da88837c4bba5f3fc6ba47f3b, type: 2}
   - {fileID: 11417412, guid: fded39ef999a8ed4c84c155494e61f96, type: 2}
   - {fileID: 11417412, guid: 0de3dec1cb31c994e82fe43060af300e, type: 2}
@@ -8462,6 +8431,7 @@ MonoBehaviour:
   - {fileID: 11417412, guid: ff3051f757525904ba06ca0f27834115, type: 2}
   - {fileID: 11417412, guid: d4e7bb6aac8965e4c9d4a368ca552ee2, type: 2}
   - {fileID: 11417412, guid: bedf0a2f2dc1139449252b71840430f4, type: 2}
+  - {fileID: 11417412, guid: c7ac89e35a537844c9142d2cbcd67b57, type: 2}
   defaultNode: {fileID: 11417412, guid: 8d646c6eb918eef479bbe88cb6654516, type: 2}
   pspawn: {fileID: 0}
   panim: {fileID: 0}
@@ -8801,21 +8771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clothesSound: {fileID: 0}
---- !u!114 &11477160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ae2fc21ca3a1c408ff299cad68e62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableParticles: 0
-  instantiateSystems: 1
-  PrefabParticles2D: {fileID: 19857704, guid: b7ff913efeb8d4d4592f242b2f9cddb8, type: 2}
-  PrefabParticles3D: {fileID: 19879628, guid: 1ae269fe4bbadba4f8b3932ce4707ea5, type: 2}
 --- !u!114 &11477488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16989,22 +16944,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1211786816726938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4690168163628078}
-  - component: {fileID: 114712454789633110}
-  m_Layer: 0
-  m_Name: Ambient Particle Handler (simple desert)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4000010035635816
 Transform:
   m_ObjectHideFlags: 1
@@ -17374,7 +17313,7 @@ Transform:
   - {fileID: 4000014079765896}
   - {fileID: 4000011628869610}
   m_Father: {fileID: 414812}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4000011207856436
 Transform:
@@ -18178,19 +18117,6 @@ Transform:
   m_Father: {fileID: 4000014052773112}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4690168163628078
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1211786816726938}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 414812}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23000012725804172
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -18620,21 +18546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pcont: {fileID: 0}
---- !u!114 &114712454789633110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1211786816726938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ae2fc21ca3a1c408ff299cad68e62c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableParticles: 0
-  instantiateSystems: 1
-  PrefabParticles2D: {fileID: 19857704, guid: c5d337d9401f5dc4fa7b90745659e805, type: 2}
-  PrefabParticles3D: {fileID: 19857704, guid: 1b67acfff766d4b42815a039c3dc96db, type: 2}
 --- !u!137 &137000011755810452
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
