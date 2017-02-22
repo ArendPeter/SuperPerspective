@@ -58,13 +58,14 @@ public class SplashScreen : MonoBehaviour {
             image.color = color;
             yield return null;
         }
-        timer = delay;
+        /*timer = delay;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
             yield return null;
-        }
-        SceneManager.LoadScene("Menu");
+        }*/
+        //SceneManager.LoadScene("Menu");
+        TransitionManager.instance.SceneTransition(null, "", "Menu");
     }
 
 }
