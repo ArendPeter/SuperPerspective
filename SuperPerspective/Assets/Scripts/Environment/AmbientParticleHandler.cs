@@ -1,25 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (ParticleSystem))]
+
 public class AmbientParticleHandler : MonoBehaviour {
 
 	public bool disableParticles = false;
-	public bool instantiateSystems;//check to use prefabs, uncheck if you want to pass in obj
+	public bool instantiateSystems = false;//check to create new instances, otherwise it will use the children
 	public ParticleSystem PrefabParticles2D;//particles to clone
 	public ParticleSystem PrefabParticles3D;
 
 	private ParticleSystem P2D;//reference
 	private ParticleSystem P3D;
+
+	private GameObject player;
 	// Use this for initialization
 	void Start () {
+		player = GameObject.Find("Player");
+		
 		if(instantiateSystems){
 			P2D = (ParticleSystem) Instantiate(PrefabParticles2D, Vector3.zero, Quaternion.identity);
-			//P2D.transform.SetParent(this.transform, false);
-			//P2D.transform.position = new Vector3(0, 0, 0);
-
 			P3D = (ParticleSystem) Instantiate(PrefabParticles3D, Vector3.zero, Quaternion.identity);
-			//P3D.transform.SetParent(this.transform, false);
-			//P3D.transform.position = new Vector3(0, 0, 0);
+			if(player != null){
+				P2D.transform.SetParent(player.transform, false);
+				P3D.transform.SetParent(player.transform, false);
+				
+				P2D.transform.position = player.transform.position;
+				P3D.transform.position = player.transform.position;
+			}
+		} else {
+			P2D = PrefabParticles2D;
+			P3D = PrefabParticles3D;
+
+			if(player != null){
+				this.transform.SetParent(player.transform, false);
+				// this.transform.position = player.transform.position;
+			}
 		}
 	}
 	
