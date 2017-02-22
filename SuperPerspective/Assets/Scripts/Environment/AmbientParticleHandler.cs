@@ -21,6 +21,10 @@ public class AmbientParticleHandler : MonoBehaviour {
 		if(instantiateSystems){
 			P2D = (ParticleSystem) Instantiate(PrefabParticles2D, Vector3.zero, Quaternion.identity);
 			P3D = (ParticleSystem) Instantiate(PrefabParticles3D, Vector3.zero, Quaternion.identity);
+
+			Destroy(PrefabParticles2D.gameObject);
+			Destroy(PrefabParticles3D.gameObject);
+
 			if(player != null){
 				P2D.transform.SetParent(player.transform, false);
 				P3D.transform.SetParent(player.transform, false);
@@ -33,8 +37,9 @@ public class AmbientParticleHandler : MonoBehaviour {
 			P3D = PrefabParticles3D;
 
 			if(player != null){
-				this.transform.SetParent(player.transform, false);
-				// this.transform.position = player.transform.position;
+				this.transform.SetParent(player.transform);
+				this.transform.position = Vector3.zero;
+				print("zero");
 			}
 		}
 	}
@@ -42,9 +47,6 @@ public class AmbientParticleHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(P2D != null && P3D != null){
-			P2D.transform.position = this.transform.position;
-			P3D.transform.position = this.transform.position;
-
 			if(GameStateManager.is3D()){
 				P2D.enableEmission = false;
 				P3D.enableEmission = !disableParticles;
