@@ -45,10 +45,11 @@ public class Saved_UI : MonoBehaviour {
 		if(UIObject == null){
         	UIObject = Instantiate(SavedUIGraphic);
 		}
-		print("ShowSaved " + this.Timer);
-		this.Timer = defaultPopupTime;
+		if(this.Timer <= 0){
+			this.Timer = defaultPopupTime;
 
-        UIObject.transform.parent = canvas.transform;
-        UIObject.transform.position = new Vector2(800, -50);
+	        UIObject.transform.parent = canvas.transform;
+	        UIObject.transform.position = new Vector2(800, -50);
+		}
 	}
 }
