@@ -8,25 +8,9 @@ public class ConsoleActionsManager : MonoBehaviour {
 	PlayerSpawnController psc;
 	InputField dcl;
 
-	public UnityEngine.UI.Button buttonInstance;
-
 	// Use this for initialization
 	void Start () {
 		this.init();
-		this.buildDoorButtons();
-	}
-
-	void buildDoorButtons(){
-		//Door[] doorList = Object.FindObjectsOfType(
-		//	typeof(Door)) as Door[];
-
-		//generates a teleport button for each door
-		// foreach(Door door in doorList){
-		// 	Button b = Object.Instantiate(buttonInstance, Vector3.zero, Quaternion.identity) as Button;
-		// 	b.transform.SetParent(canvas.transform);
-		// 	Vector2 bPosDelta = new Vector2(100 * 1, 50);
-		// 	b.sizeDelta = bPosDelta;
-		// }
 	}
 
 	void init(){
@@ -39,7 +23,6 @@ public class ConsoleActionsManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown("return") && dcl.text != ""){
-			// dcl.text = "";
 			this.consoleCommand(dcl.text);
 		}
 	}
@@ -53,35 +36,37 @@ public class ConsoleActionsManager : MonoBehaviour {
 		foreach(string s in commandArray){
 			debugArray = debugArray + s + ", ";
 		}
-		// Debug.Log(debugArray);
 
-		if(commandArray.Length >= 2){
-			string command = commandArray[0];
-			string val = commandArray[1];
+		string command = commandArray[0];
+		string val = "0";
+		if(commandArray.Length > 1){
+			val = commandArray[1];
+		}
 
-			if(command != null && val != null){
-				switch(command){
-					case "givekey":
-						Key.GiveKeys(int.Parse(val));
-						Debug.Log("... giving player " + val + " keys");
-						break;
-					case "tp":
-						movePlayer(val);
-						Debug.Log("... moving player to door " + val);
-						break;
-					case "hub":
-						moveToScene(val);
-						Debug.Log("... moving player to scene " + val);
-						break;
-					case "credits":
-						dcl.text = "Nick Shooter, Peter Aquila, Larry Smith, Arend Peter Castelein, Daniel Xiao";
-						break;
-					default:
-						Debug.Log("...command " + command + " not found ");
-						break;
-				}
-			}else{
-				Debug.Log("missing command or value");
+		if(command != null){
+			switch(command){
+				case "givekey":
+					Key.GiveKeys(int.Parse(val));
+					Debug.Log("Console: giving player " + val + " keys");
+					break;
+				case "tp":
+					movePlayer(val);
+					Debug.Log("Console: moving player to door " + val);
+					break;
+				case "hub":
+					moveToScene(val);
+					Debug.Log("Console: moving player to scene " + val);
+					break;
+				case "credits":
+					dcl.text = "Nick Shooter, Peter Aquila, Larry Smith, Arend Peter Castelein, Daniel Xiao - Thank you!";
+					break;
+				case "resetprefs":
+					PlayerPrefs.DeleteAll();
+					Debug.Log("Console: resetting player prefs.");
+					break;
+				default:
+					Debug.Log("Console: command " + command + " not found ");
+					break;
 			}
 		}
 	}
