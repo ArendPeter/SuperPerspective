@@ -38,6 +38,7 @@ public class PlayerAnimController : MonoBehaviour {
 		player = PlayerController.instance;
 		anim = GetComponentInChildren<Animator>();
 		model = anim.gameObject;
+		orientation = 90;
 	}
 
 	void Update () {
