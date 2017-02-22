@@ -103,9 +103,13 @@ public class Mover : Activatable {
 		return isPushing;
 	}
 
+	private bool isSomethingInWay(){
+		return CrushingPlayerBelow() || PushingPlayer() || MovingPlatformInWay();
+	}
+
 	void Update(){
-		bool somethingInWay = CrushingPlayerBelow() || PushingPlayer() || MovingPlatformInWay();
-		if (!PlayerController.instance.isPaused() && !somethingInWay){
+		bool atDest = (activated && prog == 1) || (!activated && prog == 0);
+		if (!PlayerController.instance.isPaused() && !atDest && !isSomethingInWay()){
             //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
 			prog = Mathf.Clamp01(prog); //clamp between 0 and 1
