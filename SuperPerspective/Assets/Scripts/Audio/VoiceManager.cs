@@ -61,7 +61,7 @@ public class VoiceManager : MonoBehaviour {
 
     public void Ow()
     {
-        source.clip = Resources.Load("Sound/SFX/Player/Voice/CactusImpact") as AudioClip;
+        source.clip = ow[Random.Range(0, 3)];
         source.pitch = Random.Range(0.95f, 1.05f);
         source.Play();
     }
