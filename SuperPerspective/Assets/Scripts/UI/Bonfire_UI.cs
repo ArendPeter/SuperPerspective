@@ -19,7 +19,7 @@ public class Bonfire_UI : MonoBehaviour {
     public Color standardCol, selectedCol;
 
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
-    public KeyCode up, up2, down, down2, select, select2;
+    public KeyCode up, up2, down, down2, select, select2, select3;
 
     //Determines how long the choice list is. Will resize the UI ingame. Maximum value of 9 for now, may change later.
     public int maxChoice;
@@ -75,6 +75,7 @@ public class Bonfire_UI : MonoBehaviour {
         down2 = KeyCode.S;
         //select = KeyCode.E;
         select2 = KeyCode.Space;
+        select3 = KeyCode.Return;
         reset();
         teleportFlag = false;
         //Debug.Log(maxChoice);
@@ -122,7 +123,7 @@ public class Bonfire_UI : MonoBehaviour {
 			return;
 		}
 		if (!teleportFlag && readyForInput) {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || goSel)
+            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || Input.GetKeyDown(select3) || goSel)
             {
                 Teleport();
             }

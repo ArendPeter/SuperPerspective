@@ -25,7 +25,7 @@ public class Pause_UI : MonoBehaviour {
     public UISFXManager uiSFX;
 
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
-    public KeyCode up, up2, down, down2, select, select2;
+    public KeyCode up, up2, down, down2, select, select2, select3;
 
     private bool goUp = false, goDown = false, goSel = false;
 
@@ -60,6 +60,7 @@ public class Pause_UI : MonoBehaviour {
         down2 = KeyCode.S;
         select = KeyCode.E;
         select2 = KeyCode.Space;
+        select3 = KeyCode.Return;
         maxChoice = choices.Length - 1;
         uiSFX = FindObjectOfType<UISFXManager>();
     }
@@ -103,7 +104,7 @@ public class Pause_UI : MonoBehaviour {
     {
         if (active)
         {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || goSel)
+            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || Input.GetKeyDown(select3) || goSel)
             {
                 if (choice == 2 || (choice == 1 && isHub))
                 {
