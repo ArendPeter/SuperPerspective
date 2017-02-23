@@ -99,4 +99,8 @@ public class TransitionManager : MonoBehaviour {
 	public bool isFirstScene(){
 			return firstScene;
 	}
+
+	public static bool isTransitioning() {
+		return transition > 0 || alpha > 0;
+	}
 }

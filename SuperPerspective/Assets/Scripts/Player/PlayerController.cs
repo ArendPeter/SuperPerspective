@@ -234,15 +234,24 @@ public class PlayerController : PhysicalObject{
 
 		if(canControl()) move();
 
-		if(!isDisabled()) updateStateVariables();
+		if(!isDisabled() || (cutsceneMode && TransitionManager.isTransitioning())) updateStateVariables();
 
 		if (frameRate <= 50) {
-			if(canMove()) applyGravity();
-
-			CheckCollisions();
-
-			if(canMove()) applyMovement();
+			handleMovement();
 		}
+	}
+
+	void handleMovement() {
+		if(shouldApplyGravity()) {
+			applyGravity();
+			if (!canMove())
+				velocity = new Vector3(0, velocity.y, 0);
+		}
+
+		CheckCollisions();
+
+		if(canMove()) applyLateralMovement();
+		if(shouldApplyGravity()) applyVerticalMovement();
 	}
 
 	private void updateTimers(){
@@ -528,15 +537,13 @@ public class PlayerController : PhysicalObject{
 	// LateUpdate is used to actually move the position of the player
 	void LateUpdate () {
 		if (frameRate > 50f) {
-			if(canMove()) applyGravity();
-
-			CheckCollisions();
-
-			if(canMove()) applyMovement();
+			handleMovement();
 		}
   	}
 
 	private void applyGravity(){
+		if (TransitionManager.isTransitioning())
+			Debug.Log("yeah?");
 		float dt = (frameRate < 50)?(1 / 50f):Time.deltaTime;
 		if (edgeState != PlayerEdgeState.HANGING){
 			if (velocity.y <= 0)
@@ -548,14 +555,20 @@ public class PlayerController : PhysicalObject{
 		}
 	}
 
-	private void applyMovement(){
+	private void applyLateralMovement(){
+		Vector3 vel = new Vector3(velocity.x, 0, velocity.z);
 		if (GrabbedCrate()){
-			Vector3 drag = Vector3.Dot(velocity, grabAxis) * grabAxis * 0.75f;
+			Vector3 drag = Vector3.Dot(vel, grabAxis) * grabAxis * 0.75f;
 			crate.SetVelocity(drag.x, drag.z);
 			transform.Translate(drag * Time.deltaTime);
 		}else{
-			transform.Translate(velocity * Time.deltaTime);
+			transform.Translate(vel * Time.deltaTime);
 		}
+	}
+
+	private void applyVerticalMovement(){
+		Vector3 vel = new Vector3(0, velocity.y, 0);
+		transform.Translate(vel * Time.deltaTime);
 	}
 
 	public bool Check2DIntersect() {
@@ -700,9 +713,14 @@ public class PlayerController : PhysicalObject{
 
     public bool getCutsceneMode(){
         return cutsceneMode;}
-
+	
 	public bool canMove(){
 		return !isDisabled() && !isKicking() && !isClimbing() &&
+			!isRiding();
+	}
+
+	public bool shouldApplyGravity(){
+		return (!isDisabled() || (cutsceneMode && TransitionManager.isTransitioning())) && !isClimbing() &&
 			!isRiding();
 	}
 
@@ -750,12 +768,14 @@ public class PlayerController : PhysicalObject{
 	public bool isInCactusKnockBack(){ return cactusKnockBackTimer > 0; }
 
 	public bool isRunning(){
-		bool movingFast = velocity.magnitude > maxSpeed/2;
+		Vector3 vel = new Vector3(velocity.x, 0, velocity.z);
+		bool movingFast = vel.magnitude > maxSpeed/2;
 		return !isRiding() && isGrounded() && movingFast;
 	}
 
 	public bool isWalking(){
-		bool movingSlow = 0 < velocity.magnitude && velocity.magnitude <= maxSpeed/2;
+		Vector3 vel = new Vector3(velocity.x, 0, velocity.z);
+		bool movingSlow = 0 < vel.magnitude && vel.magnitude <= maxSpeed/2;
 		return !isRiding() && isGrounded() && movingSlow;
 	}
 
