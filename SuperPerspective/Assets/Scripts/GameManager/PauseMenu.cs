@@ -20,16 +20,16 @@ public class PauseMenu : MonoBehaviour {
 	//init settings
 	void Start () {
 		//Find menu
-		menu = transform.Find("PauseMenu").GetComponent<Canvas>();
+		//menu = transform.Find("PauseMenu").GetComponent<Canvas>();
 	}
 
 	//called every frame
 	void Update () {
 		//enable/disable canvas component
-		menu.GetComponent<Canvas>().enabled = (menuAlpha != 0f);
+		//menu.GetComponent<Canvas>().enabled = (menuAlpha != 0f);
 		//update alpha
-		menuAlpha += ((menuVisible)? (1/fadeTime) : -(1/fadeTime))*Time.deltaTime;
-		menuAlpha = Mathf.Clamp(menuAlpha,0f,1f);
+		//menuAlpha += ((menuVisible)? (1/fadeTime) : -(1/fadeTime))*Time.deltaTime;
+		//menuAlpha = Mathf.Clamp(menuAlpha,0f,1f);
 		//menu.GetComponent<CanvasGroup>().alpha = menuAlpha;
 	}
 
