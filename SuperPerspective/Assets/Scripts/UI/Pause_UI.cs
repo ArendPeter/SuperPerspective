@@ -63,6 +63,8 @@ public class Pause_UI : MonoBehaviour {
         select3 = KeyCode.Return;
         maxChoice = choices.Length - 1;
         uiSFX = FindObjectOfType<UISFXManager>();
+        gs = GameStateManager.instance;
+        pauseMenu = GameStateManager.instance.GetComponent<PauseMenu>();
     }
 	
 	// Update is called once per frame

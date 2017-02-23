@@ -127,6 +127,7 @@ public class GameStateManager : MonoBehaviour
 			StartGame();
 		else
 			EnterState(ViewType.MENU);
+        pause_UI = FindObjectOfType<Pause_UI>();
 	}
 
 	#endregion Monobehavior Implementation
