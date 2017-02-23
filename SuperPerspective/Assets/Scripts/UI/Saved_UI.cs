@@ -19,37 +19,38 @@ public class Saved_UI : MonoBehaviour {
 		if(instance == null){
 			instance = this;
 		}
+		this.Timer = 0;
 		canvas = GameObject.Find("Bonfire_UI");
 	}
 
 	void Update() {
-		if(this.Timer > 0 && UIObject != null){
+		if(this.Timer > 0 && this.UIObject != null){
 			this.Timer--;
 			
-			int animateTime = 26;
-			int animateSpeed = 220;
+			int animateTime = 10;
+			int animateSpeed = 240;
 			//go up
 			if(this.Timer > defaultPopupTime - animateTime){
-				UIObject.transform.position = new Vector2(UIObject.transform.position.x, UIObject.transform.position.y + animateSpeed * Time.deltaTime);
+				this.UIObject.transform.position = new Vector2(this.UIObject.transform.position.x, this.UIObject.transform.position.y + animateSpeed * Time.deltaTime);
 			} else if(this.Timer < 0 + animateTime){
-				UIObject.transform.position = new Vector2(UIObject.transform.position.x, UIObject.transform.position.y - animateSpeed * Time.deltaTime);
+				this.UIObject.transform.position = new Vector2(this.UIObject.transform.position.x, this.UIObject.transform.position.y - animateSpeed * Time.deltaTime);
 			}
 
 		}
 		if(this.Timer == 1){
-			Destroy(UIObject);
+			Destroy(this.UIObject);
 		}
 	}
 
 	public void ShowSaved() {
-		if(UIObject == null){
-        	UIObject = Instantiate(SavedUIGraphic);
+		if(this.UIObject == null){
+        	this.UIObject = Instantiate(SavedUIGraphic);
 		}
 		if(this.Timer <= 0){
 			this.Timer = defaultPopupTime;
 
-	        UIObject.transform.parent = canvas.transform;
-	        UIObject.transform.position = new Vector2(800, -50);
+	        this.UIObject.transform.SetParent(canvas.transform, false);
+	        this.UIObject.transform.position = new Vector2(400, -50);
 		}
 	}
 }

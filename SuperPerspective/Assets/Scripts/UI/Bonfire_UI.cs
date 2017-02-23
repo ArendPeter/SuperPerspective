@@ -88,7 +88,7 @@ public class Bonfire_UI : MonoBehaviour {
         uiSFX = FindObjectOfType<UISFXManager>();
         //Creates big crystal get UI
         BigCrystalGetUI = Instantiate(BigCrystalGetUI);
-        BigCrystalGetUI.transform.parent = transform.parent;
+        BigCrystalGetUI.transform.SetParent(transform.parent);
         BigCrystalGetUI.transform.localPosition = transform.localPosition;
 
         if (instructionFlash != null)
