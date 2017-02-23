@@ -5,6 +5,7 @@ using System.Collections;
 public class Bonfire_UI : MonoBehaviour {
 
     public GameObject all, selection, locked, back;
+    public Image instructionFlash;
     public Image previewPic;
 
     public GameObject[] choices;
@@ -17,6 +18,7 @@ public class Bonfire_UI : MonoBehaviour {
     public int maxIsle = 0;
 
     public Color standardCol, selectedCol;
+    Color instructionFlashCol;
 
     //KeyCodes for the buttons that work the UI. Can be reset, otherwise I use default values
     public KeyCode up, up2, down, down2, select, select2, select3;
@@ -88,11 +90,19 @@ public class Bonfire_UI : MonoBehaviour {
         BigCrystalGetUI = Instantiate(BigCrystalGetUI);
         BigCrystalGetUI.transform.parent = transform.parent;
         BigCrystalGetUI.transform.localPosition = transform.localPosition;
+
+        if (instructionFlash != null)
+            instructionFlashCol = new Color(instructionFlash.color.r, instructionFlash.color.g, instructionFlash.color.b, 0.5f);
     }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         checkInput();
+        if (instructionFlash != null && instructionFlash.color.a > 0)
+        {
+            instructionFlash.color = new Color(instructionFlashCol.r, instructionFlashCol.g, instructionFlashCol.b, instructionFlash.color.a - Time.deltaTime);
+        }
     }
 
     //TODO
@@ -161,6 +171,10 @@ public class Bonfire_UI : MonoBehaviour {
         else if (choice + 1 > maxIsle)
         {
             GetComponent<AudioSource>().Play();
+            if (instructionFlash != null)
+            {
+                instructionFlash.color = instructionFlashCol;
+            }
         }
         else
         {
