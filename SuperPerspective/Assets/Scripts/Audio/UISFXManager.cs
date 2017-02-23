@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class UISFXManager : MonoBehaviour {
 
@@ -101,30 +102,38 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayCrystalFairyTheme()
     {
-        //Debug.Log("Play song");
-        if (!fairyTheme.isPlaying)
+        //If statement is hotfix for menu bug where theme doesn't play
+        if (SceneManager.GetActiveScene().name != "Hub")
         {
-            FadeOutMusic();
+            //Debug.Log("Play song");
+            if (!fairyTheme.isPlaying)
+            {
+                FadeOutMusic();
+            }
+            else
+            {
+                fadeInFairy = true;
+            }
+            playFairyTheme = true;
+            fadeFairyTheme = false;
         }
-        else
-        {
-            fadeInFairy = true;
-        }
-        playFairyTheme = true;
-        fadeFairyTheme = false;
     }
     public void StopCrystalFairyTheme()
     {
-        playFairyTheme = false;
-        fadeInFairy = false;
-        if (fairyTheme.isPlaying)
+        //If statement is hotfix for menu bug where theme doesn't play
+        if (SceneManager.GetActiveScene().name != "Hub")
         {
-            fadeFairyTheme = true;
-            fadeRate = fadeRateInit;
-        }
-        else
-        {
-            FadeInMusic();
+            playFairyTheme = false;
+            fadeInFairy = false;
+            if (fairyTheme.isPlaying)
+            {
+                fadeFairyTheme = true;
+                fadeRate = fadeRateInit;
+            }
+            else
+            {
+                FadeInMusic();
+            }
         }
     }
 
