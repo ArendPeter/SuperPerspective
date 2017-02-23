@@ -228,6 +228,9 @@ public class GameStateManager : MonoBehaviour
 		currentState = targetState;
 		testCurrentState = currentState;
 
+		if(currentState == ViewType.STANDARD_2D ){
+			CameraController.instance.setCameraOffset(new Vector3(0,0,-100));
+		}
 		if(failedShift){
 			foreach(GameObject obj in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
 				FlipFailIndicator flipper = obj.GetComponent<FlipFailIndicator>();
@@ -292,6 +295,9 @@ public class GameStateManager : MonoBehaviour
 		targetState = newState;
 		RaisePauseEvent();
 		currentPerspective = view_perspectives[(int)newState];
+		if(previousState == ViewType.STANDARD_2D ){
+			CameraController.instance.setCameraOffset(new Vector3(0,0,0));
+		}
 		CameraController.instance.SetMount(view_mounts[(int)newState],currentPerspective);
 	}
 

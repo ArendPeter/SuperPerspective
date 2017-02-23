@@ -22,6 +22,7 @@ public class CameraController : MonoBehaviour
 	Vector3 velocity;               // Used by SmoothDamp function
 	Quaternion startRotation;       // Used to Slerp rotation to new mount
 	Matrix4x4 targetMatrix;         // The matrix containing camera settings to blend to
+  Vector3 posOffset;              // position offset
 
 	// TODO: Consider taking these last three as extra parameters in SetMount to dictate blend speeds on the fly
 	float smoothTime = .2f;         // Used to control the damp speed
@@ -57,18 +58,30 @@ public class CameraController : MonoBehaviour
 
         // Get the MatrixBlender script
         blender = gameObject.GetComponent<MatrixBlender>();
+
+        posOffset = new Vector3(0,0,0);
     }
 
 	// Since the behavior in each state is the same we execute behavior in Update and just check conditions to change state
 	void Update(){
-		checkStateChange();
+    Vector3 positionDif = transform.position - posOffset - mount.position;
+    if (positionDif.magnitude <= shiftThreshold){
+  		checkStateChange();
+    }
+	}
+
+	void FixedUpdate(){
+    Vector3 positionDif = transform.position - posOffset - mount.position;
+    if (positionDif.magnitude > shiftThreshold){
+  		checkStateChange();
+    }
 	}
 
 	void checkStateChange(){
 		if (mount != null && targetMatrix != null){
 			// Smoothdamp the camera towards the mount and blend the camera matrix to the target settings
-			transform.position = Vector3.SmoothDamp(transform.position, mount.position, ref velocity,
-				smoothTime / transitionSpeedFactor);
+			transform.position = Vector3.SmoothDamp(transform.position-posOffset, mount.position, ref velocity,
+				smoothTime / transitionSpeedFactor)+posOffset;
 
 			// If we haven't matched the 2D mount's rotation yet rotate to match
 			if (!(transform.rotation == mount.rotation))
@@ -90,6 +103,12 @@ public class CameraController : MonoBehaviour
 			}
 		}
 	}
+
+  public void setCameraOffset(Vector3 offset){
+    transform.position -= posOffset;
+    posOffset = offset;
+    transform.position += posOffset;
+  }
 
     #endregion Monobehavior Implementation
 
@@ -131,7 +150,7 @@ public class CameraController : MonoBehaviour
 
     private bool CheckTransitionOver()
     {
-        Vector3 positionDif = transform.position - mount.position;
+        Vector3 positionDif = transform.position - posOffset - mount.position;
         if (positionDif.magnitude > shiftThreshold){
             return false;
 				}
@@ -146,7 +165,7 @@ public class CameraController : MonoBehaviour
 
 	private bool CheckTransitionEnding()
 	{
-		Vector3 positionDif = transform.position - mount.position;
+		Vector3 positionDif = transform.position -posOffset - mount.position;
 		if (positionDif.magnitude / shiftThreshold > 1.1f){
 			return false;
 		}
