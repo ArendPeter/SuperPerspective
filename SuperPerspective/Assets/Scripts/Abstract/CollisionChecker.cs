@@ -64,7 +64,6 @@ public class CollisionChecker {
 		int count = 0;
 		for (int i = 0; i <= precision; i++) {
 			for (int j = 0; j <= precision; j++) {
-				Debug.DrawRay(new Vector3(centerX, minY + (maxY - minY) * (i / precision), minZ + (maxZ - minZ) * (j / precision)), dir);
 				connected = Physics.Raycast(new Vector3(centerX, minY + (maxY - minY) * (i / precision), minZ + (maxZ - minZ) * (j / precision)), dir, out hitInfo, distance);
 				hits[count++] = hitInfo;
 			}

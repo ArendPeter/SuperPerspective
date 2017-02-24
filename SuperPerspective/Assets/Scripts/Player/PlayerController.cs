@@ -614,6 +614,16 @@ public class PlayerController : PhysicalObject{
 		return connected;
 	}
 
+	private void setParticlesEnabled(bool enabled) {
+		foreach (ParticleSystem part in GetComponentsInChildren<ParticleSystem>()) {
+			if (part.gameObject.name != "DustEmitter" && part.gameObject.name != "LandingEmitter")
+				continue;
+			if (enabled)
+				part.Play();
+			else
+				part.Stop();
+		}
+	}
 
     #region EdgeGrabbing
 
@@ -704,10 +714,12 @@ public class PlayerController : PhysicalObject{
 	public bool isPaused(){ return _paused; }
 
 	public void setCutsceneMode(bool c){
+		setParticlesEnabled(!c);
 		if(c == false && getCutsceneMode() == true){
 			cutsceneModeDisableTime = Time.time;
 		}
-		cutsceneMode = c; }
+		cutsceneMode = c;
+	}
 
     public bool getCutsceneMode(){
         return cutsceneMode;}
@@ -823,10 +835,13 @@ public class PlayerController : PhysicalObject{
 	#endregion Accessor Methods
 
 	private void OnPauseGame(bool p){
-		if(p)
+		if(p) {
 			animator.pauseAnimation();
-		else
+			setParticlesEnabled(false);
+		} else {
 			animator.resumeAnimation();
+			setParticlesEnabled(true);
+		}
 
 		_paused = p;
 	}
