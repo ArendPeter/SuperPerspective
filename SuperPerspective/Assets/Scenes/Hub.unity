@@ -298,6 +298,34 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 11360011}
+--- !u!1 &17462982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 979085620}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 17462983}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17462983
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 979085620}
+  m_GameObject: {fileID: 17462982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &17598177
 Prefab:
   m_ObjectHideFlags: 0
@@ -23558,45 +23586,6 @@ Prefab:
     - target: {fileID: 414812, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000011591027188, guid: de83d96658944fd4684e4560f5cf49d2,
-        type: 2}
-      propertyPath: startDoorName
-      value: hub
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012042125544, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 157514, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 456992, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11452674, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: mask.m_Bits
-      value: 16384
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
-        type: 2}
-      propertyPath: startDoorName
-      value: hub
-      objectReference: {fileID: 0}
-    - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
-      propertyPath: convoArray.Array.data[4]
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11406978, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
       propertyPath: ivan
