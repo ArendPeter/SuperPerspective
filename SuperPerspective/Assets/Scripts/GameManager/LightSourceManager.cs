@@ -39,7 +39,7 @@ public class LightSourceManager : MonoBehaviour {
 				}
 			}
 		}catch(Exception e){
-			Debug.Log("Something's tagged as a light but doesn't have a light component");
+			//Debug.Log("Something's tagged as a light but doesn't have a light component");
 		}	
 	}
 	

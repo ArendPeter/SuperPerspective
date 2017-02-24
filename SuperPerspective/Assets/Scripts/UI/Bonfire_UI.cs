@@ -160,10 +160,10 @@ public class Bonfire_UI : MonoBehaviour {
 
     private void Teleport()
     {
-        Debug.Log("Choice: " + choice);
+        //Debug.Log("Choice: " + choice);
         if (choice == 10)
         {
-            Debug.Log("Whoops");
+            //Debug.Log("Whoops");
             closeFlag = true;
             active = false;
             readyForInput = false;

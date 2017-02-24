@@ -70,7 +70,7 @@ public class askBoxScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		showTextboxCheck();
-		printLoop();
+		//printLoop();
 		interactLoop();
 	}
 
@@ -153,7 +153,7 @@ public class askBoxScript : MonoBehaviour {
         enableBox();
         showBox = true;
         PlayerController.instance.setCutsceneMode(true);
-        print("Cutscenemode: "+PlayerController.instance.getCutsceneMode());
+        //print("Cutscenemode: "+PlayerController.instance.getCutsceneMode());
     }
 
 	//This method acts as an update loop for when the text box should be displaying normal conversation text.
@@ -216,7 +216,7 @@ public class askBoxScript : MonoBehaviour {
 		isFinishedDisplaying = false;
         if (currentNode.endEventArray[choiceID] != null)
         {
-            print("EndEvenTrigger!");
+            //print("EndEvenTrigger!");
             currentNode.endEventArray[choiceID].eventTrigger();
         }
         //First we check if what our answer even corresponds to even exists.

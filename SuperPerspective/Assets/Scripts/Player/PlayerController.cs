@@ -542,8 +542,6 @@ public class PlayerController : PhysicalObject{
   	}
 
 	private void applyGravity(){
-		if (TransitionManager.isTransitioning())
-			Debug.Log("yeah?");
 		float dt = (frameRate < 50)?(1 / 50f):Time.deltaTime;
 		if (edgeState != PlayerEdgeState.HANGING){
 			if (velocity.y <= 0)

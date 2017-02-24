@@ -14,7 +14,7 @@ public class Footsteps : StateMachineBehaviour {
 		step = Object.FindObjectOfType<StepManager> ();
         if (step == null)
         {
-            Debug.Log("StepManager not found");
+            //Debug.Log("StepManager not found");
             return;
         }
 		currentState = animator.GetCurrentAnimatorStateInfo(0);

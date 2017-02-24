@@ -25,7 +25,7 @@ public class SaveManager : MonoBehaviour {
 				for(int i = 0; i < 3; i++)
 					resetSave(i);
 		}else{
-			Debug.Log("The SaveManager can't find any checkpoints");
+			//Debug.Log("The SaveManager can't find any checkpoints");
 		}
 	}
 

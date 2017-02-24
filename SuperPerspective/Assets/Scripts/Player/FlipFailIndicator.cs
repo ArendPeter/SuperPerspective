@@ -17,7 +17,7 @@ public class FlipFailIndicator : MonoBehaviour {
 	void Start(){
 		this.GetComponent<Renderer>().enabled = false;
 		if(perspCam != null){
-			print("persp set");
+			//print("persp set");
 			sharedPerspCam = perspCam;
 		}
 	}

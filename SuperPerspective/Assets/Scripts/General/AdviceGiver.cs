@@ -114,7 +114,7 @@ public class AdviceGiver : MonoBehaviour {
                 }
             }
             if (swap) { ID = ID.Replace("end", "start"); }
-            print("result: " + ID);
+            //print("result: " + ID);
 
             textBoxScript.instance.startConvo((convoNode)(htab[ID]));
             ivan.anim.SetTrigger("Teach");

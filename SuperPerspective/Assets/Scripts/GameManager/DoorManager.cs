@@ -41,7 +41,7 @@ public class DoorManager : MonoBehaviour {
 				if(door.myName!="")
 					doors.Add(door.myName,door);
 			}catch(System.Exception e){
-				print("DoorManager : There are two doors named "+door.myName+". Please rename one of them");
+				//print("DoorManager : There are two doors named "+door.myName+". Please rename one of them");
 			}
 		}
         doorListView = doorList;

@@ -39,7 +39,7 @@ public class AmbientParticleHandler : MonoBehaviour {
 			if(player != null){
 				this.transform.SetParent(player.transform);
 				this.transform.position = Vector3.zero;
-				print("zero");
+				//print("zero");
 			}
 		}
 	}

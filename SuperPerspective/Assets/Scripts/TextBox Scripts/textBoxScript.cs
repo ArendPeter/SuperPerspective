@@ -287,7 +287,7 @@ public class textBoxScript : MonoBehaviour {
 
 	public void askQuestion(convoNode q)
 	{
-        print("trigger");
+        //print("trigger");
         askBoxPartner.activate(q);
         disableBox();
 	}

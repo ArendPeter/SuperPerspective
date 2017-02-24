@@ -15,12 +15,12 @@ public class ControllerUI_Update : MonoBehaviour {
 	void Update () {
         if (pcEnabled && Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames()[0] != "") {
             EnableXboxUI();
-            Debug.Log("Jostick: " + Input.GetJoystickNames()[0]);
+            //Debug.Log("Jostick: " + Input.GetJoystickNames()[0]);
         }
         else if (!pcEnabled && Input.GetJoystickNames().Length == 0)
         {
             EnablePCUI();
-            Debug.Log("Jostick: " + Input.GetJoystickNames().Length);
+            //Debug.Log("Jostick: " + Input.GetJoystickNames().Length);
         }
     }
 

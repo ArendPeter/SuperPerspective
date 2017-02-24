@@ -20,7 +20,7 @@ public class DevConsoleController : MonoBehaviour {
 			devConsole.transform.position = Vector3.zero;
 			devConsole.SetActive(false);
 		} else {
-			print("WARNING: Console_Menu not found!");
+			//print("WARNING: Console_Menu not found!");
 		}
 	}
 

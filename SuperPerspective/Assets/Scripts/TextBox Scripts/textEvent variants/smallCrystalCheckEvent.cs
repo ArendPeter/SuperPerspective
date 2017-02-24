@@ -37,7 +37,7 @@ public class smallCrystalCheckEvent : textEvent {
 
     public override void eventTrigger()
     {
-        print("TRIGGER");
+        //print("TRIGGER");
         tb.disableBox();
         ab.disableBox();
         ab.showBox = false;

@@ -57,7 +57,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
         chargeLight.intensity = 0;
         lg = GameObject.FindObjectOfType<LevelGeometry>();
 
-        Debug.Log("IntroCutsceneFinished = " + PlayerPrefs.GetString("IntroCutsceneFinished"));
+        //Debug.Log("IntroCutsceneFinished = " + PlayerPrefs.GetString("IntroCutsceneFinished"));
         if (skipAll || PlayerPrefs.GetString("IntroCutsceneFinished") == "true")
         {
            InteractableSpirit spirit = brokeCrystal.GetComponentInChildren<InteractableSpirit>();

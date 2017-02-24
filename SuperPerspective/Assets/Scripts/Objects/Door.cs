@@ -98,7 +98,7 @@ public class Door : ActiveInteractable {
             {
                 AG = GameObject.FindObjectOfType<AdviceGiver>();
             }
-            print("Teleport to " + destName);
+            //print("Teleport to " + destName);
             AG.currentLoc = destName;
 
             player.GetComponent<PlayerController>().Teleport(
@@ -121,7 +121,7 @@ public class Door : ActiveInteractable {
 				}
 			}
 		}else{
-			Debug.Log("Door not linked");
+			//Debug.Log("Door not linked");
 		}
     l.ResetZ();
   }

@@ -180,7 +180,7 @@ public class MobilePlatform : ActiveInteractable {
 				}
 			}
 			if (close != -1) {
-				print("break");
+				//print("break");
 				doBreak();
 			}
 		}

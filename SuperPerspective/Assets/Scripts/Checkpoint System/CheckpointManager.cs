@@ -146,7 +146,7 @@ public class CheckpointManager : MonoBehaviour {
 			}
 		}
 		if(!checkpointFound){
-			Debug.Log("You Lied >:( (i.e. Destination scene does not contain the correct checkpoint)");
+			//Debug.Log("You Lied >:( (i.e. Destination scene does not contain the correct checkpoint)");
 		}
 	}
 	
