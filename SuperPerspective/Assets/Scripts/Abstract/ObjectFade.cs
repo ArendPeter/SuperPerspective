@@ -64,14 +64,14 @@ public class ObjectFade : MonoBehaviour {
 				rend.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
 				rend.material.SetInt("_ZWrite", 0);
 				rend.material.EnableKeyword("_ALPHABLEND_ON");
-				rend.material.renderQueue = 3000;
+				rend.material.renderQueue = -1;
 			} else if (rend.material.GetFloat("_Mode") > 0) {
 				rend.material.SetFloat("_Mode", 0);
 				rend.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
 				rend.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
 				rend.material.SetInt("_ZWrite", 1);
 				rend.material.DisableKeyword("_ALPHABLEND_ON");
-				rend.material.renderQueue = 3000;
+				rend.material.renderQueue = -1;
 			}
 			if (col.a > setAlpha) {
 				col.a = col.a - fadeSpeed <= setAlpha ? setAlpha : col.a - fadeSpeed;
