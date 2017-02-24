@@ -27,7 +27,7 @@ public class Saved_UI : MonoBehaviour {
 		if(this.Timer > 0 && this.UIObject != null){
 			this.Timer--;
 			
-			int animateTime = 10;
+			int animateTime = 11;
 			int animateSpeed = 240;
 			//go up
 			if(this.Timer > defaultPopupTime - animateTime){
@@ -50,7 +50,7 @@ public class Saved_UI : MonoBehaviour {
 			this.Timer = defaultPopupTime;
 
 	        this.UIObject.transform.SetParent(canvas.transform, false);
-	        this.UIObject.transform.position = new Vector2(400, -50);
+	        this.UIObject.transform.position = new Vector2(Screen.width - 100, -50);
 		}
 	}
 }
