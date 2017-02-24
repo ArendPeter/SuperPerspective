@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class CharacterController2D : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class CharacterController2D : MonoBehaviour {
     int facingForward = 1;
     public Fadeout2D fade;
 
+    public AudioMixer masterMixer;
+
     public Orb2D orb;
 
     public Transform middle, orbMount;
@@ -30,6 +33,7 @@ public class CharacterController2D : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        masterMixer.SetFloat("MasterVol", 18);
         rb = GetComponent<Rigidbody2D>();
         InputManager.instance.JumpPressedEvent += Jump;
         anim = GetComponent<Animator>();
