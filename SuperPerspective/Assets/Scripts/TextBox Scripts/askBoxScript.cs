@@ -18,6 +18,7 @@ public class askBoxScript : MonoBehaviour {
 	public int lineLength = 25; //Number of characters per line
 	public float kerning = 1f;//Space between characters
 	public float vSpace = 6f;//Space between lines
+    public float cursorXValue = 30f;
 
 	//Display Speed variables
 	public float textSpeed = 15f;
@@ -269,7 +270,7 @@ public class askBoxScript : MonoBehaviour {
 	{
 		if (isFinishedDisplaying) { //If it's finshed displaying, that means it's time to MAKE A CHOICE.
 			text.alignment = TextAnchor.MiddleLeft;
-            text.transform.position = new Vector3(textArray[choiceID].transform.position.x - 30, textArray[choiceID].transform.position.y, 0);
+            text.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
 			text.text = "➽";
 
 			if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interaction"))
