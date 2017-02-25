@@ -64,7 +64,7 @@ public class ObjectFade : MonoBehaviour {
 				rend.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
 				rend.material.SetInt("_ZWrite", 0);
 				rend.material.EnableKeyword("_ALPHABLEND_ON");
-				rend.material.renderQueue = -1;
+				rend.material.renderQueue = 3000;
 			} else if (rend.material.GetFloat("_Mode") > 0) {
 				rend.material.SetFloat("_Mode", 0);
 				rend.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
