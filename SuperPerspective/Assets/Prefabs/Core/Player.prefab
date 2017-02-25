@@ -2922,8 +2922,8 @@ GameObject:
   - component: {fileID: 11425672}
   - component: {fileID: 11415094}
   - component: {fileID: 11471126}
-  - component: {fileID: 11406978}
   - component: {fileID: 114000012169114140}
+  - component: {fileID: 114536066298469390}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -8383,61 +8383,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11406978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5f1370c1b52c740b98b3a2cfe9684f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLoc: 
-  convoArray:
-  - {fileID: 11417412, guid: 04b595bbe5e4d1d4c9839701833f4754, type: 2}
-  - {fileID: 11417412, guid: e6580890e1b194841b34d139f327146b, type: 2}
-  - {fileID: 11417412, guid: 027df0e479747e64cb196f25f20a0afb, type: 2}
-  - {fileID: 11417412, guid: 1f98b649f7f49eb4889591a76c8b5b8a, type: 2}
-  - {fileID: 11417412, guid: 576533a7ddf6561448971b35067cbf7b, type: 2}
-  - {fileID: 11417412, guid: 65f04fa4928bbf94b968fd0ae9e496b2, type: 2}
-  - {fileID: 11417412, guid: d766c5f6414d22342bf1b1a721212b8f, type: 2}
-  - {fileID: 11417412, guid: 4597fb8da88837c4bba5f3fc6ba47f3b, type: 2}
-  - {fileID: 11417412, guid: fded39ef999a8ed4c84c155494e61f96, type: 2}
-  - {fileID: 11417412, guid: 0de3dec1cb31c994e82fe43060af300e, type: 2}
-  - {fileID: 11417412, guid: e334f72ec00166145963cf0c76179399, type: 2}
-  - {fileID: 11417412, guid: b67243d11bd681b44802c25e6a2cfb78, type: 2}
-  - {fileID: 11417412, guid: b19ae645b7d48a2409d7eb8da175e9f6, type: 2}
-  - {fileID: 11417412, guid: 59694cddb9fa13a4c9718210d10f3981, type: 2}
-  - {fileID: 11417412, guid: 90d8d29e2c53f324fbdc62b3ee07fc2c, type: 2}
-  - {fileID: 11417412, guid: a052a6895c49d6747abd3490ac8b4afa, type: 2}
-  - {fileID: 11417412, guid: b19d15674f1b66c4d858270bada893c5, type: 2}
-  - {fileID: 11417412, guid: 3b53152d54cf17e48841fc163a6ecf48, type: 2}
-  - {fileID: 11417412, guid: 9d65096827f6b5246af2d6af08822c1c, type: 2}
-  - {fileID: 11417412, guid: 076e299285370fb4190ef84243223863, type: 2}
-  - {fileID: 11417412, guid: bbb431f57ba37bb4bb11270fb043e734, type: 2}
-  - {fileID: 11417412, guid: 3eae5e9a24cb3b645b1df93b66d221fd, type: 2}
-  - {fileID: 11417412, guid: 466536321cd7f3c48bfda47b186e7eb5, type: 2}
-  - {fileID: 11417412, guid: b79147ebab1404e4297becf1be0679f1, type: 2}
-  - {fileID: 11417412, guid: 193f4113448d2d748a7791ff878f4009, type: 2}
-  - {fileID: 11417412, guid: 05950f96b679ec54c866bc117cf47b74, type: 2}
-  - {fileID: 11417412, guid: 4302f95ea40f7584498e69ff23f2017c, type: 2}
-  - {fileID: 11417412, guid: efdca9e7565e4a74ca8d112c748ff761, type: 2}
-  - {fileID: 11417412, guid: 729a9fdf3f6226d4bbaae5ae47fdc631, type: 2}
-  - {fileID: 11417412, guid: 7155f14934f4a2845af0caec40763722, type: 2}
-  - {fileID: 11417412, guid: decba7d537fcb504aaa56ee516029d4d, type: 2}
-  - {fileID: 11417412, guid: 2919d76b3b133374fafe79af11086c40, type: 2}
-  - {fileID: 11417412, guid: ff3051f757525904ba06ca0f27834115, type: 2}
-  - {fileID: 11417412, guid: d4e7bb6aac8965e4c9d4a368ca552ee2, type: 2}
-  - {fileID: 11417412, guid: bedf0a2f2dc1139449252b71840430f4, type: 2}
-  - {fileID: 11417412, guid: c7ac89e35a537844c9142d2cbcd67b57, type: 2}
-  - {fileID: 11417412, guid: 76f3de272f0da6448bdb40c2a22e34d0, type: 2}
-  defaultNode: {fileID: 11417412, guid: 8d646c6eb918eef479bbe88cb6654516, type: 2}
-  pspawn: {fileID: 0}
-  panim: {fileID: 0}
-  ivan: {fileID: 0}
-  help: 0
 --- !u!114 &11414120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18535,6 +18480,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clothesSound: {fileID: 0}
+--- !u!114 &114536066298469390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5f1370c1b52c740b98b3a2cfe9684f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLoc: 
+  convoArray:
+  - {fileID: 11417412, guid: 04b595bbe5e4d1d4c9839701833f4754, type: 2}
+  - {fileID: 11417412, guid: e6580890e1b194841b34d139f327146b, type: 2}
+  - {fileID: 11417412, guid: 027df0e479747e64cb196f25f20a0afb, type: 2}
+  - {fileID: 11417412, guid: 1f98b649f7f49eb4889591a76c8b5b8a, type: 2}
+  - {fileID: 11417412, guid: 576533a7ddf6561448971b35067cbf7b, type: 2}
+  - {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f, type: 2}
+  - {fileID: 11417412, guid: d766c5f6414d22342bf1b1a721212b8f, type: 2}
+  - {fileID: 11417412, guid: 4597fb8da88837c4bba5f3fc6ba47f3b, type: 2}
+  - {fileID: 11417412, guid: fded39ef999a8ed4c84c155494e61f96, type: 2}
+  - {fileID: 11417412, guid: 0de3dec1cb31c994e82fe43060af300e, type: 2}
+  - {fileID: 11417412, guid: e334f72ec00166145963cf0c76179399, type: 2}
+  - {fileID: 11417412, guid: b67243d11bd681b44802c25e6a2cfb78, type: 2}
+  - {fileID: 11417412, guid: b19ae645b7d48a2409d7eb8da175e9f6, type: 2}
+  - {fileID: 11417412, guid: 59694cddb9fa13a4c9718210d10f3981, type: 2}
+  - {fileID: 11417412, guid: 90d8d29e2c53f324fbdc62b3ee07fc2c, type: 2}
+  - {fileID: 11417412, guid: a052a6895c49d6747abd3490ac8b4afa, type: 2}
+  - {fileID: 11417412, guid: b19d15674f1b66c4d858270bada893c5, type: 2}
+  - {fileID: 11417412, guid: 3b53152d54cf17e48841fc163a6ecf48, type: 2}
+  - {fileID: 11417412, guid: 9d65096827f6b5246af2d6af08822c1c, type: 2}
+  - {fileID: 11417412, guid: 076e299285370fb4190ef84243223863, type: 2}
+  - {fileID: 11417412, guid: bbb431f57ba37bb4bb11270fb043e734, type: 2}
+  - {fileID: 11417412, guid: 3eae5e9a24cb3b645b1df93b66d221fd, type: 2}
+  - {fileID: 11417412, guid: 466536321cd7f3c48bfda47b186e7eb5, type: 2}
+  - {fileID: 11417412, guid: b79147ebab1404e4297becf1be0679f1, type: 2}
+  - {fileID: 11417412, guid: 193f4113448d2d748a7791ff878f4009, type: 2}
+  - {fileID: 11417412, guid: 05950f96b679ec54c866bc117cf47b74, type: 2}
+  - {fileID: 11417412, guid: 4302f95ea40f7584498e69ff23f2017c, type: 2}
+  - {fileID: 11417412, guid: efdca9e7565e4a74ca8d112c748ff761, type: 2}
+  - {fileID: 11417412, guid: 729a9fdf3f6226d4bbaae5ae47fdc631, type: 2}
+  - {fileID: 11417412, guid: 7155f14934f4a2845af0caec40763722, type: 2}
+  - {fileID: 11417412, guid: decba7d537fcb504aaa56ee516029d4d, type: 2}
+  - {fileID: 11417412, guid: 2919d76b3b133374fafe79af11086c40, type: 2}
+  - {fileID: 11417412, guid: ff3051f757525904ba06ca0f27834115, type: 2}
+  - {fileID: 11417412, guid: d4e7bb6aac8965e4c9d4a368ca552ee2, type: 2}
+  - {fileID: 11417412, guid: bedf0a2f2dc1139449252b71840430f4, type: 2}
+  - {fileID: 11417412, guid: c7ac89e35a537844c9142d2cbcd67b57, type: 2}
+  - {fileID: 11417412, guid: 76f3de272f0da6448bdb40c2a22e34d0, type: 2}
+  defaultNode: {fileID: 11417412, guid: 8d646c6eb918eef479bbe88cb6654516, type: 2}
+  pspawn: {fileID: 0}
+  panim: {fileID: 0}
+  ivan: {fileID: 0}
+  help: 0
 --- !u!114 &114634400842504880
 MonoBehaviour:
   m_ObjectHideFlags: 1
