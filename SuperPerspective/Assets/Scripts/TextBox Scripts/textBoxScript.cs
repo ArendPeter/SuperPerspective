@@ -253,6 +253,7 @@ public class textBoxScript : MonoBehaviour {
                         if (currentNode.hasTextEndEvent)
                         {
                             currentNode.endTextEvent.eventTrigger();
+                            print("Event");
                         }
                     }
                 }
