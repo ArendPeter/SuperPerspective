@@ -163,10 +163,18 @@ public class textBoxScript : MonoBehaviour {
 	{
         //textSpeed = resetTextSpeed;
         showBox = false;
+        showEndLine = false;
 		disableBox();
         uim.StopCrystalFairyTheme();
 	}
-	public void enableBox()//This enables the textbox so you can see it.
+    public void endConvoNoTheme()//Ends the conversation! Use this at the end of EVERYTHING.
+    {
+        //textSpeed = resetTextSpeed;
+        showBox = false;
+        showEndLine = false;
+        disableBox();
+    }
+    public void enableBox()//This enables the textbox so you can see it.
 	{
 		textbox.enabled = true;
 		text.enabled = true;
@@ -246,7 +254,11 @@ public class textBoxScript : MonoBehaviour {
                             {
                                 if (currentNode.endCrystalFairyThemeOverride)
                                 {
-                                    endConvo();
+                                    endConvoNoTheme();
+                                }
+                                else
+                                {
+                                     endConvo();
                                 }
                             }
                         }

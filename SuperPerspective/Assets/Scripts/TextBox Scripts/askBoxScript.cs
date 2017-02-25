@@ -8,7 +8,7 @@ public class askBoxScript : MonoBehaviour {
 	public GameObject textStartPoint; //Tells where our text will begin generating.
     public convoNode currentNode; //This is the node we are currently pulling info from
     public textBoxScript textBoxPartner; //Our askBox's textbox partner to switch between
-    private PlayerController player;
+    public PlayerController player;
 
     public string question;//The question we ponder the the answer to.
 	public string[] choiceArray; //Holds the strings we want to display in the textbox.

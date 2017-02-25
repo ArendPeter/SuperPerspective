@@ -174,7 +174,7 @@ public class PlayerController : PhysicalObject{
 
     private void OnInteract()
     {
-        if (canInteract)
+        if (canInteract && getCutsceneMode() == false)
         {
             hit.collider.gameObject.GetComponent<GreatCrystalWall>().Activate();
         }
