@@ -102,6 +102,7 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayCrystalFairyTheme()
     {
+        print("lolol");
         //If statement is hotfix for menu bug where theme doesn't play
         if (SceneManager.GetActiveScene().name != "Hub")
         {
@@ -120,6 +121,7 @@ public class UISFXManager : MonoBehaviour {
     }
     public void StopCrystalFairyTheme()
     {
+        print("lolol");
         //If statement is hotfix for menu bug where theme doesn't play
         if (SceneManager.GetActiveScene().name != "Hub")
         {

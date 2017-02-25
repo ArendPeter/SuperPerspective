@@ -238,7 +238,17 @@ public class textBoxScript : MonoBehaviour {
                         }
                         else //This means we have no questions, and can safely end the conversation once and for all.
                         {
-                            endConvo();
+                            if (currentNode.hasNext)
+                            {
+                                startConvo(currentNode.nextNodeArray[0]);
+                            }
+                            else
+                            {
+                                if (currentNode.endCrystalFairyThemeOverride)
+                                {
+                                    endConvo();
+                                }
+                            }
                         }
                         if (currentNode.hasTextEndEvent)
                         {

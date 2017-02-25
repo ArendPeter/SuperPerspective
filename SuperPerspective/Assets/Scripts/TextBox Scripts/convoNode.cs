@@ -26,6 +26,8 @@ public class convoNode : MonoBehaviour {
     public textEvent[] endEventArray;//The Events you want to happen based on the answer to the question at the end.
     public textEvent endTextEvent;//Event that happens if you have text but want an event.
 
+    public bool endCrystalFairyThemeOverride = false;//In the specific case where Ivan's music has stopped before the Textbox has finished, DON'T STOP THE MUSIC.
+
 	// Use this for initialization
 	void Start () {
 	
