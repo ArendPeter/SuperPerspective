@@ -47,25 +47,29 @@ public class ConsoleActionsManager : MonoBehaviour {
 			switch(command){
 				case "givekey":
 					Key.GiveKeys(int.Parse(val));
-					//Debug.Log("Console: giving player " + val + " keys");
+					//print("Console: giving player " + val + " keys");
 					break;
 				case "tp":
 					movePlayer(val);
-					//Debug.Log("Console: moving player to door " + val);
+					//print("Console: moving player to door " + val);
 					break;
 				case "hub":
 					moveToScene(val);
-					//Debug.Log("Console: moving player to scene " + val);
+					//print("Console: moving player to scene " + val);
 					break;
 				case "credits":
 					dcl.text = "Nick Shooter, Peter Aquila, Larry Smith, Arend Peter Castelein, Daniel Xiao - Thank you!";
 					break;
 				case "resetprefs":
 					PlayerPrefs.DeleteAll();
-					//Debug.Log("Console: resetting player prefs.");
+					//print("Console: resetting player prefs.");
+					break;
+				case "skipivan":
+					PlayerPrefs.SetString("IntroCutsceneFinished", "true");
+					movePlayer("t2-end");
 					break;
 				default:
-					//Debug.Log("Console: command " + command + " not found ");
+					//print("Console: command " + command + " not found ");
 					break;
 			}
 		}
