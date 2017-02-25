@@ -84,7 +84,7 @@ public class GameStateManager : MonoBehaviour
 		mounts[(int)ViewType.STANDARD_3D] = GameObject.Find("3DCameraMount");
 		mounts[(int)ViewType.STANDARD_2D] = GameObject.Find("2DCameraMount");
 		mounts[(int)ViewType.MENU] = GameObject.Find("MenuMount");
-		mounts[(int)ViewType.WAYSTONE_MENU] = GameObject.Find("MenuMount");
+		mounts[(int)ViewType.WAYSTONE_MENU] = GameObject.Find("PauseMount");
 		mounts[(int)ViewType.LEAN_LEFT] = GameObject.Find("LeanLeftCameraMount");
 		mounts[(int)ViewType.LEAN_RIGHT] = GameObject.Find("LeanRightCameraMount");
 		mounts[(int)ViewType.BACKWARD] = GameObject.Find("BackwardCameraMount");
@@ -290,6 +290,7 @@ public class GameStateManager : MonoBehaviour
 		bool targetOnNewState = (newState == targetState);
 		if(targetOnNewState) return;
 
+		UpdatePauseMount();
 		CheckForPauseMenu(newState);
 
 		previousState = targetState;
@@ -308,9 +309,6 @@ public class GameStateManager : MonoBehaviour
 
 		bool goingToPauseMenu = (targetState == ViewType.PAUSE_MENU);
 
-		if(goingToPauseMenu)
-			UpdatePauseMount();
-
 		PauseMenu.instance.UpdateMenuVisible(goingToPauseMenu);
 	}
 
@@ -318,8 +316,10 @@ public class GameStateManager : MonoBehaviour
 		Transform newMount = IslandControl.instance.findCurrentPauseMount();
 		if(newMount == null){
 			view_mounts[(int)ViewType.PAUSE_MENU] = view_mounts[(int)ViewType.STANDARD_3D];
+			view_mounts[(int)ViewType.WAYSTONE_MENU] = view_mounts[(int)ViewType.STANDARD_3D];
 		}else{
 			view_mounts[(int)ViewType.PAUSE_MENU] = newMount;
+			view_mounts[(int)ViewType.WAYSTONE_MENU] = newMount;
 		}
 	}
 
