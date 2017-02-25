@@ -124,7 +124,7 @@ public class ActiveInteractable : PhysicalObject
         {
             notiMarker.updateVisible(true);
         }
-        else if (canTrigger && notificationCanBeShown)
+        else if (canTrigger && notificationCanBeShown && !DevConsoleController.instance.isConsoleActive())
         {
             selected = this;
             notiShown = true;
