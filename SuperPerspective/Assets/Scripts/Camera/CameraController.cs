@@ -28,7 +28,8 @@ public class CameraController : MonoBehaviour
 	float smoothTime = .2f;         // Used to control the damp speed
 	float turnSpeed = 3f;           // USed to dictate how quickly the camera can match its target rotation
 	float cameraBlendSpeed = .07f;  // USed to determine how quickly the camera changes from one setting to another and vice versa
-	float shiftThreshold = .5f;     // Use to determine if the camera is close enough to the mount's position and rotation to consider the shift complete
+	float shiftThreshold = .5f;     
+	float transitionThreshold = 5f; // Use to determine if the camera is close enough to the mount's position and rotation to consider the shift complete
 	float transitionSpeedFactor = 1f;
 
 	public float maxLeanAngle = 30f;
@@ -64,21 +65,21 @@ public class CameraController : MonoBehaviour
 
 	// Since the behavior in each state is the same we execute behavior in Update and just check conditions to change state
 	void Update(){
-		if (mount != null && targetMatrix != null){
-      Vector3 positionDif = transform.position - posOffset - mount.position;
-      if (positionDif.magnitude <= shiftThreshold){
-    		checkStateChange();
-      }
-    }
+		if (mount != null && targetMatrix != null) {
+      		Vector3 positionDif = transform.position - posOffset - mount.position;
+			if (positionDif.magnitude <= transitionThreshold){
+	    		checkStateChange();
+	      	}
+	    }
 	}
 
 	void FixedUpdate(){
-		if (mount != null && targetMatrix != null){
-      Vector3 positionDif = transform.position - posOffset - mount.position;
-      if (positionDif.magnitude > shiftThreshold){
-    		checkStateChange();
-      }
-    }
+		if (mount != null && targetMatrix != null) {
+     		Vector3 positionDif = transform.position - posOffset - mount.position;
+			if (positionDif.magnitude > transitionThreshold){
+	    		checkStateChange();
+	      	}
+	    }
 	}
 
 	void checkStateChange(){
