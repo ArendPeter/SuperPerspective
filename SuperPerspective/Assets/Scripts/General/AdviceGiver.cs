@@ -70,7 +70,7 @@ public class AdviceGiver : MonoBehaviour {
             }
             else
             {
-                if (Input.GetKey(KeyCode.T) || help)
+                if ((Input.GetKey(KeyCode.T) || help) && !DevConsoleController.instance.isConsoleActive())
                 {
                     if (htab.ContainsKey(currentLoc))
                     {
