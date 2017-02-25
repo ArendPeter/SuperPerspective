@@ -64,42 +64,44 @@ public class CameraController : MonoBehaviour
 
 	// Since the behavior in each state is the same we execute behavior in Update and just check conditions to change state
 	void Update(){
-    Vector3 positionDif = transform.position - posOffset - mount.position;
-    if (positionDif.magnitude <= shiftThreshold){
-  		checkStateChange();
+		if (mount != null && targetMatrix != null){
+      Vector3 positionDif = transform.position - posOffset - mount.position;
+      if (positionDif.magnitude <= shiftThreshold){
+    		checkStateChange();
+      }
     }
 	}
 
 	void FixedUpdate(){
-    Vector3 positionDif = transform.position - posOffset - mount.position;
-    if (positionDif.magnitude > shiftThreshold){
-  		checkStateChange();
+		if (mount != null && targetMatrix != null){
+      Vector3 positionDif = transform.position - posOffset - mount.position;
+      if (positionDif.magnitude > shiftThreshold){
+    		checkStateChange();
+      }
     }
 	}
 
 	void checkStateChange(){
-		if (mount != null && targetMatrix != null){
-			// Smoothdamp the camera towards the mount and blend the camera matrix to the target settings
-			transform.position = Vector3.SmoothDamp(transform.position-posOffset, mount.position, ref velocity,
-				smoothTime / transitionSpeedFactor)+posOffset;
+		// Smoothdamp the camera towards the mount and blend the camera matrix to the target settings
+		transform.position = Vector3.SmoothDamp(transform.position-posOffset, mount.position, ref velocity,
+			smoothTime / transitionSpeedFactor)+posOffset;
 
-			// If we haven't matched the 2D mount's rotation yet rotate to match
-			if (!(transform.rotation == mount.rotation))
-				 transform.rotation = Quaternion.RotateTowards(transform.rotation, mount.rotation,
-				  	turnSpeed * transitionSpeedFactor);
+		// If we haven't matched the 2D mount's rotation yet rotate to match
+		if (!(transform.rotation == mount.rotation))
+			 transform.rotation = Quaternion.RotateTowards(transform.rotation, mount.rotation,
+			  	turnSpeed * transitionSpeedFactor);
 
-			// Check if the shift is complete
-			if (!transitionComplete){
-				if (CheckTransitionEnding() && !transitionEnding){
-					transitionEnding = true;
-					RaiseEvent(TransitionEndingEvent);
-				}
-				// IF the shift is over alert listeners
-				if (CheckTransitionOver()){
-					transitionComplete = true;
-					transitionSpeedFactor = 1f;
-					RaiseEvent(TransitionCompleteEvent);
-				}
+		// Check if the shift is complete
+		if (!transitionComplete){
+			if (CheckTransitionEnding() && !transitionEnding){
+				transitionEnding = true;
+				RaiseEvent(TransitionEndingEvent);
+			}
+			// IF the shift is over alert listeners
+			if (CheckTransitionOver()){
+				transitionComplete = true;
+				transitionSpeedFactor = 1f;
+				RaiseEvent(TransitionCompleteEvent);
 			}
 		}
 	}
