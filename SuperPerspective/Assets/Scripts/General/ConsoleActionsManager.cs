@@ -60,6 +60,10 @@ public class ConsoleActionsManager : MonoBehaviour {
 				case "credits":
 					dcl.text = "Nick Shooter, Peter Aquila, Larry Smith, Arend Peter Castelein, Daniel Xiao - Thank you!";
 					break;
+				case "softreset":
+					PlayerPrefs.DeleteAll();
+					PlayerPrefs.SetString("IntroCutsceneFinished", "true");
+					break;
 				case "resetprefs":
 					PlayerPrefs.DeleteAll();
 					//print("Console: resetting player prefs.");
