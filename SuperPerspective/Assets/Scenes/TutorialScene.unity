@@ -29834,6 +29834,17 @@ Prefab:
       propertyPath: ivan
       value: 
       objectReference: {fileID: 2071204100}
+    - target: {fileID: 114150683813767070, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: convoArray.Array.data[5]
+      value: 
+      objectReference: {fileID: 11417412, guid: 4a1e8d8fc4f8b0549b63f5eea4b1b43f,
+        type: 2}
+    - target: {fileID: 114000012169114140, guid: de83d96658944fd4684e4560f5cf49d2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de83d96658944fd4684e4560f5cf49d2, type: 2}
   m_IsPrefabParent: 0
@@ -32238,7 +32249,7 @@ MonoBehaviour:
   shouldDissolveShield: 0
   dissolveShield: {fileID: 276846534}
   dissolveAmount: 0
-  dissolveSpeed: 0.005
+  dissolveSpeed: 0.25
   skipAll: 0
   shouldExplode: 0
   chargeLight: {fileID: 647460725}
@@ -32246,7 +32257,7 @@ MonoBehaviour:
   brokeCrystal: {fileID: 1548093211}
   chargeAmount: 0
   chargeMax: 1
-  chargeSpeed: 0.01
+  chargeSpeed: 1
   dissArr:
   - {fileID: 499368001}
   - {fileID: 1014894452}

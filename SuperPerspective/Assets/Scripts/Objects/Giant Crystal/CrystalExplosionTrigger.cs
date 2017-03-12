@@ -115,7 +115,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
             {
                 //Keep going
                 dissolveRenderer.material.SetFloat("_SliceAmount", dissolveAmount);
-                dissolveAmount += dissolveSpeed;
+                dissolveAmount += Time.deltaTime * dissolveSpeed;
                 wholeRenderer.material.SetFloat("_DetailRange", 0);
                 wholeRenderer.material.SetFloat("_EmissionAmount", 1);
             }
@@ -137,7 +137,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
                         wholeRenderer.material.SetFloat("_DetailRange", 2);
                         wholeRenderer.material.SetFloat("_EmissionAmount", (chargeMax - chargeAmount));
                     }
-                    chargeAmount += chargeSpeed;
+                    chargeAmount += Time.deltaTime * chargeSpeed;
                     chargeLight.intensity = chargeAmount;
                 }
                 else
