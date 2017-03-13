@@ -14,8 +14,11 @@ public class EarControl : MonoBehaviour {
 	void Start () {
 		lEar = GameObject.Find("EarNL");
 		rEar = GameObject.Find("EarNR");
-		earGlow = GameObject.Find("EarGlow");
-		player = GetComponent<PlayerController>();
+        if (!(earGlow != null))
+        {
+            earGlow = GameObject.Find("EarGlow");
+        }
+        player = GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
