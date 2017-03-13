@@ -72,14 +72,17 @@ public class AdviceGiver : MonoBehaviour {
             {
                 if ((Input.GetKey(KeyCode.T) || help) && !DevConsoleController.instance.isConsoleActive())
                 {
-                    if (htab.ContainsKey(currentLoc))
-                    {
-                        giveAdvice(currentLoc);
-                    }
-                    else
-                    {
-                        textBoxScript.instance.startConvo(defaultNode);
-                    }
+                string tempLoc = currentLoc;//Make a temp string to run tests on.
+                tempLoc = locSwapCheck(tempLoc);//Run the string through an End/Start switcher (but only if END is found.)
+                if (htab.ContainsKey(tempLoc))//Then check the Dictionary.
+                {
+                    giveAdvice(tempLoc);
+                }
+
+                else
+                {
+                    textBoxScript.instance.startConvo(defaultNode);
+                }
                 }
                 
             }
@@ -96,25 +99,35 @@ public class AdviceGiver : MonoBehaviour {
         }
     }
 
-    public void giveAdvice(string ID)
+    public string locSwapCheck(string ID)
     {
-            bool swap = false;
-            char[] chArr = ID.ToCharArray();
-            for (int i = 0; i < chArr.Length; i++)
+
+        bool swap = false;
+        char[] chArr = ID.ToCharArray();
+        for (int i = 0; i < chArr.Length; i++)
+        {
+            if (chArr[i] == 'e')
             {
-                if (chArr[i] == 'e')
+                if (chArr[i + 1] == 'n')
                 {
-                    if (chArr[i + 1] == 'n')
+                    if (chArr[i + 2] == 'd')
                     {
-                        if (chArr[i + 2] == 'd')
-                        {
-                            swap = true;
-                        }
+                        swap = true;
                     }
                 }
             }
-            if (swap) { ID = ID.Replace("end", "start"); }
-            //print("result: " + ID);
+        }
+        if (swap)
+        {
+            ID = ID.Replace("end", "start");
+            print("result: " + ID);
+        }
+        return ID;
+    }
+
+    public void giveAdvice(string ID)
+    {
+            
 
             textBoxScript.instance.startConvo((convoNode)(htab[ID]));
             ivan.anim.SetTrigger("Teach");
