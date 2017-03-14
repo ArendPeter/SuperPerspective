@@ -188,6 +188,11 @@ public class Pause_UI : MonoBehaviour {
         }
     }
 
+    public void pausePressed()
+    {
+        gs.HandlePausePressed();
+    }
+
     public void returnToHUB()
     {
         pauseMenu.returnToHUB();
