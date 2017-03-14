@@ -25,13 +25,29 @@ public class FairyFollow : MonoBehaviour {
     [Tooltip("Whether or not we should even be floating towards our target")]
     public bool shouldFollow = true;
 
+    public float updateTimer = 0.0005f;
+    private float resetTimer;
+
 	// Use this for initialization
 	void Start () {
         init();
+        resetTimer = updateTimer;
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (updateTimer <= 0)
+        {
+            updateLoc();
+            updateTimer = resetTimer;
+        }
+        updateTimer -= Time.deltaTime * followSpeed;
+
+    }
+
+    public void updateLoc()
+    {
         if (mount != null)
         {
             if (shouldFollow)
