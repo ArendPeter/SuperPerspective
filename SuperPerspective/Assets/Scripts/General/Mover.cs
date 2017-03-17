@@ -109,7 +109,7 @@ public class Mover : Activatable {
 
 	void Update(){
 		bool atDest = (activated && prog == 1) || (!activated && prog == 0);
-		if (!PlayerController.instance.isPaused() && !atDest && !isSomethingInWay()){
+		if (!PlayerController.instance.isPaused() && !atDest && !isSomethingInWay() && !PlayerAnimController.isLearning()){
             //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
 			prog = Mathf.Clamp01(prog); //clamp between 0 and 1

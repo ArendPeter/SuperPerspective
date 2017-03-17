@@ -150,6 +150,12 @@ public class PlayerAnimController : MonoBehaviour {
         }
     }
 
+	public static bool isLearning(){
+		bool start = instance.anim.GetCurrentAnimatorStateInfo(0).IsName("LearningStart");
+		bool wait = instance.anim.GetCurrentAnimatorStateInfo(0).IsName("LearningWait");
+		return (start || wait) && PlayerController.instance.getCutsceneMode();
+	}
+
 
     #region public interface
 
