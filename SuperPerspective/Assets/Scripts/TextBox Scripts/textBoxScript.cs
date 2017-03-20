@@ -165,7 +165,10 @@ public class textBoxScript : MonoBehaviour {
         showBox = false;
         showEndLine = false;
 		disableBox();
-        uim.StopCrystalFairyTheme();
+        if (!currentNode.endCrystalFairyThemeOverride)
+        {
+            uim.StopCrystalFairyTheme();
+        }
 	}
     public void endConvoNoTheme()//Ends the conversation! Use this at the end of EVERYTHING.
     {
