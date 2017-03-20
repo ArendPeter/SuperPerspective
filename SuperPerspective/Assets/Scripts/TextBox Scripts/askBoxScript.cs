@@ -67,7 +67,7 @@ public class askBoxScript : MonoBehaviour {
     }
     void XboxMenuDown()
     {
-        moveDown = false;
+        moveDown = true;
     }
 
     // Use this for initialization
@@ -290,12 +290,13 @@ public class askBoxScript : MonoBehaviour {
 
             if (moveUp)
             {
-                choiceID = Mathf.Max(0, choiceID--);
+                choiceID--;
             }
-            if (moveDown)
+            else if (moveDown)
             {
-                choiceID = Mathf.Min(textArray.Length-1, choiceID++);
+                choiceID++;
             }
+            choiceID = Mathf.Clamp(choiceID, 0, textArray.Length - 1);
 
 			if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interaction"))
 			{

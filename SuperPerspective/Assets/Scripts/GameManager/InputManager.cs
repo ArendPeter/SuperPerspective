@@ -176,7 +176,7 @@ public class InputManager : MonoBehaviour{
     {
 		float stickInput = Input.GetAxis("Vertical");
 		if(Mathf.Abs(stickInput) < .25f) stickInput = 0f;
-		bool usingDpad = stickInput <
+		bool usingDpad = Mathf.Abs(stickInput) <
 			Mathf.Abs(Input.GetAxis("Menu"));
 		if(usingDpad){
 	        return Input.GetAxis("Menu");
