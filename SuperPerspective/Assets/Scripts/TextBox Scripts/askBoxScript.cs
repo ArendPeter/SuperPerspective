@@ -56,11 +56,24 @@ public class askBoxScript : MonoBehaviour {
     private int chatterTrigger = 2;
     private int chatterCount = 0;
 
+    private bool moveUp, moveDown;
+
     //This is so we can stop music that shouldn't be playing anymore.
     UISFXManager uim;
 
+    void XboxMenuUp()
+    {
+        moveUp = true;
+    }
+    void XboxMenuDown()
+    {
+        moveDown = false;
+    }
+
     // Use this for initialization
     void Start () {
+        InputManager.instance.MenuDownEvent += XboxMenuDown;
+        InputManager.instance.MenuUpEvent += XboxMenuUp;
         uim = GameObject.FindObjectOfType<UISFXManager>();
         chatter = GameObject.FindObjectOfType<CharacterChatter>();
 		resetTimer = tinyTimer;
@@ -73,6 +86,8 @@ public class askBoxScript : MonoBehaviour {
 		showTextboxCheck();
 		printLoop();
 		interactLoop();
+        moveUp = false;
+        moveDown = false;
 	}
 
 	public void init()
@@ -273,32 +288,18 @@ public class askBoxScript : MonoBehaviour {
             text.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
 			text.text = "➽";
 
+            if (moveUp)
+            {
+                choiceID = Mathf.Max(0, choiceID--);
+            }
+            if (moveDown)
+            {
+                choiceID = Mathf.Min(textArray.Length-1, choiceID++);
+            }
+
 			if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interaction"))
 			{
 				makeChoice();
-			}
-
-			bool upPressed = false, downPressed = false;
-			if(verticalAxisReleased){
-				if(Input.GetAxis("Vertical")>.25){
-					upPressed = true;
-					verticalAxisReleased = false;
-				}
-				if(Input.GetAxis("Vertical")<-.25){
-					downPressed = true;
-					verticalAxisReleased = false;
-				}
-			}else if(Input.GetAxis("Vertical") == 0){
-				verticalAxisReleased = true;
-			}
-
-			if (upPressed && choiceID != 0)
-			{
-				choiceID--;
-			}
-			if (downPressed && choiceID < choiceArray.Length-1)
-			{
-				choiceID++;
 			}
 		}
 	}
