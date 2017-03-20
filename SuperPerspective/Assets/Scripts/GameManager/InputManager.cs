@@ -174,7 +174,15 @@ public class InputManager : MonoBehaviour{
 
     public float GetMenuMovement()
     {
-        return Input.GetAxis("Menu");
+		float stickInput = Input.GetAxis("Vertical");
+		if(Mathf.Abs(stickInput) < .25f) stickInput = 0f;
+		bool usingDpad = stickInput <
+			Mathf.Abs(Input.GetAxis("Menu"));
+		if(usingDpad){
+	        return Input.GetAxis("Menu");
+		}else{
+			return stickInput;
+		}
     }
 
     // Returns true if the jump button is currently pressed
