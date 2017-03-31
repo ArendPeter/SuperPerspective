@@ -8,7 +8,8 @@ public class Edge : MonoBehaviour {
 
 	int overlapIndex; //how many of the overlaps that we've checked
 
-	Vector3[] cuboid;
+	//Vector3[] cuboid;
+	Vector3 halfDim;
 
 	byte status = 0; //0: no overlap, 1: lined up, 2: latched, 3: rested latch
 
@@ -38,7 +39,7 @@ public class Edge : MonoBehaviour {
 		if(!init)
 			return;
 
-		updateCuboid();
+		//updateCuboid();
 
 		bool is3D = GameStateManager.is3D();
 		bool playerCanGrab = player.isFalling() && (is3D || validIn2D);
@@ -69,7 +70,7 @@ public class Edge : MonoBehaviour {
 				player.UpdateEdgeState(this, status, 5);
 			}
 		//if player is overlapping
-		}else if(playerCanGrab && isOverlaping(cuboid, player.getCuboid())){
+		}else if(playerCanGrab && isOverlaping(player.getCuboid())){
 			Vector3 playerPos = player.gameObject.transform.position;
 			float diff = 0;
 			if(or%2 == 0)
@@ -78,10 +79,10 @@ public class Edge : MonoBehaviour {
 				diff = Mathf.Abs(playerPos.z - transform.position.z);
 			if(diff < .1f){
 				if(status == 0 && SpaceFreeForGrabbing()){
-					playerAboveEdge = player.getCuboid()[1].y > cuboid[1].y;
+					playerAboveEdge = player.getCuboid()[1].y > getCuboidMaxY();
 					status = 1;
 					player.UpdateEdgeState(this, status);
-				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > cuboid[1].y)){
+				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > getCuboidMaxY())){
 					status = 2;
 					hangCounter = 0;
 
@@ -123,14 +124,47 @@ public class Edge : MonoBehaviour {
 		}
 	}
 
-	public bool isOverlaping(Vector3[] c1, Vector3[] c2){
-		bool ans = true;
-		for(int i = 0; i < 3; i++){
+	public bool isOverlaping(Vector3[] c2){
+		/*for(int i = 0; i < 3; i++){
 			if(i == 2 && !GameStateManager.is3D())
 				continue;
 			ans = ans && c1[0][i] <= c2[1][i] && c2[0][i] <= c1[1][i];
-		}
+		}*/
+
+		bool ans = true;
+		// check x
+		ans = ans && getCuboidMinX() <= c2[1].x && c2[0].x <= getCuboidMaxX();
+		if(!ans) return ans;
+		// check y
+		ans = ans && getCuboidMinY() <= c2[1].y && c2[0].y <= getCuboidMaxY();
+		if(!ans || !GameStateManager.is3D()) return ans;
+		// check z
+		ans = ans && getCuboidMinZ() <= c2[1].z && c2[0].z <= getCuboidMaxZ();
 		return ans;
+	}
+
+	private double getCuboidMinX(){
+		return transform.position.x - halfDim.x;
+	}
+
+	private double getCuboidMaxX(){
+		return transform.position.x + halfDim.x;
+	}
+
+	private double getCuboidMinY(){
+		return transform.position.y - halfDim.y;
+	}
+
+	private double getCuboidMaxY(){
+		return transform.position.y + halfDim.y;
+	}
+
+	private double getCuboidMinZ(){
+		return transform.position.z - halfDim.z;
+	}
+
+	private double getCuboidMaxZ(){
+		return transform.position.z + halfDim.z;
 	}
 
 	//inits edge
@@ -155,7 +189,7 @@ public class Edge : MonoBehaviour {
 
 		updateDimensions(or,width,depth);
 
-		cuboid = new Vector3[2];
+		//cuboid = new Vector3[2];
 		updateCuboid();
 
     GameStateManager.instance.PerspectiveShiftSuccessEvent += DropPlayerIfNotValid;
@@ -235,8 +269,9 @@ public class Edge : MonoBehaviour {
 		halfScale.x *= parScale.x;
 		halfScale.y *= parScale.y;
 		halfScale.z *= parScale.z;
-		cuboid[0] = gameObject.transform.position - halfScale;
-		cuboid[1] = gameObject.transform.position + halfScale;
+		/*cuboid[0] = -halfScale;
+		cuboid[1] = halfScale;*/
+		halfDim = halfScale;
 	}
 
 	private void updateDimensions(int or, float width, float depth){
