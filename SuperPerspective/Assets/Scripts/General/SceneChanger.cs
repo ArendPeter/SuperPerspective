@@ -6,8 +6,15 @@ public class SceneChanger : MonoBehaviour {
 	public string sceneName;
 
 	void FixedUpdate() {
-		if (Input.anyKey) {
-			TransitionManager.instance.SceneTransition(null, "", "Hub");
+		if (Input.anyKeyDown) {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+            {
+                //Do nothin'
+            }
+            else
+            {
+                TransitionManager.instance.SceneTransition(null, "", "Hub");
+            }
 		}
 	}
 }
