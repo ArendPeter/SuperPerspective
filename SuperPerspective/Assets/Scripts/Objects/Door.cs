@@ -107,7 +107,11 @@ public class Door : ActiveInteractable {
 			// Saving level progress
 			string level = Application.loadedLevelName;
 			string doorsFound = PlayerPrefs.GetString(level);
-			if (destName.Contains("start")) {
+			if (myName == "hub-end") {
+				PlayerPrefs.SetInt("Game_Complete", 1);
+				PlayerPrefs.Save();
+				AchievementManager.CheckAchievements();
+			} else if (destName.Contains("start")) {
 				if (doorsFound.Equals("")) {
 					doorsFound += destDoor.getName();
 					PlayerPrefs.SetString(level, doorsFound);

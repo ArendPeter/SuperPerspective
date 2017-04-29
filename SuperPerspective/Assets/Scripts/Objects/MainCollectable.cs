@@ -99,6 +99,8 @@ public class MainCollectable : MonoBehaviour {
 			if (isEndCrystal) {
 				// Mark the level as beaten
 				PlayerPrefs.SetInt(sceneName, 1);
+				PlayerPrefs.Save();
+				AchievementManager.CheckAchievements();
 			} else if (PlayerPrefs.HasKey("CollectableHeld")) { // Update number of collectables held
 				PlayerPrefs.SetInt("CollectableHeld", 1);
 				if(!wasPickedUp) {
@@ -147,6 +149,8 @@ public class MainCollectable : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetString(sceneName+"CollectableList", string.Concat(colString, "," + uid));
 		}
+		PlayerPrefs.Save();
+		AchievementManager.CheckAchievements();
 		Saved_UI.instance.ShowSaved();
 	}
 

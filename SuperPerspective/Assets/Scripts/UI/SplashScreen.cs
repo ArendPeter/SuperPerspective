@@ -16,6 +16,7 @@ public class SplashScreen : MonoBehaviour {
         color[3] = 0;
         image.color = color;
         StartCoroutine(FadeIn());
+		AchievementManager.CheckAchievements();
     }
 	
 	// Update is called once per frame
