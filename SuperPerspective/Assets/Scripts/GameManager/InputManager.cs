@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour{
 		if (GetButtonDownAbsolute("Grab"))
             RaiseEvent(GrabPressedEvent);
 
-		if (GetButtonDownAbsolute("PerspectiveShift") && !GameStateManager.instance.changingPerspective())
+        if (GetButtonDownAbsolute("PerspectiveShift") && GameStateManager.instance != null && !GameStateManager.instance.changingPerspective())
             RaiseEvent(ShiftPressedEvent);
 
 		if (GetButtonDownAbsolute("LeanLeft"))
@@ -158,19 +158,27 @@ public class InputManager : MonoBehaviour{
             //Workaround for my credits scene -Nick
             return Input.GetAxis("Horizontal");
         }
-		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
-			return Input.GetAxis("Vertical");
-		else
-			return Input.GetAxis("Horizontal");
+        if (GameStateManager.instance != null)
+        {
+            if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
+                return Input.GetAxis("Vertical");
+            else
+                return Input.GetAxis("Horizontal");
+        }
+        return 0;
 	}
 
 	// Returns the player's movement on the horizontal axis in 3D and zero in 2D
 	public float GetSideMovement(){
-		if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
-			return Input.GetAxis("Horizontal");
-		else
-			return 0f;
-	}
+        if (GameStateManager.instance != null)
+        {
+            if (GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
+                return Input.GetAxis("Horizontal");
+            else
+                return 0f;
+        }
+        return 0f;
+    }
 
     public float GetMenuMovement()
     {
@@ -219,8 +227,11 @@ public class InputManager : MonoBehaviour{
 	}
 
 	public void callShiftPressed(){
-		if (!GameStateManager.instance.changingPerspective())
-            RaiseEvent(ShiftPressedEvent);
+        if (GameStateManager.instance != null)
+        {
+            if (!GameStateManager.instance.changingPerspective())
+                RaiseEvent(ShiftPressedEvent);
+        }
 	}
 
 	#endregion Event Raising Functions
