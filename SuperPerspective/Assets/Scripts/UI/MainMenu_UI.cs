@@ -97,7 +97,7 @@ public class MainMenu_UI : MonoBehaviour {
 
     void MenuUpdate()
     {
-        if (!waitForRelease && (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || Input.GetKeyDown(select3) || goSel))
+        if (!waitForRelease && goSel)
         {
             switch (menuState)
             {
@@ -131,7 +131,7 @@ public class MainMenu_UI : MonoBehaviour {
             }
         }
 
-        else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
+        else if (goUp)
         {
             if (menuState != MenuState.dataClearedMenu)
             {
@@ -144,7 +144,7 @@ public class MainMenu_UI : MonoBehaviour {
             }
         }
 
-        else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
+        else if (goDown)
         {
             if (menuState != MenuState.dataClearedMenu)
             {

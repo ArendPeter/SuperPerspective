@@ -106,7 +106,7 @@ public class Pause_UI : MonoBehaviour {
     {
         if (active)
         {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || Input.GetKeyDown(select3) || goSel)
+            if (goSel)
             {
                 if (choice == 2 || (choice == 1 && isHub))
                 {
@@ -122,7 +122,7 @@ public class Pause_UI : MonoBehaviour {
                 }
             }
 
-            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
+            else if (goUp)
             {
                 if (uiSFX != null)
                 {
@@ -132,7 +132,7 @@ public class Pause_UI : MonoBehaviour {
                 moveSelect();
             }
 
-            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
+            else if (goDown)
             {
                 if (uiSFX != null)
                 {

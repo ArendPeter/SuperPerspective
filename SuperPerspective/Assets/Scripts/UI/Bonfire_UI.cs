@@ -133,18 +133,18 @@ public class Bonfire_UI : MonoBehaviour {
 			return;
 		}
 		if (!teleportFlag && readyForInput) {
-            if (Input.GetKeyDown(select) || Input.GetKeyDown(select2) || Input.GetKeyDown(select3) || goSel)
+            if (goSel)
             {
                 Teleport();
             }
 
-            else if (Input.GetKeyDown(up) || Input.GetKeyDown(up2) || goUp)
+            else if (goUp)
             {
                 moveUp();
                 moveSelect();
             }
 
-            else if (Input.GetKeyDown(down) || Input.GetKeyDown(down2) || goDown)
+            else if (goDown)
             {
                 moveDown();
                 moveSelect();
