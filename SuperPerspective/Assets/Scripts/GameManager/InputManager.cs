@@ -37,11 +37,11 @@ public class InputManager : MonoBehaviour{
 
 	// Perspective shift properties
 	// TODO: Move this funcionality to the camera script
-	private const float FAIL_TIME = 0.5f, MENU_PAUSE = 0.15f;
-	private float flipTimer = 0, menuTimer = 0;
+	private const float FAIL_TIME = 0.5f, MENU_PAUSE = 0.15f, MENU_PAUSE_INIT = 0.4f;
+    private float flipTimer = 0, menuTimer = 0;
 	private bool flipFailed = false;
 
-	private float previousForwardMovement = 0, menuMove = 0;
+	private float previousForwardMovement = 0, menuMove = 0, prevMenuMove = 0;
 
 	#endregion Properties & Variables
 
@@ -104,13 +104,20 @@ public class InputManager : MonoBehaviour{
             if (menuMove > 0)
             {
                 RaiseEvent(MenuUpEvent);
-                menuTimer = MENU_PAUSE;
+                if(prevMenuMove == 0)
+                    menuTimer = MENU_PAUSE_INIT;
+                else
+                    menuTimer = MENU_PAUSE;
             }
             if (menuMove < 0)
             {
                 RaiseEvent(MenuDownEvent);
-                menuTimer = MENU_PAUSE;
+                if (prevMenuMove == 0)
+                    menuTimer = MENU_PAUSE_INIT;
+                else
+                    menuTimer = MENU_PAUSE;
             }
+            prevMenuMove = menuMove;
         }
         else
         {
