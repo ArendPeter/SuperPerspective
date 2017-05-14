@@ -32,7 +32,7 @@ public class Bonfire : ActiveInteractable {
 	void Update() {
 		if (active) {
 			if (bonfireUI.teleportFlag || bonfireUI.closeFlag) {
-				foreach (string s in foundDoors)
+				//foreach (string s in foundDoors)
 					//Debug.Log(s);
 				if (bonfireUI.teleportFlag && foundDoors[bonfireUI.choice] != "")
 					Door.TeleportPlayerToDoor(player.GetComponent<PlayerController>(), foundDoors[bonfireUI.choice]);
