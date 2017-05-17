@@ -228,6 +228,7 @@ public class MainMenu_UI : MonoBehaviour {
 
     public void DeleteSave()
     {
+        SteamManager.Instance.ResetGame();
         menuState = MenuState.eraseSaveMenu;
         selection = selectionEraseSave;
         choice = 0;

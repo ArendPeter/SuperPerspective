@@ -5,7 +5,7 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour {
 	static string[] SCENE_NAMES = { "TutorialScene", "GrassScene", "DesertScene", "IceScene" };
 	static int[] CRYSTAL_COUNTS = { 5, 9, 9, 8 };
-	
+
 	public static void CheckAchievements() {
 		bool[] level_clear = { false, false, false };
 		bool[] all_crystals = { false, false, false, false };
@@ -51,56 +51,56 @@ public class AchievementManager : MonoBehaviour {
 	}
 
 	static void GrassCompleted() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveBeatGrass();
 		PlayerPrefs.SetInt("Achievement_Complete_" + SCENE_NAMES[1], 1);
 		PlayerPrefs.Save();
 		Debug.Log("GRASS COMPLETE");
 	}
 
 	static void GrassAllCrystals() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveAllCrystalsInGrass();
 		PlayerPrefs.SetInt("Achievement_Crystals_" + SCENE_NAMES[1], 1);
 		PlayerPrefs.Save();
 		Debug.Log("GOT ALL CRYSTALS IN GRASS");
 	}
 
 	static void DesertCompleted() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveBeatDesert();
 		PlayerPrefs.SetInt("Achievement_Complete_" + SCENE_NAMES[2], 1);
 		PlayerPrefs.Save();
 		Debug.Log("DESERT COMPLETE");
 	}
 
 	static void DesertAllCrystals() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveAllCrystalsInDesert();
 		PlayerPrefs.SetInt("Achievement_Crystals_" + SCENE_NAMES[2], 1);
 		PlayerPrefs.Save();
 		Debug.Log("GOT ALL CRYSTALS IN DESERT");
 	}
 
 	static void IceCompleted() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveBeatIce();
 		PlayerPrefs.SetInt("Achievement_Complete_" + SCENE_NAMES[3], 1);
 		PlayerPrefs.Save();
 		Debug.Log("ICE COMPLETE");
 	}
 
 	static void IceAllCrystals() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveAllCrystalsInIce();
 		PlayerPrefs.SetInt("Achievement_Crystals_" + SCENE_NAMES[3], 1);
 		PlayerPrefs.Save();
 		Debug.Log("GOT ALL CRYSTALS IN ICE");
 	}
 
 	static void GameCompleted() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveBeatGame();
 		PlayerPrefs.SetInt("Achievement_Complete_Game", 1);
 		PlayerPrefs.Save();
 		Debug.Log("CLEARED THE GAME!");
 	}
 
 	static void GameAllCrystals() {
-		// TODO Steam Achievement
+		SteamManager.Instance.AchieveAllCrystalsInGame();
 		PlayerPrefs.SetInt("Achievement_Crystals_Game", 1);
 		PlayerPrefs.Save();
 		Debug.Log("GOT ALL CRYSTALS IN THE GAME!!!");

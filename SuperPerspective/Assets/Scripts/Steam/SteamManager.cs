@@ -1,66 +1,109 @@
-// The SteamManager is designed to work with Steamworks.NET
-// This file is released into the public domain.
-// Where that dedication is not recognized you are granted a perpetual,
-// irrevokable license to copy and modify this file as you see fit.
-//
-// Version: 1.0.5
-
 using UnityEngine;
 using System.Collections;
 using Facepunch.Steamworks;
 
 public class SteamManager : MonoBehaviour {
-		public static Facepunch.Steamworks.Client SteamClient;
-    private ServerList.Request serverRequest;
+	public static Facepunch.Steamworks.Client SteamClient;
+  private ServerList.Request serverRequest;
 
-    void Start (){
-		    //
-        // Configure for Unity
-        //
-		    Facepunch.Steamworks.Config.ForUnity( Application.platform.ToString() );
+	public bool grassBeat, desertBeat, iceBeat, gameBeat;
+	public bool grassCrystals, desertCrystals, iceCrystals, gameCrystals;
 
-        //
-        // Create the steam client using Rust's AppId
-        //
-        SteamClient = new Client( 629420 );
+	private static SteamManager s_instance;
+	public static SteamManager Instance {
+		get {
+			if (s_instance == null) {
+				return new GameObject("SteamManager").AddComponent<SteamManager>();
+			}
+			else {
+				return s_instance;
+			}
+		}
+	}
 
-        //
-        // Make sure we started up okay
-        //
-        if ( !SteamClient.IsValid )
-        {
-            SteamClient.Dispose();
-            SteamClient = null;
-            return;
-        }
+	private static bool s_EverInialized;
 
-        //
-        // Request a list of servers
-        //
-		    {
-	        serverRequest = SteamClient.ServerList.Internet();
-		    }
+	private void Awake() {
+		if (s_instance != null) {
+			Destroy(gameObject);
+			return;
+		}
+		s_instance = this;
 
-        var gotStats = false;
-        SteamClient.Achievements.OnUpdated += () => { gotStats = true; };
+		// We want our SteamManager Instance to persist across scenes.
+		DontDestroyOnLoad(gameObject);
 
-        while ( !gotStats )
-        {
-            SteamClient.Update();
-        }
+		s_EverInialized = true;
+	}
 
-				testFunction();
+	// This should only ever get called on first load and after an Assembly reload, You should never Disable the Steamworks Manager yourself.
+	private void OnEnable() {
+		if (s_instance == null) {
+			s_instance = this;
+		}
+	}
+
+
+	private void OnDestroy() {
+		if (s_instance != this) {
+			return;
 		}
 
-		void Update()
-    {
-        if ( SteamClient != null )
-        {
-            SteamClient.Update();
+		s_instance = null;
+	}
 
+  void Start (){
+	    //
+      // Configure for Unity
+      //
+	    Facepunch.Steamworks.Config.ForUnity( Application.platform.ToString() );
 
-        }
-    }
+      //
+      // Create the steam client using Rust's AppId
+      //
+      SteamClient = new Client( 629420 );
+
+      //
+      // Make sure we started up okay
+      //
+      if ( !SteamClient.IsValid )
+      {
+          SteamClient.Dispose();
+          SteamClient = null;
+          return;
+      }
+
+      //
+      // Request a list of servers
+      //
+	    {
+        serverRequest = SteamClient.ServerList.Internet();
+	    }
+
+      var gotStats = false;
+      SteamClient.Achievements.OnUpdated += () => { gotStats = true; };
+
+      while ( !gotStats )
+      {
+          SteamClient.Update();
+      }
+
+			CheckBeatGrass();
+			CheckBeatDesert();
+			CheckBeatIce();
+			CheckBeatGame();
+			CheckAllCrystalsInGrass();
+			CheckAllCrystalsInDesert();
+			CheckAllCrystalsInIce();
+			CheckAllCrystalsInGame();
+	}
+
+	void Update(){
+      if ( SteamClient != null )
+      {
+          SteamClient.Update();
+      }
+  }
 
 	private void testFunction(){
 		Debug.Log(GetSteamName());
@@ -78,71 +121,98 @@ public class SteamManager : MonoBehaviour {
 		return SteamClient.Username;
 	}
 
+	public void ResetGame(){
+		SteamClient.Achievements.Reset("a1");
+		SteamClient.Achievements.Reset("a2");
+		SteamClient.Achievements.Reset("a3");
+		SteamClient.Achievements.Reset("a4");
+		SteamClient.Achievements.Reset("a5");
+		SteamClient.Achievements.Reset("a6");
+		SteamClient.Achievements.Reset("a7");
+		SteamClient.Achievements.Reset("a8");
+	}
+
 	public bool CheckAllCrystalsInDesert(){
-		return GetAchievement("a1");
+		desertCrystals = GetAchievement("a1");
+		return desertCrystals;
 	}
 
 	public void AchieveAllCrystalsInDesert(){
+		desertCrystals = true;
 		SetAchievement("a1");
 	}
 
 	public bool CheckAllCrystalsInGame(){
-		return GetAchievement("a2");
+		gameCrystals = GetAchievement("a2");
+		return gameCrystals;
 	}
 
 	public void AchieveAllCrystalsInGame(){
+		gameCrystals = true;
 		SetAchievement("a2");
 	}
 
 	public bool CheckAllCrystalsInGrass(){
-		return GetAchievement("a3");
+		grassCrystals = GetAchievement("a3");
+		return grassCrystals;
 	}
 
 	public void AchieveAllCrystalsInGrass(){
+		grassCrystals = true;
 		SetAchievement("a3");
 	}
 
 	public bool CheckAllCrystalsInIce(){
-		return GetAchievement("a4");
+		iceCrystals = GetAchievement("a4");
+		return iceCrystals;
 	}
 
 	public void AchieveAllCrystalsInIce(){
+		iceCrystals = true;
 		SetAchievement("a4");
 	}
 
 	public bool CheckBeatGame(){
-		return GetAchievement("a5");
+		gameBeat = GetAchievement("a5");
+		return gameBeat;
 	}
 
 	public void AchieveBeatGame(){
+		gameBeat = true;
 		SetAchievement("a5");
 	}
 
 	public bool CheckBeatDesert(){
-		return GetAchievement("a6");
+		desertBeat = GetAchievement("a6");
+		return desertBeat;
 	}
 
 	public void AchieveBeatDesert(){
+		desertBeat = true;
 		SetAchievement("a6");
 	}
 
 	public bool CheckBeatIce(){
-		return GetAchievement("a7");
+		iceBeat = GetAchievement("a7");
+		return iceBeat;
 	}
 
 	public void AchieveBeatIce(){
+		iceBeat = true;
 		SetAchievement("a7");
 	}
 
-	public bool CheckBeatForest(){
-		return GetAchievement("a8");
+	public bool CheckBeatGrass(){
+		grassBeat = GetAchievement("a8");
+		return grassBeat;
 	}
 
-	public void AchieveBeatForest(){
+	public void AchieveBeatGrass(){
+		grassBeat = true;
 		SetAchievement("a8");
 	}
 
-	public void SetAchievement(string id){
+	private void SetAchievement(string id){
 			foreach ( var ach in SteamClient.Achievements.All ){
           if(ach.Id == id){
             ach.Trigger();
@@ -150,7 +220,7 @@ public class SteamManager : MonoBehaviour {
       }
 	}
 
-	public bool GetAchievement(string id){
+	private bool GetAchievement(string id){
 			foreach ( var ach in SteamClient.Achievements.All ){
           if(ach.Id == id){
 							return ach.State;
