@@ -86,14 +86,14 @@ public class MainCollectable : MonoBehaviour {
 					dissolver.dissolveAmount = -1.2f;
 			}
 			active = false;
-            playSFX();
+      playSFX();
 
-            if (isEndCrystal)
-            {
-                playUI();
-            }
+      if (isEndCrystal)
+      {
+          playUI();
+      }
 
-            bool wasPickedUp = this.isPickedUp();
+        bool wasPickedUp = this.isPickedUp();
 			// Flag the collectable as collected
 			PlayerPrefs.SetInt(uid, 1);
 			if (isEndCrystal) {
@@ -112,7 +112,14 @@ public class MainCollectable : MonoBehaviour {
 					this.addToCollectableList();
 				}
 			}
-        }
+
+			//align with player position if perspective is 2d
+			if(!GameStateManager.is3D()){
+				Vector3 pos = transform.position;
+				pos.z = PlayerController.instance.transform.position.z;
+				transform.position = pos;
+			}
+    }
 	}
 
 	private void spiralToPlayer(){
