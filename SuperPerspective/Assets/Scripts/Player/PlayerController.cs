@@ -367,7 +367,8 @@ public class PlayerController : PhysicalObject{
 					distToCollision = hitInfo.distance;
 					if(axis == Y){
 						if (velocity.y < 0) {
-							grounded = true;
+                            if(hitInfo.collider.gameObject.GetComponent<BouncePad>() == null)
+							    grounded = true;
 							launched = false;
 							// New Z-lock
 							if (hitInfo.collider.gameObject.tag != "Ground" && GameStateManager.instance.currentPerspective == PerspectiveType.p2D) {
