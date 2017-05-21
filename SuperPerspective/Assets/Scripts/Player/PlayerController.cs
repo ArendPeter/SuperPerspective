@@ -196,6 +196,9 @@ public class PlayerController : PhysicalObject{
 	#region Jump
 	private void checkForJump(){
 		updateJumpPressedTime();
+		if (jumping && !InputManager.instance.JumpStatus()) {
+			velocity = new Vector3(velocity.x, velocity.y / 2, velocity.z);
+		}
 
 		bool jumpInputed = (Time.time - jumpPressedTime) < jumpMargin;
 		bool canJump = (isGrounded() || edgeState == PlayerEdgeState.HANGING) && !GrabbedCrate();
