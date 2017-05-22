@@ -197,7 +197,7 @@ public class PlayerController : PhysicalObject{
 	private void checkForJump(){
 		updateJumpPressedTime();
 		if (jumping && !InputManager.instance.JumpStatus()) {
-			velocity = new Vector3(velocity.x, velocity.y / 2, velocity.z);
+			velocity = new Vector3(velocity.x, velocity.y * 0.9f, velocity.z);
 		}
 
 		bool jumpInputed = (Time.time - jumpPressedTime) < jumpMargin;
