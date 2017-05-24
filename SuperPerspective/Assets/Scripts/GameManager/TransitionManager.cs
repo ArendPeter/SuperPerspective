@@ -49,7 +49,10 @@ public class TransitionManager : MonoBehaviour {
 			} else if (alpha < 0) {
 				alpha = 0f;
 				transition = 0;
-				player.setCutsceneMode(false);
+                if (player != null)
+                {
+                    player.setCutsceneMode(false);
+                }
 			}
 		}
 	}
