@@ -223,6 +223,7 @@ public class MainMenu_UI : MonoBehaviour {
         menuState = MenuState.transition;
         DefaultMenu.SetActive(false);
         panel.SetActive(false);
+		PlayerPrefs.Save();
         TransitionManager.instance.SceneTransition(null, "", "Hub");
     }
 

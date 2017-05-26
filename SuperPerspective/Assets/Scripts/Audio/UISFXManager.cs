@@ -84,7 +84,6 @@ public class UISFXManager : MonoBehaviour {
 
     public void PlayMenuMove()
     {
-        Debug.Log("Play SFX");
         menuMoveSFX.Play();
     }
 
