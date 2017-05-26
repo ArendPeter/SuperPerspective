@@ -2786,7 +2786,6 @@ GameObject:
   m_Component:
   - component: {fileID: 190694180}
   - component: {fileID: 190694179}
-  - component: {fileID: 190694181}
   m_Layer: 0
   m_Name: PerspektifSnow (1)
   m_TagString: Music
@@ -2888,17 +2887,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &190694181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 190694178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6488141d9614a40bf0191d7d01a4aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &192624124
 Prefab:
   m_ObjectHideFlags: 0
@@ -9753,7 +9741,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114943327136110040, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a8dadee68e152ba4f8cfdaa22e4d092e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &720072386

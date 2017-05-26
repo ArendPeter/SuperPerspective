@@ -28,12 +28,14 @@ public class InputManager : MonoBehaviour{
 	public event System.Action BackwardMovementEvent;
 	public event System.Action ForwardMovementEvent;
 	public event System.Action DevConsoleEvent;
-  public event System.Action MenuUpEvent;
-  public event System.Action MenuDownEvent;
-  public event System.Action HelpEvent;
+ 	public event System.Action MenuUpEvent;
+  	public event System.Action MenuDownEvent;
+	public event System.Action MenuRightEvent;
+	public event System.Action MenuLeftEvent;
+  	public event System.Action HelpEvent;
 
-  // Game's pause state
-  private bool continuePressed = false;//used as an alternate way to unpause
+ 	// Game's pause state
+  	private bool continuePressed = false;//used as an alternate way to unpause
 
 	// Perspective shift properties
 	// TODO: Move this funcionality to the camera script
@@ -42,6 +44,7 @@ public class InputManager : MonoBehaviour{
 	private bool flipFailed = false;
 
 	private float previousForwardMovement = 0, menuMove = 0, prevMenuMove = 0;
+	private string menuAxis;
 
 	#endregion Properties & Variables
 
@@ -103,7 +106,10 @@ public class InputManager : MonoBehaviour{
         {
             if (menuMove > 0)
             {
-                RaiseEvent(MenuUpEvent);
+				if (menuAxis == "Vertical")
+                	RaiseEvent(MenuUpEvent);
+				else
+					RaiseEvent(MenuRightEvent);
                 if(prevMenuMove == 0)
                     menuTimer = MENU_PAUSE_INIT;
                 else
@@ -111,7 +117,10 @@ public class InputManager : MonoBehaviour{
             }
             if (menuMove < 0)
             {
-                RaiseEvent(MenuDownEvent);
+				if (menuAxis == "Vertical")
+                	RaiseEvent(MenuDownEvent);
+				else
+					RaiseEvent(MenuLeftEvent);
                 if (prevMenuMove == 0)
                     menuTimer = MENU_PAUSE_INIT;
                 else
@@ -189,13 +198,20 @@ public class InputManager : MonoBehaviour{
 
     public float GetMenuMovement()
     {
-		float stickInput = Input.GetAxis("Vertical");
-		if(Mathf.Abs(stickInput) < .25f) stickInput = 0f;
-		bool usingDpad = Mathf.Abs(stickInput) <
-			Mathf.Abs(Input.GetAxis("Menu"));
-		if(usingDpad){
-	        return Input.GetAxis("Menu");
-		}else{
+		string axis = Mathf.Abs(Input.GetAxis("Vertical")) >= Mathf.Abs(Input.GetAxis("Horizontal")) ? "Vertical" : "Horizontal";
+		string dpadAxis = Mathf.Abs(Input.GetAxis("Menu")) >= Mathf.Abs(Input.GetAxis("MenuSlider")) ? "Menu" : "MenuSlider";
+		float stickInput = Input.GetAxis(axis);
+		float dpadInput = Input.GetAxis(dpadAxis);
+		bool usingDpad = false;
+		if (Mathf.Abs(dpadInput) > Mathf.Abs(stickInput)) {
+			usingDpad = true;
+			axis = dpadAxis == "Menu" ? "Vertical" : "Horizontal";
+		}
+
+		menuAxis = axis;
+		if (usingDpad) {
+	        return dpadInput;
+		} else {
 			return stickInput;
 		}
     }

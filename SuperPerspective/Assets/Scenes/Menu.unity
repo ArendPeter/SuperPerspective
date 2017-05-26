@@ -512,8 +512,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831bfe5d483ade948a0e90520d9ce7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicVol: 1
+  sfxVol: 1
   musicSlider: {fileID: 1073610168}
   sfxSlider: {fileID: 881539906}
+  mixer: {fileID: 24100000, guid: 5d8306bb8dc8a1341944b70fa7ae3875, type: 2}
 --- !u!1 &136825241
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,10 +5213,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 881539905}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5919,10 +5922,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 1073610167}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -8901,6 +8904,8 @@ MonoBehaviour:
   - {fileID: 1981459295}
   - {fileID: 731646445}
   - {fileID: 1552632952}
+  - {fileID: 1265357804}
+  - {fileID: 198056689}
   choicesEraseSave:
   - {fileID: 585208389}
   - {fileID: 1260165550}
@@ -8910,11 +8915,15 @@ MonoBehaviour:
   - {fileID: 771622064}
   - {fileID: 2014441021}
   - {fileID: 691614311}
+  - {fileID: 1598718586}
+  - {fileID: 1227966775}
   textEraseSave:
   - {fileID: 583629742}
   - {fileID: 301709724}
   textDataCleared:
   - {fileID: 1613544997}
+  musicSlider: {fileID: 1073610168}
+  sfxSlider: {fileID: 881539906}
   selectionMain: {fileID: 1010951046}
   selectionEraseSave: {fileID: 1847251317}
   selectionDataCleared: {fileID: 342556575}
