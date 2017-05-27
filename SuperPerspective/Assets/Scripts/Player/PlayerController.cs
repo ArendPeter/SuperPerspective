@@ -340,7 +340,7 @@ public class PlayerController : PhysicalObject{
 
 		Vector3 trajectory;
 
-		RaycastHit[] hits = colCheck.CheckCollisionOnAxis(axis,velocity, Margin);
+		RaycastHit[] hits = colCheck.CheckCollisionOnAxis(axis, !isRiding() ? velocity : ridingPlatform.GetComponent<MobilePlatform>().getVelocity(), Margin);
 
 		float distToCollision = -1;
 		for (int i = 0; i < hits.Length; i++) {
@@ -405,13 +405,13 @@ public class PlayerController : PhysicalObject{
 		bool collisionWithTangibleOccurred = distToCollision!=-1;
 		if (collisionWithTangibleOccurred) {
 			if (isRiding()) {
-				Vector3 pos = transform.position;
-				ridingPlatform.transform.Translate(ridingPlatform.GetComponent<MobilePlatform>().getVelocity() * -Time.deltaTime);
+				Vector3 pos = transform.position, vel = ridingPlatform.GetComponent<MobilePlatform>().getVelocity();
 				pos.x = ridingPlatform.transform.position.x;
 				pos.y = ridingPlatform.transform.position.y + colliderHeight / 2f + ridingPlatform.GetComponent<Collider>().bounds.extents.y - 0.1f;
 				pos.z = ridingPlatform.transform.position.z;
 				transform.position = pos;
-				ridingPlatform.GetComponent<MobilePlatform>().setVelocity(Vector3.zero);
+				vel[axis] = 0f;
+				ridingPlatform.GetComponent<MobilePlatform>().setVelocity(vel);
 			} else {
 				if(axis == Y){
 					if (!bounced) {
