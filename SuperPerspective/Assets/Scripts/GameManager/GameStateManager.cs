@@ -192,7 +192,8 @@ public class GameStateManager : MonoBehaviour
     }
 
 	private void HandleShiftPressed(){
-		if (specialCase || (!failedShift && !IsPauseState(targetState) && !PlayerController.instance.GrabbedCrate() && PlayerPrefs.GetString("IntroCutsceneFinished") == "true"))
+		if (specialCase || (!failedShift && !IsPauseState(targetState) && !PlayerController.instance.GrabbedCrate()
+             && PlayerPrefs.GetString("IntroCutsceneFinished") == "true" && PlayerController.instance.getCutsceneMode() == false))
         {
 			ViewType newState = (view_perspectives[(int)currentState] == PerspectiveType.p3D) ?
 				ViewType.STANDARD_2D : ViewType.STANDARD_3D;
