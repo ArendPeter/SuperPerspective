@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpiralPath : MonoBehaviour {
 
-	private static float[] spiralRadiusThresh = new float[]{5f,10f};
+	private static float[] spiralRadiusThresh = new float[]{3f,10f};
 	private static float[] spiralMinApproachSpeed = new float[]{3f,3f};
 	private static float[] spiralVerticalSpeed = new float[]{.8f,1.2f};
 	private static float[] spiralHeight = new float[]{1f,1f};
@@ -56,10 +56,11 @@ public class SpiralPath : MonoBehaviour {
 				spiralY -= spiralVerticalSpeed[isFinal] * Time.deltaTime;
 			}
 			//update position
+			Vector3 playerVel = PlayerController.instance.myVelocity * isFinal;
 			return new Vector3(
-				targetPos.x + spiralRadius * Mathf.Cos(spiralAngle),
-				targetPos.y - spiralY,
-				targetPos.z + spiralRadius * Mathf.Sin(spiralAngle)
+				targetPos.x + spiralRadius * Mathf.Cos(spiralAngle) + playerVel.x,
+				targetPos.y - spiralY + playerVel.y,
+				targetPos.z + spiralRadius * Mathf.Sin(spiralAngle) + playerVel.z
 			);
 		}
 	}

@@ -44,6 +44,8 @@ public class PlayerController : PhysicalObject{
 	private float colliderWidth;
 	private float colliderDepth;
 
+	public Vector3 myVelocity;
+
 	private CollisionChecker colCheck;
 
 	// Vars for Z-locking
@@ -125,7 +127,7 @@ public class PlayerController : PhysicalObject{
         nCont = FindObjectOfType<NotificationController>();
         InputManager.instance.InteractPressedEvent += OnInteract;
 
-        
+
     }
 
 	public void Reset() {
@@ -163,6 +165,7 @@ public class PlayerController : PhysicalObject{
 	#endregion Init
 
 	void Update(){
+		myVelocity = velocity;
 		frameRate = 1 / Time.deltaTime;
 		testFrameRate = frameRate;
 		if(canControl()) checkForJump();
@@ -727,7 +730,7 @@ public class PlayerController : PhysicalObject{
 
     public bool getCutsceneMode(){
         return cutsceneMode;}
-	
+
 	public bool canMove(){
 		return !isDisabled() && !isKicking() && !isClimbing() &&
 			!isRiding();

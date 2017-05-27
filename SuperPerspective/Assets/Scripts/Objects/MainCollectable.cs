@@ -121,9 +121,10 @@ public class MainCollectable : MonoBehaviour {
 
 	private void spiralToPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer*((isFinalCollectable)?1.5f:1);
-		transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos, isFinalCollectable );
+		if(!isFinalCollectable)
+			transform.position = SpiralPath.SpiralPositionTo(transform.position, targetPos, isFinalCollectable );
 		float dist = (transform.position - targetPos).magnitude;
-		if(dist < .01){
+		if(dist < .01 || isFinalCollectable){
 			if(effectOnCollect != null){
 				Instantiate(effectOnCollect, this.transform.position, Quaternion.identity);// PlayerController.instance.transform.position
 			}
