@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -38,7 +39,22 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	public void returnToHUB()	{
-		TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-tutorial-start", "Hub");
+        if (SceneManager.GetActiveScene().name == "GrassScene")
+        {
+            TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-grass-start", "Hub");
+        }
+        else if (SceneManager.GetActiveScene().name == "IceScene")
+        {
+            TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-ice-start", "Hub");
+        }
+        else if (SceneManager.GetActiveScene().name == "DesertScene")
+        {
+            TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-desert-start", "Hub");
+        }
+        else
+        {
+            TransitionManager.instance.SceneTransition(PlayerController.instance.GetComponent<PlayerController>(), "hub-tutorial-start", "Hub");
+        }
 	}
 
 	public void quitGame(){
