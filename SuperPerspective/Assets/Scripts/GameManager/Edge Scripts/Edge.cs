@@ -82,7 +82,7 @@ public class Edge : MonoBehaviour {
 					playerAboveEdge = player.getCuboid()[1].y > getCuboidMaxY();
 					status = 1;
 					player.UpdateEdgeState(this, status);
-				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > getCuboidMaxY())){
+				}else if(status == 1 && playerAboveEdge != (player.getCuboid()[1].y > getCuboidMaxY()) && !isMovingMover()){
 					status = 2;
 					hangCounter = 0;
 
@@ -102,6 +102,12 @@ public class Edge : MonoBehaviour {
 			status = 0;
 			player.UpdateEdgeState(this, status);
 		}
+	}
+
+	public bool isMovingMover(){
+		Mover mov = transform.parent.GetComponent<Mover>();
+		if(mov == null) return false;
+		return mov.isMoving();
 	}
 
 	public bool GrabButtonDown(){

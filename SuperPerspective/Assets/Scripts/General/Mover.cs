@@ -8,8 +8,10 @@ public class Mover : Activatable {
 	Vector3 startPosition;//start position
 	float prog = 0f; //progression from start to start+ movement
 
-    GameObject moverSFX;
-    SwitchMoverSFX smSFX;
+  GameObject moverSFX;
+  SwitchMoverSFX smSFX;
+
+	public bool moving;
 
 	private MobilePlatform[] platforms;
 
@@ -109,10 +111,13 @@ public class Mover : Activatable {
 
 	void Update(){
 		bool atDest = (activated && prog == 1) || (!activated && prog == 0);
+		moving = false;
 		if (!PlayerController.instance.isPaused() && !atDest && !isSomethingInWay() && !PlayerAnimController.isLearning()){
+					float oldProg = prog;
             //update prog
             prog += (Time.deltaTime/transitionTime) * ((activated)? 1 : -1);//increase or decrease depending on activated
-			prog = Mathf.Clamp01(prog); //clamp between 0 and 1
+					prog = Mathf.Clamp01(prog); //clamp between 0 and 1
+						moving = Mathf.Abs(oldProg - prog) < .01f;
 
             if (activated)
             {
@@ -140,5 +145,9 @@ public class Mover : Activatable {
             //set position
             transform.localPosition = Vector3.Lerp(startPosition, startPosition + movement, prog);
         }
+	}
+
+	public bool isMoving(){
+		return moving;
 	}
 }
