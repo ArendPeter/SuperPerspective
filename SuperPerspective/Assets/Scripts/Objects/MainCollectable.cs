@@ -12,7 +12,7 @@ public class MainCollectable : MonoBehaviour {
 	float range = 2f;
 	Vector3 posOnPlayer = new Vector3(0,2f,0);
     public GameObject sound;
-	static Color collectedColor = new Color(0.3f, 0.3f, 0.9f, 0.3f);
+	static Color collectedColor = new Color(0.3f, 0.3f, 0.3f, 0.3f);
 	string sceneName;
 	public Activatable[] triggers;
 	public bool isEndCrystal;
@@ -22,19 +22,15 @@ public class MainCollectable : MonoBehaviour {
 	void Start() {
 		sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 		uid = transform.position.x + "" + transform.position.y + "" + transform.position.z;
-		if (PlayerPrefs.HasKey(uid)) {
+		if (isEndCrystal && PlayerPrefs.HasKey(sceneName + "BigCrystal")) {
+			GameObject.Destroy(this.gameObject);
+		} else if (isPickedUp()) {
 			foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
 				rend.material.SetColor("_EmissionColor", collectedColor);
 			}
 			ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
 			ps.startColor = collectedColor;
-            if (isEndCrystal)
-            {
-                GameObject.Destroy(this.gameObject);
-            }
 		}
-
-		this.isPickedUp();
 	}
 
 	void FixedUpdate() {
@@ -79,28 +75,29 @@ public class MainCollectable : MonoBehaviour {
 		Bounds mybound = GetComponent<BoxCollider>().bounds;
 		Bounds pbound = PlayerController.instance.GetComponent<BoxCollider>().bounds;
 		bool intersect = mybound.Intersects(pbound);
-		if(active && intersect){
+		if (active && intersect) {
 			GenericDissolver dissolver = GetComponentInChildren<GenericDissolver>();
 			if(dissolver){
 					dissolver.shouldDissolveObject = true;
 					dissolver.dissolveAmount = -1.2f;
 			}
 			active = false;
-      playSFX();
+			playSFX();
 
-      if (isEndCrystal)
-      {
-          playUI();
-      }
+			if (isEndCrystal)
+			{
+			  playUI();
+			}
 
-        bool wasPickedUp = this.isPickedUp();
+			bool wasPickedUp = this.isPickedUp();
 			// Flag the collectable as collected
 			PlayerPrefs.SetInt(uid, 1);
 			if (isEndCrystal) {
 				// Mark the level as beaten
-				PlayerPrefs.SetInt(sceneName, 1);
+				PlayerPrefs.SetInt(sceneName+"BigCrystal", 1);
 				PlayerPrefs.Save();
 				AchievementManager.CheckAchievements();
+				Saved_UI.instance.ShowSaved();
 			} else if (PlayerPrefs.HasKey("CollectableHeld")) { // Update number of collectables held
 				PlayerPrefs.SetInt("CollectableHeld", 1);
 				if(!wasPickedUp) {
@@ -119,7 +116,7 @@ public class MainCollectable : MonoBehaviour {
 				pos.z = PlayerController.instance.transform.position.z;
 				transform.position = pos;
 			}
-    }
+		}
 	}
 
 	private void spiralToPlayer(){

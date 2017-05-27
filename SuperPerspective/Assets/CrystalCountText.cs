@@ -14,7 +14,7 @@ public class CrystalCountText : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		txtmesh = GetComponent<TextMesh>();
-		bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName) == 1;
+		bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName + "BigCrystal") == 1;
 		currentCount = 0;
 
 		if(PlayerPrefs.HasKey(this.sceneName+"CollectableList")) {

@@ -20,18 +20,18 @@ public class GreatCrystalWall : MonoBehaviour {
     // Use this for initialization
     void Start() {
 //        //Debug.Log("Grass Scene: " + PlayerPrefs.GetInt("GrassScene"));
-        if (PlayerPrefs.GetInt("GrassScene") == 1){
+        if (PlayerPrefs.GetInt("GrassSceneBigCrystal") == 1){
             grass = true;
             c1.SetActive(true);
             bigCrystalCount++;
         }
-        if (PlayerPrefs.GetInt("DesertScene") == 1)
+        if (PlayerPrefs.GetInt("DesertSceneBigCrystal") == 1)
         {
             desert = true;
             c2.SetActive(true);
             bigCrystalCount++;
         }
-        if (PlayerPrefs.GetInt("IceScene") == 1)
+        if (PlayerPrefs.GetInt("IceSceneBigCrystal") == 1)
         {
             ice = true;
             c3.SetActive(true);
