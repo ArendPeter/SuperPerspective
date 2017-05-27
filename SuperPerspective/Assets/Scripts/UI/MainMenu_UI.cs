@@ -7,10 +7,12 @@ public class MainMenu_UI : MonoBehaviour {
 
     public GameObject[] choicesMain, choicesEraseSave, choicesDataCleared;
     public Text[] textMain, textEraseSave, textDataCleared;
+	public Slider musicSlider, sfxSlider;
 
     GameObject[] choices;
     Text[] text;
     GameObject selection;
+	Vector3 selectScale;
 
     public GameObject selectionMain, selectionEraseSave, selectionDataCleared;
 
@@ -27,7 +29,7 @@ public class MainMenu_UI : MonoBehaviour {
     KeyCode up, up2, down, down2, select, select2, select3;
 
     int choice = 0;
-    int maxChoice = 2;
+    int maxChoice = 5;
 
     bool waitForRelease = false;
 
@@ -37,8 +39,28 @@ public class MainMenu_UI : MonoBehaviour {
     {
         InputManager.instance.MenuDownEvent += XboxMenuDown;
         InputManager.instance.MenuUpEvent += XboxMenuUp;
+		InputManager.instance.MenuRightEvent += SliderRight;
+		InputManager.instance.MenuLeftEvent += SliderLeft;
         InputManager.instance.JumpPressedEvent += XboxSelect;
     }
+
+	void SliderLeft() {
+		if (choice == 3) {
+			musicSlider.value -= 1f;
+		}
+		if (choice == 4) {
+			sfxSlider.value -= 1f;
+		}
+	}
+
+	void SliderRight() {
+		if (choice == 3) {
+			musicSlider.value += 1f;
+		}
+		if (choice == 4) {
+			sfxSlider.value += 1f;
+		}
+	}
 
     void XboxMenuDown()
     {
@@ -67,6 +89,7 @@ public class MainMenu_UI : MonoBehaviour {
         select = KeyCode.E;
         select2 = KeyCode.Space;
         select3 = KeyCode.Return;
+		selectScale = selection.transform.localScale;
     }
 
     // Update is called once per frame
@@ -110,7 +133,7 @@ public class MainMenu_UI : MonoBehaviour {
                     {
                         DeleteSave();
                     }
-                    else
+				else if (choice == 0)
                     {
                         StartGame();
                     }
@@ -168,8 +191,6 @@ public class MainMenu_UI : MonoBehaviour {
             choice--;
         else
             choice = maxChoice - 1;
-        //choice = maxChoice - 1;
-        //Debug.Log("Going up! Choice: " + choice);
     }
 
     private void moveDown()
@@ -178,7 +199,6 @@ public class MainMenu_UI : MonoBehaviour {
             choice++;
         else
             choice = 0;
-        //Debug.Log("Going down! Choice: " + choice);
     }
 
     private void moveSelect()
@@ -186,12 +206,17 @@ public class MainMenu_UI : MonoBehaviour {
         //Moves the transparent selection UI
 
         Vector3 vec = choices[choice].transform.position;
+		Vector3 scale = selectScale;
+		if (choice > 2) {
+			scale.x *= 0.85f;
+		}
+		selection.transform.localScale = scale;
         selection.transform.position = vec;
 
         //Sets the text colors
         for (int i = 0; i < maxChoice; i++)
         {
-            if (i == choice)
+			if (i == choice && i <= 2)
             {
                 text[i].color = selectedCol;
             }
@@ -223,6 +248,7 @@ public class MainMenu_UI : MonoBehaviour {
         menuState = MenuState.transition;
         DefaultMenu.SetActive(false);
         panel.SetActive(false);
+		PlayerPrefs.Save();
         TransitionManager.instance.SceneTransition(null, "", "Hub");
     }
 
