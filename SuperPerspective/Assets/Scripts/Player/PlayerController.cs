@@ -337,10 +337,11 @@ public class PlayerController : PhysicalObject{
 
 	void CheckCollisionsOnAxis(int axis){
 		Vector3 axisVector = getAxisVector(axis);
+		Vector3 checkVelocity = !isRiding() ? velocity : ridingPlatform.GetComponent<MobilePlatform>().getVelocity();
 
 		Vector3 trajectory;
 
-		RaycastHit[] hits = colCheck.CheckCollisionOnAxis(axis, !isRiding() ? velocity : ridingPlatform.GetComponent<MobilePlatform>().getVelocity(), Margin);
+		RaycastHit[] hits = colCheck.CheckCollisionOnAxis(axis, checkVelocity, Margin);
 
 		float distToCollision = -1;
 		for (int i = 0; i < hits.Length; i++) {
@@ -367,12 +368,12 @@ public class PlayerController : PhysicalObject{
 					continue;
 				}
 				if (hitInfo.collider.gameObject.tag == "Intangible") {
-					trajectory = velocity[axis] * axisVector;
+					trajectory = checkVelocity[axis] * axisVector;
 					CollideWithObject(hitInfo, trajectory);
 				} else if (distToCollision == -1 || distToCollision > hitInfo.distance) {
 					distToCollision = hitInfo.distance;
 					if(axis == Y){
-						if (velocity.y < 0) {
+						if (checkVelocity.y < 0) {
                             if(hitInfo.collider.gameObject.GetComponent<BouncePad>() == null)
 							    grounded = true;
 							launched = false;
@@ -391,11 +392,11 @@ public class PlayerController : PhysicalObject{
 					}else{
 						transform.Translate(
 							axisVector *
-							Mathf.Sign(velocity[axis]) *
+							Mathf.Sign(checkVelocity[axis]) *
 							(hitInfo.distance - getDimensionAlongAxis(axis) / 2)
 						);
 					}
-					trajectory = velocity[axis] * axisVector;
+					trajectory = checkVelocity[axis] * axisVector;
 					CollideWithObject(hitInfo, trajectory);
 				}
 			}
@@ -405,13 +406,15 @@ public class PlayerController : PhysicalObject{
 		bool collisionWithTangibleOccurred = distToCollision!=-1;
 		if (collisionWithTangibleOccurred) {
 			if (isRiding()) {
-				Vector3 pos = transform.position, vel = ridingPlatform.GetComponent<MobilePlatform>().getVelocity();
+				MobilePlatform platform = ridingPlatform.GetComponent<MobilePlatform>();
+				Vector3 pos = transform.position, vel = platform.getVelocity();
 				pos.x = ridingPlatform.transform.position.x;
 				pos.y = ridingPlatform.transform.position.y + colliderHeight / 2f + ridingPlatform.GetComponent<Collider>().bounds.extents.y - 0.1f;
 				pos.z = ridingPlatform.transform.position.z;
 				transform.position = pos;
 				vel[axis] = 0f;
-				ridingPlatform.GetComponent<MobilePlatform>().setVelocity(vel);
+				platform.setVelocity(vel);
+				platform.setCollisionFlag(axis);
 			} else {
 				if(axis == Y){
 					if (!bounced) {

@@ -24,6 +24,7 @@ public class MobilePlatform : ActiveInteractable {
 	private const int Y = 1;
 	private const int Z = 2;
 
+	private bool collisionFlagX = false, collisionFlagZ = false;
 	private CollisionChecker colCheck;
 	private float Margin = 0.05f;
 
@@ -55,8 +56,11 @@ public class MobilePlatform : ActiveInteractable {
 
 	void FixedUpdate () {
 		base.FixedUpdateLogic();
-		moveOnAxis(X);
-		moveOnAxis(Z);
+
+		if (!collisionFlagX)
+			moveOnAxis(X);
+		if (!collisionFlagZ)
+			moveOnAxis(Z);
 		CheckCollisions();
 	}
 
@@ -92,6 +96,8 @@ public class MobilePlatform : ActiveInteractable {
 			respawnFlag = false;
 			atStart = true;
 		}
+		collisionFlagX = false;
+		collisionFlagZ = false;
 	}
 
 	private void moveOnAxis(int axis){
@@ -271,6 +277,13 @@ public class MobilePlatform : ActiveInteractable {
 		float myY = transform.position.y;
 		float deltaY = playerY - myY;
 		return 1.3f < deltaY && deltaY < 3f;
+	}
+
+	public void setCollisionFlag(int axis) {
+		if (axis == 0)
+			collisionFlagX = true;
+		else
+			collisionFlagZ = true;
 	}
 
 	/*public float GetStartY() {
