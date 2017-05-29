@@ -405,9 +405,14 @@ public class PlayerController : PhysicalObject{
 
 		bool collisionWithTangibleOccurred = distToCollision!=-1;
 		if (collisionWithTangibleOccurred) {
-			if (isRiding()) {
+			if (isRiding() && axis != Y) {
 				MobilePlatform platform = ridingPlatform.GetComponent<MobilePlatform>();
 				Vector3 pos = transform.position, vel = platform.getVelocity();
+				ridingPlatform.transform.Translate(
+					axisVector *
+					Mathf.Sign(checkVelocity[axis]) *
+					(distToCollision - getDimensionAlongAxis(axis) / 2)
+				);
 				pos.x = ridingPlatform.transform.position.x;
 				pos.y = ridingPlatform.transform.position.y + colliderHeight / 2f + ridingPlatform.GetComponent<Collider>().bounds.extents.y - 0.1f;
 				pos.z = ridingPlatform.transform.position.z;
