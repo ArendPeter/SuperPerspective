@@ -30,7 +30,7 @@ public class ObjectFade : MonoBehaviour {
 		setAlpha = 1;
 		float dist;
 		if (getBounds().IntersectRay(new Ray(Camera.main.transform.position, player.transform.position - Camera.main.transform.position), out dist)) {
-			if (dist < Vector3.Distance(player.transform.position, Camera.main.transform.position))
+			if (dist < Vector3.Distance(player.transform.position, Camera.main.transform.position) && GameStateManager.instance.currentPerspective == PerspectiveType.p3D)
 				setAlpha = 0.5f - Mathf.Lerp(0, 0.5f, (transform.position.x - player.transform.position.x) / (Camera.main.transform.position.x - player.transform.position.x));
 		}
 	}

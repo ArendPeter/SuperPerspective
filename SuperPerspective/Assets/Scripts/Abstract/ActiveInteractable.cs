@@ -113,7 +113,7 @@ public class ActiveInteractable : PhysicalObject
             bool inYRange = IsInYRange();
 
             canTrigger =
-                inRange && playerFacing && inYRange && IsEnabled();
+				(inRange && playerFacing && inYRange && IsEnabled()) || (GetComponent<Crate>() != null && GetComponent<Crate>() == player.GetComponent<PlayerController>().GetCrate());
 
             //checks for competing notifications (I think)
             notificationCanBeShown = (!notiShown || dist < notiDist);
