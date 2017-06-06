@@ -45,7 +45,7 @@ public class Door : ActiveInteractable {
             foreach(ParticleSystem ps in particleChildren) {
             	ps.Stop();
             }
-        }		
+        }
 	}
 
 	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
@@ -145,4 +145,11 @@ public class Door : ActiveInteractable {
 		return -.5f < deltaY && deltaY < 4f;
 	}
 
+	protected override bool IsEnabled(){
+		if(PlayerController.instance.isRiding()){
+			return false;
+		}else{
+			return base.IsEnabled();
+	 	}
+	}
 }
