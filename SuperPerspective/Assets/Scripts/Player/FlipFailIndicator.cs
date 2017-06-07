@@ -35,6 +35,10 @@ public class FlipFailIndicator : MonoBehaviour {
 					blinkFrame++;
 				}
 			}
+			if(!toggleEnabled()){
+				disableVisible();
+				blinkTime = -1f;
+			}
 		}
 	}
 
@@ -102,5 +106,13 @@ public class FlipFailIndicator : MonoBehaviour {
 
 	public bool isBlinking(){
 	  return blinkTime != -1f;
+	}
+
+	private bool toggleEnabled(){
+		MobilePlatform plat = transform.parent.GetComponent<MobilePlatform>();
+		if(plat != null && !plat.controlled){
+			return false;
+		}
+		return true;
 	}
 }
