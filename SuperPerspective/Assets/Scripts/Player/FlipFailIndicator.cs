@@ -13,6 +13,7 @@ public class FlipFailIndicator : MonoBehaviour {
   int blinkFrame = 0;
 	float blinkThresh = 0;
 	float blinkTime = -1f;
+	float minScale = .025f;
 
 	void Start(){
 		this.GetComponent<Renderer>().enabled = false;
@@ -75,7 +76,10 @@ public class FlipFailIndicator : MonoBehaviour {
 		float maxY = Mathf.Min(myBounds.max.y,ovBounds.max.y);
 
 		Vector3 newPos = new Vector3((minX + maxX)/2f,(minY + maxY)/2f,transform.position.z);
-		Vector3 newScale = new Vector3((maxX - minX) / 10f, .1f,(maxY - minY) / 10f);
+		Vector3 newScale = new Vector3(
+			Mathf.Max(minScale,(maxX - minX) / 10f),
+			.1f,
+			Mathf.Max(minScale,(maxY - minY) / 10f));
 
 		transform.position = newPos;
 
