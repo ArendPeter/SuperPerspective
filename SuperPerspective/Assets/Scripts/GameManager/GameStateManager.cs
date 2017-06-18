@@ -256,12 +256,13 @@ public class GameStateManager : MonoBehaviour
 	}
 
 	private void HandleLeanLeftReleased(){
-		if(currentState == ViewType.LEAN_LEFT && currentPerspective == PerspectiveType.p3D)
+		if(targetState == ViewType.LEAN_LEFT && currentPerspective == PerspectiveType.p3D){
 			EnterState(ViewType.STANDARD_3D);
+		}
 	}
 
 	private void HandleLeanRightReleased(){
-		if(currentState == ViewType.LEAN_RIGHT && currentPerspective == PerspectiveType.p3D)
+		if(targetState == ViewType.LEAN_RIGHT && currentPerspective == PerspectiveType.p3D)
 			EnterState(ViewType.STANDARD_3D);
 	}
 
