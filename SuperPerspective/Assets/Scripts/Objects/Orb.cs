@@ -114,7 +114,7 @@ public class Orb : ActiveInteractable {
 		if(pos.y < breakingPoint ){
 			pos.y = breakingPoint;
 			SetVisible(false);
-            breakSFX.Play();
+      breakSFX.Play();
 		}
 	}
 
@@ -153,7 +153,7 @@ public class Orb : ActiveInteractable {
 		return false;
 	}
 
-	private void SetVisible(bool vis){
+	public void SetVisible(bool vis){
 		if(model != null){
 			model.GetComponent<Renderer>().enabled = vis;
 		}

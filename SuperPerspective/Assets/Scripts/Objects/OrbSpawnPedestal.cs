@@ -21,6 +21,7 @@ public class OrbSpawnPedestal : ActiveInteractable {
 			PlayerController.instance.DropOrb();
 		}else{
 			myOrb.Drop();
+			myOrb.SetVisible(false);
 		}
 	}
 

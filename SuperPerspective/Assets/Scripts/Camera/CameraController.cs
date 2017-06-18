@@ -6,7 +6,6 @@ using System.Collections;
 public class CameraController : MonoBehaviour
 {
 
-  public float pubDif;
 
   public static CameraController instance;
 
@@ -69,7 +68,6 @@ public class CameraController : MonoBehaviour
 	void Update(){
 		if (mount != null && targetMatrix != null) {
       		Vector3 positionDif = transform.position - posOffset - mount.position;
-          pubDif = positionDif.magnitude;
 			if (positionDif.magnitude <= transitionThreshold){
 	    		checkStateChange();
 	      	}
