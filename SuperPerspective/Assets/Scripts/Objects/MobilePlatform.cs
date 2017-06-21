@@ -24,7 +24,7 @@ public class MobilePlatform : ActiveInteractable {
 	private const int Y = 1;
 	private const int Z = 2;
 
-	private bool collisionFlagX = false, collisionFlagZ = false;
+	private bool collisionFlagX = false, collisionFlagZ = false, stopMove = false;
 	private CollisionChecker colCheck;
 	private float Margin = 0.05f;
 
@@ -81,6 +81,12 @@ public class MobilePlatform : ActiveInteractable {
 
 	void LateUpdate() {
 		LateUpdateLogic();
+		if (collisionFlagX) {
+			velocity.x = 0;
+		}
+		if (collisionFlagZ) {
+			velocity.z = 0;
+		}
 		transform.Translate(velocity * Time.deltaTime);
 		if (respawnFlag) {
 			Vector3 pos = transform.position;

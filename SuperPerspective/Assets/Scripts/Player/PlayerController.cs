@@ -329,7 +329,9 @@ public class PlayerController : PhysicalObject{
 	#region Collisions
 
 	public void CheckCollisions(){
-		CheckCollisionsOnAxis(Y);
+		if (!isRiding()) {
+			CheckCollisionsOnAxis(Y);
+		}
 		passivePush = false;
 		CheckCollisionsOnAxis(X);
 		CheckCollisionsOnAxis(Z);
@@ -407,7 +409,7 @@ public class PlayerController : PhysicalObject{
 		if (collisionWithTangibleOccurred) {
 			if (isRiding() && axis != Y) {
 				MobilePlatform platform = ridingPlatform.GetComponent<MobilePlatform>();
-				Vector3 pos = transform.position, vel = platform.getVelocity();
+				Vector3 pos = transform.position;
 				ridingPlatform.transform.Translate(
 					axisVector *
 					Mathf.Sign(checkVelocity[axis]) *
@@ -417,8 +419,6 @@ public class PlayerController : PhysicalObject{
 				pos.y = ridingPlatform.transform.position.y + colliderHeight / 2f + ridingPlatform.GetComponent<Collider>().bounds.extents.y - 0.1f;
 				pos.z = ridingPlatform.transform.position.z;
 				transform.position = pos;
-				vel[axis] = 0f;
-				platform.setVelocity(vel);
 				platform.setCollisionFlag(axis);
 			} else {
 				if(axis == Y){
