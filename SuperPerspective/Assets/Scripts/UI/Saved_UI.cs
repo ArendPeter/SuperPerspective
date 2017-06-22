@@ -50,7 +50,6 @@ public class Saved_UI : MonoBehaviour {
 			this.Timer = defaultPopupTime;
 
 	        this.UIObject.transform.SetParent(canvas.transform, false);
-	        this.UIObject.transform.position = new Vector2(Screen.width - 100, -100);
 		}
 	}
 }
