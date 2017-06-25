@@ -40,12 +40,12 @@ public class InputManager : MonoBehaviour
 
     // Perspective shift properties
     // TODO: Move this funcionality to the camera script
-    private const float FAIL_TIME = 0.5f, MENU_PAUSE = 0.15f, MENU_PAUSE_INIT = 0.4f;
+    private const float FAIL_TIME = 0.5f, MENU_PAUSE = 0.15f, MENU_PAUSE_INIT = 0.5f;
     private float flipTimer = 0, menuTimer = 0;
     private bool flipFailed = false;
 
     private float previousForwardMovement = 0, menuMove = 0, prevMenuMove = 0;
-    private string menuAxis;
+    private string menuAxis = "";
 
     string leanDir;
 
@@ -108,26 +108,43 @@ public class InputManager : MonoBehaviour
         if (previousForwardMovement != 1 && GetForwardMovement() == 1)
             RaiseEvent(ForwardMovementEvent);
 
+		float moveThreshold = 0.9f, resetThreshold = 0.25f;
+		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
+			menuMove = 1f;
+			menuAxis = "Horizontal";
+		} else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+			menuMove = -1f;
+			menuAxis = "Horizontal";
+		} else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
+			menuMove = 1f;
+			menuAxis = "Vertical";
+		} else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) {
+			menuMove = -1f;
+			menuAxis = "Vertical";
+		}
+		if (menuAxis != "" && Mathf.Abs(Input.GetAxis(menuAxis)) <= resetThreshold) {
+			menuTimer = 0;
+		}
         if (menuTimer <= 0)
         {
-            if (menuMove > 0)
+			if (menuMove >= moveThreshold)
             {
                 if (menuAxis == "Vertical")
                     RaiseEvent(MenuUpEvent);
                 else
                     RaiseEvent(MenuRightEvent);
-                if (prevMenuMove == 0)
+				if (prevMenuMove < moveThreshold)
                     menuTimer = MENU_PAUSE_INIT;
                 else
                     menuTimer = MENU_PAUSE;
             }
-            if (menuMove < 0)
+			if (menuMove <= -moveThreshold)
             {
                 if (menuAxis == "Vertical")
                     RaiseEvent(MenuDownEvent);
                 else
                     RaiseEvent(MenuLeftEvent);
-                if (prevMenuMove == 0)
+				if (prevMenuMove > -moveThreshold)
                     menuTimer = MENU_PAUSE_INIT;
                 else
                     menuTimer = MENU_PAUSE;
