@@ -122,7 +122,14 @@ public class InputManager : MonoBehaviour
 			menuMove = -1f;
 			menuAxis = "Vertical";
 		}
-		if (menuAxis != "" && Mathf.Abs(Input.GetAxis(menuAxis)) <= resetThreshold) {
+		if (Input.GetAxis("Menu") != 0) {
+			menuMove = Mathf.Sign(Input.GetAxis("Menu"));
+			menuAxis = "Vertical";
+		} else if (Input.GetAxis("MenuSlider") != 0) {
+			menuMove = Mathf.Sign(Input.GetAxis("MenuSlider"));
+			menuAxis = "Horizontal";
+		}
+		if (menuAxis != "" && Mathf.Abs(menuMove) <= resetThreshold) {
 			menuTimer = 0;
 		}
         if (menuTimer <= 0)
