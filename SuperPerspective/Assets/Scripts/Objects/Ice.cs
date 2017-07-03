@@ -35,10 +35,18 @@ public class Ice : ActiveInteractable {
 	public GameObject spawnCircle;
 	public int collisionPrecision = 2;
 
+  Bounds[] deathBlocks;
+
 	void Awake() {
 		colliderHeight = GetComponent<Collider>().bounds.size.y;
 		colliderWidth = GetComponent<Collider>().bounds.size.x;
 		colliderDepth = GetComponent<Collider>().bounds.size.z;
+
+    GameObject[] deathObjs = GameObject.FindGameObjectsWithTag("DeathBlock");
+    deathBlocks = new Bounds[deathObjs.Length];
+    for(int i = 0; i < deathObjs.Length; i++){
+      deathBlocks[i] = deathObjs[i].GetComponent<Collider>().bounds;
+    }
 	}
 
 	void Start() {
@@ -72,8 +80,21 @@ public class Ice : ActiveInteractable {
 					binder.bind();
 			}
 			CheckCollisions();
+
+      CheckDeathTouchBlock();
 		}
 	}
+
+  void CheckDeathTouchBlock(){
+    Bounds myBounds = GetComponent<Collider>().bounds;
+    for(int i = 0; i < deathBlocks.Length; i++){
+      if(myBounds.Intersects(deathBlocks[i])){
+        breakFlag = true;
+      }
+    }
+
+    doBreak();
+  }
 
 	void FixedUpdate() {
 		if(!PlayerController.instance.isPaused()){
