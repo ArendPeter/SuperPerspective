@@ -11,7 +11,7 @@ public class AchievementManager : MonoBehaviour {
 		bool[] all_crystals = { false, false, false, false };
 
 		for (int i = 1; i < 4; i++) {
-			level_clear[i - 1] = (PlayerPrefs.GetInt(SCENE_NAMES[i]) == 1);
+			level_clear[i - 1] = (PlayerPrefs.GetInt(SCENE_NAMES[i]+"BigCrystal") == 1);
 		}
 		for (int i = 0; i < 4; i++) {
 			string sceneName = SCENE_NAMES[i];

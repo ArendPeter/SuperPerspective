@@ -3,6 +3,8 @@ using System.Collections;
 using Facepunch.Steamworks;
 
 public class SteamManager : MonoBehaviour {
+	int testState = -1;
+
 	public static Facepunch.Steamworks.Client SteamClient;
   private ServerList.Request serverRequest;
 
@@ -52,7 +54,7 @@ public class SteamManager : MonoBehaviour {
 		s_instance = null;
 	}
 
-  void Start (){
+	void Start (){
 	    //
       // Configure for Unity
       //
@@ -83,38 +85,40 @@ public class SteamManager : MonoBehaviour {
       var gotStats = false;
       SteamClient.Achievements.OnUpdated += () => { gotStats = true; };
 
-      while ( !gotStats )
-      {
+      while ( !gotStats ){
           SteamClient.Update();
       }
 
-			CheckBeatGrass();
-			CheckBeatDesert();
-			CheckBeatIce();
-			CheckBeatGame();
-			CheckAllCrystalsInGrass();
-			CheckAllCrystalsInDesert();
-			CheckAllCrystalsInIce();
-			CheckAllCrystalsInGame();
+	  CheckBeatGrass();
+	  CheckBeatDesert();
+	  CheckBeatIce();
+	  CheckBeatGame();
+	  CheckAllCrystalsInGrass();
+	  CheckAllCrystalsInDesert();
+	  CheckAllCrystalsInIce();
+	  CheckAllCrystalsInGame();
 	}
 
 	void Update(){
+	  //testFunction();
       if ( SteamClient != null )
       {
           SteamClient.Update();
       }
-  }
+	}
 
 	private void testFunction(){
-		Debug.Log(GetSteamName());
-		print("all desert crystals?");
-		print(GetAchievement("a3"));
-		print("all crystals in game?");
-		print(GetAchievement("a2"));
-		print("setting all desert crystals to true");
-		AchieveAllCrystalsInGrass();
-		print("all desert crystals?");
-		print(GetAchievement("a3"));
+		int newState = (int)(Time.time / 3);
+		if(newState != testState){
+			testState = newState;
+			if(testState == 0){
+				ResetGame();
+				print("achievements reset");
+			}else{
+				SetAchievement("a"+testState);
+				print("a"+testState);
+			}
+		}
 	}
 
 	public string GetSteamName(){
@@ -221,11 +225,11 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	private bool GetAchievement(string id){
-			foreach ( var ach in SteamClient.Achievements.All ){
-          if(ach.Id == id){
-							return ach.State;
-          }
-      }
-			return false;
+		foreach ( var ach in SteamClient.Achievements.All ){
+	      if(ach.Id == id){
+			return ach.State;
+	      }
+	    }
+		return false;
 	}
 }
