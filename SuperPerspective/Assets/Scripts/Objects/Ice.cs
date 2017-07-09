@@ -19,6 +19,8 @@ public class Ice : ActiveInteractable {
 
 	private Vector3 startPos;
 	private Vector3 nextVelocity;//previously called setVelocity
+	private Vector3 savedVelocity;
+	private float fallDelay;
 
 	private CollisionChecker colCheck;
 
@@ -27,6 +29,7 @@ public class Ice : ActiveInteractable {
 	private bool[] axisBlocked = new bool[4];
 
     private const int DELAY = 10;
+	const int FALL_DELAY = 20;
 
     private int kickDelay;
 
@@ -99,8 +102,15 @@ public class Ice : ActiveInteractable {
 	void FixedUpdate() {
 		if(!PlayerController.instance.isPaused()){
 			base.FixedUpdateLogic ();
-			if (!grounded)
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
+			if (fallDelay == 0) {
+				if (!grounded)
+					velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
+			} else {
+				fallDelay--;
+				if (fallDelay == 0) {
+					velocity = savedVelocity;
+				}
+			}
             if (kickDelay > 0)
                 kickDelay--;
 
@@ -151,6 +161,8 @@ public class Ice : ActiveInteractable {
 			}
 			transform.Translate(velocity * Time.deltaTime);
 			if (respawnFlag && Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth) {
+				fallDelay = 0;
+				savedVelocity = Vector3.zero;
 				Vector3 pos = transform.position;
 				pos = startPos + Vector3.up;
 				transform.position = pos;
@@ -322,6 +334,11 @@ public class Ice : ActiveInteractable {
         {
             breakFlag = true;
         }
+		if (fallDelay == 0) {
+			savedVelocity = velocity;
+			velocity = Vector3.zero;
+			fallDelay = FALL_DELAY;
+		}
     }
 
 	void doBreak() {

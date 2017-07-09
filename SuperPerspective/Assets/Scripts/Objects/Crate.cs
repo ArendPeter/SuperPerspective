@@ -16,6 +16,7 @@ public class Crate : ActiveInteractable {
 	private float Margin = 0.05f;
 
 	private Vector3 startPos;
+	private float savedFallSpeed, fallDelay;
 
 	private CollisionChecker colCheck;
 
@@ -31,6 +32,7 @@ public class Crate : ActiveInteractable {
 	public int collisionPrecision = 2;
 
 	float verticalOverlapThreshhold = .3f;
+	const int FALL_DELAY = 20;
 
 	float groundY = 0f;
 
@@ -90,8 +92,15 @@ public class Crate : ActiveInteractable {
 	void FixedUpdate() {
 		if(!PlayerController.instance.isPaused()){
 			base.FixedUpdateLogic ();
-			if (!grounded)
-				velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
+			if (fallDelay == 0) {
+				if (!grounded)
+					velocity = new Vector3(velocity.x, Mathf.Max(velocity.y - gravity, -terminalVelocity), velocity.z);
+			} else {
+				fallDelay--;
+				if (fallDelay == 0) {
+					velocity.y = savedFallSpeed;
+				}
+			}
 
 			/*if (grabbed) {
 				float vy = velocity.y;
@@ -172,6 +181,8 @@ public class Crate : ActiveInteractable {
 			bool playerAwayFromSpawn =
 			 	Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth;
 			if (respawnFlag && playerAwayFromSpawn) {
+				fallDelay = 0;
+				savedFallSpeed = 0;
 				Vector3 pos = transform.position;
 				pos = startPos + Vector3.up;
 				transform.position = pos;
@@ -441,6 +452,11 @@ public class Crate : ActiveInteractable {
 
 	private void Shift(PerspectiveType p) {
 		persp = p;
+		if (fallDelay == 0) {
+			savedFallSpeed = velocity.y;
+			velocity.y = 0;
+			fallDelay = FALL_DELAY;
+		}
 		if (respawnFlag) {
 			GetComponent<Collider>().enabled = false;
 			GetComponentInChildren<Renderer>().enabled = false;
