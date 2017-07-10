@@ -110,10 +110,12 @@ public class ActiveInteractable : PhysicalObject
 
             bool playerFacing = GameStateManager.is3D() ? isPlayerFacingObject() : isPlayerFacingObject2D();
 
+            bool tooCloseForFacing = dist < .1f;
+
             bool inYRange = IsInYRange();
 
             canTrigger =
-				(inRange && playerFacing && inYRange && IsEnabled()) || (GetComponent<Crate>() != null && GetComponent<Crate>() == player.GetComponent<PlayerController>().GetCrate());
+				(inRange && (playerFacing || tooCloseForFacing) && inYRange && IsEnabled()) || (GetComponent<Crate>() != null && GetComponent<Crate>() == player.GetComponent<PlayerController>().GetCrate());
 
             //checks for competing notifications (I think)
             notificationCanBeShown = (!notiShown || dist < notiDist);
