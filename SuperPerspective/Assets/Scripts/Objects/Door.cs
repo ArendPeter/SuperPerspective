@@ -9,7 +9,10 @@ public class Door : ActiveInteractable {
 	Door destDoor;
     //public Color particleColor;
 
-    public ParticleSystem teleparticle;
+    public ParticleSystem[] teleparticle;
+    public bool isParticleActive = true;
+    private float distanceCutoff = 90f;
+    public float currentDistance = 0;
 
 	public string sceneName;
 	public int crystalRequirement;
@@ -26,14 +29,16 @@ public class Door : ActiveInteractable {
 		l = GameObject.Find("AudioListener").GetComponent<ListenerHandler>();
 
 
-		/*ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
-		if(p != null){
+        //ParticleSystem p = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
+        //teleparticle = this.transform.FindChild("Particles").GetComponent<ParticleSystem>();
+        teleparticle = this.GetComponentsInChildren<ParticleSystem>();
+        /*if(p != null){
 			p.startColor = particleColor;
 			p.Simulate(2f);
 			p.Play();
 		}*/
 
-    	range = 2;
+        range = 2;
 
 	    if (this.invisible) {
             MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
@@ -48,15 +53,41 @@ public class Door : ActiveInteractable {
         }
 	}
 
+    void Update()
+    {
+        currentDistance = GetDistance();
+        if (GetDistance() > distanceCutoff)
+        {
+            foreach (ParticleSystem ps in teleparticle)
+            {
+                ps.Stop();
+                isParticleActive = false;
+            }
+
+        }
+        else
+        {
+            if (!isParticleActive)
+            {
+                foreach (ParticleSystem ps in teleparticle)
+                {
+                    isParticleActive = true;
+                    ps.Play();
+                }
+            }
+        }
+        print(currentDistance);
+    }
+
 	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
 		Door dest = DoorManager.instance.getDoor(doorName);
 		p.Teleport(
 			dest.GetComponent<Collider>().bounds.center + dest.teleportOffset);
 		Instantiate(dest.warpSound);
-        if (dest.teleparticle != null)
+        /*if (dest.teleparticle != null)
         {
-            dest.teleparticle.Emit(700);
-        }
+            //dest.teleparticle.Emit(700);
+        }*/
 	}
 
 	public override float GetDistance() {
