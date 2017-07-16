@@ -4122,6 +4122,7 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 6, z: 0}
   transitionTime: 2
+  moving: 0
 --- !u!1001 &327997274
 Prefab:
   m_ObjectHideFlags: 0
@@ -5485,6 +5486,74 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 477962, guid: e679677ab80fcc64a9f6a66377efcb65, type: 2}
   m_PrefabInternal: {fileID: 455867675}
+--- !u!1 &461584674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 461584675}
+  - component: {fileID: 461584677}
+  - component: {fileID: 461584676}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &461584675
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461584674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.05602269, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1879830202}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -1.5999985, y: -2.100006}
+  m_SizeDelta: {x: 50, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &461584676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461584674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: e698e41e0efdf80459127e99720631f1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &461584677
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461584674}
 --- !u!1 &464039077 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000012598599748, guid: de83d96658944fd4684e4560f5cf49d2,
@@ -6587,7 +6656,10 @@ MonoBehaviour:
   isInteractable: 1
   myName: hub-tutorial-start
   destName: t1-start
-  teleparticle: {fileID: 0}
+  teleparticle:
+  - {fileID: 0}
+  isParticleActive: 1
+  currentDistance: 0
   sceneName: TutorialScene
   crystalRequirement: 0
   teleportOffset: {x: 0, y: 6, z: 0}
@@ -12365,7 +12437,10 @@ MonoBehaviour:
   isInteractable: 1
   myName: hub-grass-start
   destName: g1-start
-  teleparticle: {fileID: 0}
+  teleparticle:
+  - {fileID: 0}
+  isParticleActive: 1
+  currentDistance: 0
   sceneName: GrassScene
   crystalRequirement: 0
   teleportOffset: {x: 0, y: 3, z: 0}
@@ -13456,6 +13531,7 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 6, z: 0}
   transitionTime: 1.5
+  moving: 0
 --- !u!1 &1152883417
 GameObject:
   m_ObjectHideFlags: 0
@@ -16643,6 +16719,7 @@ MonoBehaviour:
   activated: 0
   movement: {x: 0, y: 6, z: 0}
   transitionTime: 1
+  moving: 0
 --- !u!65 &1475300181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17130,7 +17207,10 @@ MonoBehaviour:
   isInteractable: 1
   myName: hub-end
   destName: 
-  teleparticle: {fileID: 0}
+  teleparticle:
+  - {fileID: 0}
+  isParticleActive: 1
+  currentDistance: 0
   sceneName: CreditsScene
   crystalRequirement: 0
   teleportOffset: {x: 0, y: 3, z: 0}
@@ -19808,7 +19888,10 @@ MonoBehaviour:
   isInteractable: 1
   myName: hub-desert-start
   destName: d1-start
-  teleparticle: {fileID: 0}
+  teleparticle:
+  - {fileID: 0}
+  isParticleActive: 1
+  currentDistance: 0
   sceneName: DesertScene
   crystalRequirement: 0
   teleportOffset: {x: 0, y: 3, z: 0}
@@ -21484,10 +21567,27 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22422490, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11404580, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: highlight
+      value: 
+      objectReference: {fileID: 461584676}
+    - target: {fileID: 11404580, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
+      propertyPath: cursorXValue
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 460dc94b41849c4459973ec740ce5a13, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &1879830202 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22485440, guid: 460dc94b41849c4459973ec740ce5a13,
+    type: 2}
+  m_PrefabInternal: {fileID: 1879830201}
 --- !u!4 &1882041583 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: f98e9aee3b50c764ea72ccd0fbc4884e, type: 3}
@@ -23701,7 +23801,10 @@ MonoBehaviour:
   isInteractable: 1
   myName: hub-ice-start
   destName: i1-start
-  teleparticle: {fileID: 0}
+  teleparticle:
+  - {fileID: 0}
+  isParticleActive: 1
+  currentDistance: 0
   sceneName: IceScene
   crystalRequirement: 0
   teleportOffset: {x: 0, y: 3, z: 0}

@@ -47,6 +47,7 @@ public class askBoxScript : MonoBehaviour {
 
 	public Text text;//Text that we use to display our cursor
     public Text qText;//Text which we use to display our actual QUESTION
+    public Image highlight;//Sprite that we use to 
 
 	//This is mainly for controller support to ensure that
 	//tapping up or down isn't registered twice
@@ -144,8 +145,10 @@ public class askBoxScript : MonoBehaviour {
 		textbox.enabled = true;
 		text.enabled = true;
         qText.enabled = true;
+        highlight.enabled = true;
+        highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
 
-    for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
+        for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
     {
         textArray[i].enabled = true;
     }
@@ -156,6 +159,7 @@ public class askBoxScript : MonoBehaviour {
 		textbox.enabled = false;
 		text.enabled = false;
         qText.enabled = false;
+        highlight.enabled = false;
 
         deleteText();
     }
@@ -284,9 +288,9 @@ public class askBoxScript : MonoBehaviour {
 	public void interactLoop()
 	{
 		if (isFinishedDisplaying) { //If it's finshed displaying, that means it's time to MAKE A CHOICE.
-			text.alignment = TextAnchor.MiddleLeft;
-            text.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
-			text.text = "➽";
+			//text.alignment = TextAnchor.MiddleLeft;
+            highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
+			//text.text = "➽";
 
             if (moveUp)
             {
