@@ -25,11 +25,13 @@ public class DevConsoleController : MonoBehaviour {
 	}
 
 	public void ToggleDevConsole(){
+        //Disabled for release -Nick
+        /*
 		if(isConsoleActive()){
 			devConsole.SetActive(false);
 		}else{
 			devConsole.SetActive(true);
-		}
+		}*/
 	}
 
 	public bool isConsoleActive(){

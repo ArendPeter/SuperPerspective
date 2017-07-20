@@ -76,7 +76,7 @@ public class Door : ActiveInteractable {
                 }
             }
         }
-        print(currentDistance);
+        //print(currentDistance);
     }
 
 	public static void TeleportPlayerToDoor(PlayerController p, string doorName) {
