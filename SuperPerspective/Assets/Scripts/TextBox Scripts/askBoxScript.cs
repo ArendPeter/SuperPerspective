@@ -145,8 +145,11 @@ public class askBoxScript : MonoBehaviour {
 		textbox.enabled = true;
 		text.enabled = true;
         qText.enabled = true;
-        highlight.enabled = true;
-        highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
+        if (highlight != null)
+        {
+            highlight.enabled = true;
+            highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
+        }
 
         for (int i = 0; i < choiceArray.Length; i++)//Here we instantiate ALL of the new text objects
     {
@@ -159,7 +162,10 @@ public class askBoxScript : MonoBehaviour {
 		textbox.enabled = false;
 		text.enabled = false;
         qText.enabled = false;
-        highlight.enabled = false;
+        if (highlight != null)
+        {
+            highlight.enabled = false;
+        }
 
         deleteText();
     }
@@ -288,8 +294,11 @@ public class askBoxScript : MonoBehaviour {
 	public void interactLoop()
 	{
 		if (isFinishedDisplaying) { //If it's finshed displaying, that means it's time to MAKE A CHOICE.
-			//text.alignment = TextAnchor.MiddleLeft;
-            highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
+                                    //text.alignment = TextAnchor.MiddleLeft;
+            if (highlight != null)
+            {
+                highlight.transform.position = new Vector3(textArray[choiceID].transform.position.x - cursorXValue, textArray[choiceID].transform.position.y, 0);
+            }
 			//text.text = "➽";
 
             if (moveUp)
