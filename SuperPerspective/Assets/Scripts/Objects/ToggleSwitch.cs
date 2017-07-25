@@ -50,4 +50,9 @@ public class ToggleSwitch : ActiveInteractable {
 
 		gameObject.GetComponent<AudioSource>().Play ();
 	}
+
+    public bool IsToggled()
+    {
+        return toggleEnabled;
+    }
 }
