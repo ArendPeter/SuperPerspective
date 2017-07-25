@@ -246,12 +246,12 @@ public class GameStateManager : MonoBehaviour
 	}
 
 	private void HandleLeanLeftPressed(){
-		if(!IsPauseState(currentState) && currentPerspective == PerspectiveType.p3D)
+		if(!IsPauseState(currentState) && currentPerspective == PerspectiveType.p3D && PlayerController.instance != null && !PlayerController.instance.isDisabled())
 			EnterState(ViewType.LEAN_LEFT);
 	}
 
 	private void HandleLeanRightPressed(){
-		if(!IsPauseState(currentState) && currentPerspective == PerspectiveType.p3D)
+		if(!IsPauseState(currentState) && currentPerspective == PerspectiveType.p3D && PlayerController.instance != null && !PlayerController.instance.isDisabled())
 			EnterState(ViewType.LEAN_RIGHT);
 	}
 
