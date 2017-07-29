@@ -15,6 +15,9 @@ public class VolumeSettingsController : MonoBehaviour {
 	public Slider musicSlider;
 	public Slider sfxSlider;
 	public AudioMixer mixer;
+    public AudioSource audioS;
+
+    float sliderNoiseTimer = 0;
 
 	void Start() {
 		if (!PlayerPrefs.HasKey("MusicVol")) {
@@ -33,6 +36,14 @@ public class VolumeSettingsController : MonoBehaviour {
 		}
 	}
 
+    public void Update()
+    {
+        if (sliderNoiseTimer > 0)
+        {
+            sliderNoiseTimer -= Time.deltaTime;
+        }
+    }
+
 	public float getMusicVol() {
 		return musicVol;
 	}
@@ -48,6 +59,13 @@ public class VolumeSettingsController : MonoBehaviour {
 	}
 
 	public void setSfxVol() {
+        //Play noise as volume slider is changed
+        if (sliderNoiseTimer <= 0)
+        {
+            audioS.Play();
+            sliderNoiseTimer = 0.1f;
+        }
+
 		sfxVol = sfxSlider.value;
 		PlayerPrefs.SetFloat("SfxVol", sfxVol);
 		mixer.SetFloat("sfxVol", Mathf.Lerp(MIN_VOL, BASE_SFX_VOL, Mathf.Log10(sfxVol)));
