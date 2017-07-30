@@ -31,7 +31,7 @@ public class VolumeSettingsController : MonoBehaviour {
 			PlayerPrefs.SetFloat("SfxVol", 1f);
 		} else {
 			sfxVol = PlayerPrefs.GetFloat("SfxVol");
-			musicSlider.value = sfxVol;
+			sfxSlider.value = sfxVol;
 			mixer.SetFloat("sfxVol", Mathf.Lerp(MIN_VOL, BASE_SFX_VOL, Mathf.Log10(sfxVol)));
 		}
 	}
