@@ -36,6 +36,16 @@ public class Crate : ActiveInteractable {
 
 	float groundY = 0f;
 
+    Bounds[] deathBlocks;
+
+	void Awake(){
+		GameObject[] deathObjs = GameObject.FindGameObjectsWithTag("DeathBlock");
+        deathBlocks = new Bounds[deathObjs.Length];
+        for(int i = 0; i < deathObjs.Length; i++){
+          deathBlocks[i] = deathObjs[i].GetComponent<Collider>().bounds;
+        }
+	}
+
 	void Start() {
 		base.StartSetup ();
 		grounded = false;
@@ -76,8 +86,18 @@ public class Crate : ActiveInteractable {
 					grabbed = false;
 				}
 			}
+	        CheckDeathTouchBlock();
 		}
 		stayAboveGround();
+	}
+
+	void CheckDeathTouchBlock(){
+	    Bounds myBounds = GetComponent<Collider>().bounds;
+	    for(int i = 0; i < deathBlocks.Length; i++){
+			if(myBounds.Intersects(deathBlocks[i])){
+			    doBreak();
+			}
+	    }
 	}
 
 	private void stayAboveGround(){
