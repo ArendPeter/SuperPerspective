@@ -121,7 +121,9 @@ public class Orb : ActiveInteractable {
 	private void UpdateRecallPosition(){
 		Vector3 targetPos = (HasFinalPlatform())?
 			destObj.GetOrbPosition() : startPos;
-		LerpToPosition(targetPos,resetSpeed);
+		float dist = Vector3.Distance(transform.position, targetPos);
+		float recall = Mathf.Max(dist, resetSpeed);
+		LerpToPosition(targetPos,recall);
 
 		if(!HasFinalPlatform() && trailParticle != null){
 			trailParticle.enableEmission = true;

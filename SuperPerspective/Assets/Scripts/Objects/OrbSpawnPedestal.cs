@@ -22,6 +22,7 @@ public class OrbSpawnPedestal : ActiveInteractable {
 		}else{
 			myOrb.Drop();
 			myOrb.SetVisible(false);
+		    myOrb.breakSFX.Play();
 		}
 	}
 
