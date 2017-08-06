@@ -334,7 +334,7 @@ public class Ice : ActiveInteractable {
         {
             breakFlag = true;
         }
-		if (fallDelay == 0) {
+		if (fallDelay == 0 && !velocity.Equals(Vector3.zero)) {
 			savedVelocity = velocity;
 			velocity = Vector3.zero;
 			fallDelay = FALL_DELAY;
