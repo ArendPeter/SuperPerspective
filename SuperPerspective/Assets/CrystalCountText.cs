@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(TextMesh))]
 
 public class CrystalCountText : MonoBehaviour {
 
-	private TextMesh txtmesh;
 	public string sceneName;
 	public int maxCount;
     public int currentCount;
 
 	// Use this for initialization
 	void Start () {
-		txtmesh = GetComponent<TextMesh>();
+		TextMesh txtmesh = GetComponent<TextMesh>();
+		Text pauseText = GetComponent<Text>();
 		bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName + "BigCrystal") == 1;
 		currentCount = 0;
 
@@ -22,14 +23,29 @@ public class CrystalCountText : MonoBehaviour {
 			currentCount = colList.Length;
 		}
 
-		if((hasFinalCrystal || sceneName == "TutorialScene") && currentCount == this.maxCount){
-			txtmesh.text = "All Crystals Found!";
-		} else {
-			txtmesh.text = "Crystals " + currentCount + "/" + this.maxCount;
+		print(pauseText);
 
-			if(hasFinalCrystal) {
-				txtmesh.text += " + Final";
+		if((hasFinalCrystal || sceneName == "TutorialScene") && currentCount == this.maxCount){
+			string completeMessage = "All Crystals Found!";
+			if(txtmesh != null) {
+				txtmesh.text = completeMessage;
 			}
+			if(pauseText != null) {
+				pauseText.text = completeMessage;
+			}
+		} else {
+			string completeMessage = "Crystals " + currentCount + "/" + this.maxCount;
+			if(hasFinalCrystal) {
+				completeMessage += " + Final";
+			}
+
+			if(txtmesh != null) {
+				txtmesh.text = completeMessage;
+			}
+			if(pauseText != null) {
+				pauseText.text = completeMessage;
+			}
+			
 		}
 
 	}
