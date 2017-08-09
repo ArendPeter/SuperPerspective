@@ -12,7 +12,7 @@ public class CrystalCountText : MonoBehaviour {
     public int currentCount;
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
 		TextMesh txtmesh = GetComponent<TextMesh>();
 		Text pauseText = GetComponent<Text>();
 		bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName + "BigCrystal") == 1;
