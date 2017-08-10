@@ -56,23 +56,26 @@ public class Door : ActiveInteractable {
     void Update()
     {
         currentDistance = GetDistance();
-        if (GetDistance() > distanceCutoff)
+        if (!invisible)
         {
-            foreach (ParticleSystem ps in teleparticle)
-            {
-                ps.Stop();
-                isParticleActive = false;
-            }
-
-        }
-        else
-        {
-            if (!isParticleActive)
+            if (GetDistance() > distanceCutoff)
             {
                 foreach (ParticleSystem ps in teleparticle)
                 {
-                    isParticleActive = true;
-                    ps.Play();
+                    ps.Stop();
+                    isParticleActive = false;
+                }
+
+            }
+            else
+            {
+                if (!isParticleActive)
+                {
+                    foreach (ParticleSystem ps in teleparticle)
+                    {
+                        isParticleActive = true;
+                        ps.Play();
+                    }
                 }
             }
         }
