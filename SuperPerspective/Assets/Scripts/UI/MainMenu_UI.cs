@@ -274,7 +274,7 @@ public class MainMenu_UI : MonoBehaviour {
     //Save choices
     public void ClearSaveYes()
     {
-        SteamManager.Instance.ResetGame();
+        //SteamManager.Instance.ResetGame();
         PlayerPrefs.DeleteAll();
         menuState = MenuState.dataClearedMenu;
         choice = 0;

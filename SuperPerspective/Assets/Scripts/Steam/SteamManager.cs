@@ -126,6 +126,7 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	public void ResetGame(){
+        /*
 		SteamClient.Achievements.Reset("a1");
 		SteamClient.Achievements.Reset("a2");
 		SteamClient.Achievements.Reset("a3");
@@ -133,7 +134,7 @@ public class SteamManager : MonoBehaviour {
 		SteamClient.Achievements.Reset("a5");
 		SteamClient.Achievements.Reset("a6");
 		SteamClient.Achievements.Reset("a7");
-		SteamClient.Achievements.Reset("a8");
+		SteamClient.Achievements.Reset("a8");*/
 	}
 
 	public bool CheckAllCrystalsInDesert(){
