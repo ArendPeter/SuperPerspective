@@ -39,6 +39,7 @@ public class GameStateManager : MonoBehaviour
 	//either PerspectiveShiftSuccessEvent or PerspectiveShiftFailEvent will be call at the beginning of shifts
 	public event System.Action PerspectiveShiftSuccessEvent;
 	public event System.Action PerspectiveShiftFailEvent;
+    public event System.Action PausePressedUpdateUIEvent;
 
     public Pause_UI pause_UI;
 
@@ -62,8 +63,9 @@ public class GameStateManager : MonoBehaviour
 		InitViewPauseStates();
 
 		RegisterEventHandlers();
+        InitPausePressedUpdateUIEvent();
 
-		GoToStartState();
+        GoToStartState();
 	}
 
 	void InitViewPerspectives(){
@@ -137,7 +139,17 @@ public class GameStateManager : MonoBehaviour
 			checkForBlinkEnd();
 	}
 
-	private void checkForBlinkEnd(){
+    private void InitPausePressedUpdateUIEvent()
+    {
+        //Updates PausePressedUpdateUIEvent with references to the CrystalCountText so that it can be used to update crystal counts upon pausing
+        CrystalCountText[] crystalCount = Resources.FindObjectsOfTypeAll(typeof(CrystalCountText)) as CrystalCountText[];
+        foreach (CrystalCountText count in crystalCount)
+        {
+            PausePressedUpdateUIEvent += count.UpdateValues;
+        }
+    }
+
+    private void checkForBlinkEnd(){
 		bool blinking = false;
 		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("FlipFailIndicator")){
 			FlipFailIndicator flipper = obj.GetComponent<FlipFailIndicator>();
@@ -170,18 +182,22 @@ public class GameStateManager : MonoBehaviour
 			case ViewType.MENU:
 				if(previousState != null)
 					EnterState(previousState);
-        pause_UI.isPaused = false;
-        break;
+                pause_UI.isPaused = false;
+            break;
 			case ViewType.PAUSE_MENU:
 				if(previousState != ViewType.PAUSE_MENU){
 					EnterState(previousState);
-	        pause_UI.isPaused = false;
+	            pause_UI.isPaused = false;
 				}
-        break;
+            break;
 			default:
 				EnterState(ViewType.PAUSE_MENU);
-        pause_UI.isPaused = true;
-        break;
+                if (PausePressedUpdateUIEvent != null)
+                {
+                    PausePressedUpdateUIEvent();
+                }
+                pause_UI.isPaused = true;
+            break;
 		}
 	}
 

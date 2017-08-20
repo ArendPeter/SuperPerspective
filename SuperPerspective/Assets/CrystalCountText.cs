@@ -11,47 +11,55 @@ public class CrystalCountText : MonoBehaviour {
 	public int maxCount;
     public int currentCount;
 
-	// Use this for initialization
-	void Start () {		
-		TextMesh txtmesh = GetComponent<TextMesh>();
-		Text pauseText = GetComponent<Text>();
-		bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName + "BigCrystal") == 1;
-		currentCount = 0;
+    void Start()
+    {
+        UpdateValues();
+    }
 
-		if(PlayerPrefs.HasKey(this.sceneName+"CollectableList")) {
-			string[] colList = PlayerPrefs.GetString(this.sceneName+"CollectableList").Split(","[0]);
-			currentCount = colList.Length;
-		}
+    public void UpdateValues()
+    {
+        TextMesh txtmesh = GetComponent<TextMesh>();
+        Text pauseText = GetComponent<Text>();
+        bool hasFinalCrystal = PlayerPrefs.GetInt(sceneName + "BigCrystal") == 1;
+        currentCount = 0;
 
-		print(pauseText);
+        if (PlayerPrefs.HasKey(this.sceneName + "CollectableList"))
+        {
+            string[] colList = PlayerPrefs.GetString(this.sceneName + "CollectableList").Split(","[0]);
+            currentCount = colList.Length;
+        }
 
-		if((hasFinalCrystal || sceneName == "TutorialScene") && currentCount == this.maxCount){
-			string completeMessage = "All Crystals Found!";
-			if(txtmesh != null) {
-				txtmesh.text = completeMessage;
-			}
-			if(pauseText != null) {
-				pauseText.text = completeMessage;
-			}
-		} else {
-			string completeMessage = "Crystals " + currentCount + "/" + this.maxCount;
-			if(hasFinalCrystal) {
-				completeMessage += " + Final";
-			}
+        //print(pauseText);
 
-			if(txtmesh != null) {
-				txtmesh.text = completeMessage;
-			}
-			if(pauseText != null) {
-				pauseText.text = completeMessage;
-			}
-			
-		}
+        if ((hasFinalCrystal || sceneName == "TutorialScene") && currentCount == this.maxCount)
+        {
+            string completeMessage = "All Crystals Found!";
+            if (txtmesh != null)
+            {
+                txtmesh.text = completeMessage;
+            }
+            if (pauseText != null)
+            {
+                pauseText.text = completeMessage;
+            }
+        }
+        else
+        {
+            string completeMessage = "Crystals " + currentCount + "/" + this.maxCount;
+            if (hasFinalCrystal)
+            {
+                completeMessage += " + Final";
+            }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+            if (txtmesh != null)
+            {
+                txtmesh.text = completeMessage;
+            }
+            if (pauseText != null)
+            {
+                pauseText.text = completeMessage;
+            }
+
+        }
+    }
 }
