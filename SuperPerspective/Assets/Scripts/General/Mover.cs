@@ -21,6 +21,7 @@ public class Mover : Activatable {
 		startPosition = new Vector3(pos.x,pos.y,pos.z);
         moverSFX = Instantiate(Resources.Load("Sound/SwitchMoverSFX") as GameObject);
         moverSFX.transform.parent = gameObject.transform;
+        moverSFX.transform.localPosition = Vector3.zero;
         smSFX = moverSFX.GetComponent<SwitchMoverSFX>();
 		platforms = Object.FindObjectsOfType(typeof(MobilePlatform)) as MobilePlatform[];
     }
@@ -119,26 +120,34 @@ public class Mover : Activatable {
 					prog = Mathf.Clamp01(prog); //clamp between 0 and 1
 						moving = Mathf.Abs(oldProg - prog) < .01f;
 
-            if (activated)
+            //Play SFX only if the mover is on the same island as the player
+            if (IslandControl.instance.findGround(this.gameObject) != IslandControl.instance.findGround(PlayerController.instance.gameObject))
             {
-                if (prog == 1)
-                {
-                    smSFX.StopSFX();
-                }
-                else
-                {
-                    smSFX.StartSFX();
-                }
+                smSFX.Mute();
             }
-            if (!activated)
+            else
             {
-                if (prog == 0)
+                if (activated)
                 {
-                    smSFX.StopSFX();
+                    if (prog == 1)
+                    {
+                        smSFX.StopSFX();
+                    }
+                    else
+                    {
+                        smSFX.StartSFX();
+                    }
                 }
-                else
+                if (!activated)
                 {
-                    smSFX.StartSFX();
+                    if (prog == 0)
+                    {
+                        smSFX.StopSFX();
+                    }
+                    else
+                    {
+                        smSFX.StartSFX();
+                    }
                 }
             }
 

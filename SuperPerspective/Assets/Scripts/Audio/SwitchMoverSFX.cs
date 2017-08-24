@@ -26,4 +26,16 @@ public class SwitchMoverSFX : MonoBehaviour {
             //Debug.Log("Stop");
         }
     }
+
+    public void Mute()
+    {
+        if (moving.isPlaying)
+        {
+            moving.Stop();
+        }
+        if (stop.isPlaying)
+        {
+            stop.Stop();
+        }
+    }
 }
