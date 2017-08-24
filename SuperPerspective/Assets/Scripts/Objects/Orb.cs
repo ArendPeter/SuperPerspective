@@ -95,6 +95,9 @@ public class Orb : ActiveInteractable {
 	private void FollowPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
 		float dist = Vector3.Distance(transform.position, targetPos);
+		if(dist > 50)
+			transform.position = targetPos +
+				(transform.position - targetPos) * 50 / dist;
 		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * minFollowSpeed);
 		LerpToPosition(targetPos, speed);
 	}
