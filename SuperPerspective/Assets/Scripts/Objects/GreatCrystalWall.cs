@@ -38,12 +38,6 @@ public class GreatCrystalWall : MonoBehaviour {
             bigCrystalCount++;
         }
         bigCrystalText.text = "Big Crystals: " + bigCrystalCount + "/3";
-        littleCrystalCount = tutCount.currentCount + grassCount.currentCount + iceCount.currentCount + desertCount.currentCount;
-        maxLittleCrystalCount = tutCount.maxCount + grassCount.maxCount + iceCount.maxCount + desertCount.maxCount;
-        if (littleCrystalCount >= maxLittleCrystalCount)
-        {
-            gotAllSmallCrystals = true;
-        }
         //Debug.Log("Current crystals: " + littleCrystalCount);
         //Debug.Log("Max crystals: " + maxLittleCrystalCount);
     }
@@ -54,6 +48,12 @@ public class GreatCrystalWall : MonoBehaviour {
         {
             if (bigCrystalCount >= 3)
             {
+                littleCrystalCount = tutCount.currentCount + grassCount.currentCount + iceCount.currentCount + desertCount.currentCount;
+                maxLittleCrystalCount = tutCount.maxCount + grassCount.maxCount + iceCount.maxCount + desertCount.maxCount;
+                if (littleCrystalCount >= maxLittleCrystalCount)
+                {
+                    gotAllSmallCrystals = true;
+                }
                 //Crystal Fairy closing dialogue
                 textBoxScript.instance.startConvo(creditsConvo);
                 //TODO Larry, call this class's OpenGate function after the dialogue
