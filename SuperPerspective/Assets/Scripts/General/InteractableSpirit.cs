@@ -7,7 +7,10 @@ public class InteractableSpirit : ActiveInteractable {
 
     public override void Triggered()
     {
-        textBoxScript.instance.startConvo(myNode);
+        if (PlayerController.instance.isGrounded())
+        {
+            textBoxScript.instance.startConvo(myNode);
+        }
     }
 
     protected override bool IsEnabled()

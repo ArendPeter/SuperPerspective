@@ -73,7 +73,7 @@ public class CrystalExplosionTrigger : ActiveInteractable {
 	
     override public void Triggered()
     {
-        if (conversationEnded == false)
+        if (conversationEnded == false && PlayerController.instance.isGrounded())
         {
             startEvent.eventTrigger();
         }
