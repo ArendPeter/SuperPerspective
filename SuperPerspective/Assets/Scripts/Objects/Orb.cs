@@ -67,6 +67,11 @@ public class Orb : ActiveInteractable {
 	public void Update(){
 		if(!PlayerController.instance.isDisabled()){
 			if(isHeld){
+				Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
+				float dist = Vector3.Distance(transform.position, targetPos);
+				if(dist > 10)
+					transform.position = targetPos +
+						(transform.position - targetPos) * 10 / dist;
 				if(initialApproach){
 					SpiralToPlayer();
 				}else{
@@ -95,9 +100,6 @@ public class Orb : ActiveInteractable {
 	private void FollowPlayer(){
 		Vector3 targetPos = PlayerController.instance.transform.position + posOnPlayer;
 		float dist = Vector3.Distance(transform.position, targetPos);
-		if(dist > 50)
-			transform.position = targetPos +
-				(transform.position - targetPos) * 50 / dist;
 		float speed = Mathf.Max(minFollowSpeed,(dist/distThresh) * minFollowSpeed);
 		LerpToPosition(targetPos, speed);
 	}
