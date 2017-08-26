@@ -161,7 +161,7 @@ public class Ice : ActiveInteractable {
 			}
 			transform.Translate(velocity * Time.deltaTime);
 			if (respawnFlag && Vector2.Distance(new Vector2(startPos.x, startPos.y), new Vector2(player.transform.position.x, player.transform.position.y)) > colliderWidth) {
-				fallDelay = 0;
+				fallDelay = 10;
 				savedVelocity = Vector3.zero;
 				Vector3 pos = transform.position;
 				pos = startPos + Vector3.up;
@@ -334,11 +334,6 @@ public class Ice : ActiveInteractable {
         {
             breakFlag = true;
         }
-		if (fallDelay == 0 && velocity.y != 0 && velocity.x == 0 && velocity.z == 0) {
-			savedVelocity = velocity;
-			velocity = Vector3.zero;
-			fallDelay = FALL_DELAY;
-		}
     }
 
 	void doBreak() {

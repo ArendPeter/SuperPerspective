@@ -83,6 +83,8 @@ public class PlayerController : PhysicalObject{
 	private const int Z = 2;
 	private const float epsilon = .1f;
 
+	private const float INPUT_DEADZONE = 0.1f;
+
 	float frameRate;
 	public float testFrameRate;
 
@@ -292,7 +294,7 @@ public class PlayerController : PhysicalObject{
 			InputManager.instance.GetForwardMovement():
 			-InputManager.instance.GetSideMovement();
 
-		if (axisInput != 0){
+		if (Mathf.Abs(axisInput) > INPUT_DEADZONE){
 			newVelocity += acceleration * Mathf.Sign(axisInput);
 			newVelocity = Mathf.Clamp(newVelocity,
 				-maxSpeed * Mathf.Abs(axisInput),
