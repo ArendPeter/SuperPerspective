@@ -41,7 +41,7 @@ public class PlayerAnimController : MonoBehaviour {
 		orientation = 90;
 	}
 
-	void Update () {
+	void LateUpdate () {
 		checkForJumpTrigger();
 		updateAnimationStates();
 		updateOrientation();
@@ -89,14 +89,14 @@ public class PlayerAnimController : MonoBehaviour {
 	private void updateOrientation(){
 		bool playerIsOnEdge = player.getEdgeState() == PlayerEdgeState.HANGING;
 		float playerHorizontalVelocity = new Vector2(
-			player.getVelocity().x,player.getVelocity().z).magnitude;
+			InputManager.instance.GetSideMovement(), InputManager.instance.GetForwardMovement()).magnitude;
 		bool playerIsMoving = playerHorizontalVelocity > epsilon;
 
 		bool playerCanRotateFreely = !player.isClimbing() && !player.GrabbedCrate() && playerIsMoving
 			&& !playerIsOnEdge;
 
 		if (playerCanRotateFreely){
-			orientation = Mathf.Rad2Deg * Mathf.Atan2(-player.getVelocity().z, player.getVelocity().x) + 90;
+			orientation = Mathf.Rad2Deg * Mathf.Atan2(InputManager.instance.GetSideMovement(), InputManager.instance.GetForwardMovement()) + 90;
 		}else if(playerIsOnEdge){
 			orientation = (-1 - player.getEdgeOrientation()) * 90;
 		}
