@@ -10,7 +10,7 @@ public class Saved_UI : MonoBehaviour {
 	public GameObject SavedUIGraphic;
 
 	private int Timer = 0;
-	private int defaultPopupTime = 200;
+	private int defaultPopupTime = 150;
 
 	private GameObject UIObject;
 	private GameObject canvas;
@@ -26,14 +26,21 @@ public class Saved_UI : MonoBehaviour {
 	void Update() {
 		if(this.Timer > 0 && this.UIObject != null){
 			this.Timer--;
+
+			int timerHalf = this.defaultPopupTime / 2;
+			int timerWait = 30;
 			
-			int animateTime = 23;
-			int animateSpeed = 380;
+			Vector2 startPos = new Vector2(100, -55);
+			Vector3 topPos = new Vector2(100, 125);
+
+			float timerMeasure = Mathf.Abs(this.Timer - timerHalf);
+			float timerPercentage = (timerMeasure / timerHalf);
+
 			//go up
-			if(this.Timer > defaultPopupTime - animateTime){
-				this.UIObject.transform.position = new Vector2(this.UIObject.transform.position.x, this.UIObject.transform.position.y + animateSpeed * Time.deltaTime);
-			} else if(this.Timer < 0 + animateTime){
-				this.UIObject.transform.position = new Vector2(this.UIObject.transform.position.x, this.UIObject.transform.position.y - animateSpeed * Time.deltaTime);
+			if(this.Timer > (timerHalf + timerWait)){
+				this.UIObject.transform.position = Vector2.Lerp(topPos, startPos, timerPercentage);
+			} else if(this.Timer < (timerHalf - timerWait) ){
+				this.UIObject.transform.position = Vector2.Lerp(topPos, startPos, timerPercentage);
 			}
 
 		}
