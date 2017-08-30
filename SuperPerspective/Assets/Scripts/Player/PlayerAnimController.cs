@@ -93,7 +93,7 @@ public class PlayerAnimController : MonoBehaviour {
 		bool playerIsMoving = playerHorizontalVelocity > epsilon;
 
 		bool playerCanRotateFreely = !player.isClimbing() && !player.GrabbedCrate() && playerIsMoving
-			&& !playerIsOnEdge;
+			&& !playerIsOnEdge && player.canControl();
 
 		if (playerCanRotateFreely){
 			orientation = Mathf.Rad2Deg * Mathf.Atan2(InputManager.instance.GetSideMovement(), InputManager.instance.GetForwardMovement()) + 90;
