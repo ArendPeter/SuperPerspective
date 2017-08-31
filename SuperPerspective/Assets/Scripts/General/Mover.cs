@@ -13,6 +13,8 @@ public class Mover : Activatable {
 
 	public bool moving;
 
+    public bool playSound = true;
+
 	private MobilePlatform[] platforms;
 
 	void Start(){
@@ -125,7 +127,7 @@ public class Mover : Activatable {
             {
                 smSFX.Mute();
             }
-            else
+            else if (playSound)
             {
                 if (activated)
                 {
