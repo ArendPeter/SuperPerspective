@@ -30,6 +30,7 @@ public class Ice : ActiveInteractable {
 
     private const int DELAY = 10;
 	const int FALL_DELAY = 20;
+	const float Y_LIMIT = -200f;
 
     private int kickDelay;
 
@@ -84,20 +85,28 @@ public class Ice : ActiveInteractable {
 			}
 			CheckCollisions();
 
-      CheckDeathTouchBlock();
+			CheckOutOfBounds();
+      		CheckDeathTouchBlock();
 		}
 	}
 
-  void CheckDeathTouchBlock(){
-    Bounds myBounds = GetComponent<Collider>().bounds;
-    for(int i = 0; i < deathBlocks.Length; i++){
-      if(myBounds.Intersects(deathBlocks[i])){
-        breakFlag = true;
-      }
-    }
+	void CheckDeathTouchBlock(){
+	    Bounds myBounds = GetComponent<Collider>().bounds;
+	    for(int i = 0; i < deathBlocks.Length; i++){
+	      if(myBounds.Intersects(deathBlocks[i])){
+	        breakFlag = true;
+	      }
+	    }
 
-    doBreak();
-  }
+	    doBreak();
+	}
+
+	void CheckOutOfBounds() {
+		if (transform.position.y < Y_LIMIT) {
+			breakFlag = true;
+			doBreak();
+		}
+	}
 
 	void FixedUpdate() {
 		if(!PlayerController.instance.isPaused()){

@@ -33,6 +33,7 @@ public class Crate : ActiveInteractable {
 
 	float verticalOverlapThreshhold = .3f;
 	const int FALL_DELAY = 20;
+	const float Y_LIMIT = -200f;
 
 	float groundY = 0f;
 
@@ -86,6 +87,7 @@ public class Crate : ActiveInteractable {
 					grabbed = false;
 				}
 			}
+			CheckOutOfBounds();
 	        CheckDeathTouchBlock();
 		}
 		stayAboveGround();
@@ -98,6 +100,12 @@ public class Crate : ActiveInteractable {
 			    doBreak();
 			}
 	    }
+	}
+
+	void CheckOutOfBounds() {
+		if (transform.position.y < Y_LIMIT) {
+			doBreak();
+		}
 	}
 
 	private void stayAboveGround(){
