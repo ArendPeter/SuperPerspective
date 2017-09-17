@@ -142,7 +142,7 @@ public class Door : ActiveInteractable {
 			string level = Application.loadedLevelName;
 			string doorsFound = PlayerPrefs.GetString(level);
 			if (myName == "hub-end") {
-				PlayerPrefs.SetInt("Game_Complete", 1);
+				PlayerPrefs.SetInt("GameComplete", 1);
 				PlayerPrefs.Save();
 				AchievementManager.CheckAchievements();
 			} else if (destName.Contains("start")) {
