@@ -123,6 +123,11 @@ public class Door : ActiveInteractable {
 	public override void Triggered(){
 		//Creates game object that plays warp sound then self destructs -Nick
         Instantiate(warpSound);
+		if (myName.Equals("hub-end")) {
+			PlayerPrefs.SetInt("GameComplete", 1);
+			PlayerPrefs.Save();
+			AchievementManager.CheckAchievements();
+		}
 
 		if(sceneName != "") {
 			TransitionManager.instance.SceneTransition(player.GetComponent<PlayerController>(), destName, sceneName);
@@ -141,11 +146,7 @@ public class Door : ActiveInteractable {
 			// Saving level progress
 			string level = Application.loadedLevelName;
 			string doorsFound = PlayerPrefs.GetString(level);
-			if (myName == "hub-end") {
-				PlayerPrefs.SetInt("GameComplete", 1);
-				PlayerPrefs.Save();
-				AchievementManager.CheckAchievements();
-			} else if (destName.Contains("start")) {
+			if (destName.Contains("start")) {
 				if (doorsFound.Equals("")) {
 					doorsFound += destDoor.getName();
 					PlayerPrefs.SetString(level, doorsFound);
