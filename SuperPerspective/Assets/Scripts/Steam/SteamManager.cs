@@ -5,6 +5,8 @@ using Facepunch.Steamworks;
 public class SteamManager : MonoBehaviour {
 	int testState = -1;
 
+	bool initialized = false;
+
 	public static Facepunch.Steamworks.Client SteamClient;
   private ServerList.Request serverRequest;
 
@@ -12,14 +14,12 @@ public class SteamManager : MonoBehaviour {
 	public bool grassCrystals, desertCrystals, iceCrystals, gameCrystals;
 
 	private static SteamManager s_instance;
-	public static SteamManager Instance {
-		get {
-			if (s_instance == null) {
-				return new GameObject("SteamManager").AddComponent<SteamManager>();
-			}
-			else {
-				return s_instance;
-			}
+	public static SteamManager getInstance() {
+		if (s_instance == null) {
+			return new GameObject("SteamManager").AddComponent<SteamManager>();
+		}
+		else {
+			return s_instance;
 		}
 	}
 
@@ -54,7 +54,13 @@ public class SteamManager : MonoBehaviour {
 		s_instance = null;
 	}
 
-	void Start (){
+	void Start(){
+		init();
+	}
+
+	void init (){
+		if(initialized) return;
+		initialized = true;
 	    //
       // Configure for Unity
       //
@@ -97,6 +103,8 @@ public class SteamManager : MonoBehaviour {
 	  CheckAllCrystalsInDesert();
 	  CheckAllCrystalsInIce();
 	  CheckAllCrystalsInGame();
+
+	  //ResetGame();
 	}
 
 	void Update(){
@@ -126,7 +134,7 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	public void ResetGame(){
-        /*
+		/*
 		SteamClient.Achievements.Reset("a1");
 		SteamClient.Achievements.Reset("a2");
 		SteamClient.Achievements.Reset("a3");
@@ -218,6 +226,7 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	private void SetAchievement(string id){
+		init();
 			foreach ( var ach in SteamClient.Achievements.All ){
           if(ach.Id == id){
             ach.Trigger();
@@ -226,6 +235,7 @@ public class SteamManager : MonoBehaviour {
 	}
 
 	private bool GetAchievement(string id){
+		init();
 		foreach ( var ach in SteamClient.Achievements.All ){
 	      if(ach.Id == id){
 			return ach.State;
