@@ -126,7 +126,11 @@ public class Door : ActiveInteractable {
 		if (myName.Equals("hub-end")) {
 			PlayerPrefs.SetInt("GameComplete", 1);
 			PlayerPrefs.Save();
-			AchievementManager.CheckAchievements();
+			try{
+				AchievementManager.CheckAchievements();
+			}catch{
+				Debug.Log("Error occurred while setting achievements");
+			}
 		}
 
 		if(sceneName != "") {
